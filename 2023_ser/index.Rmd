@@ -62,24 +62,23 @@ Postdoctoral scholar
 
 ]
 
+
+???
+I would like to thank Dr. Caniglia and Dr. Schisterman for the opportunity to talk in this session. Today I will discuss the implementation of the ttf in the study of social determinants in dementia research to ground ideas related to my current.
+I should note that through out my talk I will make more questions than giving answers, but I am confident that this is the perfect place to pose them and take these as conversartion startes.
+
 ---
 background-image: url(./figs/hill.jpg)
 background-size: 75%
 
 .footnote[Hill et al. _Ethnicity and disease_. 2015]
 
-???
-Throughout the meeting we have seen great work focused on risk factors related to dementia and the health disparities related to aging.
+In this graph, the NIA emphasizes that the study of life-course exposures in dementia research is to understand the etiologic pathways and ultimately identify effective targets for intervention. THus, we are very frequently interested in answering causal questions.
 
-As the NIA outlines here, the aim is to understand the etiologic pathways and ultimately identify effective targets for intervention.
-
-THus, we are very frequently interested in answering causal questions, however there has been a long resistance to connect causal methods to structural factors is because the best study design is a randomized trial.
+However there has been a long resistance to connect causal methods to structural factors is because the best study design is a randomized trial.
 
 So while we are mostly focusing on RCTs to answer questions for biological mechanisms, we still need the best of these methods to study structural factors. 
 
-Even so, RCTs are extremely hard in dementia research because we usually need decades of follow-up, so we mostly rely in observational studies. 
-
-I hope my work here helps moving out from that dilemma, the core concepts of this framework to improve the way ask questions and seek responses with observational studies.
 
 ---
 
@@ -129,6 +128,10 @@ The ttf is a method to analyze observational data, that motivates researchers to
 Describe the protocol elements of that target trial
 
 Emulate the target trial with observational data as close as possible
+
+This shows that an essential part of this framework relies on the study design.
+Sometimes we heavily focus on the assumptions and estimators to answer causal effects,
+but the essence of the ttf is to be more transparent about the study design decisins we face when we use observational data that has not been collected specifically to answer one specific research question. 
 
 
 ---
@@ -291,7 +294,7 @@ $$E[Y_{2000}^{a = 1, c = 0}] - [Y_{2000}^{a = 0, c = 0}]$$
 ???
 With that in mind, we can outline our estimand or paratemer of interest.
 Since we are interested in a continuous outcome over time, we first discretized our estimand, by each time point.
-So first, we would be interested in evaluating the mean memory score at baseline had everyone had followed intervention 1) compared to the mean score at baseline had everyone had followed intervention 0)
+So first, we would be interested in evaluating the mean memory score in 1998 had everyone had followed intervention 1) compared to the mean score at baseline had everyone had followed intervention 0)
 
 Next we would look at the mean difference on the memory score, under the two treatment strategies, and on and on we would do this until the last wave of data, and we could plot these point estimates over time, either as by treatment arm or the difference between them.
 
@@ -403,13 +406,6 @@ class: center, middle
 `r fa("twitter")` <a href="http://twitter.com/palolili23"> </i>&nbsp; @palolili23</a><br>
 
 `r fa("github")` <a href="https://github.com/palolili23"> </i>&nbsp; @palolili23</a><br>
-
----
-
-
-class: center, middle
-
-![](https://media.giphy.com/media/XHVmD4RyXgSjd8aUMb/giphy.gif)
 
 ---
 
