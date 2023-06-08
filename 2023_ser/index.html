@@ -1,0 +1,3094 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Target trial emulation</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="L. Paloma Rojas-Saunero" />
+    <meta name="date" content="2023-06-08" />
+    <script src="index_files/header-attrs/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="extra.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+
+background-image: url(./figs/logo.png)
+background-position: 5% 95%
+background-size: 35%
+class: center, middle
+
+# Target trial emulation for the study of social determinants in dementia research
+
+.pull.right[
+
+L. Paloma Rojas-Saunero MD, PhD
+&lt;br&gt;
+Postdoctoral scholar
+&lt;br&gt;
+**Mayeda Research Group, Department of Epidemiology**
+
+]
+
+---
+background-image: url(./figs/hill.jpg)
+background-size: 75%
+
+.footnote[Hill et al. _Ethnicity and disease_. 2015]
+
+???
+Throughout the meeting we have seen great work focused on risk factors related to dementia and the health disparities related to aging.
+
+As the NIA outlines here, the aim is to understand the etiologic pathways and ultimately identify effective targets for intervention.
+
+THus, we are very frequently interested in answering causal questions, however there has been a long resistance to connect causal methods to structural factors is because the best study design is a randomized trial.
+
+So while we are mostly focusing on RCTs to answer questions for biological mechanisms, we still need the best of these methods to study structural factors. 
+
+Even so, RCTs are extremely hard in dementia research because we usually need decades of follow-up, so we mostly rely in observational studies. 
+
+I hope my work here helps moving out from that dilemma, the core concepts of this framework to improve the way ask questions and seek responses with observational studies.
+
+---
+
+## Randomized trials
+
+Experiment in which participants are randomly assigned to follow specified treatment strategies.
+
+--
+
+.pull-left[
+**Ideal randomized trial**
+
+   + No loss to follow-up
+
+   + Full adherence through out the study duration
+
+   + Double blind assignment
+]
+
+.pull-right[
+
+Time points aligned by design:
+
+- Eligibility criteria
+
+- Treatment assignment (randomization)
+
+- Follow-up starts
+
+]
+
+???
+So, I would first like to highlight a few characteristics of randomized trials that make them ideal to answer causal questions
+
+The concept of an “ideal randomized trial” is tied directly to the language of counterfactual or potential outcomes and causal diagrams
+
+
+---
+class: center, middle
+
+## Target trial emulation framework
+
+![](figs/tt.png)
+???
+The ttf is a method to analyze observational data, that motivates researchers to conceptualize the hypothetical randomized trial that we would like to conduct that answers our question
+
+Describe the protocol elements of that target trial
+
+Emulate the target trial with observational data as close as possible
+
+
+---
+class: middle, left, even smaller
+background-image: url(./figs/t.jpg)
+background-position: 90% 90%
+background-size: 15%
+
+## Early-life racial residential segregation and its effect on memory decline in older adults
+
+.left[ _Work led by Taylor Mobley (UCLA, Mayeda's research lab)_ ]
+
+???
+To illustrate how to implement the TTF I will use as example a work in progress led by TM. This is an initial step and we plan to expand these ideas to other questions of structural racism in this grant.
+
+---
+## Research question
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+.center[
+_What is the effect of early-life racial residencial segregation in 1940, measured by the dissimilarity index, on later-life memory decline in US population, represented by the Health and Retirement Study (HRS)?_
+]
+
+???
+THe HRS is a national representative data with oversampling of black, latino population. 
+Recruitment started in the 90's and collects all kind of measurements, including memory scores every 2 years.
+---
+
+<div id="jjawrhsrlf" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#jjawrhsrlf .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#jjawrhsrlf .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#jjawrhsrlf .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#jjawrhsrlf .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#jjawrhsrlf .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jjawrhsrlf .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#jjawrhsrlf .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#jjawrhsrlf .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#jjawrhsrlf .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#jjawrhsrlf .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#jjawrhsrlf .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#jjawrhsrlf .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#jjawrhsrlf .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#jjawrhsrlf .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#jjawrhsrlf .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#jjawrhsrlf .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#jjawrhsrlf .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jjawrhsrlf .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#jjawrhsrlf .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#jjawrhsrlf .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jjawrhsrlf .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#jjawrhsrlf .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#jjawrhsrlf .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jjawrhsrlf .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jjawrhsrlf .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#jjawrhsrlf .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#jjawrhsrlf .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#jjawrhsrlf .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#jjawrhsrlf .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jjawrhsrlf .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#jjawrhsrlf .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#jjawrhsrlf .gt_left {
+  text-align: left;
+}
+
+#jjawrhsrlf .gt_center {
+  text-align: center;
+}
+
+#jjawrhsrlf .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#jjawrhsrlf .gt_font_normal {
+  font-weight: normal;
+}
+
+#jjawrhsrlf .gt_font_bold {
+  font-weight: bold;
+}
+
+#jjawrhsrlf .gt_font_italic {
+  font-style: italic;
+}
+
+#jjawrhsrlf .gt_super {
+  font-size: 65%;
+}
+
+#jjawrhsrlf .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#jjawrhsrlf .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#jjawrhsrlf .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#jjawrhsrlf .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#jjawrhsrlf .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#jjawrhsrlf .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#jjawrhsrlf .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" style="table-layout: fixed;; width: 0px">
+  <colgroup>
+    <col style="width:120px;"/>
+    <col style="width:320px;"/>
+    <col style="width:320px;"/>
+  </colgroup>
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col">&lt;b&gt; Section &lt;/b&gt;</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col">&lt;b&gt; Target trial protocol &lt;/b&gt;</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col">&lt;b&gt; Emulation using observational data &lt;/b&gt;</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left">&lt;b&gt; Eligibility criteria &lt;/b&gt;</td>
+<td class="gt_row gt_left">Population who self-identify as white or Black, born in the US by 1940, who resided in a county with Black residents</td>
+<td class="gt_row gt_left">Same + participated in HRS, with linked data for 1940 census, living in counties with &gt; 1 enumeration district and with memory assessment measured by 1998</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+
+???
+Before answering this question, lets take some time to outline the target trial and how we would emulate it... so hold on to your seats because we are going to be creative
+
+First, lets imagine we can take a time machine that transport us to 1940.
+
+
+---
+class: even_smaller
+
+<div id="mrvvflhhvk" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#mrvvflhhvk .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#mrvvflhhvk .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#mrvvflhhvk .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#mrvvflhhvk .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#mrvvflhhvk .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mrvvflhhvk .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#mrvvflhhvk .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#mrvvflhhvk .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#mrvvflhhvk .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#mrvvflhhvk .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#mrvvflhhvk .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#mrvvflhhvk .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#mrvvflhhvk .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#mrvvflhhvk .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#mrvvflhhvk .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#mrvvflhhvk .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#mrvvflhhvk .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mrvvflhhvk .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#mrvvflhhvk .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#mrvvflhhvk .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mrvvflhhvk .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#mrvvflhhvk .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#mrvvflhhvk .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mrvvflhhvk .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mrvvflhhvk .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#mrvvflhhvk .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#mrvvflhhvk .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#mrvvflhhvk .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#mrvvflhhvk .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mrvvflhhvk .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#mrvvflhhvk .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#mrvvflhhvk .gt_left {
+  text-align: left;
+}
+
+#mrvvflhhvk .gt_center {
+  text-align: center;
+}
+
+#mrvvflhhvk .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#mrvvflhhvk .gt_font_normal {
+  font-weight: normal;
+}
+
+#mrvvflhhvk .gt_font_bold {
+  font-weight: bold;
+}
+
+#mrvvflhhvk .gt_font_italic {
+  font-style: italic;
+}
+
+#mrvvflhhvk .gt_super {
+  font-size: 65%;
+}
+
+#mrvvflhhvk .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#mrvvflhhvk .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#mrvvflhhvk .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#mrvvflhhvk .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#mrvvflhhvk .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#mrvvflhhvk .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#mrvvflhhvk .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" style="table-layout: fixed;; width: 0px">
+  <colgroup>
+    <col style="width:120px;"/>
+    <col style="width:320px;"/>
+    <col style="width:320px;"/>
+  </colgroup>
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col">&lt;b&gt; Section &lt;/b&gt;</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col">&lt;b&gt; Target trial protocol &lt;/b&gt;</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col">&lt;b&gt; Emulation using observational data &lt;/b&gt;</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left">&lt;b&gt; Eligibility criteria &lt;/b&gt;</td>
+<td class="gt_row gt_left">Population who self-identify as white or Black, born in the US by 1940, who resided in a county with Black residents</td>
+<td class="gt_row gt_left">Same + participated in HRS, with linked data for 1940 census, living in counties with &gt; 1 enumeration district and with memory assessment measured by 1998</td></tr>
+    <tr><td class="gt_row gt_left">&lt;b&gt; Policy-level strategies  &lt;/b&gt;</td>
+<td class="gt_row gt_left">1. Reduce racial residencial segregation in every county by certain amount &lt;br&gt;
+     2. Status quo (no change)</td>
+<td class="gt_row gt_left">Same</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+
+---
+class: even_smaller
+
+<div id="sitdnqxxjm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#sitdnqxxjm .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#sitdnqxxjm .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#sitdnqxxjm .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#sitdnqxxjm .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#sitdnqxxjm .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#sitdnqxxjm .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#sitdnqxxjm .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#sitdnqxxjm .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#sitdnqxxjm .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#sitdnqxxjm .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#sitdnqxxjm .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#sitdnqxxjm .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#sitdnqxxjm .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#sitdnqxxjm .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#sitdnqxxjm .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#sitdnqxxjm .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#sitdnqxxjm .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sitdnqxxjm .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#sitdnqxxjm .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#sitdnqxxjm .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sitdnqxxjm .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#sitdnqxxjm .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#sitdnqxxjm .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#sitdnqxxjm .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sitdnqxxjm .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#sitdnqxxjm .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#sitdnqxxjm .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#sitdnqxxjm .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#sitdnqxxjm .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sitdnqxxjm .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#sitdnqxxjm .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#sitdnqxxjm .gt_left {
+  text-align: left;
+}
+
+#sitdnqxxjm .gt_center {
+  text-align: center;
+}
+
+#sitdnqxxjm .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#sitdnqxxjm .gt_font_normal {
+  font-weight: normal;
+}
+
+#sitdnqxxjm .gt_font_bold {
+  font-weight: bold;
+}
+
+#sitdnqxxjm .gt_font_italic {
+  font-style: italic;
+}
+
+#sitdnqxxjm .gt_super {
+  font-size: 65%;
+}
+
+#sitdnqxxjm .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#sitdnqxxjm .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#sitdnqxxjm .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#sitdnqxxjm .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#sitdnqxxjm .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#sitdnqxxjm .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#sitdnqxxjm .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" style="table-layout: fixed;; width: 0px">
+  <colgroup>
+    <col style="width:120px;"/>
+    <col style="width:320px;"/>
+    <col style="width:320px;"/>
+  </colgroup>
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col">&lt;b&gt; Section &lt;/b&gt;</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col">&lt;b&gt; Target trial protocol &lt;/b&gt;</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col">&lt;b&gt; Emulation using observational data &lt;/b&gt;</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left">&lt;b&gt; Eligibility criteria &lt;/b&gt;</td>
+<td class="gt_row gt_left">Population who self-identify as white or Black, born in the US by 1940, who resided in a county with Black residents</td>
+<td class="gt_row gt_left">Same + participated in HRS, with linked data for 1940 census, living in counties with &gt; 1 enumeration district and with memory assessment measured by 1998</td></tr>
+    <tr><td class="gt_row gt_left">&lt;b&gt; Policy-level strategies  &lt;/b&gt;</td>
+<td class="gt_row gt_left">1. Reduce racial residencial segregation in every county by certain amount &lt;br&gt;
+     2. Status quo (no change)</td>
+<td class="gt_row gt_left">Same</td></tr>
+    <tr><td class="gt_row gt_left">&lt;b&gt; Randomized assignment &lt;/b&gt;</td>
+<td class="gt_row gt_left">Random assignment to either strategy in 1940</td>
+<td class="gt_row gt_left">Random assignment in 1940, within levels of county level covariates</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+
+---
+class: even_smaller
+
+<div id="cyfkmgepaz" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#cyfkmgepaz .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#cyfkmgepaz .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#cyfkmgepaz .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#cyfkmgepaz .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#cyfkmgepaz .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#cyfkmgepaz .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#cyfkmgepaz .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#cyfkmgepaz .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#cyfkmgepaz .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#cyfkmgepaz .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#cyfkmgepaz .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#cyfkmgepaz .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#cyfkmgepaz .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#cyfkmgepaz .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#cyfkmgepaz .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#cyfkmgepaz .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#cyfkmgepaz .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cyfkmgepaz .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#cyfkmgepaz .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#cyfkmgepaz .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cyfkmgepaz .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#cyfkmgepaz .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#cyfkmgepaz .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#cyfkmgepaz .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cyfkmgepaz .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#cyfkmgepaz .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#cyfkmgepaz .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#cyfkmgepaz .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#cyfkmgepaz .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cyfkmgepaz .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#cyfkmgepaz .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#cyfkmgepaz .gt_left {
+  text-align: left;
+}
+
+#cyfkmgepaz .gt_center {
+  text-align: center;
+}
+
+#cyfkmgepaz .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#cyfkmgepaz .gt_font_normal {
+  font-weight: normal;
+}
+
+#cyfkmgepaz .gt_font_bold {
+  font-weight: bold;
+}
+
+#cyfkmgepaz .gt_font_italic {
+  font-style: italic;
+}
+
+#cyfkmgepaz .gt_super {
+  font-size: 65%;
+}
+
+#cyfkmgepaz .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#cyfkmgepaz .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#cyfkmgepaz .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#cyfkmgepaz .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#cyfkmgepaz .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#cyfkmgepaz .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#cyfkmgepaz .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" style="table-layout: fixed;; width: 0px">
+  <colgroup>
+    <col style="width:120px;"/>
+    <col style="width:320px;"/>
+    <col style="width:320px;"/>
+  </colgroup>
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col">&lt;b&gt; Section &lt;/b&gt;</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col">&lt;b&gt; Target trial protocol &lt;/b&gt;</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col">&lt;b&gt; Emulation using observational data &lt;/b&gt;</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left">&lt;b&gt; Eligibility criteria &lt;/b&gt;</td>
+<td class="gt_row gt_left">Population who self-identify as white or Black, born in the US by 1940, who resided in a county with Black residents</td>
+<td class="gt_row gt_left">Same + participated in HRS, with linked data for 1940 census, living in counties with &gt; 1 enumeration district and with memory assessment measured by 1998</td></tr>
+    <tr><td class="gt_row gt_left">&lt;b&gt; Policy-level strategies  &lt;/b&gt;</td>
+<td class="gt_row gt_left">1. Reduce racial residencial segregation in every county by certain amount &lt;br&gt;
+     2. Status quo (no change)</td>
+<td class="gt_row gt_left">Same</td></tr>
+    <tr><td class="gt_row gt_left">&lt;b&gt; Randomized assignment &lt;/b&gt;</td>
+<td class="gt_row gt_left">Random assignment to either strategy in 1940</td>
+<td class="gt_row gt_left">Random assignment in 1940, within levels of county level covariates</td></tr>
+    <tr><td class="gt_row gt_left">&lt;b&gt; Start/End of follow-up &lt;/b&gt;</td>
+<td class="gt_row gt_left">1998 (1st memory assessment) until 2018, including every wave of data in between</td>
+<td class="gt_row gt_left">Same</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+
+---
+class: even_smaller
+
+<div id="xuajmodzql" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#xuajmodzql .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#xuajmodzql .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xuajmodzql .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#xuajmodzql .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#xuajmodzql .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xuajmodzql .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#xuajmodzql .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#xuajmodzql .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#xuajmodzql .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#xuajmodzql .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#xuajmodzql .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#xuajmodzql .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#xuajmodzql .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#xuajmodzql .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#xuajmodzql .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#xuajmodzql .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#xuajmodzql .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xuajmodzql .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#xuajmodzql .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#xuajmodzql .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xuajmodzql .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#xuajmodzql .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#xuajmodzql .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xuajmodzql .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xuajmodzql .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#xuajmodzql .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#xuajmodzql .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#xuajmodzql .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xuajmodzql .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xuajmodzql .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#xuajmodzql .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#xuajmodzql .gt_left {
+  text-align: left;
+}
+
+#xuajmodzql .gt_center {
+  text-align: center;
+}
+
+#xuajmodzql .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#xuajmodzql .gt_font_normal {
+  font-weight: normal;
+}
+
+#xuajmodzql .gt_font_bold {
+  font-weight: bold;
+}
+
+#xuajmodzql .gt_font_italic {
+  font-style: italic;
+}
+
+#xuajmodzql .gt_super {
+  font-size: 65%;
+}
+
+#xuajmodzql .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#xuajmodzql .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#xuajmodzql .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#xuajmodzql .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#xuajmodzql .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#xuajmodzql .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#xuajmodzql .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" style="table-layout: fixed;; width: 0px">
+  <colgroup>
+    <col style="width:120px;"/>
+    <col style="width:320px;"/>
+    <col style="width:320px;"/>
+  </colgroup>
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col">&lt;b&gt; Section &lt;/b&gt;</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col">&lt;b&gt; Target trial protocol &lt;/b&gt;</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col">&lt;b&gt; Emulation using observational data &lt;/b&gt;</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left">&lt;b&gt; Eligibility criteria &lt;/b&gt;</td>
+<td class="gt_row gt_left">Population who self-identify as white or Black, born in the US by 1940, who resided in a county with Black residents</td>
+<td class="gt_row gt_left">Same + participated in HRS, with linked data for 1940 census, living in counties with &gt; 1 enumeration district and with memory assessment measured by 1998</td></tr>
+    <tr><td class="gt_row gt_left">&lt;b&gt; Policy-level strategies  &lt;/b&gt;</td>
+<td class="gt_row gt_left">1. Reduce racial residencial segregation in every county by certain amount &lt;br&gt;
+     2. Status quo (no change)</td>
+<td class="gt_row gt_left">Same</td></tr>
+    <tr><td class="gt_row gt_left">&lt;b&gt; Randomized assignment &lt;/b&gt;</td>
+<td class="gt_row gt_left">Random assignment to either strategy in 1940</td>
+<td class="gt_row gt_left">Random assignment in 1940, within levels of county level covariates</td></tr>
+    <tr><td class="gt_row gt_left">&lt;b&gt; Start/End of follow-up &lt;/b&gt;</td>
+<td class="gt_row gt_left">1998 (1st memory assessment) until 2018, including every wave of data in between</td>
+<td class="gt_row gt_left">Same</td></tr>
+    <tr><td class="gt_row gt_left">&lt;b&gt; Outcome  &lt;/b&gt;</td>
+<td class="gt_row gt_left">Composite memory score &lt;b&gt;</td>
+<td class="gt_row gt_left">Same</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+
+---
+class: even_smaller
+
+<div id="qibbimhrzv" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>html {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
+}
+
+#qibbimhrzv .gt_table {
+  display: table;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 16px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#qibbimhrzv .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#qibbimhrzv .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#qibbimhrzv .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 0;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#qibbimhrzv .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#qibbimhrzv .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#qibbimhrzv .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#qibbimhrzv .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#qibbimhrzv .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#qibbimhrzv .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#qibbimhrzv .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#qibbimhrzv .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#qibbimhrzv .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#qibbimhrzv .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#qibbimhrzv .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#qibbimhrzv .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#qibbimhrzv .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qibbimhrzv .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#qibbimhrzv .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#qibbimhrzv .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qibbimhrzv .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#qibbimhrzv .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#qibbimhrzv .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#qibbimhrzv .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qibbimhrzv .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#qibbimhrzv .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#qibbimhrzv .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#qibbimhrzv .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#qibbimhrzv .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-left: 4px;
+  padding-right: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qibbimhrzv .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#qibbimhrzv .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qibbimhrzv .gt_left {
+  text-align: left;
+}
+
+#qibbimhrzv .gt_center {
+  text-align: center;
+}
+
+#qibbimhrzv .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#qibbimhrzv .gt_font_normal {
+  font-weight: normal;
+}
+
+#qibbimhrzv .gt_font_bold {
+  font-weight: bold;
+}
+
+#qibbimhrzv .gt_font_italic {
+  font-style: italic;
+}
+
+#qibbimhrzv .gt_super {
+  font-size: 65%;
+}
+
+#qibbimhrzv .gt_footnote_marks {
+  font-style: italic;
+  font-weight: normal;
+  font-size: 75%;
+  vertical-align: 0.4em;
+}
+
+#qibbimhrzv .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#qibbimhrzv .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#qibbimhrzv .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#qibbimhrzv .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#qibbimhrzv .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#qibbimhrzv .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" style="table-layout: fixed;; width: 0px">
+  <colgroup>
+    <col style="width:120px;"/>
+    <col style="width:320px;"/>
+    <col style="width:320px;"/>
+  </colgroup>
+  
+  <thead class="gt_col_headings">
+    <tr>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col">&lt;b&gt; Section &lt;/b&gt;</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col">&lt;b&gt; Target trial protocol &lt;/b&gt;</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col">&lt;b&gt; Emulation using observational data &lt;/b&gt;</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td class="gt_row gt_left">&lt;b&gt; Eligibility criteria &lt;/b&gt;</td>
+<td class="gt_row gt_left">Population who self-identify as white or Black, born in the US by 1940, who resided in a county with Black residents</td>
+<td class="gt_row gt_left">Same + participated in HRS, with linked data for 1940 census, living in counties with &gt; 1 enumeration district and with memory assessment measured by 1998</td></tr>
+    <tr><td class="gt_row gt_left">&lt;b&gt; Policy-level strategies  &lt;/b&gt;</td>
+<td class="gt_row gt_left">1. Reduce racial residencial segregation in every county by certain amount &lt;br&gt;
+     2. Status quo (no change)</td>
+<td class="gt_row gt_left">Same</td></tr>
+    <tr><td class="gt_row gt_left">&lt;b&gt; Randomized assignment &lt;/b&gt;</td>
+<td class="gt_row gt_left">Random assignment to either strategy in 1940</td>
+<td class="gt_row gt_left">Random assignment in 1940, within levels of county level covariates</td></tr>
+    <tr><td class="gt_row gt_left">&lt;b&gt; Start/End of follow-up &lt;/b&gt;</td>
+<td class="gt_row gt_left">1998 (1st memory assessment) until 2018, including every wave of data in between</td>
+<td class="gt_row gt_left">Same</td></tr>
+    <tr><td class="gt_row gt_left">&lt;b&gt; Outcome  &lt;/b&gt;</td>
+<td class="gt_row gt_left">Composite memory score &lt;b&gt;</td>
+<td class="gt_row gt_left">Same</td></tr>
+    <tr><td class="gt_row gt_left">&lt;b&gt; Causal contrast  &lt;/b&gt;</td>
+<td class="gt_row gt_left">Intention-to-treat</td>
+<td class="gt_row gt_left">Same</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+
+---
+background-image: url(./figs/dag1940.png)
+background-size: 50%
+class: even_smaller
+
+## Directed acyclic graph
+
+.footnote[
+
+*A0*: Racial residencial segregation in 1940's &lt;br&gt;
+*County-level L0:* population, % &gt; 8th grade, % owned a home (overall and/or race-specific measures) &lt;br&gt; 
+*Individual-level L0:* Age at baseline cognitive assessment, sex, childhood SES index &lt;br&gt;
+*Y1, Y2, Yk*: Measurements of memory decline &lt;br&gt;
+*C2, Ck*: Censoring due to loss to follow-up or death]
+
+???
+THis is a directed acyclic graph, although it has been simplified and arrows are colored for better readability, that represent some of the data generating mechanisms.
+First, we have our exposure measured in 1940's, that is our time zero
+Next, we have memory measurements, represented as Y over time
+L0 represents the shared causes of the exposure and the outcome, this includes structural factors that are measured at a county level, and individual factors
+C represent loss to follow-up and death after initiating the follow-up
+
+
+---
+## Estimand
+
+`$$E[Y_{1998}^{a = 1}] - E[Y_{1998}^{a = 0}]$$`
+--
+
+&lt;br&gt;
+
+`$$E[Y_{2000}^{a = 1, c = 0}] - [Y_{2000}^{a = 0, c = 0}]$$`
+.center[....]
+&lt;br&gt;
+
+???
+With that in mind, we can outline our estimand or paratemer of interest.
+Since we are interested in a continuous outcome over time, we first discretized our estimand, by each time point.
+So first, we would be interested in evaluating the mean memory score at baseline had everyone had followed intervention 1) compared to the mean score at baseline had everyone had followed intervention 0)
+
+Next we would look at the mean difference on the memory score, under the two treatment strategies, and on and on we would do this until the last wave of data, and we could plot these point estimates over time, either as by treatment arm or the difference between them.
+
+
+--
+
+`$$E[Y_{2018}^{a = 1, c = 0}] - E[Y_{2018}^{a = 0, c = 0}]$$`
+---
+## Identifiability assumptions
+
+- Consistency
+
+- Exchangeability
+
+- Positivity
+
+- No interference
+
+???
+
+
+---
+
+## Consistency
+
+- Refers to having a well defined intervention.
+
+--
+
+ -  _What does it mean to intervene in 1940 on segregation_
+
+--
+
+ -  _Is the dissimilarity index a representative measurement_
+
+--
+
+  - _What is a relevant intervention on the dissimilarity index, reducing under certain threshold or by certain value?_
+
+---
+## Consistency
+
+
+- In this context, this framework may help us expand the narrative and conversation around these complex exposures.
+
+--
+
+- In this setting, the interventions represent a weighted average of strategies, determined by the frequency of these in the studied population.
+
+--
+
+- It requires deep interdisciplinary dialogue, and only with subject matter expertise can inform how well we feel about satisfying this assumption
+
+---
+## Exchangeability
+
+- If we consider the dissimilarity index a proxy of all the racist policies that have consequences in residential segregation, whatever we adjust for is not accounted into how we would intervene.
+
+--
+
+- There is a moral and ethical value in terms of what variables to adjust.  "Non-allowable" sources are considered unfair and contribute to disparities.(_Jackson J. Epidemiology. 2021_)
+
+--
+
+- Doubly robust methods (TMLE)** can help us obtain valid inferences if either the exposure or the outcome mechanism is consistently estimated.
+
+.footnote[
+** Targeted maximum likelihood estimation. Schuler M. &amp; Rose S. AJE. 2016.
+]
+
+---
+
+## Take aways
+
+- The target trial framework helps us in being more transparent about our questions, assumptions and interpretations.
+
+--
+
+- We can use the target trial framework even if the intervention of interest is not measured (or exists!). 
+
+--
+
+- We can prevent several sources of bias from having a better design, and we can identify other sources of bias that can prevented (or quantified) through the analytic strategies.
+
+--
+
+- It is a dynamic process, since it requires a deep understanding of the data sources and a constant check that the causal contrasts and subsequent results are informative. 
+
+---
+## Acknowledgments
+
+NIA R01AG074359: Historical social and environmental determinants of memory decline and dementia among U.S. older adults (Dr. Mayeda and Dr. Casey)
+
+---
+class: middle, right
+
+#### _To search for all the refutable consequences of a hypothesis demands highly imaginative thinking. Imagination is needed to arrive at the hypothesis in the first place, let alone to suggest rigorous tests for it. (Carol Buck)_ 
+
+.footnote[
+_Buck C. Popper's Philosophy for Epidemiologists, IJE. 1975_
+]
+---
+class: center, middle
+
+### Thank you, Gracias!
+
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M16.1 260.2c-22.6 12.9-20.5 47.3 3.6 57.3L160 376V479.3c0 18.1 14.6 32.7 32.7 32.7c9.7 0 18.9-4.3 25.1-11.8l62-74.3 123.9 51.6c18.9 7.9 40.8-4.5 43.9-24.7l64-416c1.9-12.1-3.4-24.3-13.5-31.2s-23.3-7.5-34-1.4l-448 256zm52.1 25.5L409.7 90.6 190.1 336l1.2 1L68.2 285.7zM403.3 425.4L236.7 355.9 450.8 116.6 403.3 425.4z"/></svg>&lt;/i&gt;&amp;nbsp;lp.rojassaunero@ucla.edu&lt;/a&gt;&lt;br&gt;
+
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"/></svg> &lt;a href="http://twitter.com/palolili23"&gt; &lt;/i&gt;&amp;nbsp; @palolili23&lt;/a&gt;&lt;br&gt;
+
+<svg aria-hidden="true" role="img" viewBox="0 0 496 512" style="height:1em;width:0.97em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg> &lt;a href="https://github.com/palolili23"&gt; &lt;/i&gt;&amp;nbsp; @palolili23&lt;/a&gt;&lt;br&gt;
+
+---
+
+
+class: center, middle
+
+![](https://media.giphy.com/media/XHVmD4RyXgSjd8aUMb/giphy.gif)
+
+---
+
+## The Dissimilarity Index
+
+A measure of "evenness" of groups (e.g., Black vs white populations) within a given area
+
+&lt;br&gt;
+$$ DI = 0.5*\sum_{i = 1}^{N}{(\frac{B_i}{B_t} - \frac{W_i}{W_t})} $$
+
+.center[Range: 0 (no segregation) - 1 (complete segregation)]
+
+&lt;br&gt;
+We use counties as the larger geographic area of interest (_t_) and enumeration districts (_i_) as geographic subunits
+    
+.footnote[
+*"A Methodological Analysis of Segregation Indexes" Duncan &amp; Duncan, 1955*
+]
+
+???
+
+A group is evenly distributed when each geographic unit has the same percentage of group members as the total population. The index score can also be interpreted as the percentage of one of the two groups included in the calculation that would have to move to different geographic areas in order to produce a distribution that matches that of the larger area.
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
