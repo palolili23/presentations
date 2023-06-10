@@ -64,6 +64,7 @@ Postdoctoral scholar
 
 
 ???
+
 I would like to thank Dr. Caniglia and Dr. Schisterman for the opportunity to talk in this session. Today I will discuss the implementation of the ttf in the study of social determinants in dementia research to ground ideas related to my current.
 I should note that through out my talk I will make more questions than giving answers, but I am confident that this is the perfect place to pose them and take these as conversartion startes.
 
@@ -72,6 +73,8 @@ background-image: url(./figs/hill.jpg)
 background-size: 75%
 
 .footnote[Hill et al. _Ethnicity and disease_. 2015]
+
+???
 
 In this graph, the NIA emphasizes that the study of life-course exposures in dementia research is to understand the etiologic pathways and ultimately identify effective targets for intervention. THus, we are very frequently interested in answering causal questions.
 
@@ -82,33 +85,25 @@ So while we are mostly focusing on RCTs to answer questions for biological mecha
 
 ---
 
-## Randomized trials
+## Ideal randomized trial
 
-Experiment in which participants are randomly assigned to follow specified treatment strategies.
+- No loss to follow-up
 
 --
 
-.pull-left[
-**Ideal randomized trial**
+- Full adherence through out the study duration
 
-   + No loss to follow-up
+--
 
-   + Full adherence through out the study duration
+- Double blind assignment
 
-   + Double blind assignment
-]
+--
 
-.pull-right[
+- Time points aligned by design:
 
-Time points aligned by design:
-
-- Eligibility criteria
-
-- Treatment assignment (randomization)
-
-- Follow-up starts
-
-]
+    + Eligibility criteria
+    + Treatment assignment (randomization)
+    + Follow-up starts
 
 ???
 So, I would first like to highlight a few characteristics of randomized trials that make them ideal to answer causal questions
@@ -123,6 +118,7 @@ class: center, middle
 
 ![](figs/tt.png)
 ???
+
 The ttf is a method to analyze observational data, that motivates researchers to conceptualize the hypothetical randomized trial that we would like to conduct that answers our question
 
 Describe the protocol elements of that target trial
@@ -135,25 +131,18 @@ but the essence of the ttf is to be more transparent about the study design deci
 
 
 ---
-class: middle, left, even smaller
 background-image: url(./figs/t.jpg)
 background-position: 90% 90%
 background-size: 15%
 
-## Early-life racial residential segregation and its effect on memory decline in older adults
-
-.left[ _Work led by Taylor Mobley (UCLA, Mayeda's research lab)_ ]
-
-???
-To illustrate how to implement the TTF I will use as example a work in progress led by TM. This is an initial step and we plan to expand these ideas to other questions of structural racism in this grant.
-
----
 ## Research question
 
 <br><br><br>
+
 .center[
-_What is the effect of early-life racial residencial segregation in 1940, measured by the dissimilarity index, on later-life memory decline in US population, represented by the Health and Retirement Study (HRS)?_
-]
+_What is the effect of early-life racial residencial segregation in 1940, measured by the dissimilarity index, on later-life memory decline in US population, represented by the Health and Retirement Study (HRS)?_]
+
+.footnote[ _Work led by Taylor Mobley (UCLA, Mayeda's research lab)_ ]
 
 ???
 THe HRS is a national representative data with oversampling of black, latino population. 
@@ -169,9 +158,10 @@ target_statins <-
     "<b> Eligibility criteria </b>",
     "Population who self-identify as white or Black, born in the US by 1940, who resided in a county with Black residents",
     "Same + participated in HRS, with linked data for 1940 census, living in counties with > 1 enumeration district and with memory assessment measured by 1998",
-    "<b> Policy-level strategies  </b>",
-    "1. Reduce racial residencial segregation in every county by certain amount <br>
-     2. Status quo (no change)",
+    "<b> Policy-level interventions  </b>",
+    " 0. Do nothing (Status quo) <br>
+    1. Reduce racial residencial segregation at a county level by certain amount
+     ", 
     "Same",
     "<b> Randomized assignment </b>",
     "Random assignment to either strategy in 1940",
@@ -257,29 +247,6 @@ target_statins %>% filter(n %in% c(1:6)) %>% select(-n) %>% gt()  %>%
 ```
 
 ---
-background-image: url(./figs/dag1940.png)
-background-size: 50%
-class: even_smaller
-
-## Directed acyclic graph
-
-.footnote[
-
-*A0*: Racial residencial segregation in 1940's <br>
-*County-level L0:* population, % > 8th grade, % owned a home (overall and/or race-specific measures) <br> 
-*Individual-level L0:* Age at baseline cognitive assessment, sex, childhood SES index <br>
-*Y1, Y2, Yk*: Measurements of memory decline <br>
-*C2, Ck*: Censoring due to loss to follow-up or death]
-
-???
-THis is a directed acyclic graph, although it has been simplified and arrows are colored for better readability, that represent some of the data generating mechanisms.
-First, we have our exposure measured in 1940's, that is our time zero
-Next, we have memory measurements, represented as Y over time
-L0 represents the shared causes of the exposure and the outcome, this includes structural factors that are measured at a county level, and individual factors
-C represent loss to follow-up and death after initiating the follow-up
-
-
----
 ## Estimand
 
 $$E[Y_{1998}^{a = 1}] - E[Y_{1998}^{a = 0}]$$
@@ -324,11 +291,11 @@ $$E[Y_{2018}^{a = 1, c = 0}] - E[Y_{2018}^{a = 0, c = 0}]$$
 
 --
 
- -  _What does it mean to intervene in 1940 on segregation_
+ -  _What does it mean to intervene in 1940 on segregation?_
 
 --
 
- -  _Is the dissimilarity index a representative measurement_
+ -  _Is the dissimilarity index a good a proxy of all the racist policies that had consequences in residential segregation?_
 
 --
 
@@ -338,32 +305,29 @@ $$E[Y_{2018}^{a = 1, c = 0}] - E[Y_{2018}^{a = 0, c = 0}]$$
 ## Consistency
 
 
-- In this context, this framework may help us expand the narrative and conversation around these complex exposures.
+- The target trial framework may help us expand the narrative and conversation around these complex exposures.
 
 --
 
-- In this setting, the interventions represent a weighted average of strategies, determined by the frequency of these in the studied population.
+- The interventions represent a weighted average of strategies, determined by the frequency of these in the studied population.
 
 --
 
-- It requires deep interdisciplinary dialogue, and only with subject matter expertise can inform how well we feel about satisfying this assumption
+- It requires deep interdisciplinary dialogue, and only with subject matter expertise we can inform how well we feel about satisfying this assumption.
 
 ---
 ## Exchangeability
 
-- If we consider the dissimilarity index a proxy of all the racist policies that have consequences in residential segregation, whatever we adjust for is not accounted into how we would intervene.
+- There is a moral and ethical value in terms of what variables to adjust.  "Non-allowable" sources are considered unfair and contribute to disparities (_Jackson J. Epidemiology. 2021_).
 
 --
 
-- There is a moral and ethical value in terms of what variables to adjust.  "Non-allowable" sources are considered unfair and contribute to disparities.(_Jackson J. Epidemiology. 2021_)
+- Whatever we adjust for is not accounted into how we would intervene.
 
 --
 
-- Doubly robust methods (TMLE)** can help us obtain valid inferences if either the exposure or the outcome mechanism is consistently estimated.
+- Doubly robust methods can help us obtain valid inferences if either the exposure or the outcome mechanism is consistently estimated.
 
-.footnote[
-** Targeted maximum likelihood estimation. Schuler M. & Rose S. AJE. 2016.
-]
 
 ---
 
@@ -384,11 +348,6 @@ $$E[Y_{2018}^{a = 1, c = 0}] - E[Y_{2018}^{a = 0, c = 0}]$$
 - It is a dynamic process, since it requires a deep understanding of the data sources and a constant check that the causal contrasts and subsequent results are informative. 
 
 ---
-## Acknowledgments
-
-NIA R01AG074359: Historical social and environmental determinants of memory decline and dementia among U.S. older adults (Dr. Mayeda and Dr. Casey)
-
----
 class: middle, right
 
 #### _To search for all the refutable consequences of a hypothesis demands highly imaginative thinking. Imagination is needed to arrive at the hypothesis in the first place, let alone to suggest rigorous tests for it. (Carol Buck)_ 
@@ -397,9 +356,28 @@ class: middle, right
 _Buck C. Popper's Philosophy for Epidemiologists, IJE. 1975_
 ]
 ---
-class: center, middle
+##           Thank you, Gracias!
 
-### Thank you, Gracias!
+.pull-left[
+
+**Mayeda Research Group**
+
+**Study Contributors:**
+
+- Elizabeth Rose Mayeda
+- Joan Casey
+- Taylor Mobley
+- Kara Rudolph
+- Nick Williams
+- Heather McBrien
+- Milo Gordon
+
+**NIA: R01AG074359**
+]
+
+.pull-right[
+
+<br> <br>
 
 `r fa("paper-plane")`</i>&nbsp;lp.rojassaunero@ucla.edu</a><br>
 
@@ -407,26 +385,4 @@ class: center, middle
 
 `r fa("github")` <a href="https://github.com/palolili23"> </i>&nbsp; @palolili23</a><br>
 
----
-
-## The Dissimilarity Index
-
-A measure of "evenness" of groups (e.g., Black vs white populations) within a given area
-
-<br>
-$$ DI = 0.5*\sum_{i = 1}^{N}{(\frac{B_i}{B_t} - \frac{W_i}{W_t})} $$
-
-.center[Range: 0 (no segregation) - 1 (complete segregation)]
-
-<br>
-We use counties as the larger geographic area of interest (_t_) and enumeration districts (_i_) as geographic subunits
-    
-.footnote[
-*"A Methodological Analysis of Segregation Indexes" Duncan & Duncan, 1955*
 ]
-
-???
-
-A group is evenly distributed when each geographic unit has the same percentage of group members as the total population. The index score can also be interpreted as the percentage of one of the two groups included in the calculation that would have to move to different geographic areas in order to produce a distribution that matches that of the larger area.
-
-

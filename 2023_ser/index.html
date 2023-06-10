@@ -4,7 +4,7 @@
     <title>Target trial emulation</title>
     <meta charset="utf-8" />
     <meta name="author" content="L. Paloma Rojas-Saunero" />
-    <meta name="date" content="2023-06-08" />
+    <meta name="date" content="2023-06-09" />
     <script src="index_files/header-attrs/header-attrs.js"></script>
     <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
     <link rel="stylesheet" href="extra.css" type="text/css" />
@@ -34,6 +34,12 @@ Postdoctoral scholar
 
 ]
 
+
+???
+
+I would like to thank Dr. Caniglia and Dr. Schisterman for the opportunity to talk in this session. Today I will discuss the implementation of the ttf in the study of social determinants in dementia research to ground ideas related to my current.
+I should note that through out my talk I will make more questions than giving answers, but I am confident that this is the perfect place to pose them and take these as conversartion startes.
+
 ---
 background-image: url(./figs/hill.jpg)
 background-size: 75%
@@ -41,51 +47,35 @@ background-size: 75%
 .footnote[Hill et al. _Ethnicity and disease_. 2015]
 
 ???
-I would like to thank Dr. Caniglia and Dr. Schisterman for the opportunity to talk in this session. Today I will discuss the implementation of the ttf in the study of social determinants in dementia research to ground ideas related to my current.
-I should note that through out my talk I will make more questions than giving answers, but I am confident that this is the perfect place to pose them and take these as conversartion startes.
 
+In this graph, the NIA emphasizes that the study of life-course exposures in dementia research is to understand the etiologic pathways and ultimately identify effective targets for intervention. THus, we are very frequently interested in answering causal questions.
 
-Throughout the meeting we have seen great work focused on risk factors related to dementia and the health disparities related to aging.
-
-As the NIA outlines here, the aim is to understand the etiologic pathways and ultimately identify effective targets for intervention.
-
-THus, we are very frequently interested in answering causal questions, however there has been a long resistance to connect causal methods to structural factors is because the best study design is a randomized trial.
+However there has been a long resistance to connect causal methods to structural factors is because the best study design is a randomized trial.
 
 So while we are mostly focusing on RCTs to answer questions for biological mechanisms, we still need the best of these methods to study structural factors. 
 
-Even so, RCTs are extremely hard in dementia research because we usually need decades of follow-up, so we mostly rely in observational studies. 
-
-I hope my work here helps moving out from that dilemma, the core concepts of this framework to improve the way ask questions and seek responses with observational studies.
 
 ---
 
-## Randomized trials
+## Ideal randomized trial
 
-Experiment in which participants are randomly assigned to follow specified treatment strategies.
+- No loss to follow-up
 
 --
 
-.pull-left[
-**Ideal randomized trial**
+- Full adherence through out the study duration
 
-   + No loss to follow-up
+--
 
-   + Full adherence through out the study duration
+- Double blind assignment
 
-   + Double blind assignment
-]
+--
 
-.pull-right[
+- Time points aligned by design:
 
-Time points aligned by design:
-
-- Eligibility criteria
-
-- Treatment assignment (randomization)
-
-- Follow-up starts
-
-]
+    + Eligibility criteria
+    + Treatment assignment (randomization)
+    + Follow-up starts
 
 ???
 So, I would first like to highlight a few characteristics of randomized trials that make them ideal to answer causal questions
@@ -100,6 +90,7 @@ class: center, middle
 
 ![](figs/tt.png)
 ???
+
 The ttf is a method to analyze observational data, that motivates researchers to conceptualize the hypothetical randomized trial that we would like to conduct that answers our question
 
 Describe the protocol elements of that target trial
@@ -112,37 +103,30 @@ but the essence of the ttf is to be more transparent about the study design deci
 
 
 ---
-class: middle, left, even smaller
 background-image: url(./figs/t.jpg)
 background-position: 90% 90%
 background-size: 15%
 
-## Early-life racial residential segregation and its effect on memory decline in older adults
-
-.left[ _Work led by Taylor Mobley (UCLA, Mayeda's research lab)_ ]
-
-???
-To illustrate how to implement the TTF I will use as example a work in progress led by TM. This is an initial step and we plan to expand these ideas to other questions of structural racism in this grant.
-
----
 ## Research question
 
 &lt;br&gt;&lt;br&gt;&lt;br&gt;
+
 .center[
-_What is the effect of early-life racial residencial segregation in 1940, measured by the dissimilarity index, on later-life memory decline in US population, represented by the Health and Retirement Study (HRS)?_
-]
+_What is the effect of early-life racial residencial segregation in 1940, measured by the dissimilarity index, on later-life memory decline in US population, represented by the Health and Retirement Study (HRS)?_]
+
+.footnote[ _Work led by Taylor Mobley (UCLA, Mayeda's research lab)_ ]
 
 ???
 THe HRS is a national representative data with oversampling of black, latino population. 
 Recruitment started in the 90's and collects all kind of measurements, including memory scores every 2 years.
 ---
 
-<div id="rhsestjxkv" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="acwmlbiauv" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#rhsestjxkv .gt_table {
+#acwmlbiauv .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -167,7 +151,7 @@ Recruitment started in the 90's and collects all kind of measurements, including
   border-left-color: #D3D3D3;
 }
 
-#rhsestjxkv .gt_heading {
+#acwmlbiauv .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -179,7 +163,7 @@ Recruitment started in the 90's and collects all kind of measurements, including
   border-right-color: #D3D3D3;
 }
 
-#rhsestjxkv .gt_title {
+#acwmlbiauv .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -191,7 +175,7 @@ Recruitment started in the 90's and collects all kind of measurements, including
   border-bottom-width: 0;
 }
 
-#rhsestjxkv .gt_subtitle {
+#acwmlbiauv .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -203,13 +187,13 @@ Recruitment started in the 90's and collects all kind of measurements, including
   border-top-width: 0;
 }
 
-#rhsestjxkv .gt_bottom_border {
+#acwmlbiauv .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#rhsestjxkv .gt_col_headings {
+#acwmlbiauv .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -224,7 +208,7 @@ Recruitment started in the 90's and collects all kind of measurements, including
   border-right-color: #D3D3D3;
 }
 
-#rhsestjxkv .gt_col_heading {
+#acwmlbiauv .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -244,7 +228,7 @@ Recruitment started in the 90's and collects all kind of measurements, including
   overflow-x: hidden;
 }
 
-#rhsestjxkv .gt_column_spanner_outer {
+#acwmlbiauv .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -256,15 +240,15 @@ Recruitment started in the 90's and collects all kind of measurements, including
   padding-right: 4px;
 }
 
-#rhsestjxkv .gt_column_spanner_outer:first-child {
+#acwmlbiauv .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#rhsestjxkv .gt_column_spanner_outer:last-child {
+#acwmlbiauv .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#rhsestjxkv .gt_column_spanner {
+#acwmlbiauv .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -276,7 +260,7 @@ Recruitment started in the 90's and collects all kind of measurements, including
   width: 100%;
 }
 
-#rhsestjxkv .gt_group_heading {
+#acwmlbiauv .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -301,7 +285,7 @@ Recruitment started in the 90's and collects all kind of measurements, including
   vertical-align: middle;
 }
 
-#rhsestjxkv .gt_empty_group_heading {
+#acwmlbiauv .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -316,15 +300,15 @@ Recruitment started in the 90's and collects all kind of measurements, including
   vertical-align: middle;
 }
 
-#rhsestjxkv .gt_from_md > :first-child {
+#acwmlbiauv .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#rhsestjxkv .gt_from_md > :last-child {
+#acwmlbiauv .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#rhsestjxkv .gt_row {
+#acwmlbiauv .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -343,7 +327,7 @@ Recruitment started in the 90's and collects all kind of measurements, including
   overflow-x: hidden;
 }
 
-#rhsestjxkv .gt_stub {
+#acwmlbiauv .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -356,7 +340,7 @@ Recruitment started in the 90's and collects all kind of measurements, including
   padding-right: 5px;
 }
 
-#rhsestjxkv .gt_stub_row_group {
+#acwmlbiauv .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -370,11 +354,11 @@ Recruitment started in the 90's and collects all kind of measurements, including
   vertical-align: top;
 }
 
-#rhsestjxkv .gt_row_group_first td {
+#acwmlbiauv .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#rhsestjxkv .gt_summary_row {
+#acwmlbiauv .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -384,16 +368,16 @@ Recruitment started in the 90's and collects all kind of measurements, including
   padding-right: 5px;
 }
 
-#rhsestjxkv .gt_first_summary_row {
+#acwmlbiauv .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#rhsestjxkv .gt_first_summary_row.thick {
+#acwmlbiauv .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#rhsestjxkv .gt_last_summary_row {
+#acwmlbiauv .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -403,7 +387,7 @@ Recruitment started in the 90's and collects all kind of measurements, including
   border-bottom-color: #D3D3D3;
 }
 
-#rhsestjxkv .gt_grand_summary_row {
+#acwmlbiauv .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -413,7 +397,7 @@ Recruitment started in the 90's and collects all kind of measurements, including
   padding-right: 5px;
 }
 
-#rhsestjxkv .gt_first_grand_summary_row {
+#acwmlbiauv .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -423,11 +407,11 @@ Recruitment started in the 90's and collects all kind of measurements, including
   border-top-color: #D3D3D3;
 }
 
-#rhsestjxkv .gt_striped {
+#acwmlbiauv .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#rhsestjxkv .gt_table_body {
+#acwmlbiauv .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -436,7 +420,7 @@ Recruitment started in the 90's and collects all kind of measurements, including
   border-bottom-color: #D3D3D3;
 }
 
-#rhsestjxkv .gt_footnotes {
+#acwmlbiauv .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -450,7 +434,7 @@ Recruitment started in the 90's and collects all kind of measurements, including
   border-right-color: #D3D3D3;
 }
 
-#rhsestjxkv .gt_footnote {
+#acwmlbiauv .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -459,7 +443,7 @@ Recruitment started in the 90's and collects all kind of measurements, including
   padding-right: 5px;
 }
 
-#rhsestjxkv .gt_sourcenotes {
+#acwmlbiauv .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -473,7 +457,7 @@ Recruitment started in the 90's and collects all kind of measurements, including
   border-right-color: #D3D3D3;
 }
 
-#rhsestjxkv .gt_sourcenote {
+#acwmlbiauv .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -481,64 +465,64 @@ Recruitment started in the 90's and collects all kind of measurements, including
   padding-right: 5px;
 }
 
-#rhsestjxkv .gt_left {
+#acwmlbiauv .gt_left {
   text-align: left;
 }
 
-#rhsestjxkv .gt_center {
+#acwmlbiauv .gt_center {
   text-align: center;
 }
 
-#rhsestjxkv .gt_right {
+#acwmlbiauv .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#rhsestjxkv .gt_font_normal {
+#acwmlbiauv .gt_font_normal {
   font-weight: normal;
 }
 
-#rhsestjxkv .gt_font_bold {
+#acwmlbiauv .gt_font_bold {
   font-weight: bold;
 }
 
-#rhsestjxkv .gt_font_italic {
+#acwmlbiauv .gt_font_italic {
   font-style: italic;
 }
 
-#rhsestjxkv .gt_super {
+#acwmlbiauv .gt_super {
   font-size: 65%;
 }
 
-#rhsestjxkv .gt_footnote_marks {
+#acwmlbiauv .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#rhsestjxkv .gt_asterisk {
+#acwmlbiauv .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#rhsestjxkv .gt_indent_1 {
+#acwmlbiauv .gt_indent_1 {
   text-indent: 5px;
 }
 
-#rhsestjxkv .gt_indent_2 {
+#acwmlbiauv .gt_indent_2 {
   text-indent: 10px;
 }
 
-#rhsestjxkv .gt_indent_3 {
+#acwmlbiauv .gt_indent_3 {
   text-indent: 15px;
 }
 
-#rhsestjxkv .gt_indent_4 {
+#acwmlbiauv .gt_indent_4 {
   text-indent: 20px;
 }
 
-#rhsestjxkv .gt_indent_5 {
+#acwmlbiauv .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -575,12 +559,12 @@ First, lets imagine we can take a time machine that transport us to 1940.
 ---
 class: even_smaller
 
-<div id="dcmasinzaw" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="cygmezpdzf" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#dcmasinzaw .gt_table {
+#cygmezpdzf .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -605,7 +589,7 @@ class: even_smaller
   border-left-color: #D3D3D3;
 }
 
-#dcmasinzaw .gt_heading {
+#cygmezpdzf .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -617,7 +601,7 @@ class: even_smaller
   border-right-color: #D3D3D3;
 }
 
-#dcmasinzaw .gt_title {
+#cygmezpdzf .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -629,7 +613,7 @@ class: even_smaller
   border-bottom-width: 0;
 }
 
-#dcmasinzaw .gt_subtitle {
+#cygmezpdzf .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -641,13 +625,13 @@ class: even_smaller
   border-top-width: 0;
 }
 
-#dcmasinzaw .gt_bottom_border {
+#cygmezpdzf .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#dcmasinzaw .gt_col_headings {
+#cygmezpdzf .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -662,7 +646,7 @@ class: even_smaller
   border-right-color: #D3D3D3;
 }
 
-#dcmasinzaw .gt_col_heading {
+#cygmezpdzf .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -682,7 +666,7 @@ class: even_smaller
   overflow-x: hidden;
 }
 
-#dcmasinzaw .gt_column_spanner_outer {
+#cygmezpdzf .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -694,15 +678,15 @@ class: even_smaller
   padding-right: 4px;
 }
 
-#dcmasinzaw .gt_column_spanner_outer:first-child {
+#cygmezpdzf .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#dcmasinzaw .gt_column_spanner_outer:last-child {
+#cygmezpdzf .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#dcmasinzaw .gt_column_spanner {
+#cygmezpdzf .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -714,7 +698,7 @@ class: even_smaller
   width: 100%;
 }
 
-#dcmasinzaw .gt_group_heading {
+#cygmezpdzf .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -739,7 +723,7 @@ class: even_smaller
   vertical-align: middle;
 }
 
-#dcmasinzaw .gt_empty_group_heading {
+#cygmezpdzf .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -754,15 +738,15 @@ class: even_smaller
   vertical-align: middle;
 }
 
-#dcmasinzaw .gt_from_md > :first-child {
+#cygmezpdzf .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#dcmasinzaw .gt_from_md > :last-child {
+#cygmezpdzf .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#dcmasinzaw .gt_row {
+#cygmezpdzf .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -781,7 +765,7 @@ class: even_smaller
   overflow-x: hidden;
 }
 
-#dcmasinzaw .gt_stub {
+#cygmezpdzf .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -794,7 +778,7 @@ class: even_smaller
   padding-right: 5px;
 }
 
-#dcmasinzaw .gt_stub_row_group {
+#cygmezpdzf .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -808,11 +792,11 @@ class: even_smaller
   vertical-align: top;
 }
 
-#dcmasinzaw .gt_row_group_first td {
+#cygmezpdzf .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#dcmasinzaw .gt_summary_row {
+#cygmezpdzf .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -822,16 +806,16 @@ class: even_smaller
   padding-right: 5px;
 }
 
-#dcmasinzaw .gt_first_summary_row {
+#cygmezpdzf .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#dcmasinzaw .gt_first_summary_row.thick {
+#cygmezpdzf .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#dcmasinzaw .gt_last_summary_row {
+#cygmezpdzf .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -841,7 +825,7 @@ class: even_smaller
   border-bottom-color: #D3D3D3;
 }
 
-#dcmasinzaw .gt_grand_summary_row {
+#cygmezpdzf .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -851,7 +835,7 @@ class: even_smaller
   padding-right: 5px;
 }
 
-#dcmasinzaw .gt_first_grand_summary_row {
+#cygmezpdzf .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -861,11 +845,11 @@ class: even_smaller
   border-top-color: #D3D3D3;
 }
 
-#dcmasinzaw .gt_striped {
+#cygmezpdzf .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#dcmasinzaw .gt_table_body {
+#cygmezpdzf .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -874,7 +858,7 @@ class: even_smaller
   border-bottom-color: #D3D3D3;
 }
 
-#dcmasinzaw .gt_footnotes {
+#cygmezpdzf .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -888,7 +872,7 @@ class: even_smaller
   border-right-color: #D3D3D3;
 }
 
-#dcmasinzaw .gt_footnote {
+#cygmezpdzf .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -897,7 +881,7 @@ class: even_smaller
   padding-right: 5px;
 }
 
-#dcmasinzaw .gt_sourcenotes {
+#cygmezpdzf .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -911,7 +895,7 @@ class: even_smaller
   border-right-color: #D3D3D3;
 }
 
-#dcmasinzaw .gt_sourcenote {
+#cygmezpdzf .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -919,64 +903,64 @@ class: even_smaller
   padding-right: 5px;
 }
 
-#dcmasinzaw .gt_left {
+#cygmezpdzf .gt_left {
   text-align: left;
 }
 
-#dcmasinzaw .gt_center {
+#cygmezpdzf .gt_center {
   text-align: center;
 }
 
-#dcmasinzaw .gt_right {
+#cygmezpdzf .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#dcmasinzaw .gt_font_normal {
+#cygmezpdzf .gt_font_normal {
   font-weight: normal;
 }
 
-#dcmasinzaw .gt_font_bold {
+#cygmezpdzf .gt_font_bold {
   font-weight: bold;
 }
 
-#dcmasinzaw .gt_font_italic {
+#cygmezpdzf .gt_font_italic {
   font-style: italic;
 }
 
-#dcmasinzaw .gt_super {
+#cygmezpdzf .gt_super {
   font-size: 65%;
 }
 
-#dcmasinzaw .gt_footnote_marks {
+#cygmezpdzf .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#dcmasinzaw .gt_asterisk {
+#cygmezpdzf .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#dcmasinzaw .gt_indent_1 {
+#cygmezpdzf .gt_indent_1 {
   text-indent: 5px;
 }
 
-#dcmasinzaw .gt_indent_2 {
+#cygmezpdzf .gt_indent_2 {
   text-indent: 10px;
 }
 
-#dcmasinzaw .gt_indent_3 {
+#cygmezpdzf .gt_indent_3 {
   text-indent: 15px;
 }
 
-#dcmasinzaw .gt_indent_4 {
+#cygmezpdzf .gt_indent_4 {
   text-indent: 20px;
 }
 
-#dcmasinzaw .gt_indent_5 {
+#cygmezpdzf .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -998,9 +982,10 @@ class: even_smaller
     <tr><td class="gt_row gt_left">&lt;b&gt; Eligibility criteria &lt;/b&gt;</td>
 <td class="gt_row gt_left">Population who self-identify as white or Black, born in the US by 1940, who resided in a county with Black residents</td>
 <td class="gt_row gt_left">Same + participated in HRS, with linked data for 1940 census, living in counties with &gt; 1 enumeration district and with memory assessment measured by 1998</td></tr>
-    <tr><td class="gt_row gt_left">&lt;b&gt; Policy-level strategies  &lt;/b&gt;</td>
-<td class="gt_row gt_left">1. Reduce racial residencial segregation in every county by certain amount &lt;br&gt;
-     2. Status quo (no change)</td>
+    <tr><td class="gt_row gt_left">&lt;b&gt; Policy-level interventions  &lt;/b&gt;</td>
+<td class="gt_row gt_left"> 0. Do nothing (Status quo) &lt;br&gt;
+    1. Reduce racial residencial segregation at a county level by certain amount
+     </td>
 <td class="gt_row gt_left">Same</td></tr>
   </tbody>
   
@@ -1011,12 +996,12 @@ class: even_smaller
 ---
 class: even_smaller
 
-<div id="jlklbqkigo" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="zgnqbjzkie" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#jlklbqkigo .gt_table {
+#zgnqbjzkie .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1041,7 +1026,7 @@ class: even_smaller
   border-left-color: #D3D3D3;
 }
 
-#jlklbqkigo .gt_heading {
+#zgnqbjzkie .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1053,7 +1038,7 @@ class: even_smaller
   border-right-color: #D3D3D3;
 }
 
-#jlklbqkigo .gt_title {
+#zgnqbjzkie .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1065,7 +1050,7 @@ class: even_smaller
   border-bottom-width: 0;
 }
 
-#jlklbqkigo .gt_subtitle {
+#zgnqbjzkie .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1077,13 +1062,13 @@ class: even_smaller
   border-top-width: 0;
 }
 
-#jlklbqkigo .gt_bottom_border {
+#zgnqbjzkie .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#jlklbqkigo .gt_col_headings {
+#zgnqbjzkie .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1098,7 +1083,7 @@ class: even_smaller
   border-right-color: #D3D3D3;
 }
 
-#jlklbqkigo .gt_col_heading {
+#zgnqbjzkie .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1118,7 +1103,7 @@ class: even_smaller
   overflow-x: hidden;
 }
 
-#jlklbqkigo .gt_column_spanner_outer {
+#zgnqbjzkie .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1130,15 +1115,15 @@ class: even_smaller
   padding-right: 4px;
 }
 
-#jlklbqkigo .gt_column_spanner_outer:first-child {
+#zgnqbjzkie .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#jlklbqkigo .gt_column_spanner_outer:last-child {
+#zgnqbjzkie .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#jlklbqkigo .gt_column_spanner {
+#zgnqbjzkie .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1150,7 +1135,7 @@ class: even_smaller
   width: 100%;
 }
 
-#jlklbqkigo .gt_group_heading {
+#zgnqbjzkie .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1175,7 +1160,7 @@ class: even_smaller
   vertical-align: middle;
 }
 
-#jlklbqkigo .gt_empty_group_heading {
+#zgnqbjzkie .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1190,15 +1175,15 @@ class: even_smaller
   vertical-align: middle;
 }
 
-#jlklbqkigo .gt_from_md > :first-child {
+#zgnqbjzkie .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#jlklbqkigo .gt_from_md > :last-child {
+#zgnqbjzkie .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#jlklbqkigo .gt_row {
+#zgnqbjzkie .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1217,7 +1202,7 @@ class: even_smaller
   overflow-x: hidden;
 }
 
-#jlklbqkigo .gt_stub {
+#zgnqbjzkie .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1230,7 +1215,7 @@ class: even_smaller
   padding-right: 5px;
 }
 
-#jlklbqkigo .gt_stub_row_group {
+#zgnqbjzkie .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1244,11 +1229,11 @@ class: even_smaller
   vertical-align: top;
 }
 
-#jlklbqkigo .gt_row_group_first td {
+#zgnqbjzkie .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#jlklbqkigo .gt_summary_row {
+#zgnqbjzkie .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1258,16 +1243,16 @@ class: even_smaller
   padding-right: 5px;
 }
 
-#jlklbqkigo .gt_first_summary_row {
+#zgnqbjzkie .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#jlklbqkigo .gt_first_summary_row.thick {
+#zgnqbjzkie .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#jlklbqkigo .gt_last_summary_row {
+#zgnqbjzkie .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1277,7 +1262,7 @@ class: even_smaller
   border-bottom-color: #D3D3D3;
 }
 
-#jlklbqkigo .gt_grand_summary_row {
+#zgnqbjzkie .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1287,7 +1272,7 @@ class: even_smaller
   padding-right: 5px;
 }
 
-#jlklbqkigo .gt_first_grand_summary_row {
+#zgnqbjzkie .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1297,11 +1282,11 @@ class: even_smaller
   border-top-color: #D3D3D3;
 }
 
-#jlklbqkigo .gt_striped {
+#zgnqbjzkie .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#jlklbqkigo .gt_table_body {
+#zgnqbjzkie .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1310,7 +1295,7 @@ class: even_smaller
   border-bottom-color: #D3D3D3;
 }
 
-#jlklbqkigo .gt_footnotes {
+#zgnqbjzkie .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1324,7 +1309,7 @@ class: even_smaller
   border-right-color: #D3D3D3;
 }
 
-#jlklbqkigo .gt_footnote {
+#zgnqbjzkie .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -1333,7 +1318,7 @@ class: even_smaller
   padding-right: 5px;
 }
 
-#jlklbqkigo .gt_sourcenotes {
+#zgnqbjzkie .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1347,7 +1332,7 @@ class: even_smaller
   border-right-color: #D3D3D3;
 }
 
-#jlklbqkigo .gt_sourcenote {
+#zgnqbjzkie .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1355,64 +1340,64 @@ class: even_smaller
   padding-right: 5px;
 }
 
-#jlklbqkigo .gt_left {
+#zgnqbjzkie .gt_left {
   text-align: left;
 }
 
-#jlklbqkigo .gt_center {
+#zgnqbjzkie .gt_center {
   text-align: center;
 }
 
-#jlklbqkigo .gt_right {
+#zgnqbjzkie .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#jlklbqkigo .gt_font_normal {
+#zgnqbjzkie .gt_font_normal {
   font-weight: normal;
 }
 
-#jlklbqkigo .gt_font_bold {
+#zgnqbjzkie .gt_font_bold {
   font-weight: bold;
 }
 
-#jlklbqkigo .gt_font_italic {
+#zgnqbjzkie .gt_font_italic {
   font-style: italic;
 }
 
-#jlklbqkigo .gt_super {
+#zgnqbjzkie .gt_super {
   font-size: 65%;
 }
 
-#jlklbqkigo .gt_footnote_marks {
+#zgnqbjzkie .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#jlklbqkigo .gt_asterisk {
+#zgnqbjzkie .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#jlklbqkigo .gt_indent_1 {
+#zgnqbjzkie .gt_indent_1 {
   text-indent: 5px;
 }
 
-#jlklbqkigo .gt_indent_2 {
+#zgnqbjzkie .gt_indent_2 {
   text-indent: 10px;
 }
 
-#jlklbqkigo .gt_indent_3 {
+#zgnqbjzkie .gt_indent_3 {
   text-indent: 15px;
 }
 
-#jlklbqkigo .gt_indent_4 {
+#zgnqbjzkie .gt_indent_4 {
   text-indent: 20px;
 }
 
-#jlklbqkigo .gt_indent_5 {
+#zgnqbjzkie .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1434,9 +1419,10 @@ class: even_smaller
     <tr><td class="gt_row gt_left">&lt;b&gt; Eligibility criteria &lt;/b&gt;</td>
 <td class="gt_row gt_left">Population who self-identify as white or Black, born in the US by 1940, who resided in a county with Black residents</td>
 <td class="gt_row gt_left">Same + participated in HRS, with linked data for 1940 census, living in counties with &gt; 1 enumeration district and with memory assessment measured by 1998</td></tr>
-    <tr><td class="gt_row gt_left">&lt;b&gt; Policy-level strategies  &lt;/b&gt;</td>
-<td class="gt_row gt_left">1. Reduce racial residencial segregation in every county by certain amount &lt;br&gt;
-     2. Status quo (no change)</td>
+    <tr><td class="gt_row gt_left">&lt;b&gt; Policy-level interventions  &lt;/b&gt;</td>
+<td class="gt_row gt_left"> 0. Do nothing (Status quo) &lt;br&gt;
+    1. Reduce racial residencial segregation at a county level by certain amount
+     </td>
 <td class="gt_row gt_left">Same</td></tr>
     <tr><td class="gt_row gt_left">&lt;b&gt; Randomized assignment &lt;/b&gt;</td>
 <td class="gt_row gt_left">Random assignment to either strategy in 1940</td>
@@ -1450,12 +1436,12 @@ class: even_smaller
 ---
 class: even_smaller
 
-<div id="tfufqxjgxm" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="kngglinbqa" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#tfufqxjgxm .gt_table {
+#kngglinbqa .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1480,7 +1466,7 @@ class: even_smaller
   border-left-color: #D3D3D3;
 }
 
-#tfufqxjgxm .gt_heading {
+#kngglinbqa .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1492,7 +1478,7 @@ class: even_smaller
   border-right-color: #D3D3D3;
 }
 
-#tfufqxjgxm .gt_title {
+#kngglinbqa .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1504,7 +1490,7 @@ class: even_smaller
   border-bottom-width: 0;
 }
 
-#tfufqxjgxm .gt_subtitle {
+#kngglinbqa .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1516,13 +1502,13 @@ class: even_smaller
   border-top-width: 0;
 }
 
-#tfufqxjgxm .gt_bottom_border {
+#kngglinbqa .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#tfufqxjgxm .gt_col_headings {
+#kngglinbqa .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1537,7 +1523,7 @@ class: even_smaller
   border-right-color: #D3D3D3;
 }
 
-#tfufqxjgxm .gt_col_heading {
+#kngglinbqa .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1557,7 +1543,7 @@ class: even_smaller
   overflow-x: hidden;
 }
 
-#tfufqxjgxm .gt_column_spanner_outer {
+#kngglinbqa .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1569,15 +1555,15 @@ class: even_smaller
   padding-right: 4px;
 }
 
-#tfufqxjgxm .gt_column_spanner_outer:first-child {
+#kngglinbqa .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#tfufqxjgxm .gt_column_spanner_outer:last-child {
+#kngglinbqa .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#tfufqxjgxm .gt_column_spanner {
+#kngglinbqa .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1589,7 +1575,7 @@ class: even_smaller
   width: 100%;
 }
 
-#tfufqxjgxm .gt_group_heading {
+#kngglinbqa .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1614,7 +1600,7 @@ class: even_smaller
   vertical-align: middle;
 }
 
-#tfufqxjgxm .gt_empty_group_heading {
+#kngglinbqa .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1629,15 +1615,15 @@ class: even_smaller
   vertical-align: middle;
 }
 
-#tfufqxjgxm .gt_from_md > :first-child {
+#kngglinbqa .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#tfufqxjgxm .gt_from_md > :last-child {
+#kngglinbqa .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#tfufqxjgxm .gt_row {
+#kngglinbqa .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1656,7 +1642,7 @@ class: even_smaller
   overflow-x: hidden;
 }
 
-#tfufqxjgxm .gt_stub {
+#kngglinbqa .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1669,7 +1655,7 @@ class: even_smaller
   padding-right: 5px;
 }
 
-#tfufqxjgxm .gt_stub_row_group {
+#kngglinbqa .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1683,11 +1669,11 @@ class: even_smaller
   vertical-align: top;
 }
 
-#tfufqxjgxm .gt_row_group_first td {
+#kngglinbqa .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#tfufqxjgxm .gt_summary_row {
+#kngglinbqa .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1697,16 +1683,16 @@ class: even_smaller
   padding-right: 5px;
 }
 
-#tfufqxjgxm .gt_first_summary_row {
+#kngglinbqa .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#tfufqxjgxm .gt_first_summary_row.thick {
+#kngglinbqa .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#tfufqxjgxm .gt_last_summary_row {
+#kngglinbqa .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1716,7 +1702,7 @@ class: even_smaller
   border-bottom-color: #D3D3D3;
 }
 
-#tfufqxjgxm .gt_grand_summary_row {
+#kngglinbqa .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1726,7 +1712,7 @@ class: even_smaller
   padding-right: 5px;
 }
 
-#tfufqxjgxm .gt_first_grand_summary_row {
+#kngglinbqa .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1736,11 +1722,11 @@ class: even_smaller
   border-top-color: #D3D3D3;
 }
 
-#tfufqxjgxm .gt_striped {
+#kngglinbqa .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#tfufqxjgxm .gt_table_body {
+#kngglinbqa .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1749,7 +1735,7 @@ class: even_smaller
   border-bottom-color: #D3D3D3;
 }
 
-#tfufqxjgxm .gt_footnotes {
+#kngglinbqa .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1763,7 +1749,7 @@ class: even_smaller
   border-right-color: #D3D3D3;
 }
 
-#tfufqxjgxm .gt_footnote {
+#kngglinbqa .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -1772,7 +1758,7 @@ class: even_smaller
   padding-right: 5px;
 }
 
-#tfufqxjgxm .gt_sourcenotes {
+#kngglinbqa .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1786,7 +1772,7 @@ class: even_smaller
   border-right-color: #D3D3D3;
 }
 
-#tfufqxjgxm .gt_sourcenote {
+#kngglinbqa .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1794,64 +1780,64 @@ class: even_smaller
   padding-right: 5px;
 }
 
-#tfufqxjgxm .gt_left {
+#kngglinbqa .gt_left {
   text-align: left;
 }
 
-#tfufqxjgxm .gt_center {
+#kngglinbqa .gt_center {
   text-align: center;
 }
 
-#tfufqxjgxm .gt_right {
+#kngglinbqa .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#tfufqxjgxm .gt_font_normal {
+#kngglinbqa .gt_font_normal {
   font-weight: normal;
 }
 
-#tfufqxjgxm .gt_font_bold {
+#kngglinbqa .gt_font_bold {
   font-weight: bold;
 }
 
-#tfufqxjgxm .gt_font_italic {
+#kngglinbqa .gt_font_italic {
   font-style: italic;
 }
 
-#tfufqxjgxm .gt_super {
+#kngglinbqa .gt_super {
   font-size: 65%;
 }
 
-#tfufqxjgxm .gt_footnote_marks {
+#kngglinbqa .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#tfufqxjgxm .gt_asterisk {
+#kngglinbqa .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#tfufqxjgxm .gt_indent_1 {
+#kngglinbqa .gt_indent_1 {
   text-indent: 5px;
 }
 
-#tfufqxjgxm .gt_indent_2 {
+#kngglinbqa .gt_indent_2 {
   text-indent: 10px;
 }
 
-#tfufqxjgxm .gt_indent_3 {
+#kngglinbqa .gt_indent_3 {
   text-indent: 15px;
 }
 
-#tfufqxjgxm .gt_indent_4 {
+#kngglinbqa .gt_indent_4 {
   text-indent: 20px;
 }
 
-#tfufqxjgxm .gt_indent_5 {
+#kngglinbqa .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1873,9 +1859,10 @@ class: even_smaller
     <tr><td class="gt_row gt_left">&lt;b&gt; Eligibility criteria &lt;/b&gt;</td>
 <td class="gt_row gt_left">Population who self-identify as white or Black, born in the US by 1940, who resided in a county with Black residents</td>
 <td class="gt_row gt_left">Same + participated in HRS, with linked data for 1940 census, living in counties with &gt; 1 enumeration district and with memory assessment measured by 1998</td></tr>
-    <tr><td class="gt_row gt_left">&lt;b&gt; Policy-level strategies  &lt;/b&gt;</td>
-<td class="gt_row gt_left">1. Reduce racial residencial segregation in every county by certain amount &lt;br&gt;
-     2. Status quo (no change)</td>
+    <tr><td class="gt_row gt_left">&lt;b&gt; Policy-level interventions  &lt;/b&gt;</td>
+<td class="gt_row gt_left"> 0. Do nothing (Status quo) &lt;br&gt;
+    1. Reduce racial residencial segregation at a county level by certain amount
+     </td>
 <td class="gt_row gt_left">Same</td></tr>
     <tr><td class="gt_row gt_left">&lt;b&gt; Randomized assignment &lt;/b&gt;</td>
 <td class="gt_row gt_left">Random assignment to either strategy in 1940</td>
@@ -1892,12 +1879,12 @@ class: even_smaller
 ---
 class: even_smaller
 
-<div id="lqoqcndcub" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="twnlcfcazn" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#lqoqcndcub .gt_table {
+#twnlcfcazn .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -1922,7 +1909,7 @@ class: even_smaller
   border-left-color: #D3D3D3;
 }
 
-#lqoqcndcub .gt_heading {
+#twnlcfcazn .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1934,7 +1921,7 @@ class: even_smaller
   border-right-color: #D3D3D3;
 }
 
-#lqoqcndcub .gt_title {
+#twnlcfcazn .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1946,7 +1933,7 @@ class: even_smaller
   border-bottom-width: 0;
 }
 
-#lqoqcndcub .gt_subtitle {
+#twnlcfcazn .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1958,13 +1945,13 @@ class: even_smaller
   border-top-width: 0;
 }
 
-#lqoqcndcub .gt_bottom_border {
+#twnlcfcazn .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#lqoqcndcub .gt_col_headings {
+#twnlcfcazn .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1979,7 +1966,7 @@ class: even_smaller
   border-right-color: #D3D3D3;
 }
 
-#lqoqcndcub .gt_col_heading {
+#twnlcfcazn .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1999,7 +1986,7 @@ class: even_smaller
   overflow-x: hidden;
 }
 
-#lqoqcndcub .gt_column_spanner_outer {
+#twnlcfcazn .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2011,15 +1998,15 @@ class: even_smaller
   padding-right: 4px;
 }
 
-#lqoqcndcub .gt_column_spanner_outer:first-child {
+#twnlcfcazn .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#lqoqcndcub .gt_column_spanner_outer:last-child {
+#twnlcfcazn .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#lqoqcndcub .gt_column_spanner {
+#twnlcfcazn .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2031,7 +2018,7 @@ class: even_smaller
   width: 100%;
 }
 
-#lqoqcndcub .gt_group_heading {
+#twnlcfcazn .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2056,7 +2043,7 @@ class: even_smaller
   vertical-align: middle;
 }
 
-#lqoqcndcub .gt_empty_group_heading {
+#twnlcfcazn .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2071,15 +2058,15 @@ class: even_smaller
   vertical-align: middle;
 }
 
-#lqoqcndcub .gt_from_md > :first-child {
+#twnlcfcazn .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#lqoqcndcub .gt_from_md > :last-child {
+#twnlcfcazn .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#lqoqcndcub .gt_row {
+#twnlcfcazn .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2098,7 +2085,7 @@ class: even_smaller
   overflow-x: hidden;
 }
 
-#lqoqcndcub .gt_stub {
+#twnlcfcazn .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2111,7 +2098,7 @@ class: even_smaller
   padding-right: 5px;
 }
 
-#lqoqcndcub .gt_stub_row_group {
+#twnlcfcazn .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2125,11 +2112,11 @@ class: even_smaller
   vertical-align: top;
 }
 
-#lqoqcndcub .gt_row_group_first td {
+#twnlcfcazn .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#lqoqcndcub .gt_summary_row {
+#twnlcfcazn .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2139,16 +2126,16 @@ class: even_smaller
   padding-right: 5px;
 }
 
-#lqoqcndcub .gt_first_summary_row {
+#twnlcfcazn .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#lqoqcndcub .gt_first_summary_row.thick {
+#twnlcfcazn .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#lqoqcndcub .gt_last_summary_row {
+#twnlcfcazn .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2158,7 +2145,7 @@ class: even_smaller
   border-bottom-color: #D3D3D3;
 }
 
-#lqoqcndcub .gt_grand_summary_row {
+#twnlcfcazn .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2168,7 +2155,7 @@ class: even_smaller
   padding-right: 5px;
 }
 
-#lqoqcndcub .gt_first_grand_summary_row {
+#twnlcfcazn .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2178,11 +2165,11 @@ class: even_smaller
   border-top-color: #D3D3D3;
 }
 
-#lqoqcndcub .gt_striped {
+#twnlcfcazn .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#lqoqcndcub .gt_table_body {
+#twnlcfcazn .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2191,7 +2178,7 @@ class: even_smaller
   border-bottom-color: #D3D3D3;
 }
 
-#lqoqcndcub .gt_footnotes {
+#twnlcfcazn .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2205,7 +2192,7 @@ class: even_smaller
   border-right-color: #D3D3D3;
 }
 
-#lqoqcndcub .gt_footnote {
+#twnlcfcazn .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -2214,7 +2201,7 @@ class: even_smaller
   padding-right: 5px;
 }
 
-#lqoqcndcub .gt_sourcenotes {
+#twnlcfcazn .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2228,7 +2215,7 @@ class: even_smaller
   border-right-color: #D3D3D3;
 }
 
-#lqoqcndcub .gt_sourcenote {
+#twnlcfcazn .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2236,64 +2223,64 @@ class: even_smaller
   padding-right: 5px;
 }
 
-#lqoqcndcub .gt_left {
+#twnlcfcazn .gt_left {
   text-align: left;
 }
 
-#lqoqcndcub .gt_center {
+#twnlcfcazn .gt_center {
   text-align: center;
 }
 
-#lqoqcndcub .gt_right {
+#twnlcfcazn .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#lqoqcndcub .gt_font_normal {
+#twnlcfcazn .gt_font_normal {
   font-weight: normal;
 }
 
-#lqoqcndcub .gt_font_bold {
+#twnlcfcazn .gt_font_bold {
   font-weight: bold;
 }
 
-#lqoqcndcub .gt_font_italic {
+#twnlcfcazn .gt_font_italic {
   font-style: italic;
 }
 
-#lqoqcndcub .gt_super {
+#twnlcfcazn .gt_super {
   font-size: 65%;
 }
 
-#lqoqcndcub .gt_footnote_marks {
+#twnlcfcazn .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#lqoqcndcub .gt_asterisk {
+#twnlcfcazn .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#lqoqcndcub .gt_indent_1 {
+#twnlcfcazn .gt_indent_1 {
   text-indent: 5px;
 }
 
-#lqoqcndcub .gt_indent_2 {
+#twnlcfcazn .gt_indent_2 {
   text-indent: 10px;
 }
 
-#lqoqcndcub .gt_indent_3 {
+#twnlcfcazn .gt_indent_3 {
   text-indent: 15px;
 }
 
-#lqoqcndcub .gt_indent_4 {
+#twnlcfcazn .gt_indent_4 {
   text-indent: 20px;
 }
 
-#lqoqcndcub .gt_indent_5 {
+#twnlcfcazn .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2315,9 +2302,10 @@ class: even_smaller
     <tr><td class="gt_row gt_left">&lt;b&gt; Eligibility criteria &lt;/b&gt;</td>
 <td class="gt_row gt_left">Population who self-identify as white or Black, born in the US by 1940, who resided in a county with Black residents</td>
 <td class="gt_row gt_left">Same + participated in HRS, with linked data for 1940 census, living in counties with &gt; 1 enumeration district and with memory assessment measured by 1998</td></tr>
-    <tr><td class="gt_row gt_left">&lt;b&gt; Policy-level strategies  &lt;/b&gt;</td>
-<td class="gt_row gt_left">1. Reduce racial residencial segregation in every county by certain amount &lt;br&gt;
-     2. Status quo (no change)</td>
+    <tr><td class="gt_row gt_left">&lt;b&gt; Policy-level interventions  &lt;/b&gt;</td>
+<td class="gt_row gt_left"> 0. Do nothing (Status quo) &lt;br&gt;
+    1. Reduce racial residencial segregation at a county level by certain amount
+     </td>
 <td class="gt_row gt_left">Same</td></tr>
     <tr><td class="gt_row gt_left">&lt;b&gt; Randomized assignment &lt;/b&gt;</td>
 <td class="gt_row gt_left">Random assignment to either strategy in 1940</td>
@@ -2337,12 +2325,12 @@ class: even_smaller
 ---
 class: even_smaller
 
-<div id="kavejorbii" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="ysdmdtjspy" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-#kavejorbii .gt_table {
+#ysdmdtjspy .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -2367,7 +2355,7 @@ class: even_smaller
   border-left-color: #D3D3D3;
 }
 
-#kavejorbii .gt_heading {
+#ysdmdtjspy .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -2379,7 +2367,7 @@ class: even_smaller
   border-right-color: #D3D3D3;
 }
 
-#kavejorbii .gt_title {
+#ysdmdtjspy .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -2391,7 +2379,7 @@ class: even_smaller
   border-bottom-width: 0;
 }
 
-#kavejorbii .gt_subtitle {
+#ysdmdtjspy .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -2403,13 +2391,13 @@ class: even_smaller
   border-top-width: 0;
 }
 
-#kavejorbii .gt_bottom_border {
+#ysdmdtjspy .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#kavejorbii .gt_col_headings {
+#ysdmdtjspy .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2424,7 +2412,7 @@ class: even_smaller
   border-right-color: #D3D3D3;
 }
 
-#kavejorbii .gt_col_heading {
+#ysdmdtjspy .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2444,7 +2432,7 @@ class: even_smaller
   overflow-x: hidden;
 }
 
-#kavejorbii .gt_column_spanner_outer {
+#ysdmdtjspy .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2456,15 +2444,15 @@ class: even_smaller
   padding-right: 4px;
 }
 
-#kavejorbii .gt_column_spanner_outer:first-child {
+#ysdmdtjspy .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#kavejorbii .gt_column_spanner_outer:last-child {
+#ysdmdtjspy .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#kavejorbii .gt_column_spanner {
+#ysdmdtjspy .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2476,7 +2464,7 @@ class: even_smaller
   width: 100%;
 }
 
-#kavejorbii .gt_group_heading {
+#ysdmdtjspy .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2501,7 +2489,7 @@ class: even_smaller
   vertical-align: middle;
 }
 
-#kavejorbii .gt_empty_group_heading {
+#ysdmdtjspy .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2516,15 +2504,15 @@ class: even_smaller
   vertical-align: middle;
 }
 
-#kavejorbii .gt_from_md > :first-child {
+#ysdmdtjspy .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#kavejorbii .gt_from_md > :last-child {
+#ysdmdtjspy .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#kavejorbii .gt_row {
+#ysdmdtjspy .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2543,7 +2531,7 @@ class: even_smaller
   overflow-x: hidden;
 }
 
-#kavejorbii .gt_stub {
+#ysdmdtjspy .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2556,7 +2544,7 @@ class: even_smaller
   padding-right: 5px;
 }
 
-#kavejorbii .gt_stub_row_group {
+#ysdmdtjspy .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2570,11 +2558,11 @@ class: even_smaller
   vertical-align: top;
 }
 
-#kavejorbii .gt_row_group_first td {
+#ysdmdtjspy .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#kavejorbii .gt_summary_row {
+#ysdmdtjspy .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2584,16 +2572,16 @@ class: even_smaller
   padding-right: 5px;
 }
 
-#kavejorbii .gt_first_summary_row {
+#ysdmdtjspy .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#kavejorbii .gt_first_summary_row.thick {
+#ysdmdtjspy .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#kavejorbii .gt_last_summary_row {
+#ysdmdtjspy .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2603,7 +2591,7 @@ class: even_smaller
   border-bottom-color: #D3D3D3;
 }
 
-#kavejorbii .gt_grand_summary_row {
+#ysdmdtjspy .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2613,7 +2601,7 @@ class: even_smaller
   padding-right: 5px;
 }
 
-#kavejorbii .gt_first_grand_summary_row {
+#ysdmdtjspy .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2623,11 +2611,11 @@ class: even_smaller
   border-top-color: #D3D3D3;
 }
 
-#kavejorbii .gt_striped {
+#ysdmdtjspy .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#kavejorbii .gt_table_body {
+#ysdmdtjspy .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2636,7 +2624,7 @@ class: even_smaller
   border-bottom-color: #D3D3D3;
 }
 
-#kavejorbii .gt_footnotes {
+#ysdmdtjspy .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2650,7 +2638,7 @@ class: even_smaller
   border-right-color: #D3D3D3;
 }
 
-#kavejorbii .gt_footnote {
+#ysdmdtjspy .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -2659,7 +2647,7 @@ class: even_smaller
   padding-right: 5px;
 }
 
-#kavejorbii .gt_sourcenotes {
+#ysdmdtjspy .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2673,7 +2661,7 @@ class: even_smaller
   border-right-color: #D3D3D3;
 }
 
-#kavejorbii .gt_sourcenote {
+#ysdmdtjspy .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2681,64 +2669,64 @@ class: even_smaller
   padding-right: 5px;
 }
 
-#kavejorbii .gt_left {
+#ysdmdtjspy .gt_left {
   text-align: left;
 }
 
-#kavejorbii .gt_center {
+#ysdmdtjspy .gt_center {
   text-align: center;
 }
 
-#kavejorbii .gt_right {
+#ysdmdtjspy .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#kavejorbii .gt_font_normal {
+#ysdmdtjspy .gt_font_normal {
   font-weight: normal;
 }
 
-#kavejorbii .gt_font_bold {
+#ysdmdtjspy .gt_font_bold {
   font-weight: bold;
 }
 
-#kavejorbii .gt_font_italic {
+#ysdmdtjspy .gt_font_italic {
   font-style: italic;
 }
 
-#kavejorbii .gt_super {
+#ysdmdtjspy .gt_super {
   font-size: 65%;
 }
 
-#kavejorbii .gt_footnote_marks {
+#ysdmdtjspy .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-#kavejorbii .gt_asterisk {
+#ysdmdtjspy .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#kavejorbii .gt_indent_1 {
+#ysdmdtjspy .gt_indent_1 {
   text-indent: 5px;
 }
 
-#kavejorbii .gt_indent_2 {
+#ysdmdtjspy .gt_indent_2 {
   text-indent: 10px;
 }
 
-#kavejorbii .gt_indent_3 {
+#ysdmdtjspy .gt_indent_3 {
   text-indent: 15px;
 }
 
-#kavejorbii .gt_indent_4 {
+#ysdmdtjspy .gt_indent_4 {
   text-indent: 20px;
 }
 
-#kavejorbii .gt_indent_5 {
+#ysdmdtjspy .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2760,9 +2748,10 @@ class: even_smaller
     <tr><td class="gt_row gt_left">&lt;b&gt; Eligibility criteria &lt;/b&gt;</td>
 <td class="gt_row gt_left">Population who self-identify as white or Black, born in the US by 1940, who resided in a county with Black residents</td>
 <td class="gt_row gt_left">Same + participated in HRS, with linked data for 1940 census, living in counties with &gt; 1 enumeration district and with memory assessment measured by 1998</td></tr>
-    <tr><td class="gt_row gt_left">&lt;b&gt; Policy-level strategies  &lt;/b&gt;</td>
-<td class="gt_row gt_left">1. Reduce racial residencial segregation in every county by certain amount &lt;br&gt;
-     2. Status quo (no change)</td>
+    <tr><td class="gt_row gt_left">&lt;b&gt; Policy-level interventions  &lt;/b&gt;</td>
+<td class="gt_row gt_left"> 0. Do nothing (Status quo) &lt;br&gt;
+    1. Reduce racial residencial segregation at a county level by certain amount
+     </td>
 <td class="gt_row gt_left">Same</td></tr>
     <tr><td class="gt_row gt_left">&lt;b&gt; Randomized assignment &lt;/b&gt;</td>
 <td class="gt_row gt_left">Random assignment to either strategy in 1940</td>
@@ -2781,29 +2770,6 @@ class: even_smaller
   
 </table>
 </div>
-
----
-background-image: url(./figs/dag1940.png)
-background-size: 50%
-class: even_smaller
-
-## Directed acyclic graph
-
-.footnote[
-
-*A0*: Racial residencial segregation in 1940's &lt;br&gt;
-*County-level L0:* population, % &gt; 8th grade, % owned a home (overall and/or race-specific measures) &lt;br&gt; 
-*Individual-level L0:* Age at baseline cognitive assessment, sex, childhood SES index &lt;br&gt;
-*Y1, Y2, Yk*: Measurements of memory decline &lt;br&gt;
-*C2, Ck*: Censoring due to loss to follow-up or death]
-
-???
-THis is a directed acyclic graph, although it has been simplified and arrows are colored for better readability, that represent some of the data generating mechanisms.
-First, we have our exposure measured in 1940's, that is our time zero
-Next, we have memory measurements, represented as Y over time
-L0 represents the shared causes of the exposure and the outcome, this includes structural factors that are measured at a county level, and individual factors
-C represent loss to follow-up and death after initiating the follow-up
-
 
 ---
 ## Estimand
@@ -2850,11 +2816,11 @@ Next we would look at the mean difference on the memory score, under the two tre
 
 --
 
- -  _What does it mean to intervene in 1940 on segregation_
+ -  _What does it mean to intervene in 1940 on segregation?_
 
 --
 
- -  _Is the dissimilarity index a representative measurement_
+ -  _Is the dissimilarity index a good a proxy of all the racist policies that had consequences in residential segregation?_
 
 --
 
@@ -2864,32 +2830,29 @@ Next we would look at the mean difference on the memory score, under the two tre
 ## Consistency
 
 
-- In this context, this framework may help us expand the narrative and conversation around these complex exposures.
+- The target trial framework may help us expand the narrative and conversation around these complex exposures.
 
 --
 
-- In this setting, the interventions represent a weighted average of strategies, determined by the frequency of these in the studied population.
+- The interventions represent a weighted average of strategies, determined by the frequency of these in the studied population.
 
 --
 
-- It requires deep interdisciplinary dialogue, and only with subject matter expertise can inform how well we feel about satisfying this assumption
+- It requires deep interdisciplinary dialogue, and only with subject matter expertise we can inform how well we feel about satisfying this assumption.
 
 ---
 ## Exchangeability
 
-- If we consider the dissimilarity index a proxy of all the racist policies that have consequences in residential segregation, whatever we adjust for is not accounted into how we would intervene.
+- There is a moral and ethical value in terms of what variables to adjust.  "Non-allowable" sources are considered unfair and contribute to disparities (_Jackson J. Epidemiology. 2021_).
 
 --
 
-- There is a moral and ethical value in terms of what variables to adjust.  "Non-allowable" sources are considered unfair and contribute to disparities.(_Jackson J. Epidemiology. 2021_)
+- Whatever we adjust for is not accounted into how we would intervene.
 
 --
 
-- Doubly robust methods (TMLE)** can help us obtain valid inferences if either the exposure or the outcome mechanism is consistently estimated.
+- Doubly robust methods can help us obtain valid inferences if either the exposure or the outcome mechanism is consistently estimated.
 
-.footnote[
-** Targeted maximum likelihood estimation. Schuler M. &amp; Rose S. AJE. 2016.
-]
 
 ---
 
@@ -2910,11 +2873,6 @@ Next we would look at the mean difference on the memory score, under the two tre
 - It is a dynamic process, since it requires a deep understanding of the data sources and a constant check that the causal contrasts and subsequent results are informative. 
 
 ---
-## Acknowledgments
-
-NIA R01AG074359: Historical social and environmental determinants of memory decline and dementia among U.S. older adults (Dr. Mayeda and Dr. Casey)
-
----
 class: middle, right
 
 #### _To search for all the refutable consequences of a hypothesis demands highly imaginative thinking. Imagination is needed to arrive at the hypothesis in the first place, let alone to suggest rigorous tests for it. (Carol Buck)_ 
@@ -2923,9 +2881,28 @@ class: middle, right
 _Buck C. Popper's Philosophy for Epidemiologists, IJE. 1975_
 ]
 ---
-class: center, middle
+##           Thank you, Gracias!
 
-### Thank you, Gracias!
+.pull-left[
+
+**Mayeda Research Group**
+
+**Study Contributors:**
+
+- Elizabeth Rose Mayeda
+- Joan Casey
+- Taylor Mobley
+- Kara Rudolph
+- Nick Williams
+- Heather McBrien
+- Milo Gordon
+
+**NIA: R01AG074359**
+]
+
+.pull-right[
+
+&lt;br&gt; &lt;br&gt;
 
 <svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M16.1 260.2c-22.6 12.9-20.5 47.3 3.6 57.3L160 376V479.3c0 18.1 14.6 32.7 32.7 32.7c9.7 0 18.9-4.3 25.1-11.8l62-74.3 123.9 51.6c18.9 7.9 40.8-4.5 43.9-24.7l64-416c1.9-12.1-3.4-24.3-13.5-31.2s-23.3-7.5-34-1.4l-448 256zm52.1 25.5L409.7 90.6 190.1 336l1.2 1L68.2 285.7zM403.3 425.4L236.7 355.9 450.8 116.6 403.3 425.4z"/></svg>&lt;/i&gt;&amp;nbsp;lp.rojassaunero@ucla.edu&lt;/a&gt;&lt;br&gt;
 
@@ -2933,36 +2910,7 @@ class: center, middle
 
 <svg aria-hidden="true" role="img" viewBox="0 0 496 512" style="height:1em;width:0.97em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg> &lt;a href="https://github.com/palolili23"&gt; &lt;/i&gt;&amp;nbsp; @palolili23&lt;/a&gt;&lt;br&gt;
 
----
-
-
-class: center, middle
-
-![](https://media.giphy.com/media/XHVmD4RyXgSjd8aUMb/giphy.gif)
-
----
-
-## The Dissimilarity Index
-
-A measure of "evenness" of groups (e.g., Black vs white populations) within a given area
-
-&lt;br&gt;
-$$ DI = 0.5*\sum_{i = 1}^{N}{(\frac{B_i}{B_t} - \frac{W_i}{W_t})} $$
-
-.center[Range: 0 (no segregation) - 1 (complete segregation)]
-
-&lt;br&gt;
-We use counties as the larger geographic area of interest (_t_) and enumeration districts (_i_) as geographic subunits
-    
-.footnote[
-*"A Methodological Analysis of Segregation Indexes" Duncan &amp; Duncan, 1955*
 ]
-
-???
-
-A group is evenly distributed when each geographic unit has the same percentage of group members as the total population. The index score can also be interpreted as the percentage of one of the two groups included in the calculation that would have to move to different geographic areas in order to produce a distribution that matches that of the larger area.
-
-
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
