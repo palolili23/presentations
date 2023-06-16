@@ -65,8 +65,8 @@ Postdoctoral scholar
 
 ???
 
-I would like to thank Dr. Caniglia and Dr. Schisterman for the opportunity to talk in this session. Today I will discuss the implementation of the ttf in the study of social determinants in dementia research to ground ideas related to my current.
-I should note that through out my talk I will make more questions than giving answers, but I am confident that this is the perfect place to pose them and take these as conversartion startes.
+I would like to thank Dr. Caniglia and Dr. Schisterman for the opportunity to talk in this session. Today I will discuss the implementation of the ttf in the study of social determinants in dementia research.
+I should note that through out my talk I will make more questions than give answers, I am confident that this is the perfect place to pose them and take this talk as a conversation starter.
 
 ---
 background-image: url(./figs/hill.jpg)
@@ -76,11 +76,11 @@ background-size: 75%
 
 ???
 
-In this graph, the NIA emphasizes that the study of life-course exposures in dementia research is to understand the etiologic pathways and ultimately identify effective targets for intervention. THus, we are very frequently interested in answering causal questions.
+The national institute of aging has outlined this framework including different exposures or risk factors that drive disparities in dementia and other aging-related outcomes. The final goal, and here I quote: to understand the etiologic pathways and ultimately identify effective targets for intervention... which means, asking causal questions. 
 
-However there has been a long resistance to connect causal methods to structural factors is because the best study design is a randomized trial.
+However there has been a long resistance to connect causal methods to structural factors is because the best study design is a randomized trial. 
 
-So while we are mostly focusing on RCTs to answer questions for biological mechanisms, we still need the best of these methods to study structural factors. 
+While we are mostly focusing on RCTs to answer questions for biological mechanisms, we still need the best of these methods to study structural factors. 
 
 
 ---
@@ -106,10 +106,7 @@ So while we are mostly focusing on RCTs to answer questions for biological mecha
     + Follow-up starts
 
 ???
-So, I would first like to highlight a few characteristics of randomized trials that make them ideal to answer causal questions
-
-The concept of an “ideal randomized trial” is tied directly to the language of counterfactual or potential outcomes and causal diagrams
-
+Before we go into the nuance of social exposures, I would like to highlight some of the features of an ideal randomized trial. 
 
 ---
 class: center, middle
@@ -119,17 +116,15 @@ class: center, middle
 ![](figs/tt.png)
 ???
 
-The ttf is a method to analyze observational data, that motivates researchers to conceptualize the hypothetical randomized trial that we would like to conduct that answers our question
+With this in mind, we can consider the ttf as a method to analyze observational data, that motivates researchers to conceptualize the hypothetical randomized trial that we would like to conduct that answers our question
 
-Describe the protocol elements of that target trial
+That way we can start by defining a clear estimand, and outline the protocol elements of that target trial
 
-Emulate the target trial with observational data as close as possible
+And then attempt to emulate the target trial with observational data as close as possible. Finally under certain assumptions and with adequate statistical methods, we can estimate a causal effect. 
 
-This shows that an essential part of this framework relies on the study design.
-Sometimes we heavily focus on the assumptions and estimators to answer causal effects,
-but the essence of the ttf is to be more transparent about the study design decisins we face when we use observational data that has not been collected specifically to answer one specific research question. 
+This workflow shows that an essential part of this framework relies on the study design. Sometimes we heavily focus on this last part, but the essence of the ttf is to be more transparent about the study design decisins we face when we use observational data that has not been collected specifically to answer one specific research question. 
 
-
+With that prior, I would like to discuss an ongoing project, lead by my amazing collaborator TM. 
 ---
 background-image: url(./figs/t.jpg)
 background-position: 90% 90%
@@ -147,6 +142,9 @@ _What is the effect of early-life racial residencial segregation in 1940, measur
 ???
 THe HRS is a national representative data with oversampling of black, latino population. 
 Recruitment started in the 90's and collects all kind of measurements, including memory scores every 2 years.
+
+So now I am going to walk you through the outline of the target trial and how we would emulate it... so hold on to your seats because we are going to be creative
+
 ---
 
 ```{r}
@@ -186,9 +184,7 @@ target_statins %>% filter(n %in% c(1)) %>% select(-n) %>% gt() %>%
 ```
 
 ???
-Before answering this question, lets take some time to outline the target trial and how we would emulate it... so hold on to your seats because we are going to be creative
-
-First, lets imagine we can take a time machine that transport us to 1940.
+First, lets imagine we can take a time machine that transport us to 1940. 
 
 
 ---
@@ -259,8 +255,8 @@ $$E[Y_{2000}^{a = 1, c = 0}] - [Y_{2000}^{a = 0, c = 0}]$$
 <br>
 
 ???
-With that in mind, we can outline our estimand or paratemer of interest.
-Since we are interested in a continuous outcome over time, we first discretized our estimand, by each time point.
+So now we can outline our estimand or paratemer of interest.
+Since we our outcome of interest is memory decline, we discretized our estimand, by each time point.
 So first, we would be interested in evaluating the mean memory score in 1998 had everyone had followed intervention 1) compared to the mean score at baseline had everyone had followed intervention 0)
 
 Next we would look at the mean difference on the memory score, under the two treatment strategies, and on and on we would do this until the last wave of data, and we could plot these point estimates over time, either as by treatment arm or the difference between them.
@@ -291,11 +287,11 @@ $$E[Y_{2018}^{a = 1, c = 0}] - E[Y_{2018}^{a = 0, c = 0}]$$
 
 --
 
- -  _What does it mean to intervene in 1940 on segregation?_
+ -  _What does it mean to intervene on residential segregation in 1940?_
 
 --
 
- -  _Is the dissimilarity index a good a proxy of all the racist policies that had consequences in residential segregation?_
+ -  _Is the dissimilarity index a good a proxy of all the racist policies that resulted in residential segregation?_
 
 --
 
@@ -305,11 +301,11 @@ $$E[Y_{2018}^{a = 1, c = 0}] - E[Y_{2018}^{a = 0, c = 0}]$$
 ## Consistency
 
 
-- The target trial framework may help us expand the narrative and conversation around these complex exposures.
+- The target trial framework can help us expand the narrative and conversation around these complex exposures.
 
 --
 
-- The interventions represent a weighted average of strategies, determined by the frequency of these in the studied population.
+- At best, this hypothetical intervention would be reducing the impact of all the racist policies that influenced residential segregation, determined by the frequency of these in the studied population.
 
 --
 
@@ -318,16 +314,15 @@ $$E[Y_{2018}^{a = 1, c = 0}] - E[Y_{2018}^{a = 0, c = 0}]$$
 ---
 ## Exchangeability
 
+- Considering what variables to adjust for is more challenging.
+
+--
+
+- Since there are many factors that can influence residential segregation, whatever we adjust for is not accounted into how we would intervene.
+
+--
+
 - There is a moral and ethical value in terms of what variables to adjust.  "Non-allowable" sources are considered unfair and contribute to disparities (_Jackson J. Epidemiology. 2021_).
-
---
-
-- Whatever we adjust for is not accounted into how we would intervene.
-
---
-
-- Doubly robust methods can help us obtain valid inferences if either the exposure or the outcome mechanism is consistently estimated.
-
 
 ---
 
@@ -341,7 +336,7 @@ $$E[Y_{2018}^{a = 1, c = 0}] - E[Y_{2018}^{a = 0, c = 0}]$$
 
 --
 
-- We can prevent several sources of bias from having a better design, and we can identify other sources of bias that can prevented (or quantified) through the analytic strategies.
+- Having a better design can already prevent some sources of bias, and help us detect other sources that could be prevented (or quantified) through the analytic strategies.
 
 --
 
@@ -355,6 +350,7 @@ class: middle, right
 .footnote[
 _Buck C. Popper's Philosophy for Epidemiologists, IJE. 1975_
 ]
+
 ---
 ##           Thank you, Gracias!
 
@@ -385,4 +381,40 @@ _Buck C. Popper's Philosophy for Epidemiologists, IJE. 1975_
 
 `r fa("github")` <a href="https://github.com/palolili23"> </i>&nbsp; @palolili23</a><br>
 
+]
+
+---
+background-image: url(./figs/logos.jpg)
+background-position: 10% 100%
+background-size: 95%
+class: even-smaller
+
+### Come work with us! 
+
+.pull-left[
+
+.smaller[
+
+#### Dementia Epidemiology Equity and Methods Training Program 
+- María Corrada, UC Irvine
+- Paola Gilsanz, Kaiser Permanente Northern California
+- Maria Glymour, Boston University
+- Elizabeth Rose Mayeda, UCLA
+- Rachel Whitmer, UC Davis]
+
+]
+
+.pull-right[
+
+![](figs/melodem_pic.jpg) 
+]
+
+.smaller[
+#### Themes:
+- Eliminating dementia disparities
+- Methods for dementia and cognitive aging research
+- Data harmonization and triangulation
+- Determinants of health in the oldest-old
+- Lifecourse determinants of health
+- Neuroimaging
 ]
