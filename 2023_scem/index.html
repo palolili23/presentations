@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Target trial emulation</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="L. Paloma Rojas-Saunero" />
+    <meta name="date" content="2023-08-08" />
+    <script src="index_files/header-attrs/header-attrs.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="extra.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+
+background-image: url(./figs/logo.png)
+background-position: 5% 95%
+background-size: 35%
+class: center, middle
+
+#  Principios de inferencia causal en estudios observacionales
+
+&lt;br&gt; &lt;br&gt;
+
+.right[L. Paloma Rojas-Saunero MD, PhD
+
+**Departmento de Epidemiología**
+
+&lt;svg viewBox="0 0 512 512" style="height:1em;position:relative;display:inline-block;top:.1em;" xmlns="http://www.w3.org/2000/svg"&gt;  &lt;path d="M459.37 151.716c.325 4.548.325 9.097.325 13.645 0 138.72-105.583 298.558-298.558 298.558-59.452 0-114.68-17.219-161.137-47.106 8.447.974 16.568 1.299 25.34 1.299 49.055 0 94.213-16.568 130.274-44.832-46.132-.975-84.792-31.188-98.112-72.772 6.498.974 12.995 1.624 19.818 1.624 9.421 0 18.843-1.3 27.614-3.573-48.081-9.747-84.143-51.98-84.143-102.985v-1.299c13.969 7.797 30.214 12.67 47.431 13.319-28.264-18.843-46.781-51.005-46.781-87.391 0-19.492 5.197-37.36 14.294-52.954 51.655 63.675 129.3 105.258 216.365 109.807-1.624-7.797-2.599-15.918-2.599-24.04 0-57.828 46.782-104.934 104.934-104.934 30.213 0 57.502 12.67 76.67 33.137 23.715-4.548 46.456-13.32 66.599-25.34-7.798 24.366-24.366 44.833-46.132 57.827 21.117-2.273 41.584-8.122 60.426-16.243-14.292 20.791-32.161 39.308-52.628 54.253z"&gt;&lt;/path&gt;&lt;/svg&gt; &lt;/i&gt;&amp;nbsp; @palolili23&lt;/a&gt;&lt;br&gt;
+]
+
+---
+## Objetivos de la clase
+
+&lt;br&gt;
+
+- Tipos de preguntas de investigación
+
+--
+
+- Qué es inferencia causal?
+
+--
+
+- El mundo contrafactual
+
+--
+
+- El ensayo clínico ideal (_ensayo diana_)
+
+---
+
+## Tipos de preguntas de investigación
+
+--
+
+- **Estudios descriptivos:**
+&lt;br&gt;
+Nos dan un resumen cuantitativo de alguna características del mundo. Por ej. una prevalencia, visualizaciones.
+
+--
+
+- **Estudios de predicción:**
+&lt;br&gt;
+Nos permite utilizar datos ya medidos para poder predecir un nuevo dato. Por ej. estudios de diagnóstico y scores de pronóstico
+
+--
+
+- **Estudios causales:**
+&lt;br&gt;
+Nos permite utilizar datos para predecir ciertas características en el mundo, si el mundo fuera diferente. Por ej. el efecto de un tratamiento, el efecto de una política de salud, el efecto de una decisión.
+
+
+.footnote[Miguel A. Hernán, John Hsu &amp; Brian Healy. **_A Second Chance to Get Causal Inference Right: A Classification of Data Science Tasks_**, CHANCE (2019)
+]
+
+---
+## Estudios descriptivos
+
+.center[&lt;img src= ./figs/hopkins.png width="120%"/&gt;]
+
+.footnote[Fuente: https://coronavirus.jhu.edu/map.html]
+
+---
+## Estudios predictivos
+
+
+.center[&lt;img src= ./figs/symptoms.jpg width="60%"/&gt;]
+
+---
+## Estudios causales
+
+
+.center[&lt;img src= ./figs/riskfactors.png width="60%"/&gt;]
+
+---
+
+## Y los estudios de asociación?
+
+- Estudiar la **asociación** entre una exposición y un evento de desenlace no es una pregunta científica.
+
+  - Es una pregunta estadística
+
+  - Existe por razones históricas
+
+  - Encubre la verdadera pregunta de investigación
+
+---
+## Mirada crítica
+
+![](figs/choc.png)
+
+---
+
+## Mirada crítica
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+"_La asociación entre el consumo de chocolate está asociado con un riesgo menor de falla cardiaca._"
+&lt;br&gt;&lt;br&gt;
+.center[
+**A. Descriptivo**
+
+**B. Predictivo**
+
+**C. Causal**
+]
+
+---
+class: middle, left
+
+# Inferencia causal
+
+---
+
+## Correlación y Causalidad
+
+![](figs/correlacion-no-implica-causalidad.png)
+
+---
+
+## Preguntas causales
+
+&lt;br&gt;
+
+- Cuál es la efectividad de un tratamiento para prevenir una enfermedad?
+
+--
+
+- Si le quito las medias a mi bebé, se resfriará?
+
+--
+
+- Cuál fue el impacto de cerrar las escuelas en la tasa de contagio de COVID19? 
+
+--
+
+- Si trabajo más horas, me subirán el sueldo?
+
+---
+## Causalidad en epidemiología
+
+&lt;br&gt; &lt;br&gt;
+
+.pull-left[
+- En epidemiología estudiamos **determinantes** de la salud.
+
+- No siempre podemos realizar ensayos clínicos.
+
+- Muchos hitos de la epidemiología fueron a partir de estudios observacionales.
+]
+
+.pull-right[
+![](figs/smoke.jpg)
+]
+
+---
+
+## Cómo conectamos nuestras preguntas a la estadística?
+
+- Podemos definir la inferencia causal respecto al **evento contrafactual**.
+
+&lt;br&gt;
+
+--
+
+- Podemos pensar la inferencia causal a partir de la **emulación de un ensayo clínico hipotético** ("ensayo ideal", _target trial_)
+
+&lt;br&gt;
+
+--
+
+- Podemos definir la inferencia causal en base a **diagramas causales** (Gráficos acíclicos dirigidos causales)
+
+---
+
+## Preguntas precisas, respuestas precisas
+
+Establecer **cuál es la pregunta de investigación causal** nos permite:
+
+&lt;br&gt;
+
+- Definir cuál es el mejor método estadístico?
+
+- Por qué variables debería o no ajustar en mi modelo?
+
+- Cómo interpretan los resultados mis colegas?
+
+- Confío en un resultado publicado que diga que A causa Y?
+
+- Que datos debería recolectar en un próximo estudio?
+
+---
+class:middle
+
+## Mundo contrafactual
+
+---
+class: middle, center
+
+
+![](https://media.giphy.com/media/3o7TKVUn7iM8FMEU24/giphy.gif)
+
+.right[**Contrafactual:** _acontecimiento que no ha sucedido en el universo actualmente observable pero que podría haber ocurrido. Se dice que el acontecimiento forman parte de un universo posible, mientras que el acontecimiento actual forma parte del universo fáctico o universo actual o universo real_.]
+
+---
+## Notación
+
+- A = 1 si comí &amp;#x1F36B; 
+
+- A = 0 si &amp;#x274C;&amp;#x1F36B;
+
+- Y = 1 si aprobé estadística
+
+- Y = 0 si no aprobé estadística
+
+
+- `\(Y^a\)` es el evento contrafactual bajo A = a
+
+---
+
+### Efecto causal individual
+
+Partiendo de "_Comer chocolate permite aprobar estadística_ "
+
+&lt;br&gt;
+
+.pull-left[
+
+.center[
+Si hubiese comido &amp;#x1F36B;, hubiera aprobado estadística.
+
+`\(Y^{a=1} = 1\)`
+
+Si no hubiese comido &amp;#x1F36B;, no hubiera aprobado estadística
+
+`\(Y^{a=0} = 0\)`
+
+]
+
+]
+
+--
+&lt;br&gt;
+
+.pull-right[
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Persona &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; A &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Y &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Ya=1 &lt;/th&gt;
+   &lt;th style="text-align:right;"&gt; Ya=0 &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Efecto &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Luli &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Si &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sergio &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; No &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Ana &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; No &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Joaquín &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; Si &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Camila &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:right;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; No &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+**Efecto causal**: `\(Y^{a=1} \neq  Y^{a=0}\)` 
+]
+
+---
+### El problema fundamental de la inferencia causal
+
+&lt;br&gt;&lt;br&gt;
+
+&lt;table&gt;
+ &lt;thead&gt;
+  &lt;tr&gt;
+   &lt;th style="text-align:left;"&gt; Persona &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; A &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Y &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Ya=1 &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Ya=0 &lt;/th&gt;
+   &lt;th style="text-align:left;"&gt; Efecto &lt;/th&gt;
+  &lt;/tr&gt;
+ &lt;/thead&gt;
+&lt;tbody&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Luli &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ? &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ? &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Sergio &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ? &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ? &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Ana &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ? &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ? &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Joaquín &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ? &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ? &lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+   &lt;td style="text-align:left;"&gt; Camila &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 0 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ? &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; 1 &lt;/td&gt;
+   &lt;td style="text-align:left;"&gt; ? &lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+
+--
+&lt;br&gt;
+
+**Efecto causal promedio:** `\(Pr[Y^{a=1} = 1] \neq Pr[Y^{a=0} = 1]\)`
+
+---
+### Ensayos clínicos
+
+Experimentos donde se asigna aleatoriamente el tratamiento que recibirá cada participante. 
+
+--
+
+**Ensayo clínico ideal:**
+
+   + No tiene pérdida de seguimieto
+
+   + Adherencia total durante la duración del estudio
+
+   + Doble ciego
+
+--
+
+**Pasos alineados en el tiempo:**
+
+- Criterios de eligibilidad
+
+- Asignación del tratamiento (aleatorización)
+
+- Inicia el seguimiento para medir el desenlace
+
+???
+Counterfactual or potential outcomes, Causal diagrams (e.g., DAGs, SWIGs)
+The concept of an “ideal randomized trial” is tied directly to these languages
+
+---
+.center[
+
+**Asociación es causalidad!**
+
+![](figs/causalidad_asociacion.png)
+
+]
+
+.footnote[**Hernán MA, Robins JM (2020). Causal Inference: What If**]
+
+???
+Under this design, comparing the observed average outcomes under each treatment arm is the Igual as comparing what would have happened had everybody been in one treatment arm versus the other
+
+---
+### Diferencia de riesgo causal
+
+&lt;br&gt;&lt;br&gt;
+
+
+`\(Pr[Y^{a=1} = 1] - Pr[Y^{a=0} = 1]\)`
+
+Si toda la población de estudio hubiese sido tratada, el riesgo del evento seria X unidades más que si nadie hubiese sido tratada, durante el periodo de estudio.
+
+---
+
+### Riesgo relativo causal
+
+&lt;br&gt;&lt;br&gt;
+
+
+`\(Pr[Y^{a=1} = 1] / Pr[Y^{a=0} = 1]\)`
+
+Si toda la población de estudio hubiese sido tratada, el riesgo del evento seria X veces más el riesgo que si nadie hubiese sido tratada, durante el periodo de estudio.
+
+
+---
+
+
+### Los ensayos de la vida real
+
+- No son ideales (falta de adherencia, pérdida de seguimiento)
+
+--
+
+- Nos permiten contestar preguntas que no pueden contestarse por ECAs
+
+  - No son éticos
+  - No son factibles
+  - Necesitan mucho tiempo
+  
+--
+
+- Debemos basarnos en estudios observacionales
+
+---
+
+### Qué hacemos en este caso?
+
+- Diseñamos el **ensayo clínico ideal o diana** considerando todos los puntos claves de un protocolo.
+
+- Esto nos permite definir bien la pregunta causal
+
+- Evitar errores en el diseño del análisis
+
+---
+
+### Emulación del ensayo diana (_target trial emulation_)
+
+![](figs/target_trial.png)
+
+---
+
+### Beneficios 
+
+&lt;br&gt;&lt;br&gt;
+
+- Ayuda a refinar la pregunta de investigación (AKA _estimand_).
+
+--
+
+- Permite detectar fuentes de sesgo que pueden ser prevenidas por el diseño o en el análisis.
+
+--
+
+- Permite ser transparente y explicito sobre los supuestos que conectan los datos observacionales a la pregunta causal.
+  
+--
+
+- Asegura interpretación clara de los resultados
+  
+---
+
+### Estudios observacionales
+
+.pull-left[
+
+![](figs/dag.png)
+
+]
+
+--
+
+.pull-right[
+**Supuestos** que nos permitan conectar el mundo contrafactual con el factual.
+
+**Intercambiabilidad**: Medimos todas las otras variables que puedan confundir nuestra asociación?
+
+**Consistencia**: Esta bien definida la variable "comer chocolate"?
+
+**Positividad**
+
+**Sin interferencia**
+
+]
+
+---
+## Sesgos de confusión
+
+.pull-left[
+&lt;img src= ./figs/simp1.png width="100%"/&gt;
+]
+
+--
+
+.pull-right[
+&lt;img src= ./figs/simp2.png width="100%"/&gt;
+]
+
+---
+
+
+### Mensaje final
+
+- Si estas pensando en sesgos de confusión o que necesitas "ajustar" por covariables, tienes una pregunta causal.
+
+--
+
+- Definir una pregunta clara como estimando es esencial para conceptualizar el diseño que la responda. 
+
+--
+
+- Podemos usar la emulación de ensayos diana aún si no hemos medido (o no existe) la intervención de interés.
+
+--
+
+- Especificar todos los elementos del ensayo diana es un paso esencial para definir el análisis estadístico. 
+
+--
+
+- Es un proceso dinámico, require que entendamos bien los mecanismos de cómo se generan los datos y que los contrastes causales sean informativos. 
+
+---
+class: center, middle
+
+
+![](figs/correlation.png)
+
+--
+
+La inferencia causal nos permite definir **bajo qué _supuestos_ puedo interpretar mis resultados como causales**
+
+--
+
+Siempre y cuando la **pregunta de investigación sea clara**.
+
+--
+
+Diseñemos bien nuestro estudio.
+
+
+---
+
+class::center, middle
+
+
+.right[
+
+###"_Eres más inteligente que tus datos. &lt;br&gt; Los datos no entienden de causas y efectos; las personas sí._" 
+
+&lt;br&gt;
+
+
+**El libro del porqué, Judea Pearl**
+]
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

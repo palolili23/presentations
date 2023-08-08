@@ -70,6 +70,9 @@ background-size: 75%
 
 .footnote[Hill et al. _Ethnicity and disease_. 2015]
 
+???
+
+
 ---
 background-image: url(./figs/press1.PNG)
 background-size: 75%
@@ -134,22 +137,6 @@ Out of **57/209** papers included:
 - **86%** innacurate interpretations (e.g. "_risks_")
 
 ---
-class: middle
-
-.pull-left[
-#### Methods development
-
-#### Applications
-
-#### Interpretation
-
-#### Science communication
-
-]
-
-.right[<img src=./figs/chain.png width="40%"/>]
-
----
 background-image: url(./figs/simqr.png)
 background-position: 95% 95%
 background-size: 15%
@@ -182,7 +169,7 @@ class: center, middle
 .center[
 .middle[
 
-What is the risk of dementia at 20 years of follow-up had all individuals initiated smoking in adulthood, compared to had all individuals not initiated smoking?
+What is the risk of dementia at 20 years of follow-up had all individuals stopped smoking, compared to had all individuals continued smoking?
 
 $$Pr[Y_{20}^{a = 1}] - Pr[Y_{20}^{a = 0}]$$
 
@@ -203,7 +190,7 @@ $$Pr[Y_{20}^{a = 1}] - Pr[Y_{20}^{a = 0}]$$
 .center[
 .middle[
 
-What is the risk of dementia at 20 years of follow-up had all individuals initiated smoking in adulthood and not died throughout the study period, compared to had all individuals not initiated smoking in adulthood and not died throughout the study period?
+What is the risk of dementia at 20 years of follow-up had all individuals stopped smoking _and not died_ throughout the study period, compared to had all individuals continued smoking in adulthood _and not died_ throughout the study period?
 
 
 $$Pr[Y_{20}^{a = 1, d_{19} = 0}] - Pr[Y_{20}^{a = 0, d_{19} = 0}]$$
@@ -224,7 +211,7 @@ $$Pr[Y_{20}^{a = 1, d_{19} = 0}] - Pr[Y_{20}^{a = 0, d_{19} = 0}]$$
 .center[
 .middle[
 
-What is the risk of dementia at 20 years of follow-up had all individuals initiated smoking in adulthood and not died throughout the study period, compared to had all individuals not initiated smoking in adulthood and not died throughout the study period?
+What is the risk of dementia at 20 years of follow-up had all individuals stopped smoking _and not died_ throughout the study period, compared to had all individuals continued smoking in adulthood _and not died_ throughout the study period?
 
 
 $$Pr[Y_{20}^{a = 1, d_{19} = 0}] - Pr[Y_{20}^{a = 0, d_{19} = 0}]$$
@@ -246,10 +233,10 @@ table <- tibble::tribble(
   ~ "<b> Controlled direct effect </b>",
   "<b> Exchangeability assumption needed for death (competing events)? </b>",
   "Not needed",
-  "At each k + 1, conditional on the measured past, death is independent of future counterfactual outcomes had everyone followed and death was eliminated.",
+  "At each k + 1, conditional on the measured past, death is independent of future counterfactual outcomes had everyone followed A = a and death was eliminated.",
   "<b> Positivity assumption needed for death (competing events)? </b>",
   "Not needed",
-  "For any possibly observed level of exposure and covariate history amongst those remaining uncensored (alive) and free of dementia diagnosis through k, some individuals continue to remain alive through _k + 1_.",
+  "For any possibly observed level A = a and covariate history amongst those remaining uncensored (alive) and free of dementia diagnosis through k, some individuals continue to remain alive through k + 1.",
   "<b> Consistency assumption needed for death (competing events) </b>",
   "Not needed",
   "An intervention that “eliminates death (competing events)” is well-defined."
@@ -295,7 +282,7 @@ table %>% gt() %>%   tab_options(
 ---
 ## Application 
 
-- Participants from Rotterdam Study I, recruited between 1990-1993 and followed during 1993-1995, 1997-1999 and 2002-2005
+- Participants from Rotterdam Study I, recruited between 1990-1993 and with follow-up data 
 
   - Current and former smokers
 
