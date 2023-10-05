@@ -227,13 +227,29 @@ Postdoctoral scholar
 ]
 
 ---
+
+### Weights assessment - IPTW for Chinese population
+
+.center[
+<img src=./figs/iptw_chi.png width="95%"/>
+]
+
+---
+### Weights assessment - IPCW for Chinese population
+
+.center[
+<img src=./figs/ipcw_chi.png width="95%"/>
+]
+
+
+---
 ## Take-aways
 
-- The incidence of stroke large across all Asian-American ethnicities and in the White population.
+- The incidence of stroke is large across all Asian-American ethnicities and in the White population.
 
 --
 
-- There is a large effect of stroke in the risk of dementia if we treat death as a censoring event (_as if we could have prevented it_).
+- There is a large effect of stroke on the risk of dementia if we treat death as a censoring event (_as if we could have prevented it_).
 
 --
 
