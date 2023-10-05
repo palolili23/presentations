@@ -1,0 +1,265 @@
+---
+title: "Incident stroke, risk of dementia"
+author: "L. Paloma Rojas-Saunero"
+date: '`r Sys.Date()`'
+output:
+  xaringan::moon_reader:
+    css: ["xaringan-themer.css", "extra.css"]
+    seal: false
+    nature:
+      slideNumberFormat: "%current%"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  fig.width=9, fig.height=3.5, fig.retina=3,
+  out.width = "100%",
+  cache = FALSE,
+  echo = FALSE,
+  message = FALSE, 
+  warning = FALSE,
+  hiline = TRUE
+)
+
+library(tidyverse)
+library(gt)
+library(knitr)
+library(fontawesome)
+```
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_mono_accent(
+ base_color = "#8bb8e8",
+  black_color = "#005587",
+  header_color = "#2774AE",
+  text_bold_color = "#ffb81c",
+  table_row_even_background_color = "#FFFFFF",
+  title_slide_text_color = "#2774AE",
+  table_border_color = "#8bb8e8",
+ text_font_size = "22px")
+
+```
+
+background-image: url(./figs/logo.png)
+background-position: 5% 95%
+background-size: 35%
+class: center, middle
+
+## Effect of incident stroke on the risk of dementia over a period of 10 years of follow-up in a cohort of Asian American and White older adults in California
+
+.pull.right[
+
+L. Paloma Rojas-Saunero MD, PhD
+<br>
+Postdoctoral scholar
+<br>
+**Mayeda Research Group, Department of Epidemiology**
+
+]
+
+---
+
+## Motivation
+
+- Several studies have shown that poststroke cognitive impairment (PSCI) is frequent, and a large percentage of stroke survivors do no fully recover from PSCI
+
+--
+
+- Although there are several modifiable risk factors that can reduce both the risk of stroke and dementia, there is a need to understand in more depth the role of the acute vascular event in the predisposition for Alzheimer’s disease and related dementias. 
+
+--
+
+- Previous studies looking at the association between stroke - dementia had major limitations (used prevalent stroke, incident stroke as time-fixed, limited information on death as competing event
+
+--
+
+- Very limited information on the effect for asian-american population
+
+---
+## Study population
+
+- **Study sample:**
+
+ + KPNC members who participated on the California Men’s Health Study (CMHS) or the Kaiser Permanente Research Program on Genes, Environment and Health Survey (RPGEH) who self-identified as Asian Americans or white.
+
+--
+
+- **Eligibility criteria:**
+
+ + With no history of stroke at baseline (survey year)
+ + With no history of dementia at baseline
+ + From 60 to 89 years old at baseline
+ + With information on ethnicity
+ + With follow-up
+
+---
+## Study Design
+
+- **Exposure:** Incident stroke (ischemic stroke, hemorrhagic stroke)
+
+- **Outcome:** Incident dementia diagnosis (Alzheimer’s disease, vascular dementia, and non-specific dementia diagnosis)
+
+- **Time zero/Baseline:** Time of survey
+
+- **End of follow-up:** Time of dementia diagnosis, time of death prior to dementia diagnosis (competing event), time end of membership (censoring event) or turning 90 years old.
+
+- **Time-scale:** Years of follow-up
+
+---
+## Covariates
+
+.pull-left[
+
+**Time-fixed covariates**
+
+- Nativity status
+- Educational attainment
+- Health status
+- Age at survey
+- Sex/gender
+- Smoking status
+
+]
+
+--
+
+.pull-right[
+
+**Time-varying covariates**
+
+- Systolic blood pressure (median value/year)
+- BMI (median value/year)
+- Lipids
+- Incident diabetes
+- Incident hypertension
+- Incident myocardial infarction
+- Incident congestive heart failure
+- Incident cancer
+
+]
+
+---
+## Statistical Analysis
+
+**Controlled direct effect**
+- IPTW for the probability of developing stroke at each time-point based on time-fixed and time-varying covariates. 
+
+- IPCW for the probability of end of membership over follow-up (IPCWm).
+
+- IPCW for death over follow-up (IPCWd). This is to satisfy the independent censoring assumption between dementia and death. (_Controlled direct effect_)
+
+- Plug in IPTW x IPCWm x IPCWd in the Kaplan-Meier estimator 
+
+- Calculate cumulative incidence of dementia, Risk ratio and Risk difference at 15 years. Bootstrap confidence intervals.
+
+---
+
+## Statistical Analysis
+
+**Total effect**
+
+- Plug in IPTW x IPCWm in the Aalen-Johannsen estimator 
+
+- Calculate cumulative incidence of dementia, Risk ratio and Risk difference at 15 years. Bootstrap confidence intervals.
+
+---
+## Covariates used for the models
+
+- IPTW:
+  + FU yr (bspline), baseline age (bspline)
+  + Baseline covariates: gender, nativity, education, general health, smoking status, prevalent acute myocardial infarction
+  + Time-varying covariates: diabetes, hypertension, incidence acute myocardial infarction, congestive heart failure, peripheral vascular disease, BMI, SBP
+
+--
+
+- IPCWd: Death weights. 
+  + Same variables as IPTW and t-v stroke indicator
+
+--
+
+- IPCWm: End of membership weights
+  + Survey age, education, and general health
+
+---
+## Results
+
+.center[
+<img src=./figs/stroke_counts.png width="80%"/>
+]
+
+---
+### Direct effect of stroke in the risk of dementia
+
+.center[
+<img src=./figs/rr_de.png width="80%"/>
+]
+
+---
+### Direct effect of stroke in the risk of dementia
+
+.center[
+<img src=./figs/rd_de.png width="80%"/>
+]
+
+---
+### Total effect of stroke in the risk of dementia
+
+.center[
+<img src=./figs/rr_te.png width="80%"/>
+]
+
+---
+### Total effect of stroke in the risk of dementia
+
+.center[
+<img src=./figs/rd_te.png width="80%"/>
+]
+
+---
+### Take-aways
+
+- The incidence of stroke large across all Asian-American ethnicities and in the White population.
+
+--
+
+- There is a large effect of stroke in the risk of dementia if we treat death as a censoring event (_as if we could have prevented it_).
+
+--
+
+- There are several factors that could explain the heterogeneity of the effects across subgroups.
+
+---
+### Discussion points
+
+- Because we use use discrete time in the analysis, this results in rounding and we loose events. Suggestions for sensitivity analysis?
+
+--
+
+- How can we prevent the potential reverse causation of those who have a dementia diagnosis very close to the stroke event?
+
+--
+ 
+- Smaller time-frame to look at stroke? What would be a reasonable time-frame with the trade off of loosing outcomes?
+
+---
+class: center, middle
+
+### Thank you, Gracias!
+
+`r fa("paper-plane")`</i>&nbsp;lp.rojassaunero@ucla.edu</a><br>
+
+`r fa("twitter")` <a href="http://twitter.com/palolili23"> </i>&nbsp; @palolili23</a><br>
+
+`r fa("github")` <a href="https://github.com/palolili23"> </i>&nbsp; @palolili23</a><br>
+
+---
+
+
+class: center, middle
+
+![](https://media.giphy.com/media/XHVmD4RyXgSjd8aUMb/giphy.gif)
