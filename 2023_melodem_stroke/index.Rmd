@@ -174,6 +174,15 @@ Postdoctoral scholar
 - Calculate cumulative incidence of dementia, Risk ratio and Risk difference at 10 years. Bootstrap confidence intervals.
 
 ---
+## Example
+
+.center[
+<img src=./figs/cif_curves_filip.png width="100%"/>
+]
+
+
+
+---
 ## Covariates used for the models
 
 - IPTW:
