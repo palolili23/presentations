@@ -1,21 +1,30 @@
 # Presentations
 
-Repository of conference talks and invited guest lectures I've given since 2023
+Repository of conference talks and invited guest lectures I've given since 2022 - 2023
 
-1. UCSF. San Francisco, California
-_Target trial emulation in dementia research_
+- Jornadas Tessler, Hospital Italiano de Buenos Aires, Argentina.
+[_Emulación de ensayos diana en estudios observacionales_](https://palolili23.github.io/presentations/2022_tessler_hiba/index.html#1)
 
-2. Curso de Metodología de investigación científica en salud. Cochabamba, Bolivia. 
-_Principios de la inferencia causal en estudios observacionales_
+- UCSF. San Francisco, California
+[_Target trial emulation in dementia research_]()
 
-3. Primer Congreso Internacional de Epidemiología. Unifranz. Cochabamba,Bolivia
-_Nuevos paradigmas en inferencial causal para estudios observacionales_
+- Curso de Metodología de investigación científica en salud. Cochabamba, Bolivia. 
+[_Principios de la inferencia causal en estudios observacionales_](https://palolili23.github.io/presentations/2023_scem/index.html#1)
 
-4. MELODEM
+- Primer Congreso Internacional de Epidemiología. Unifranz. Cochabamba,Bolivia
+[_Nuevos paradigmas en inferencial causal para estudios observacionales_](https://palolili23.github.io/presentations/2023_unifranz/index.html#1)
 
-5. Society of Epidemiologic Research Conference, 2023. 
+- Society of Epidemiologic Research Conference, 2023. 
 _Target trial emulation for the study of social determinants in dementia research_ [Link](https://palolili23.github.io/presentations/2023_ser/index.html#1)
 
+- USCD. San Diego, California
+[_Considering questions before methods in dementia research with competing events and causal goals_](https://palolili23.github.io/presentations/2023_ucsd/index.html#1)
+
+- MELODEM Annual meeting, 2023
+[_ _]()
+
+- Turken Research Award and Symposium. UCLA, Los Angeles, USA.
+[_Effect of incident stroke on the risk of dementia over a period of 10 years of follow-up in a cohort of Asian American and White older adults in California_](https://palolili23.github.io/presentations/2023_turken/index.html#1)
 
 <br><br><br>
 
