@@ -1,5 +1,5 @@
 ---
-title: "Incident stroke, risk of dementia"
+title: "Turken presentation 2023"
 author: "L. Paloma Rojas-Saunero"
 date: '`r Sys.Date()`'
 output:
@@ -25,8 +25,6 @@ knitr::opts_chunk$set(
   hiline = TRUE
 )
 
-library(tidyverse)
-library(gt)
 library(knitr)
 library(fontawesome)
 ```
@@ -77,24 +75,24 @@ class: center, middle
 ---
 ## Research question
 
-- What is the effect of incident stroke in the risk of dementia across different Asian American ethnicities and White populations, <ins>if we could remove the effect of stroke on death<ins>?
+- What is the effect of incident stroke in the 10-year-risk of dementia across different Asian American ethnicities and White populations, <ins>if we could remove the effect of stroke on death</ins>?
 
-- What is the total effect of incident stroke in the risk of dementia  across different Asian American ethnicities and White populations?
+- What is the <ins>total effect</ins> of incident stroke in the 10-year-risk of dementia  across different Asian American ethnicities and White populations?
 
 ---
 ## Study population
 
 - **Study sample:**
 
- + Kaiser Permanente Northern California members who participated on the California Men’s Health Study (CMHS) or the Kaiser Permanente Research Program on Genes, Environment and Health Survey (RPGEH) who self-identified as Asian Americans or white.
+ + Kaiser Permanente Northern California members who participated on the California Men’s Health Study (CMHS) or the Kaiser Permanente Research Program on Genes, Environment and Health Survey (RPGEH) who self-identified as Asian Americans or White.
 
 --
 
 - **Eligibility criteria:**
 
- + With no history of stroke at baseline (survey year)
- + With no history of dementia at baseline
- + From 60 to 89 years old at baseline
+ + With no history of stroke
+ + With no history of dementia
+ + From 60 to 89 years old
 
 ---
 ## Study Design
@@ -105,7 +103,7 @@ class: center, middle
 
 - **Time zero/Baseline:** Time of survey
 
-- **End of follow-up:** Time of dementia diagnosis, time of death prior to dementia diagnosis, turning 90 years old.
+- **End of follow-up:** Time of dementia diagnosis, time of death prior to dementia diagnosis, turning 90 years old
 
 ---
 ## Covariates
@@ -155,7 +153,7 @@ class: center, middle
 
 ## Statistical Analysis
 
-**Direct effect:** Plug IPTW x IPCW in a Kaplan-Meier estimator
+**Direct effect:** Plug IPTW x IPCW in a Kaplan-Meier estimator.
 
 --
 
@@ -180,9 +178,9 @@ class: center, middle
 ]
 
 ---
-## Conclusion
+## Discussion
 
-- The incidence of stroke is high across all Asian-American ethnicities and in the White population.
+- The incidence of stroke is high across all Asian American ethnicities and in the White population.
 
 --
 
@@ -190,7 +188,7 @@ class: center, middle
 
 --
 
-- There is a large effect of stroke on the risk of dementia if we treat death as a censoring event (_as if we could have prevented it_) and consistent across groups.
+- There is a large effect of stroke on the risk of dementia if we remove the effect that stroke has on death (_as if we could have prevented it_) and this is consistent across groups.
 
 ---
 
