@@ -1,0 +1,232 @@
+---
+title: "Incident stroke, risk of dementia"
+author: "L. Paloma Rojas-Saunero"
+date: '`r Sys.Date()`'
+output:
+  xaringan::moon_reader:
+    css: ["xaringan-themer.css", "extra.css"]
+    seal: false
+    nature:
+      slideNumberFormat: "%current%"
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  fig.width=9, fig.height=3.5, fig.retina=3,
+  out.width = "100%",
+  cache = FALSE,
+  echo = FALSE,
+  message = FALSE, 
+  warning = FALSE,
+  hiline = TRUE
+)
+
+library(tidyverse)
+library(gt)
+library(knitr)
+library(fontawesome)
+```
+
+```{r xaringan-themer, include=FALSE, warning=FALSE}
+library(xaringanthemer)
+style_mono_accent(
+ base_color = "#8bb8e8",
+  black_color = "#005587",
+  header_color = "#2774AE",
+  text_bold_color = "#ffb81c",
+  table_row_even_background_color = "#FFFFFF",
+  title_slide_text_color = "#2774AE",
+  table_border_color = "#8bb8e8",
+ text_font_size = "22px")
+
+```
+
+background-image: url(./figs/logo.png)
+background-position: 5% 95%
+background-size: 35%
+class: center, middle
+
+### Effect of incident stroke on the risk of dementia over a period of 10 years of follow-up in a cohort of Asian American and White older adults in California
+
+.pull.right[
+
+<ins> L. Paloma Rojas-Saunero</ins>, Yixuan Zhou, Eleanor Hayes-Larson, Yingyan Wu, Elizabeth Rose Mayeda
+<br>
+**Department of Epidemiology**
+]
+
+
+---
+
+## Motivation
+
+- Stroke can precipitate pathological changes in the neurovascular unit leading to loss of structural and functional connectivity that could increase dementia risk.
+
+--
+
+- Studies on this topic have very selected samples with minimal (if any) representation of the Asian American population.
+
+--
+
+- Previous work had major methodological limitations, including how to account for the fact that stroke increases mortality, which competes with dementia.
+
+---
+## Research question
+
+- What is the effect of incident stroke in the risk of dementia across different Asian American ethnicities and White populations, <ins>if we could remove the effect of stroke on death<ins>?
+
+- What is the total effect of incident stroke in the risk of dementia  across different Asian American ethnicities and White populations?
+
+---
+## Study population
+
+- **Study sample:**
+
+ + Kaiser Permanente Northern California members who participated on the California Men’s Health Study (CMHS) or the Kaiser Permanente Research Program on Genes, Environment and Health Survey (RPGEH) who self-identified as Asian Americans or white.
+
+--
+
+- **Eligibility criteria:**
+
+ + With no history of stroke at baseline (survey year)
+ + With no history of dementia at baseline
+ + From 60 to 89 years old at baseline
+
+---
+## Study Design
+
+- **Exposure:** Incident stroke (ischemic stroke, hemorrhagic stroke)
+
+- **Outcome:** Incident dementia diagnosis (Alzheimer’s disease, vascular dementia, and non-specific dementia diagnosis)
+
+- **Time zero/Baseline:** Time of survey
+
+- **End of follow-up:** Time of dementia diagnosis, time of death prior to dementia diagnosis, turning 90 years old.
+
+---
+## Covariates
+
+.pull-left[
+
+**Time-fixed covariates**
+
+- Age at survey
+- Sex/gender
+- Nativity status
+- Educational attainment
+- Health status
+- Smoking status
+
+]
+
+--
+
+.pull-right[
+
+**Time-varying covariates**
+
+- Systolic blood pressure (median value/year)
+- BMI (median value/year)
+- Cholesterol (median value/year)
+- Incident diabetes
+- Incident hypertension
+- Incident myocardial infarction
+- Incident congestive heart failure
+- Incident cancer
+
+]
+
+---
+## Statistical Analysis
+
+**Weights calculation**
+
+- **Inverse probability weights for stroke (IPTW):** so that those who have a stroke and those who don't are comparable at every time-point before stroke.
+
+--
+
+- **Inverse probability weights for death over follow-up (IPCW):** to make participants who remain alive after stroke comparable to the no-stroke group over follow-up.
+
+---
+
+## Statistical Analysis
+
+**Direct effect:** Plug IPTW x IPCW in a Kaplan-Meier estimator
+
+--
+
+**Total effect:** Plug IPTW in an Aalen-Johannsen estimator.
+
+--
+
+**Effect estimation:** Calculate cumulative incidence of dementia and risk ratio at 10 years of follow-up. Bootstrap confidence intervals.
+
+---
+### Results
+
+.center[
+<img src=./figs/stroke_counts.png width="80%"/>
+]
+
+---
+### Effect of stroke on the risk of dementia on the relative scale
+
+.center[
+<img src=./figs/RR_SCALE.png width="90%"/>
+]
+
+---
+## Conclusion
+
+- The incidence of stroke is high across all Asian-American ethnicities and in the White population.
+
+--
+
+- Ischemic stroke was more frequently observed, compared to hemorrhagic stroke.
+
+--
+
+- There is a large effect of stroke on the risk of dementia if we treat death as a censoring event (_as if we could have prevented it_) and consistent across groups.
+
+---
+
+## Acknowledgments
+
+
+This work was supported by NIA R01AG063969, "Alzheimer's disease and related dementias in a diverse cohort of Asian Americans".
+
+---
+class: center, middle
+
+### Thank you, Gracias!
+
+`r fa("paper-plane")`</i>&nbsp;lp.rojassaunero@ucla.edu</a><br>
+
+`r fa("twitter")` <a href="http://twitter.com/palolili23"> </i>&nbsp; @palolili23</a><br>
+
+`r fa("github")` <a href="https://github.com/palolili23"> </i>&nbsp; @palolili23</a><br>
+
+---
+class: center, middle
+
+## Extra slides
+
+---
+## Example
+
+.center[
+<img src=./figs/cif_curves_filip.png width="100%"/>
+]
+
+---
+
+#### Weights assessment - IPTW for Chinese population
+
+.center[
+<img src=./figs/iptw_chi.png width="95%"/>
+]
+
