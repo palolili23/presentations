@@ -77,6 +77,8 @@ class: center, middle
 
 - What is the effect of incident stroke in the 10-year-risk of dementia across different Asian American ethnicities and White populations, <ins>if we could remove the effect of stroke on death</ins>?
 
+--
+
 - What is the <ins>total effect</ins> of incident stroke in the 10-year-risk of dementia  across different Asian American ethnicities and White populations?
 
 ---
