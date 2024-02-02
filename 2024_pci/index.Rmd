@@ -78,18 +78,17 @@ class: center, middle
 ## Competing/truncating events
 
 
-Events that _preclude*_ the outcome of interest. 
+Events that _preclude*_ the outcome of interest.
+
+- *to prevent the existence, or occurrence of; make impossible
+
+--
 
 .center[
 
 <img src=./figs/data_structure.png width="85%"/>
 
 ]
-
-.footnote[ *to prevent the presence, existence, or occurrence of; make impossible]
-
-???
-They can occur in any kind of study design, randomized or nonrandomized
 
 ---
 background-image: url(./figs/press1.PNG)
@@ -162,7 +161,7 @@ $$Pr[Y_{20}^{a = 1} = 1] - Pr[Y_{20}^{a = 0} = 1]$$
 .center[
 .middle[
 
-What is the risk of dementia at 20 years of follow-up had all individuals stopped smoking _and not died_ throughout the study period, compared to had all individuals continued smoking in adulthood _and not died_ throughout the study period?
+What is the risk of dementia at 20 years of follow-up had all individuals stopped smoking _and not died_ throughout the study period, compared to had all individuals continued smoking _and not died_ throughout the study period?
 
 
 $$Pr[Y_{20}^{a = 1, d_{19} = 0} = 1] - Pr[Y_{20}^{a = 0, d_{19} = 0} = 1]$$
@@ -183,7 +182,7 @@ $$Pr[Y_{20}^{a = 1, d_{19} = 0} = 1] - Pr[Y_{20}^{a = 0, d_{19} = 0} = 1]$$
 .center[
 .middle[
 
-What is the risk of dementia at 20 years of follow-up had all individuals stopped smoking _and not died_ throughout the study period, compared to had all individuals continued smoking in adulthood _and not died_ throughout the study period?
+What is the risk of dementia at 20 years of follow-up had all individuals stopped smoking _and not died_ throughout the study period, compared to had all individuals continued smoking _and not died_ throughout the study period?
 
 
 $$Pr[Y_{20}^{a = 1, d_{19} = 0} = 1] - Pr[Y_{20}^{a = 0, d_{19} = 0} = 1]$$
