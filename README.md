@@ -28,6 +28,8 @@ _Target trial emulation for the study of social determinants in dementia researc
 - 2023. Turken Research Award and Symposium. UCLA, Los Angeles, USA.
 [_Effect of incident stroke on the risk of dementia over a period of 10 years of follow-up in a cohort of Asian American and White older adults in California_](https://palolili23.github.io/presentations/2023_turken/index.html#1)
 
+- 2024. Practical Causal Inference Seminar. UCLA, Los Angeles, USA.
+[Causal estimands for settings with competing events](https://palolili23.github.io/presentations/2024_pci/index.html#1)
 <br><br><br>
 
 This work is licensed under a
