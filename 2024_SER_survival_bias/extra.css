@@ -1,0 +1,14 @@
+
+.smaller {
+  font-size: 18px;
+}
+
+.even_smaller {
+  font-size: 16px;
+}
+
+@media print {
+  .has-continuation {
+    display: block !important;
+  }
+}
