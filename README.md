@@ -5,13 +5,13 @@ Repository of conference talks and guest lectures since 2022 (not full list)
 * 2024. Society for Epidemiologic Research Annual Meeting. Austin, TX, USA
 _When survival bias is not truly a bias, but rather the correct answer to the wrong question_ [Link](https://palolili23.github.io/presentations/2024_SER_survival_bias/#1)
 
-- 2024. Practical Causal Inference Seminar. UCLA, Los Angeles, CA, USA
+* 2024. Practical Causal Inference Seminar. UCLA, Los Angeles, CA, USA
 _Causal estimands for settings with competing events_ [Link](https://palolili23.github.io/presentations/2024_pci/index.html#1)
 
-- 2023. Turken Research Award and Symposium. UCLA, Los Angeles, USA
+* 2023. Turken Research Award and Symposium. UCLA, Los Angeles, USA
 _Effect of incident stroke on the risk of dementia over a period of 10 years of follow-up in a cohort of Asian American and White older adults in California_ [Link](https://palolili23.github.io/presentations/2023_turken/index.html#1)
 
-- 2023. Society of Epidemiologic Research Conference, Portland, OR, USA
+* 2023. Society of Epidemiologic Research Conference, Portland, OR, USA
 _Target trial emulation for the study of social determinants in dementia research_ [Link](https://palolili23.github.io/presentations/2023_ser/index.html#1)
 
 - 2023. USCD. San Diego, CA, USA
