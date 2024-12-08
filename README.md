@@ -1,20 +1,13 @@
 # Presentations
 
-Repository of conference talks and invited guest lectures I've given since 2022 - 2023
+Repository of conference talks and guest lectures since 2022 (not full list)
 
-- 2022. UCLA, Los Angeles, USA. [Target trial emulation]()
+- 2024. Society for Epidemiologic Research Annual Meeting. Austin, TX, USA.
+[When survival bias is not truly a bias, but rather the correct answer to the wrong question](https://palolili23.github.io/presentations/2024_pci/index.html#1](https://palolili23.github.io/presentations/2024_SER_survival_bias/#1)
 
-- 2022. Jornadas Tessler, Hospital Italiano de Buenos Aires, Argentina.
-[_Emulación de ensayos diana en estudios observacionales_](https://palolili23.github.io/presentations/2022_tessler_hiba/index.html#1)
-
-- 2023. UCSF. San Francisco, California
-[_Target trial emulation in dementia research_]()
-
-- 2023. Curso de Metodología de investigación científica en salud. Cochabamba, Bolivia. 
-[_Principios de la inferencia causal en estudios observacionales_](https://palolili23.github.io/presentations/2023_scem/index.html#1)
-
-- 2023. Primer Congreso Internacional de Epidemiología. Unifranz. Cochabamba,Bolivia
-[_Nuevos paradigmas en inferencial causal para estudios observacionales_](https://palolili23.github.io/presentations/2023_unifranz/index.html#1)
+- 2024. Practical Causal Inference Seminar. UCLA, Los Angeles, CA, USA.
+[Causal estimands for settings with competing events](https://palolili23.github.io/presentations/2024_pci/index.html#1)
+<br><br><be>
 
 - 2023. Society of Epidemiologic Research Conference 
 _Target trial emulation for the study of social determinants in dementia research_ [Link](https://palolili23.github.io/presentations/2023_ser/index.html#1)
@@ -22,15 +15,28 @@ _Target trial emulation for the study of social determinants in dementia researc
 - 2023. USCD. San Diego, California
 [_Considering questions before methods in dementia research with competing events and causal goals_](https://palolili23.github.io/presentations/2023_ucsd/index.html#1)
 
-- 2023. MELODEM Annual meeting
-[_ _]()
+- 2023. MELODEM Annual Meeting
+[_Target trial emulation for the study of social determinants in dementia research_](https://github.com/palolili23/presentations/tree/main/2023_melodem)
+
+- 2023. UCSF. San Francisco, California, CA, USA.
+[_Target trial emulation in dementia research_](https://palolili23.github.io/presentations/2023_ucsf_target_trials/index.html#1)
+
+- 2023. Curso de Metodología de investigación científica en salud. Cochabamba, Bolivia. 
+[_Principios de la inferencia causal en estudios observacionales_](https://palolili23.github.io/presentations/2023_scem/index.html#1)
+
+- 2023. Primer Congreso Internacional de Epidemiología. Unifranz. Cochabamba,Bolivia
+[_Nuevos paradigmas en inferencial causal para estudios observacionales_](https://palolili23.github.io/presentations/2023_unifranz/index.html#1)
+
+- 2023. MELODEM Work in Progress Meeting.
+[_Effect of incident stroke on the risk of dementia over a period of 10 years of follow-up in a cohort of Asian American and White older adults in California_](https://palolili23.github.io/presentations/2023_melodem_stroke/index.html#1)
 
 - 2023. Turken Research Award and Symposium. UCLA, Los Angeles, USA.
 [_Effect of incident stroke on the risk of dementia over a period of 10 years of follow-up in a cohort of Asian American and White older adults in California_](https://palolili23.github.io/presentations/2023_turken/index.html#1)
 
-- 2024. Practical Causal Inference Seminar. UCLA, Los Angeles, USA.
-[Causal estimands for settings with competing events](https://palolili23.github.io/presentations/2024_pci/index.html#1)
-<br><br><br>
+- 2022. UCLA, Los Angeles, USA. [_Target trial emulation_](https://palolili23.github.io/presentations/2022_target_trial_ucla/index.html#1)
+
+- 2022. Jornadas Tessler, Hospital Italiano de Buenos Aires, Argentina.
+[_Emulación de ensayos diana en estudios observacionales_](https://palolili23.github.io/presentations/2022_tessler_hiba/index.html#1)
 
 This work is licensed under a
 [Creative Commons Attribution 4.0 International License][cc-by].
