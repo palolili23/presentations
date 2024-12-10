@@ -4,6 +4,9 @@ Repository of conference talks and guest lectures since 2022 (not full list)
 
 **2024**
 
+- CAUSALab. Karolinska Institute. _Virtual_
+_Understanding the Role of Competing Events in Dementia Research: The Need for Multiple Estimands_ [Link](https://palolili23.github.io/presentations/2024_causalab/#1)
+
 - Society for Epidemiologic Research Annual Meeting. Austin, TX, USA
 _When survival bias is not truly a bias, but rather the correct answer to the wrong question_ [Link](https://palolili23.github.io/presentations/2024_SER_survival_bias/#1)
 
