@@ -221,7 +221,7 @@ However, When we look at absolute risk differences, we observed a different stor
 
 
 ---
-background-image: url(./figs/chain2.PNG)
+background-image: url(./figs/chain2.png)
 background-size: 80%
 
 ???

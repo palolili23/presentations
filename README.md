@@ -4,6 +4,9 @@ Repository of conference talks and guest lectures since 2022 (not full list)
 
 **2024**
 
+- Seminario Internacional de Salud Pública. Universidad del Valle. Cali, Colombia. _Virtual_
+_Considerando la pregunta antes que los métodos en investigación sobre de demencia cuando hay eventos competitivos_ [Link](https://palolili23.github.io/presentations/2024_univ_del_valle/#1)
+
 - CAUSALab. Karolinska Institute. _Virtual_
 _Understanding the Role of Competing Events in Dementia Research: The Need for Multiple Estimands_ [Link](https://palolili23.github.io/presentations/2024_causalab/#1)
 
