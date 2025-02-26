@@ -1,0 +1,1882 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Job talk UCLA 2025</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="L. Paloma Rojas-Saunero" />
+    <meta name="date" content="2025-02-25" />
+    <script src="index_files/header-attrs/header-attrs.js"></script>
+    <script src="index_files/xaringanExtra-progressBar/progress-bar.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="extra.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+class: title-slide, center, middle, inverse
+background-image: url(./figs/logo.png)
+background-position: 95% 95%
+background-size: 28%, 25%
+
+# Bridging .yellow[causal inference] methods and .yellow[social epidemiology] to promote .yellow[health equity] in .yellow[aging populations]
+
+
+.center[
+
+L. Paloma Rojas-Saunero MD, PhD
+&lt;br&gt;
+Postdoctoral scholar
+&lt;br&gt;
+Department of Epidemiology, UCLA
+
+]
+
+???
+
+---
+<style>.xe__progress-bar__container {
+  top:0;
+  opacity: 1;
+  position:absolute;
+  right:0;
+  left: 0;
+}
+.xe__progress-bar {
+  height: 0.25em;
+  background-color: #ffb81c;
+  width: calc(var(--slide-current) / var(--slide-total) * 100%);
+}
+.remark-visible .xe__progress-bar {
+  animation: xe__progress-bar__wipe 200ms forwards;
+  animation-timing-function: cubic-bezier(.86,0,.07,1);
+}
+@keyframes xe__progress-bar__wipe {
+  0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
+  100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
+}</style>
+
+# Outline
+
+- Background
+
+- Research Agenda
+
+- Research Themes: 
+
+  + A. Causal framework to study time-varying exposures 
+
+  + B. Advances on estimands for research questions with competing/truncating events 
+
+  + C. Study of social and structural determinants of health
+
+- Future directions
+
+- Potential collaborations
+
+---
+# Background
+
+.flexibleColumn[.smaller[
+- **Bolivia**
+  + Medicine, Universidad Mayor de San Andrés
+  + Undergraduate Research Assistant, Research Institute in Health and Development
+]]
+
+
+.right[
+.smaller[
+&lt;img src=./figs/map_bolivia1.png width="55%"/&gt;
+_Healthcare Access and Quality Index, Lancet Global Health, 2022_
+]]
+
+
+???
+I was born and raised in Bolivia, where I earned my medical degree. This map, from The Lancet Global Health, shows healthcare access and quality worlwide, andh illustrates that Bolivia is one of the most disadvantaged countries in South America in regards to heath acces. Experiencing these health inequities during my training fueled my passion for research, though educational opportunities were also scarce.
+
+---
+# Background
+
+.flexibleColumn[.smaller[
+- **Bolivia**
+  + Medicine, Universidad Mayor de San Andrés
+  + Undergraduate Research Assistant, Research Institute in Health and Development
+- **Argentina**
+  + Master in Clinical Research / Research Fellow, Internal Medicine Research Unit, Hospital Italiano de Buenos Aires
+  + Statistics for Health Sciences, Instituto de Cálculo, Universidad de Buenos Aires
+  + Research Associate, Liver Transplant Unit, Hospital El Cruce
+- **Mexico**
+  + Research Assistant, National Institute of Public Health
+]]
+
+
+.right[
+.smaller[
+&lt;img src=./figs/map_bolivia2.png width="55%"/&gt;
+_Healthcare Access and Quality Index, Lancet Global Health, 2022_
+]]
+
+
+???
+I moved to Argentia, where I earned a Master’s in Clinical Research and completed a two-year graduate program in statistics for health sciences. I was a research fellow in the Internal Medicine Department, and transitioned to  research associate in a liver transplant unit, leading a project on longitudinal data collection for transplant candidates.
+Working with EHR data exposed me to the challenges of leveraging such complex and powerful data to answer meaningful research questions. I was determined to learn causal inference methods as a next step. 
+
+---
+# Background
+
+.flexibleColumn[.smaller[
+- **Bolivia**
+  + Medicine, Universidad Mayor de San Andrés
+  + Undergraduate Research Assistant, Research Institute in Health and Development
+- **Argentina**
+  + Master in Clinical Research / Research Fellow, Internal Medicine Research Unit, Hospital Italiano de Buenos Aires
+  + Statistics for Health Sciences, Instituto de Cálculo, Universidad de Buenos Aires
+  + Research Associate, Liver Transplant Unit, Hospital El Cruce
+- **Mexico**
+  + Research Assistant, National Institute of Public Health
+- **Netherlands**
+  + PhD. in Epidemiology, Erasmus MC
+- **United States**
+  + Postdoctoral Scholar, FSPH, UCLA
+
+]]
+
+
+.right[
+.smaller[
+&lt;img src=./figs/map_bolivia3.png width="55%"/&gt;
+_Healthcare Access and Quality Index, Lancet Global Health, 2022_
+]]
+
+???
+I completed a PhD in Epidemiology at Eramus MC in the Netherlands, shifting to dementia research. As you can see in this map, healthcare access is highly ranked in the region. So when I realized that I had gone too far on methods and clinical research when my passion began from living inequities in my country, I chose to find a postdoc that could help me bridge causal inference methods with social epidemiology. So I feel very lucky to be a postdoc at UCLA in this Department.
+
+---
+# Research Agenda
+
+.pull-left[
+
+![](figs/research_agenda.jpg)
+
+]
+
+.middle[
+.pull-right[
+
+I implement a **causal framework** to leverage **longitudinal observational data** and understand how **cardiometabolic risk factors** and **social and structural determinants** impact on **aging-related outcomes** in midlife and late life.
+]
+]
+
+---
+# Causal framework
+
+.pull-left[
+**Causal estimands:** Contrast of (counterfactual) outcome distributions in the **same individuals** but under **different levels of exposure**
+
+The only explanation for a difference is the exposure, not comparing different individuals
+]
+
+
+.right[&lt;img src=./figs/causal_estimand.jpg width="50%"/&gt;
+]
+
+
+---
+# Observational Data
+
+.flexibleColumn[
+**Target population** &lt;br&gt;
+**Eligibility criteria**&lt;br&gt;
+**Intervention**&lt;br&gt;
+Point &lt;br&gt; 
+Static &lt;br&gt;
+Dynamic &lt;br&gt;
+Stochastic &lt;br&gt;
+**Outcome of interest** &lt;br&gt;
+Continuous &lt;br&gt;
+Time-to-event &lt;br&gt;
+**Intercurrent events**&lt;br&gt;
+Competing events &lt;br&gt;
+Lost to follow-up &lt;br&gt;
+Adverse reactions &lt;br&gt;
+**Summary Measure** &lt;br&gt;
+]
+
+.right[
+
+&lt;img src=./figs/rs_data.png width="60%"/&gt; ]
+
+---
+class: center, middle, inverse
+
+# A. Advances on estimands for research questions with competing/truncating events 
+
+
+---
+## The hazard of hazard ratios
+
+.center[
+&lt;img src=./figs/hazard.png width="70%"/&gt;
+]
+
+.footnote[
+.smaller[
+&lt;br&gt;
+Stensruds et al. Limitations of hazard ratios in clinical trials. Eur Heart J
+. 2019 
+]]
+
+---
+## Hazard ratios vs. risk differences at a specific time point
+
+.pull-left[
+.center[
+&lt;img src=./figs/hr_hypertension.png /&gt;
+]
+]
+
+.footnote[
+_Work in progress. Gradwohl N et al._
+]
+
+???
+For instance, several studies suggest that hypertension at older ages might reduce dementia risk, and refer to biological mechanisms to support this claim. In a recent project from my group, we showcase that indeed hazard ratios for this relationship shift toward the null at older ages.
+
+--
+
+.pull-right[
+.center[
+&lt;img src=./figs/rd_hypertension.png /&gt;
+]
+]
+???
+However, When we look at absolute risk differences, we observed a different story: individuals with hypertension have a higher cumulative incidence of dementia over time, with differences growing substantially at older ages.   
+
+---
+
+class: left, middle
+
+## Considering Questions Before Methods in Dementia Research With Competing Events and Causal Goals 
+
+.smaller[
+
+  .left[**L. Paloma Rojas-Saunero**, Jessica G. Young, Vanessa Didelez, Arfan Ikram, Sonja A. Swanson]
+
+  .left[_American Journal of Epidemiology_, 2023
+  ]
+
+]
+
+---
+### Causal estimands when competing events are present
+
+.pull-left[
+
+What is the risk* of dementia at 20 years of follow-up had all individuals stopped smoking, compared to had all individuals continued smoking?
+
+`$$Pr[Y_{20}^{a = 1} = 1] - Pr[Y_{20}^{a = 0} = 1]$$`
+
+![](figs/dagte.jpg)
+
+&lt;br&gt;
+
+*crude or cause-specific risk
+]
+
+
+--
+
+.pull-right[
+
+What is the risk** of dementia at 20 years of follow-up had all individuals stopped smoking _and not died_ during the study period, compared to had all individuals continued smoking _and not died_ ?
+
+
+`$$Pr[Y_{20}^{a = 1, d_{19} = 0} = 1] - Pr[Y_{20}^{a = 0, d_{19} = 0} = 1]$$`
+
+![](figs/dagde.jpg)
+&lt;br&gt;
+**net risk
+
+]
+
+---
+
+### Causal estimands when competing events are present
+
+.pull-left[
+
+What is the risk* of dementia at 20 years of follow-up had all individuals stopped smoking, compared to had all individuals continued smoking?
+
+`$$Pr[Y_{20}^{a = 1} = 1] - Pr[Y_{20}^{a = 0} = 1]$$`
+
+![](figs/dagte.jpg)
+
+&lt;br&gt;
+
+*crude or cause-specific risk
+
+]
+
+
+
+
+.pull-right[
+
+What is the risk** of dementia at 20 years of follow-up had all individuals stopped smoking _and not died_ during the study period, compared to had all individuals continued smoking _and not died_ ?
+
+
+`$$Pr[Y_{20}^{a = 1, d_{19} = 0} = 1] - Pr[Y_{20}^{a = 0, d_{19} = 0} = 1]$$`
+
+![](figs/dagde2.jpg)
+&lt;br&gt;
+**net risk
+
+]
+
+&lt;!-- --- --&gt;
+&lt;!-- ### Identifiability assumptions for death --&gt;
+
+&lt;!-- ```{r} --&gt;
+&lt;!-- table &lt;- tibble::tribble( --&gt;
+&lt;!--   ~ "&lt;b&gt; Assumption &lt;/b&gt;", --&gt;
+&lt;!--   ~ "&lt;b&gt; Total Effect &lt;/b&gt;", --&gt;
+&lt;!--   ~ "&lt;b&gt; Controlled direct effect &lt;/b&gt;", --&gt;
+&lt;!--   "&lt;b&gt; Exchangeability &lt;/b&gt;", --&gt;
+&lt;!--   "Not needed", --&gt;
+&lt;!--   "Death is independent of future outcomes had everyone followed A = a and death was eliminated, conditional on covariates", --&gt;
+&lt;!--   "&lt;b&gt; Positivity &lt;/b&gt;", --&gt;
+&lt;!--   "Not needed", --&gt;
+&lt;!--   "At every follow-up time, there are individuals with any possibly observed level A = a and covariate history who remain alive and free of dementia diagnosis", --&gt;
+&lt;!--   "&lt;b&gt; Consistency &lt;/b&gt;", --&gt;
+&lt;!--   "Not needed", --&gt;
+&lt;!--   "An intervention that “eliminates death” is well-defined" --&gt;
+&lt;!-- ) --&gt;
+
+&lt;!-- table %&gt;% slice(1) %&gt;% gt() %&gt;%  --&gt;
+&lt;!--   tab_options( --&gt;
+&lt;!--     table.font.size = 26 --&gt;
+&lt;!--   ) %&gt;%  --&gt;
+&lt;!--       cols_width( --&gt;
+&lt;!--     "&lt;b&gt; Assumption &lt;/b&gt;" ~ px(230), --&gt;
+&lt;!--     "&lt;b&gt; Total Effect &lt;/b&gt;" ~ px(200), --&gt;
+&lt;!--     "&lt;b&gt; Controlled direct effect &lt;/b&gt;" ~ px(550)) --&gt;
+&lt;!-- ``` --&gt;
+
+
+&lt;!-- --- --&gt;
+&lt;!-- ### Identifiability assumptions for death --&gt;
+
+&lt;!-- ```{r} --&gt;
+&lt;!-- table %&gt;% slice(1:2) %&gt;% gt() %&gt;%  --&gt;
+&lt;!--   tab_options( --&gt;
+&lt;!--     table.font.size = 26 --&gt;
+&lt;!--   ) %&gt;%  --&gt;
+&lt;!--     cols_width( --&gt;
+&lt;!--     "&lt;b&gt; Assumption &lt;/b&gt;" ~ px(230), --&gt;
+&lt;!--     "&lt;b&gt; Total Effect &lt;/b&gt;" ~ px(200), --&gt;
+&lt;!--     "&lt;b&gt; Controlled direct effect &lt;/b&gt;" ~ px(550)) --&gt;
+&lt;!-- ``` --&gt;
+&lt;!-- ??? --&gt;
+&lt;!-- Independent censoring assumption --&gt;
+
+&lt;!-- --- --&gt;
+&lt;!-- ### Identifiability assumptions for death --&gt;
+
+&lt;!-- ```{r} --&gt;
+&lt;!-- table %&gt;% gt() %&gt;%   tab_options( --&gt;
+&lt;!--     table.font.size = 26 --&gt;
+&lt;!--   ) %&gt;%  --&gt;
+&lt;!--       cols_width( --&gt;
+&lt;!--     "&lt;b&gt; Assumption &lt;/b&gt;" ~ px(230), --&gt;
+&lt;!--     "&lt;b&gt; Total Effect &lt;/b&gt;" ~ px(200), --&gt;
+&lt;!--     "&lt;b&gt; Controlled direct effect &lt;/b&gt;" ~ px(550)) --&gt;
+&lt;!-- ``` --&gt;
+
+---
+background-image: url(./figs/rs_logo.jpg)
+background-position: 5% 95%
+background-size: 15%
+
+### Smoking cessation on dementia risk over 20 years
+
+&lt;br&gt;&lt;br&gt;
+<div id="qzciztjbwn" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#qzciztjbwn table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#qzciztjbwn thead, #qzciztjbwn tbody, #qzciztjbwn tfoot, #qzciztjbwn tr, #qzciztjbwn td, #qzciztjbwn th {
+  border-style: none;
+}
+
+#qzciztjbwn p {
+  margin: 0;
+  padding: 0;
+}
+
+#qzciztjbwn .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 26px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#qzciztjbwn .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#qzciztjbwn .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#qzciztjbwn .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#qzciztjbwn .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#qzciztjbwn .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#qzciztjbwn .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#qzciztjbwn .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#qzciztjbwn .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#qzciztjbwn .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#qzciztjbwn .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#qzciztjbwn .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#qzciztjbwn .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#qzciztjbwn .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#qzciztjbwn .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#qzciztjbwn .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#qzciztjbwn .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#qzciztjbwn .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#qzciztjbwn .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qzciztjbwn .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#qzciztjbwn .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#qzciztjbwn .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#qzciztjbwn .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qzciztjbwn .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#qzciztjbwn .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#qzciztjbwn .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#qzciztjbwn .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qzciztjbwn .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#qzciztjbwn .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#qzciztjbwn .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#qzciztjbwn .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#qzciztjbwn .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#qzciztjbwn .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qzciztjbwn .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#qzciztjbwn .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#qzciztjbwn .gt_left {
+  text-align: left;
+}
+
+#qzciztjbwn .gt_center {
+  text-align: center;
+}
+
+#qzciztjbwn .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#qzciztjbwn .gt_font_normal {
+  font-weight: normal;
+}
+
+#qzciztjbwn .gt_font_bold {
+  font-weight: bold;
+}
+
+#qzciztjbwn .gt_font_italic {
+  font-style: italic;
+}
+
+#qzciztjbwn .gt_super {
+  font-size: 65%;
+}
+
+#qzciztjbwn .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#qzciztjbwn .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#qzciztjbwn .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#qzciztjbwn .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#qzciztjbwn .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#qzciztjbwn .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#qzciztjbwn .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" style="table-layout: fixed;; width: 0px" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <colgroup>
+    <col style="width:500px;"/>
+    <col style="width:250px;"/>
+    <col style="width:200px;"/>
+  </colgroup>
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&amp;lt;b&amp;gt; Causal effect &amp;lt;/b&amp;gt;">&lt;b&gt; Causal effect &lt;/b&gt;</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="&amp;lt;b&amp;gt; Risk Difference (95%CI) &amp;lt;/b&amp;gt;">&lt;b&gt; Risk Difference (95%CI) &lt;/b&gt;</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="&amp;lt;b&amp;gt; Risk Ratio (95%CI) &amp;lt;/b&amp;gt;">&lt;b&gt; Risk Ratio (95%CI) &lt;/b&gt;</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="<b> Causal effect </b>" class="gt_row gt_left">&lt;b&gt; Total effect on dementia &lt;/b&gt;</td>
+<td headers="<b> Risk Difference (95%CI) </b>" class="gt_row gt_right">2.1 (-0.1, 4.2)</td>
+<td headers="<b> Risk Ratio (95%CI) </b>" class="gt_row gt_right">1.21 (0.99, 1.50)</td></tr>
+    <tr><td headers="<b> Causal effect </b>" class="gt_row gt_left">&lt;b&gt; Controlled direct effect on dementia (with IPCW for death) &lt;/b&gt;</td>
+<td headers="<b> Risk Difference (95%CI) </b>" class="gt_row gt_right">-2.6 (-6.1, 0.8)</td>
+<td headers="<b> Risk Ratio (95%CI) </b>" class="gt_row gt_right">0.86 (0.72, 1.05)</td></tr>
+    <tr><td headers="<b> Causal effect </b>" class="gt_row gt_left">&lt;b&gt; Total effect on mortality &lt;/b&gt;</td>
+<td headers="<b> Risk Difference (95%CI) </b>" class="gt_row gt_right">-17.4 (-20.5, -14.2)</td>
+<td headers="<b> Risk Ratio (95%CI) </b>" class="gt_row gt_right">0.68, (0.63, 0.72)</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+
+---
+### Exchangeability assumption for death as censoring event
+
+
+<div id="pfaetargmz" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#pfaetargmz table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#pfaetargmz thead, #pfaetargmz tbody, #pfaetargmz tfoot, #pfaetargmz tr, #pfaetargmz td, #pfaetargmz th {
+  border-style: none;
+}
+
+#pfaetargmz p {
+  margin: 0;
+  padding: 0;
+}
+
+#pfaetargmz .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 26px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#pfaetargmz .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#pfaetargmz .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#pfaetargmz .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#pfaetargmz .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#pfaetargmz .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pfaetargmz .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#pfaetargmz .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#pfaetargmz .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#pfaetargmz .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#pfaetargmz .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#pfaetargmz .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#pfaetargmz .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#pfaetargmz .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#pfaetargmz .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#pfaetargmz .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#pfaetargmz .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#pfaetargmz .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#pfaetargmz .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pfaetargmz .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#pfaetargmz .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#pfaetargmz .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#pfaetargmz .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pfaetargmz .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#pfaetargmz .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#pfaetargmz .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pfaetargmz .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pfaetargmz .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#pfaetargmz .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pfaetargmz .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#pfaetargmz .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#pfaetargmz .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#pfaetargmz .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pfaetargmz .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#pfaetargmz .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#pfaetargmz .gt_left {
+  text-align: left;
+}
+
+#pfaetargmz .gt_center {
+  text-align: center;
+}
+
+#pfaetargmz .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#pfaetargmz .gt_font_normal {
+  font-weight: normal;
+}
+
+#pfaetargmz .gt_font_bold {
+  font-weight: bold;
+}
+
+#pfaetargmz .gt_font_italic {
+  font-style: italic;
+}
+
+#pfaetargmz .gt_super {
+  font-size: 65%;
+}
+
+#pfaetargmz .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#pfaetargmz .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#pfaetargmz .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#pfaetargmz .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#pfaetargmz .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#pfaetargmz .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#pfaetargmz .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" style="table-layout: fixed;; width: 0px" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <colgroup>
+    <col style="width:500px;"/>
+    <col style="width:250px;"/>
+    <col style="width:200px;"/>
+  </colgroup>
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&amp;lt;b&amp;gt; Assumption &amp;lt;/b&amp;gt;">&lt;b&gt; Assumption &lt;/b&gt;</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="&amp;lt;b&amp;gt; Risk Difference (95%CI) &amp;lt;/b&amp;gt;">&lt;b&gt; Risk Difference (95%CI) &lt;/b&gt;</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" scope="col" id="&amp;lt;b&amp;gt; Risk Ratio (95%CI) &amp;lt;/b&amp;gt;">&lt;b&gt; Risk Ratio (95%CI) &lt;/b&gt;</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="<b> Assumption </b>" class="gt_row gt_left">&lt;b&gt; Unconditional exchangeability &lt;/b&gt;</td>
+<td headers="<b> Risk Difference (95%CI) </b>" class="gt_row gt_right">-0.7 (-3.3, 2.2)</td>
+<td headers="<b> Risk Ratio (95%CI) </b>" class="gt_row gt_right">0.96 (0.82, 1.16)</td></tr>
+    <tr><td headers="<b> Assumption </b>" class="gt_row gt_left">&lt;b&gt; Conditional exchangeability on baseline covariates &lt;/b&gt;</td>
+<td headers="<b> Risk Difference (95%CI) </b>" class="gt_row gt_right">-1.5 (-4.6, 1.8)</td>
+<td headers="<b> Risk Ratio (95%CI) </b>" class="gt_row gt_right">0.92 (0.78, 1.12)</td></tr>
+    <tr><td headers="<b> Assumption </b>" class="gt_row gt_left">&lt;b&gt; Conditional exchangeability on baseline and time-varying covariates&lt;/b&gt;</td>
+<td headers="<b> Risk Difference (95%CI) </b>" class="gt_row gt_right">-2.7 (-6.1, 0.8)</td>
+<td headers="<b> Risk Ratio (95%CI) </b>" class="gt_row gt_right">0.86 (0.7, 1.1)</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+
+???
+we also show, depending on how we chose to evoke, and what we accomplished this, we would get different answers
+
+---
+
+## Related work
+
+.center[
+&lt;img src=./figs/competing_events_papers.jpg width="80%"/&gt;
+]
+
+---
+class: center, middle
+
+## .left[Next steps]
+
+.pull-left[
+
+.bigger[
+.center[Extending the estimands framework for repeated measures of a continuous outcome]
+
+&lt;img src=./figs/contrasts_estimands.png width="70%"/&gt;
+]
+]
+
+
+
+--
+
+.pull-right[
+.bigger[
+.center[Quantify and prevent bias from survival into the study in cohorts of older adults using simulations and synthethic data]
+
+&lt;img src=./figs/stensrud.jpg width="50%"/&gt;
+&lt;br&gt;.smaller[_Stensruds et al. JASA. 2022_]
+]
+]
+
+
+---
+class: center, middle, inverse
+
+# B. Causal framework to study time-varying exposures
+
+---
+class: left, middle
+
+## Racial and Ethnic Differences in the Risk of Dementia Diagnosis Under Hypothetical Blood Pressure–Lowering Interventions: The Multi-Ethnic Study of Atherosclerosis
+
+.small[
+
+  .left[**L. Paloma Rojas-Saunero**, Timothy M. Hughes, &lt;ins&gt;Elizabeth Rose Mayeda&lt;/ins&gt;, Marcia Pescador Jimenez]
+
+  .left[_Alzheimers &amp; Dementia_, 2024
+  ]
+
+]
+
+---
+class: center, middle
+
+&lt;img src=./figs/sprint_mind.png width="90%"/&gt;
+
+]
+
+
+---
+background-image: url(./figs/mesa_logo.png)
+background-position: 5% 95%
+background-size: 20%
+
+### Study design
+
+.pull-left[
+- **Study population**: Black, Chinese, Latino and White middle and older aged adults
+
+- **Data sources**: Multi-Ethnic Study of Atherosclerosis (MESA)
+]
+
+.pull-right[
+
+- **Exposure**: Systolic blood pressure collected in five waves
+
+- **Outcome**: Dementia diagnosis derived from EHR records
+
+- **Intercurrent event**: Dementia-free deaths
+
+- **Time zero/Baseline:** Interview date for wave 1
+
+- **End of follow-up:** Time of dementia diagnosis, time of death prior to dementia diagnosis, loss to follow-up
+
+]
+
+
+---
+### G-computation
+
+.center[**_What would have happened had everyone was randomized and had adhered to each intervention (g)?_**]
+
+
+.pull-left[
+.center[
+&lt;img src=./figs/dag2.png width="400" height="200" /&gt;
+]
+]
+
+--
+
+.pull-right[
+.center[
+&lt;img src=./figs/dag1.PNG width="400" height="200" /&gt;
+]]
+
+**Parametric G-formula**
+
+.footnote[
+.smaller[
+&lt;br&gt;&lt;br&gt;
+**A** = SBP, **Y** = Dementia diagnosis, **L** = _Fixed covariates_: age, sex, education, income, health insurance, APOE E-4, history of diabetes, myocardial infartion, stroke, and coronary heart disease. _Time-varying covariates_: SBP, total cholesterol (continuous), LDL, BMI, current smoking, current alcohol use, myocardial infarction, stroke, and coronary heart disease diagnosis]]
+
+---
+### Controlled direct effect of hypothetical interventions
+
+.center[.middle[
+&lt;img src=./figs/mesa_cum_inc_cens.png width="60%"/&gt;
+]]
+
+---
+### Risk Ratios for the effect of hypothethical blood pressure interventions compared to the natural course
+
+
+.center[.middle[
+&lt;img src=./figs/mesa_rr_plot.png width="30%"/&gt;
+]]
+
+
+
+---
+class: left, middle
+
+## Effect of Incident Stroke on Dementia Risk Over 10 Years in a Cohort of Asian American and Non-Latino White Older Adults in California
+
+.small[
+
+  .left[ **L. Paloma Rojas-Saunero**, Yixuan Zhou, Eleanor Hayes-Larson, Yingyan Wu, Taylor Mobley, &lt;ins&gt;Roch Nianogo&lt;/ins&gt;, Holly Elser, &lt;ins&gt;Gilbert C. Gee&lt;/ins&gt;, &lt;ins&gt;Ron Brookmeyer&lt;/ins&gt;, Rachel Whitmer, Paola Gilsanz, and &lt;ins&gt;Elizabeth Rose Mayeda&lt;/ins&gt; ]
+
+  .left[_Neurology_, In press]
+
+]
+???
+Stroke can precipitate pathological changes in the neurovascular unitleading to loss of structural and functional connectivity that could increase dementia risk.
+Previous work had major methodological limitations, including how to account for the fact that stroke increases mortality, which competes with dementia.
+Studies on this topic have very selected samples with minimal (if any)representation of the Asian American population.
+
+---
+class: center, middle
+
+.center[ ![](figs/stroke_dementia_aha.jpg) ]
+
+---
+background-image: url(./figs/kaiser_logo.png)
+background-position: 5% 95%
+background-size: 20%
+
+### Study design
+
+.pull-left[
+- **Study population**: Chinese, Japanese, Filipino, South Asian and non-Latix White older adults
+
+- **Data sources**: Kaiser Permanente NC surveys + Electronic Health Records
+
+]
+
+.pull-right[
+
+- **Exposure**: Incident stroke (ischemic + hemorrhagic) derived from ICD codes
+
+- **Outcome**: Incident dementia derived from ICD codes
+
+- **Intercurrent event**: Dementia-free deaths
+
+- **Time zero/Baseline:** Time of survey
+
+- **End of follow-up:** Time of dementia diagnosis, time of death prior to dementia diagnosis, turning 90 years old
+
+]
+
+
+---
+### Cumulative incidence of stroke at 10 years of follow up
+
+.left-column[
+
+Aalen-Johansen estimator: when a participant dies, the risk of dementia is 0
+
+]
+
+.right-column[ &lt;img src=./figs/stroke_inc.png width="80%"/&gt;]
+
+
+---
+### Controlled direct effect of stroke on dementia risk
+
+.left-column[
+
+.left[
+Weighted Kaplan-Meier estimator for time-varying exposures 
+
+Inverse probability weights for stroke (IPTW) 
+
+Inverse probability weights for death]
+
+]
+
+.right-column[ .right[&lt;img src=./figs/stroke_rd_cde.png width="90%"/&gt;]]
+
+.footnote[
+.smaller[
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+_Fixed covariates_: age, sex, education, self-rated health, smoking status. &lt;br&gt;
+_Time-updated covariates_:SBP, BMI, total cholesterol, diabetes, hypertension, dyslipidemia, acute myocardial infarction, congestive heart failure, ischemic heart disease, peripheral vascular disease, cancer
+
+]]
+
+---
+### Total effect of stroke on dementia risk
+
+.left-column[
+Aalen Johansen estimator including IPTW weights
+
+Includes the indirect path between stroke and death
+]
+
+.right-column[ .right[&lt;img src=./figs/stroke_rd_total.png width="90%"/&gt;]]
+
+.footnote[
+.smaller[
+&lt;br&gt;&lt;br&gt;&lt;br&gt;&lt;br&gt;
+_Fixed covariates_: age, sex, education, self-rated health, smoking status. &lt;br&gt;
+_Time-updated covariates_:SBP, BMI, total cholesterol, diabetes, hypertension, dyslipidemia, acute myocardial infarction, congestive heart failure, ischemic heart disease, peripheral vascular disease
+
+]]
+
+---
+### Quantitative bias analysis for differential dementia diagnosis
+
+.left-column[
+
+We set the sensitivity of dementia diagnosis in the stroke arm to 0.99 and considered a range of sensitivity values in the no-stroke arm, from 0.50 (worst case scenario) to 0.90. 
+
+]
+
+.right-column[ &lt;img src=./figs/qba_RR_5yrcases.png width="100%"/&gt; ]
+
+
+---
+## Related work
+
+.center[
+&lt;img src=./figs/target_trial_papers.jpg width="80%"/&gt;
+]
+
+---
+class: center, middle, inverse
+
+# C. Study of social and structural determinants of health in aging related outcomes
+
+---
+class: left, middle
+
+## Racialized residential segregation in 1940 and later-life memory decline in Black and White US older adults
+
+.small[
+
+  .left[ **L. Paloma Rojas-Saunero**, Taylor Mobley, Yixuan Zhou, Jenni Shearston, &lt;ins&gt;Courtney S. Thomas Tobin&lt;/ins&gt;, Kara Rudolph, Jennifer Manly, &lt;ins&gt;Gilbert C Gee&lt;/ins&gt;, Rob Warren, Joan Casey,  and &lt;ins&gt;Elizabeth Rose Mayeda&lt;/ins&gt;]
+
+  .left[_In preparation_]
+
+]
+
+---
+background-image: url(./figs/hrs_logo.png), url(./figs/ipums_logo.png)
+background-position: 5% 95%, 95% 95%
+background-size: 20%, 20%
+
+##Study design
+
+.center[
+_What is the effect of racialized residential segregation in 1940 on late-life memory decline?_
+]
+
+Health and Retirement Study linkage with 1940 Census
+
+.pull-left[
+&lt;img src=./figs/di_index.png width="120%"/&gt;
+]
+
+.pull-right[
+&lt;img src=./figs/ndns_index.png width="120%"/&gt;]
+
+---
+
+class: left, middle
+
+## Occupational Determinants of Cognitive and Brain Health Among Middle-Aged and Older Latino/a/e/x Adults in the U.S.
+
+.small[
+
+  .left[ **L. Paloma Rojas-Saunero**, Jacqueline Torres, &lt;ins&gt;Jian Li&lt;/ins&gt;, Hector González, &lt;ins&gt;Hirám Beltrán Sanchez&lt;/ins&gt;, Charles DeCarli, &lt;ins&gt;Elizabeth Rose Mayeda&lt;/ins&gt;]
+
+  .left[_In preparation for resubmission_]
+
+]
+
+---
+## Motivation
+
+.center[
+&lt;img src=./figs/boss_model1.jpg width="100%"/&gt;
+]
+
+---
+## Motivation
+
+.center[
+&lt;img src=./figs/boss_model2.jpg width="100%"/&gt;
+]
+
+---
+## Motivation
+
+.center[
+&lt;img src=./figs/boss_model3.jpg width="100%"/&gt;
+]
+
+---
+# Future Directions
+
+.pull-left[
+
+&lt;img src=./figs/k99_framework.jpg width="100%"/&gt;
+
+
+]
+
+--
+
+.pull-right[
+&lt;img src=./figs/occupational_logos.jpg width="70%"/&gt;
+&lt;br&gt;]
+.small[
+- **K99/R00 Career Development Award (_Resubmission_)**
+&lt;br&gt;
+- **Alzheimer's Association Research Fellowship to Promote Diversity (_Pending_)**
+&lt;br&gt;
+- **Columbia Center for Interdisciplinary Research on Alzheimer's Disease Disparities (CIRAD) RCMAR (_Pending_)**
+]
+]
+
+---
+## Collaborations
+
+- Elizabeth Rose Mayeda, UCLA
+- Gilbert C. Gee, UCLA
+- Ron Brookmeyer, UCLA
+- Roch A. Nianogo
+- Courtney S. Thomas Tobin, UCLA
+- Jian Li, UCLA
+- Hirám Beltrán Sánchez, UCLA
+- Mirella Díaz-Santos, UCLA
+- Rachel Whitmer, UC Davis
+- Maria M. Glymour, Boston University
+- Marcia Pescador Jimenez, Boston University
+- Ruijia Chen, Boston University
+- Paola Gilsanz, KPNC
+- Joan Casey, UWashington
+- Jessica G. Young, Harvard Chan SPH
+
+
+**Research Groups**
+- Mayeda Research Group
+- Practical Causal Inference Lab
+- FSPH Rooted Academy
+- Equity for Latinx-Hispanic Healthy Aging (ELHA) Lab
+- California Center for Population Research
+
+
+---
+class: left, middle, inverse
+
+# .yellow[Thank You!]
+
+
+.left[
+lp.rojassaunero@ucla.edu
+
+]
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

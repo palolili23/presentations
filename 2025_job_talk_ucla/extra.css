@@ -1,0 +1,27 @@
+
+
+.bigger {
+  font-size: 34px;
+}
+
+
+.smaller {
+  font-size: 18px;
+}
+
+.even_smaller {
+  font-size: 16px;
+}
+
+@media print {
+  .has-continuation {
+    display: block !important;
+  }
+}
+
+.flexibleColumn {
+    margin: 0px;
+    float: left;
+    width: 470px;
+    padding: 0px;
+}
