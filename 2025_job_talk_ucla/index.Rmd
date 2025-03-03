@@ -296,10 +296,6 @@ Events that _preclude*_ the outcome of interest.
 ]
 ]
 
-.footnote[
-.smaller[
-_Gradwohl N, Fong J, Zhou Y, Rojas-Saunero LP, 
-]
 
 ???
 For instance, several studies suggest that hypertension at older ages might reduce dementia risk, and refer to biological mechanisms to support this claim. In a recent project from my group, we showcase that indeed hazard ratios for this relationship shift toward the null at older ages.
@@ -311,8 +307,20 @@ For instance, several studies suggest that hypertension at older ages might redu
 <img src=./figs/rd_hypertension.png />
 ]
 ]
+
+.footnote[
+.smaller[
+Gradwohl N, Fong J, Zhou Y, Rojas-Saunero LP, Mayeda ER et al.Evaluating heterogeneity in the association between hypertension and dementia by age and race/ethnicity in a diverse cohort of Asian American and non-Latino White older adults. _In preparation_ 
+]]
+
+
 ???
 However, When we look at absolute risk differences, we observed a different story: individuals with hypertension have a higher cumulative incidence of dementia over time, with differences growing substantially at older ages.   
+
+.footnote[
+.smaller[
+_Gradwohl N, Fong J, Zhou Y, Rojas-Saunero LP et al.Evaluating heterogeneity in the association between hypertension and dementia by age and race/ethnicity in a diverse cohort of Asian American and non-Latino White older adults. _In preparation_ 
+]]
 
 ---
 class: left, middle
@@ -373,7 +381,7 @@ My ultimate goal is to bridge the gap between methods development and real world
 
 .center[
 
-<img src=./figs/comp_events.jpg width="60%"/>
+<img src=./figs/comp_events.JPG width="60%"/>
 
 ]
 
@@ -390,7 +398,7 @@ $$Pr[Y_{20}^{a = 1} = 1] - Pr[Y_{20}^{a = 0} = 1]$$
 
 --
 .center[
-<img src=./figs/total_effect.jpg width="60%"/>]
+<img src=./figs/total_effect.JPG width="60%"/>]
 
 .footnote[**C**: Common causes <br> **crude risk, cause-specific cumulative incidence]
 
@@ -405,7 +413,7 @@ $$Pr[Y_{20}^{a = 1, d_{19} = 0} = 1] - Pr[Y_{20}^{a = 0, d_{19} = 0} = 1]$$
 --
 
 .center[
-<img src=./figs/direct_effect.jpg width="60%"/>]
+<img src=./figs/direct_effect.JPG width="60%"/>]
 
 .footnote[**C**: Common causes <br> *net risk, marginal risk ]
 
@@ -420,7 +428,7 @@ $$Pr[Y_{20}^{a = 1, d_{19} = 0} = 1] - Pr[Y_{20}^{a = 0, d_{19} = 0} = 1]$$
 
 
 .center[
-<img src=./figs/direct_effect_cens.jpg width="60%"/>]
+<img src=./figs/direct_effect_cens.JPG width="60%"/>]
 
 .footnote[**C**: Common causes <br> *net risk, marginal risk ]
 
@@ -594,14 +602,14 @@ target_ht %>% select(-n) %>% gt() %>%
 
 ---
 
-### Statistical Analysis
+### Statistical analysis
 
 .center[**_What would have happened had everyone was randomized and had adhered to each intervention (g)?_**]
 
 
 .pull-left[
 .center[
-<img src=./figs/dag2.png width="400" height="200" />
+<img src=./figs/dag2.PNG width="400" height="200" />
 ]
 ]
 
@@ -620,14 +628,14 @@ target_ht %>% select(-n) %>% gt() %>%
 **A** = SBP, **Y** = Dementia diagnosis, **L** = _Fixed covariates_: age, sex, education, income, health insurance, APOE E-4, history of diabetes, myocardial infartion, stroke, and coronary heart disease. _Time-varying covariates_: SBP, total cholesterol (continuous), LDL, BMI, current smoking, current alcohol use, myocardial infarction, stroke, and coronary heart disease diagnosis]]
 
 ---
-### Hypothetical interventions on SBP vs. the natural course and risk of dementia
+### Hypothetical interventions on SBP and risk of dementia
 
 .center[.middle[
 <img src=./figs/cum_inc_cens.jpg width="55%"/>
 ]]
 
 ---
-### Direct effect of SBP interventions compared to the natural course on dementia risk at 19 years of follow up
+### Controlled direct effect of SBP interventions compared to the natural course on dementia risk at 19 years of follow up
 
 
 .center[.middle[
@@ -820,19 +828,29 @@ Health and Retirement Study linkage with 1940 Census
 ---
 ## Challenges with the consistency assumption
 
-- 
+- What would be a meaningful and "realistic" reduction of segregation?
+
+--
+
+- How do the index we measured connect to the hypothethical interventions?
+
+--
+
+- How does survival into the study (by age 65) change our causal estimand?
+
+--
+
+- What area-level confounders should we consider? (E.g., % Of unemployement overall or stratified by race, % of higher educational attainment, etc. )
 
 ---
 
 class: left, middle
 
-## Occupational Determinants of Cognitive and Brain Health Among Middle-Aged and Older Latino/a/e/x Adults in the U.S.
+## Occupational Determinants of Cognitive and Brain Health Among Middle-Aged and Older Adults in the U.S.
 
 .small[
 
-  .left[ **L. Paloma Rojas-Saunero**, Jacqueline Torres, <ins>Jian Li</ins>, Hector González, <ins>Hirám Beltrán Sanchez</ins>, Charles DeCarli, <ins>Elizabeth Rose Mayeda</ins>]
-
-  .left[_In preparation for resubmission_]
+  .left[ **L. Paloma Rojas-Saunero**, Jacqueline Torres, <ins>Jian Li</ins>, Hector González, <ins>Hirám Beltrán Sanchez</ins>, Charles DeCarli, Paola Gilsanz, <ins>Mirella Diaz-Santos </ins>, <ins>Elizabeth Rose Mayeda</ins>]
 
 ]
 
@@ -840,21 +858,21 @@ class: left, middle
 ## Motivation
 
 .center[
-<img src=./figs/boss_model1.jpg width="100%"/>
+<img src=./figs/boss_model1.JPG width="100%"/>
 ]
 
 ---
 ## Motivation
 
 .center[
-<img src=./figs/boss_model2.jpg width="100%"/>
+<img src=./figs/boss_model2.JPG width="100%"/>
 ]
 
 ---
 ## Motivation
 
 .center[
-<img src=./figs/boss_model3.jpg width="100%"/>
+<img src=./figs/boss_model3.JPG width="100%"/>
 ]
 
 ---
@@ -871,9 +889,10 @@ class: left, middle
 --
 
 .pull-right[
+.center[
 <img src=./figs/occupational_logos.jpg width="70%"/>
 <br>
-
+]
 .smaller[
 - **K99/R00 Career Development Award (_Resubmission_)**
 <br>
@@ -890,44 +909,50 @@ class: left, middle
 ---
 ## Mentors and Collaborators
 
-.container[.left-column2[.smaller[
-- Elizabeth Rose Mayeda, UCLA (_Postdoc Mentor_)
-- Sonja A. Swanson, Pitt <br> (_PhD Mentor_)
-- Gilbert C. Gee, UCLA
-- Ron Brookmeyer, UCLA
-- Roch A. Nianogo, UCLA
-- Courtney S. Thomas Tobin, UCLA
-- Jian Li, UCLA
-- Hirám Beltrán Sánchez, UCLA
-- Mirella Díaz-Santos, UCLA
-- Yixuan Zhou, UCLA
-- Yingyan Wu, UCLA
-- Taylor Mobley, UCLA
-- Ryo Ikesu, UCLA
-- Joey Fong, UCLA
-
+.container[
+.left-column2[
+.smaller[
+- Elizabeth Rose Mayeda, UCLA (_Postdoc Mentor_)  
+- Sonja A. Swanson, Pitt (_PhD Mentor_)  
+- Alexander Ivan Posis, UC Davis  
+- Charles DeCarli, UC Davis  
+- Courtney S. Thomas Tobin, UCLA  
+- Dan Mungas, UC Davis  
+- Eleanor Hayes-Larson, USC  
+- Eleanor Murray, BU  
+- Ellen Caniglia, Penn  
+- Gilbert C. Gee, UCLA  
+- Hector Gonzalez, UCSD  
+- Hirám Beltrán Sánchez, UCLA  
+- Jian Li, UCLA  
+- Jessica G. Young, HSPH  
+- Joan Casey, UWashington  
+- Joey Fong, UCLA  
+- Lan Wen, U. Waterloo  
+- Laura Acion, Metadocencia  
 ]]
 
 .middle-column2[
 .smaller[
-- Rachel Whitmer, UC Davis
-- Maria M. Glymour, BU
-- Marcia Pescador Jimenez, BU
-- Ruijia Chen, BU
-- Paola Gilsanz, KPNC
-- Joan Casey, UWashington
-- Jessica G. Young, HSPH,
-- Vanessa Didelez, Leibniz Inst. 
-- Eleanor Hayes-Larson, USC,
-- Alexander Ivan Posis, UC Davis
-- Dan Mungas, UC Davis
-- Charles DeCarli, UC Davis
-- Hector Gonzalez, UCSD
-- Lan Wen, U. Waterloo 
-- Eleanor Murray, BU
-- Ellen Caniglia, Penn
-- Laura Acion, Metadocencia
-- M. Martha Tellez Rojo, INSP 
+- M. Martha Tellez Rojo, INSP  
+- Marcia Pescador Jimenez, BU  
+- Maria M. Glymour, BU  
+- Mirella Díaz-Santos, UCLA  
+- Paola Gilsanz, KPNC  
+- Rachel Whitmer, UC Davis  
+- Roch A. Nianogo, UCLA  
+- Ron Brookmeyer, UCLA  
+- Ruijia Chen, BU  
+- Vanessa Didelez, Leibniz Inst.  
+
+**Students**
+- Jose Luis Villca, UMSS,
+- Cecilia Curvale, Hosp. El Cruce
+- Kelly Guo, EMC
+- Ryo Ikesu, UCLA  
+- Taylor Mobley, UCLA  
+- Yixuan Zhou, UCLA  
+- Yingyan Wu, UCLA  
 ]]
 
 .right-column2[

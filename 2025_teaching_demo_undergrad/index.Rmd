@@ -103,7 +103,7 @@ L. Paloma Rojas-Saunero MD, PhD]
 ## Correlation is not causation
 
 .center[
-<img src=./figs/icecream1.jpg width="70%" />
+<img src=./figs/icecream1.JPG width="70%" />
 ]
 
 ???
@@ -115,7 +115,7 @@ These two things are correlated: meaning that they happen together, but one does
 ## Correlation is not causation
 
 .center[
-<img src=./figs/icecream2.jpg width="70%"/>
+<img src=./figs/icecream2.JPG width="70%"/>
 ]
 
 ???
@@ -279,7 +279,7 @@ If I had not eaten &#x274C;&#x1F366; I would feel &#x1F614;
 .bigger[
 There is an &#x2705; **individual causal effect** when: **Y<sup>a=1</sup>** $\neq$ **Y<sup>a=0</sup>**  
 ]]
-
+--
 .center[
 .bigger[
 There is no &#x274C; **individual causal effect** when: **Y<sup>a=1</sup>** = **Y<sup>a=0</sup>** 
