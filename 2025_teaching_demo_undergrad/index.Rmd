@@ -1,0 +1,368 @@
+---
+title: "Teaching Demo - Undergrads"
+author: "L. Paloma Rojas-Saunero"
+date: '`r Sys.Date()`'
+output:
+  xaringan::moon_reader:
+    css: ["xaringan-themer.css", "extra.css"]
+    seal: false
+    nature:
+      slideNumberFormat: "%current%"
+      highlightStyle: github
+      highlightLines: TRUE
+      countIncrementalSlides: FALSE
+      ratio: "16:9"
+---
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  fig.width=9, fig.height=3.5, fig.retina=3,
+  out.width = "100%",
+  cache = FALSE,
+  echo = FALSE,
+  message = FALSE, 
+  warning = FALSE,
+  hiline = TRUE
+)
+library(tidyverse)
+library(gt)
+library(knitr)
+library(fontawesome)
+library(countdown)
+
+```
+
+```{r xaringan-themer, warning=FALSE, include=FALSE}
+library(xaringanthemer)
+style_mono_light(
+  base_color = "#005587",
+  black_color = "#002B43",
+  table_row_even_background_color = "#FFFFFF",
+  background_color = "#FFFFFF",
+  title_slide_text_color = "#FFFFFF",
+  table_border_color = "#8bb8e8",
+  text_bold_color = "#002B43",
+  text_font_size = "28px",
+  header_h1_font_size = "5rem",
+  header_h2_font_size = "3.5rem",
+  header_h3_font_size = "2.8rem",
+  padding = "16px 64px 16px 32px",
+  colors = c(
+    yellow = "#ffb81c",
+    purple = "#3e2f5b",
+    green = "#136f63",
+    white = "#FFFFFF"
+  ))
+
+```
+
+class: title-slide, center, middle, inverse
+background-image: url(./figs/logo.png)
+background-position: 50% 95%
+background-size: 28%, 25%
+
+# .yellow[Introduction to causality]
+
+
+.center[
+
+.bigger[
+L. Paloma Rojas-Saunero MD, PhD]
+
+]
+
+---
+## Learning goals
+
+.bigger[
+
+1. Develop intuition for counterfactual thinking and its role in causal inference.
+
+2. Familiarize with causal notation .
+
+3. Understand the concept of the individual causal effect and its implications.
+
+]
+
+---
+## Recap
+
+<br>
+
+.center[.bigger[**Descriptive goal**]]
+
+--
+
+.center[.bigger[**Prediction goal**]]
+
+--
+
+.center[.bigger[_Causal goals_]]
+
+---
+## Correlation is not causation
+
+.center[
+<img src=./figs/icecream1.jpg width="70%" />
+]
+
+???
+In this example we see that Ice cream sales increase when people get sunburned.
+
+These two things are correlated: meaning that they happen together, but one doesn't necessarily cause the other.
+
+---
+## Correlation is not causation
+
+.center[
+<img src=./figs/icecream2.jpg width="70%"/>
+]
+
+???
+There could be another factor, such as as high temperature in a summer day that both causes people to buy icecream, and it causes sunburn!
+
+---
+background-image: url(./figs/causal_questions_epi.jpg)
+background-size: 90%
+
+???
+In public health, many times we are interested in asking causal questions, we want to know if changing a behavior, changing diet, or even changing complex things such as discrimination and social and economic burden (a.k.a) weathering, can have an impact in our health. 
+
+---
+##  Counterfactual/Causal thinking
+
+???
+To answer these questions, we use counterfactual or causal thinking. Yes, the word "counterfactual" sounds very complicated, but I promise you, you are experts in using this approach in daily life. For example...
+
+
+- If I had studied last night, would I have gotten a higher test score?
+
+--
+
+- If I hadn’t walked barefoot, I would have avoided catching a cold.
+
+--
+
+- If they hadn't changed the goalkeeper, they would have won the penalty round.
+
+--
+
+- If you had taken Sunset Blvd. instead of Santa Monica Blvd., would you have arrived on time?
+
+
+---
+### Exercise: Construct a counterfactual statement
+
+- Think of a recent event where something did not go as planned.
+
+--
+
+- Imagine an alternative version of the past where you changed one specific factor.
+
+--
+
+- Write a counterfactual statement using this structure:
+
+.center[
+"If [_X had done something differently_], <br> <br> then [_a different outcome might have happened_]."
+]
+
+```{r}
+countdown::countdown(minutes = 1, seconds = 0, bottom = 0)
+```
+
+---
+## Pair Discussion
+
+- Share your statement with your classmate sitting to your right.
+
+- Discuss: 
+
+  + What assumption are you making about causality?
+
+  + Are there other factors that might have influenced the outcome?
+
+  + How confident are you in your counterfactual scenario?
+
+
+```{r}
+countdown::countdown(minutes = 2, seconds = 0, bottom = 0)
+```
+
+---
+## Counterfactual Thinking
+
+<br<br><br>
+.center[
+.bigger[
+Counterfactual thinking involves imagining an alternative version of the past and considering how the outcome might have changed. It helps us think about "**_what could have been_**"]]
+
+???
+To formalize a bit, counterfactual thinking... and this is the set
+
+---
+## Causal Reasoning
+
+<br><br>
+
+.center[
+.bigger[
+Causal reasoning involves understanding how a _change_ in one factor (**"the cause"**) 
+
+
+leads to a change in another factor (**"the effect"**).
+
+]]
+
+---
+class:center, middle
+
+
+## Let's go for icecream, it will make you feel happy...
+
+???
+Now that you know you are experts in counterfactual thinking, we are going to translate the language of counterfactuals to mathematical notations.
+
+I know that math can be intimidating, believe me I always did, but I want you to take this opportunity to see math as a universal language, a language that can help community across people all over the world.
+
+---
+
+## Notation
+
+.pull-left[
+**Observed world (The Factual) **
+
+- A = 0 if did not eat &#x274C;&#x1F366;
+
+- A = 1 if ate &#x1F366;
+
+- Y = 1 if &#x1F60A;
+
+- Y = 0 if &#x1F614;
+
+]
+
+--
+.pull-right[
+**Counterfactual worlds** 
+- Y<sup>a=1</sup>: the counterfactual outcome (&#x1F60A; or &#x1F614;) had a = &#x1F366;
+
+- Y<sup>a=0</sup>: the counterfactual outcome (&#x1F60A; or &#x1F614;) had a = &#x274C;&#x1F366;
+
+]
+
+
+---
+## Individual Causal Effect
+
+--
+.pull-left[
+.center[
+If I had eaten &#x1F366; I would feel &#x1F60A;
+
+.bigger[**Y<sup>a=1</sup> = 1**]
+
+]]
+
+--
+
+.pull-right[
+.center[
+If I had not eaten &#x274C;&#x1F366; I would feel &#x1F614;
+
+.bigger[**Y<sup>a=0</sup> = 0**]
+]]
+
+
+<br>
+.center[
+.bigger[
+There is an &#x2705; **individual causal effect** when: **Y<sup>a=1</sup>** $\neq$ **Y<sup>a=0</sup>**  
+]]
+
+.center[
+.bigger[
+There is no &#x274C; **individual causal effect** when: **Y<sup>a=1</sup>** = **Y<sup>a=0</sup>** 
+]]
+
+---
+### Exercise: Identifying Individual Causal Effects
+Find out on which friends we would see a causal effect of  &#x1F366; in  &#x1F60A;
+
+.pull-left[
+.center[
+** Individual Causal Effect** <br> <br>
+**Y<sup>a=1</sup>** $\neq$ **Y<sup>a=0</sup>** 
+]
+]
+--
+
+.pull-right[
+```{r}
+tab <- tibble::tribble(
+  ~Person, ~`A`, ~`Y`, ~`Y<sup>a=1</sup>`, ~`Y<sup>a=0</sup>`,
+  "Anita",   "1",     "1",           "1",        "0",
+  "James",    "0",     "0",            "1",           "0",
+  "Min",    "1",     "1",         "1",     "1",  
+  "Jackson",   "0",     "0",        "0",     "0",  
+  "Jesse",     "0",     "1",           "0",     "1",  
+  "Maria", "1",     "1",           "1",        "0") 
+tab %>% 
+  mutate(Effect = c("?", "?", "?", "?", "?", "?")) %>%
+  select(-`A`, -`Y`) %>% 
+  kableExtra::kable()
+```
+]
+
+
+```{r}
+countdown::countdown(minutes = 2, seconds = 0, left = 1)
+```
+
+---
+### Fundamental problem of causal inference 
+
+In real life, we only observe **one** of the counterfactual scenarios
+
+.pull-left[
+```{r}
+tab <- tibble::tribble(
+  ~Person, ~`A`, ~`Y`, ~`Y<sup>a=1</sup>`, ~`Y<sup>a=0</sup>`,
+  "Anita",   "1",     "1",           "1",           "?",
+  "James",    "0",     "0",            "?",           "0",
+  "Min",    "1",     "1",         "1",     "?",  
+  "Jackson",   "0",     "0",        "?",     "0",  
+  "Jesse",     "0",     "1",           "?",     "1",  
+  "Maria", "1",     "1",           "1",        "?") 
+tab %>% 
+  mutate(Effect = c("?", "?", "?", "?", "?", "?")) %>%
+  kableExtra::kable()
+```
+]
+
+--
+.pull-right[
+
+With a binary exposure, one counterfactual outcome is **observable** and one is **missing**. Thus, we can't estimate **individual causal effect** directly. It's a missing data issue. 
+
+]
+
+---
+class:center, middle
+
+
+## How do we answer causal questions in real life?
+
+
+---
+
+## Next topic
+
+.bigger[
+
+- Estimating the average causal effect
+
+- Using randomized trials to identify causality
+
+
+]

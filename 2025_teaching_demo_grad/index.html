@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Teaching Demo - Graduate</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="L. Paloma Rojas-Saunero" />
+    <meta name="date" content="2025-03-03" />
+    <script src="index_files/header-attrs/header-attrs.js"></script>
+    <link href="index_files/countdown/countdown.css" rel="stylesheet" />
+    <script src="index_files/countdown/countdown.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="extra.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+class: title-slide, center, middle, inverse
+background-image: url(./figs/logo.png)
+background-position: 50% 95%
+background-size: 28%, 25%
+
+## .yellow[Challenging the Consistency Assumption in Complex Settings]
+
+
+.center[
+
+L. Paloma Rojas-Saunero MD, PhD]
+
+]
+
+---
+## Learning goals
+
+1. Understand the consistency assumption in ideal conditions
+
+2. Identify challenges to the consistency assumption in complex settings
+
+3. Propose strategies to address violations by refining research questions
+
+---
+## Recap: Identifiability Assumptions
+
+To answer causal questions with real data we need three conditions:
+
+- Exchangeability
+
+--
+
+- Consistency
+
+--
+
+- Positivity
+
+---
+## Recap: Identifiability Assumptions
+
+To answer causal questions with real data we need three conditions:
+
+
+- Exchangeability
+
+
+
+- **.green[Consistency]**
+
+
+
+- Positivity
+
+
+---
+## Consistency assumption
+
+For a person who was **.purple[actually treated]** `\(Y_{i}^{A=1}\)` &lt;br&gt; 
+--
+their **.green[counterfactual outcome had they been treated]** `\(Y_{i}^{a=1}\)` &lt;br&gt;
+--
+is exactly their **observed outcome** `\(Y_i\)`.
+
+--
+
+.right[
+For a person who was **.purple[actually untreated]** `\(Y_{i}^{A=0}\)` &lt;br&gt;
+their **.green[counterfactual outcome had they been untreated]** `\(Y_{i}^{a=0}\)` &lt;br&gt;
+is exactly their **observed outcome** `\(Y_i\)`] 
+
+--
+
+In summary: `\(A_{i} = a\)`, then `\(Y_{i}^{a} = Y_{i}^{A} = Y_{i}\)`
+
+---
+## Well-defined interventions
+
+- Everyone receiving the same level of exposure is actually receiving it in the same way, without differences in how it is delivered.
+
+--
+
+- There are no multiple versions of the treatment.
+
+--
+
+- This assumption can be satisfied by designed in randomized trials (e.g., vaccination, medications ) 
+
+---
+## Exercise: Well-defined intervention
+
+
+--
+
+- In this cohort study, they asked about chocolate consumption using a Food Frequency Questionnaire (FFQ).
+
+--
+
+- Discuss with your colleague to your right (or behind): How could the definition of chocolate consumption be improved to ensure a well-defined intervention?
+
+
+<div class="countdown" id="timer_f32906a4" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+
+---
+## No Interference
+
+We assume that the outcome (technically all **potential** outcomes, regardless of whether they are observed) for any subject does not depend on another subject's exposure. 
+
+--
+
+For e.g. imagine a trial to see wether white noise improves concentration compared to classical music, using spotify in a school. But even if the intervention is randomized, people might be influenced on what their peers listen. 
+
+
+---
+
+## Real-world complex scenarios
+
+- When an RCT is feasible, the consistency assumption is most likely satisfied (E.g., vaccines, medications)
+
+--
+
+- In observational studies it is tricky if we only have measured a proxy of the intervention of interest
+
+  - Systolic blood pressure
+  - History of diabetes
+  - Loneliness scale
+  - Race
+  
+---
+## Exercise: real-world scenarios
+
+A researcher is interested in the causal effect of **systolic blood pressure** on the **risk of dementia**.
+
+Discuss with your colleague to your right (or behind):
+  + Is this a well-defined intervention? 
+  + Propose a more precise question (perhaps only describing one version of A), describe the treatment strategies for a (hypothetical) randomized trial to study the effect.
+
+
+<div class="countdown" id="timer_01b5abe0" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+---
+
+---
+## Exercise: real-world scenarios
+
+A researcher is interested in the causal effect of **residencial segregation** on **preeclampsia**.
+
+Discuss with your colleague to your right (or behind):
+  + Is this a well-defined intervention? 
+  + Propose a more precise question (perhaps only describing one version of A), describe the treatment strategies for a (hypothetical) randomized trial to study the effect.
+
+
+<div class="countdown" id="timer_b701cf10" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
+<code class="countdown-time"><span class="countdown-digits minutes">03</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+</div>
+
+
+---
+## Consistency assumption in social studies
+
+.pull-left[
+.center[
+&lt;img src=./figs/consistency_assumption_schwartz.jpg width="100%"/&gt;
+]
+]
+
+---
+
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
