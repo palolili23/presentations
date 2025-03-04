@@ -45,10 +45,11 @@ pivot_longer( cols = -1,
 
 # Forest Plot
 
-res %>% 
+res %>%
+  filter(Effect != "Total effect on mortality") %>% 
   ggplot(aes(x = Effect, y = Estimate, ymin = Lower, ymax = Upper, color = risk)) +
   geom_errorbar(width = 0.2, size = 1 ) +
-  geom_point(size = 1.5, shape = 15) + 
+  geom_point(size = 2, shape = 15) + 
   facet_wrap(.~ risk, scales = "free_x") +
   coord_flip() +
   geom_hline(aes(yintercept = ref_line),linetype = "dashed", color = "black") +
@@ -63,15 +64,15 @@ res %>%
     legend.position = "none", 
     panel.spacing.x = unit(2, "lines"),
     axis.title.y = element_text(
-      size = rel(1.7),
+      size = rel(2),
       margin = margin(t = 0, r = 20, b = 0, l = 0)),
     axis.text.y = element_text(
-      size = rel(1.7)),
+      size = rel(2)),
     axis.title.x = element_text(
-      size = rel(1.7),
+      size = rel(2),
       margin = margin(t = 20, r = 00, b = 0, l = 0)),
-    legend.text = element_text(size = rel(1.7)),
-    strip.text = element_text(size = rel(1.3)),
+    legend.text = element_text(size = rel(2)),
+    strip.text = element_text(size = rel(1.5)),
     axis.text.x = element_text(
-      size = rel(1.7)))
+      size = rel(2)))
 

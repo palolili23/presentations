@@ -75,9 +75,7 @@ L. Paloma Rojas-Saunero MD, PhD]
 
 1. Understand the consistency assumption in ideal conditions
 
-2. Identify challenges to the consistency assumption in complex settings
-
-3. Propose strategies to address violations by refining research questions
+2. Develop the ability to formulate insightful research questions about complex exposures using a causal framework.
 
 ---
 ## Recap: Identifiability Assumptions
@@ -132,6 +130,11 @@ is exactly their **observed outcome** $Y_i$]
 In summary: $A_{i} = a$, then $Y_{i}^{a} = Y_{i}^{A} = Y_{i}$
 
 ---
+## What consistency implies
+
+The expure specified in the analysis must have enough precision that any variation within the exposure specification would not result in a different outcome. 
+
+---
 ## Well-defined interventions
 
 - Everyone receiving the same level of exposure is actually receiving it in the same way, without differences in how it is delivered.
@@ -169,26 +172,54 @@ We assume that the outcome (technically all **potential** outcomes, regardless o
 
 --
 
-For e.g. imagine a trial to see wether white noise improves concentration compared to classical music, using spotify in a school. But even if the intervention is randomized, people might be influenced on what their peers listen. 
+For e.g. imagine a randomized trial to see whether white noise improves concentration compared to classical music among high school students. 
+
+How can interference happen?
 
 
 ---
+## Complex Exposures
 
-## Real-world complex scenarios
-
-- When an RCT is feasible, the consistency assumption is most likely satisfied (E.g., vaccines, medications)
+- When an randomized trial is feasible, the consistency assumption is most likely satisfied.
 
 --
 
-- In observational studies it is tricky if we only have measured a proxy of the intervention of interest
+- The challenge in observational studies is that we often measure proxies or use information from several variables to derive an exposure. 
 
-  - Systolic blood pressure
-  - History of diabetes
-  - Loneliness scale
-  - Race
+  - Biomarker of inflammation
+  - Socioeconomic status (SES)
+  - Social Isolation
+  - Self-reported race
   
 ---
-## Exercise: real-world scenarios
+## Complex Exposures: SES
+
+.pull-left[
+- SES was created using data on person's income, education and occupational status. 
+
+--
+
+- To avoid violations of the consistency assumption, it is important that regardless of which component of SES is changed, the same effect would occur.
+
+--
+
+- SES is considered a c
+]
+
+--
+
+.pull-right[
+
+.center[
+<img src=./figs/consistency_assumption_schwartz.jpg width="100%"/>
+]
+]
+
+
+
+
+---
+## Exercise: complex exposures
 
 A researcher is interested in the causal effect of **systolic blood pressure** on the **risk of dementia**.
 

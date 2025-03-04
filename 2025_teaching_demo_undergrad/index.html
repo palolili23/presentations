@@ -4,7 +4,7 @@
     <title>Teaching Demo - Undergrads</title>
     <meta charset="utf-8" />
     <meta name="author" content="L. Paloma Rojas-Saunero" />
-    <meta name="date" content="2025-03-03" />
+    <meta name="date" content="2025-03-04" />
     <script src="index_files/header-attrs/header-attrs.js"></script>
     <link href="index_files/countdown/countdown.css" rel="stylesheet" />
     <script src="index_files/countdown/countdown.js"></script>
@@ -40,7 +40,7 @@ L. Paloma Rojas-Saunero MD, PhD]
 
 1. Develop intuition for counterfactual thinking and its role in causal inference.
 
-2. Familiarize with causal notation .
+2. Familiarize with causal notation.
 
 3. Understand the concept of the individual causal effect and its implications.
 
@@ -91,11 +91,18 @@ background-size: 90%
 In public health, many times we are interested in asking causal questions, we want to know if changing a behavior, changing diet, or even changing complex things such as discrimination and social and economic burden (a.k.a) weathering, can have an impact in our health. 
 
 ---
-##  Counterfactual/Causal thinking
+## Counterfactual thinking
+
+&lt;br&lt;br&gt;&lt;br&gt;
+.center[
+.bigger[
+Counterfactual thinking involves imagining an alternative version of the past and considering how the outcome might have changed. It helps us think about "**_what could have been_**"]]
 
 ???
 To answer these questions, we use counterfactual or causal thinking. Yes, the word "counterfactual" sounds very complicated, but I promise you, you are experts in using this approach in daily life. For example...
 
+---
+##  Counterfactual thinking
 
 - If I had studied last night, would I have gotten a higher test score?
 
@@ -113,7 +120,7 @@ To answer these questions, we use counterfactual or causal thinking. Yes, the wo
 
 
 ---
-### Exercise: Construct a counterfactual statement
+### Construct a counterfactual statement
 
 - Think of a recent event where something did not go as planned.
 
@@ -124,12 +131,11 @@ To answer these questions, we use counterfactual or causal thinking. Yes, the wo
 --
 
 - Write a counterfactual statement using this structure:
-
 .center[
-"If [_X had done something differently_], &lt;br&gt; &lt;br&gt; then [_a different outcome might have happened_]."
+"If [_X had done something differently_], &lt;br&gt; then [_a different outcome might have happened_]."
 ]
 
-<div class="countdown" id="timer_f5915f96" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_d478fa6a" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">01</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
@@ -137,9 +143,7 @@ To answer these questions, we use counterfactual or causal thinking. Yes, the wo
 ---
 ## Pair Discussion
 
-- Share your statement with your classmate sitting to your right.
-
-- Discuss: 
+- Share your statement with your classmate sitting to your right and discuss:
 
   + What assumption are you making about causality?
 
@@ -148,21 +152,10 @@ To answer these questions, we use counterfactual or causal thinking. Yes, the wo
   + How confident are you in your counterfactual scenario?
 
 
-<div class="countdown" id="timer_e3014a16" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
+<div class="countdown" id="timer_ee39c26e" data-update-every="1" tabindex="0" style="right:0;bottom:0;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
 <code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
-
----
-## Counterfactual Thinking
-
-&lt;br&lt;br&gt;&lt;br&gt;
-.center[
-.bigger[
-Counterfactual thinking involves imagining an alternative version of the past and considering how the outcome might have changed. It helps us think about "**_what could have been_**"]]
-
-???
-To formalize a bit, counterfactual thinking... and this is the set
 
 ---
 ## Causal Reasoning
@@ -182,7 +175,7 @@ leads to a change in another factor (**"the effect"**).
 class:center, middle
 
 
-## Let's go for icecream, it will make you feel happy...
+## Let's go for ice cream, it will make you feel happy...
 
 ???
 Now that you know you are experts in counterfactual thinking, we are going to translate the language of counterfactuals to mathematical notations.
@@ -216,6 +209,7 @@ I know that math can be intimidating, believe me I always did, but I want you to
 ]
 
 
+
 ---
 ## Individual Causal Effect
 
@@ -237,20 +231,15 @@ If I had not eaten &amp;#x274C;&amp;#x1F366; I would feel &amp;#x1F614;
 .bigger[**Y&lt;sup&gt;a=0&lt;/sup&gt; = 0**]
 ]]
 
-
-&lt;br&gt;
-.center[
-.bigger[
 There is an &amp;#x2705; **individual causal effect** when: **Y&lt;sup&gt;a=1&lt;/sup&gt;** `\(\neq\)` **Y&lt;sup&gt;a=0&lt;/sup&gt;**  
-]]
+
 --
-.center[
-.bigger[
+
 There is no &amp;#x274C; **individual causal effect** when: **Y&lt;sup&gt;a=1&lt;/sup&gt;** = **Y&lt;sup&gt;a=0&lt;/sup&gt;** 
-]]
+
 
 ---
-### Exercise: Identifying Individual Causal Effects
+### Identify Individual Causal Effects
 Find out on which friends we would see a causal effect of  &amp;#x1F366; in  &amp;#x1F60A;
 
 .pull-left[
@@ -274,15 +263,15 @@ Find out on which friends we would see a causal effect of  &amp;#x1F366; in  &am
 ]
 
 
-<div class="countdown" id="timer_d5385de0" data-update-every="1" tabindex="0" style="bottom:0;left:1;">
+<div class="countdown" id="timer_0c91a3d8" data-update-every="1" tabindex="0" style="bottom:0;left:1;">
 <div class="countdown-controls"><button class="countdown-bump-down">&minus;</button><button class="countdown-bump-up">&plus;</button></div>
-<code class="countdown-time"><span class="countdown-digits minutes">02</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
+<code class="countdown-time"><span class="countdown-digits minutes">01</span><span class="countdown-digits colon">:</span><span class="countdown-digits seconds">00</span></code>
 </div>
 
 ---
 ### Fundamental problem of causal inference 
 
-In real life, we only observe **one** of the counterfactual scenarios
+In real life, we only observe **one** of the counterfactual scenarios, the other one is **missing**.
 
 .pull-left[
 
@@ -299,7 +288,7 @@ In real life, we only observe **one** of the counterfactual scenarios
 --
 .pull-right[
 
-With a binary exposure, one counterfactual outcome is **observable** and one is **missing**. Thus, we can't estimate **individual causal effect** directly. It's a missing data issue. 
+Thus, we can't estimate **individual causal effect** directly. It's a missing data issue. 
 
 ]
 
@@ -322,6 +311,17 @@ class:center, middle
 
 
 ]
+
+---
+## Recommended Materials
+
+- [Casual Inference Podcast](https://casualinfer.libsyn.com/)
+
+- [Hernán MA, Robins JM. Causal Inference: What If (2020)](https://miguelhernan.org/whatifbook)
+ 
+
+
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
@@ -330,7 +330,7 @@ class:center, middle
 "highlightStyle": "github",
 "highlightLines": true,
 "countIncrementalSlides": false,
-"ratio": "16:9"
+"ratio": "4:3"
 });
 if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
   window.dispatchEvent(new Event('resize'));

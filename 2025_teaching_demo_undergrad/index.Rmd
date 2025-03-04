@@ -11,7 +11,7 @@ output:
       highlightStyle: github
       highlightLines: TRUE
       countIncrementalSlides: FALSE
-      ratio: "16:9"
+      ratio: "4:3"
 ---
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
@@ -44,8 +44,8 @@ style_mono_light(
   text_bold_color = "#002B43",
   text_font_size = "28px",
   header_h1_font_size = "5rem",
-  header_h2_font_size = "3.5rem",
-  header_h3_font_size = "2.8rem",
+  header_h2_font_size = "3rem",
+  header_h3_font_size = "2.2rem",
   padding = "16px 64px 16px 32px",
   colors = c(
     yellow = "#ffb81c",
@@ -78,7 +78,7 @@ L. Paloma Rojas-Saunero MD, PhD]
 
 1. Develop intuition for counterfactual thinking and its role in causal inference.
 
-2. Familiarize with causal notation .
+2. Familiarize with causal notation.
 
 3. Understand the concept of the individual causal effect and its implications.
 
@@ -129,11 +129,18 @@ background-size: 90%
 In public health, many times we are interested in asking causal questions, we want to know if changing a behavior, changing diet, or even changing complex things such as discrimination and social and economic burden (a.k.a) weathering, can have an impact in our health. 
 
 ---
-##  Counterfactual/Causal thinking
+## Counterfactual thinking
+
+<br<br><br>
+.center[
+.bigger[
+Counterfactual thinking involves imagining an alternative version of the past and considering how the outcome might have changed. It helps us think about "**_what could have been_**"]]
 
 ???
 To answer these questions, we use counterfactual or causal thinking. Yes, the word "counterfactual" sounds very complicated, but I promise you, you are experts in using this approach in daily life. For example...
 
+---
+##  Counterfactual thinking
 
 - If I had studied last night, would I have gotten a higher test score?
 
@@ -151,7 +158,7 @@ To answer these questions, we use counterfactual or causal thinking. Yes, the wo
 
 
 ---
-### Exercise: Construct a counterfactual statement
+### Construct a counterfactual statement
 
 - Think of a recent event where something did not go as planned.
 
@@ -162,9 +169,8 @@ To answer these questions, we use counterfactual or causal thinking. Yes, the wo
 --
 
 - Write a counterfactual statement using this structure:
-
 .center[
-"If [_X had done something differently_], <br> <br> then [_a different outcome might have happened_]."
+"If [_X had done something differently_], <br> then [_a different outcome might have happened_]."
 ]
 
 ```{r}
@@ -174,9 +180,7 @@ countdown::countdown(minutes = 1, seconds = 0, bottom = 0)
 ---
 ## Pair Discussion
 
-- Share your statement with your classmate sitting to your right.
-
-- Discuss: 
+- Share your statement with your classmate sitting to your right and discuss:
 
   + What assumption are you making about causality?
 
@@ -188,17 +192,6 @@ countdown::countdown(minutes = 1, seconds = 0, bottom = 0)
 ```{r}
 countdown::countdown(minutes = 2, seconds = 0, bottom = 0)
 ```
-
----
-## Counterfactual Thinking
-
-<br<br><br>
-.center[
-.bigger[
-Counterfactual thinking involves imagining an alternative version of the past and considering how the outcome might have changed. It helps us think about "**_what could have been_**"]]
-
-???
-To formalize a bit, counterfactual thinking... and this is the set
 
 ---
 ## Causal Reasoning
@@ -218,7 +211,7 @@ leads to a change in another factor (**"the effect"**).
 class:center, middle
 
 
-## Let's go for icecream, it will make you feel happy...
+## Let's go for ice cream, it will make you feel happy...
 
 ???
 Now that you know you are experts in counterfactual thinking, we are going to translate the language of counterfactuals to mathematical notations.
@@ -252,6 +245,7 @@ I know that math can be intimidating, believe me I always did, but I want you to
 ]
 
 
+
 ---
 ## Individual Causal Effect
 
@@ -273,20 +267,15 @@ If I had not eaten &#x274C;&#x1F366; I would feel &#x1F614;
 .bigger[**Y<sup>a=0</sup> = 0**]
 ]]
 
-
-<br>
-.center[
-.bigger[
 There is an &#x2705; **individual causal effect** when: **Y<sup>a=1</sup>** $\neq$ **Y<sup>a=0</sup>**  
-]]
+
 --
-.center[
-.bigger[
+
 There is no &#x274C; **individual causal effect** when: **Y<sup>a=1</sup>** = **Y<sup>a=0</sup>** 
-]]
+
 
 ---
-### Exercise: Identifying Individual Causal Effects
+### Identify Individual Causal Effects
 Find out on which friends we would see a causal effect of  &#x1F366; in  &#x1F60A;
 
 .pull-left[
@@ -316,13 +305,13 @@ tab %>%
 
 
 ```{r}
-countdown::countdown(minutes = 2, seconds = 0, left = 1)
+countdown::countdown(minutes = 1, seconds = 0, left = 1)
 ```
 
 ---
 ### Fundamental problem of causal inference 
 
-In real life, we only observe **one** of the counterfactual scenarios
+In real life, we only observe **one** of the counterfactual scenarios, the other one is **missing**.
 
 .pull-left[
 ```{r}
@@ -343,7 +332,7 @@ tab %>%
 --
 .pull-right[
 
-With a binary exposure, one counterfactual outcome is **observable** and one is **missing**. Thus, we can't estimate **individual causal effect** directly. It's a missing data issue. 
+Thus, we can't estimate **individual causal effect** directly. It's a missing data issue. 
 
 ]
 
@@ -366,3 +355,14 @@ class:center, middle
 
 
 ]
+
+---
+## Recommended Materials
+
+- [Casual Inference Podcast](https://casualinfer.libsyn.com/)
+
+- [Hernán MA, Robins JM. Causal Inference: What If (2020)](https://miguelhernan.org/whatifbook)
+ 
+
+
+
