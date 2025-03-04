@@ -315,24 +315,21 @@ What is the risk of dementia at 20 years of follow-up had all individuals stoppe
 ## Questions before methods
 
 .pull-left[
-.center[
 **Total Effect**
 
 What is the risk of dementia at 20 years of follow-up had all individuals stopped smoking, compared to had all individuals continued smoking?
 
 <img src=./figs/total_effect.JPG width="100%"/>]
 
-]
 
 .pull-right[
-.center[
 **Controlled direct effect**
 
 What is the risk of dementia at 20 years of follow-up had all individuals stopped smoking **and not died** during the study period, compared to had all individuals continued smoking **and not died** ?
 
 <img src=./figs/direct_effect_cens.JPG width="100%"/>
 
-]]
+]
 
 .footnote[**C**: Shared risk factors]
 
@@ -344,7 +341,7 @@ background-size: 15%
 ## Smoking cessation on dementia risk
 
 .center[
-<img src=./figs/smoke_AJE.png width="80%"/>]
+<img src=./figs/smoke_aje.png width="80%"/>]
 
 ???
 What we see is that had we asked a question about the CDE and use appropiate methods, we would see that smoking cessation prevents dementia risk.
