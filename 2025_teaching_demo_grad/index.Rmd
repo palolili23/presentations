@@ -11,7 +11,7 @@ output:
       highlightStyle: github
       highlightLines: TRUE
       countIncrementalSlides: FALSE
-      ratio: "16:9"
+      ratio: "4:3"
 ---
 ```{r setup, include=FALSE}
 options(htmltools.dir.version = FALSE)
@@ -42,10 +42,10 @@ style_mono_light(
   title_slide_text_color = "#FFFFFF",
   table_border_color = "#8bb8e8",
   text_bold_color = "#002B43",
-  text_font_size = "32px",
-  header_h1_font_size = "5rem",
-  header_h2_font_size = "3rem",
-  header_h3_font_size = "2.2rem",
+  text_font_size = "28px",
+  header_h1_font_size = "3rem",
+  header_h2_font_size = "2.5rem",
+  header_h3_font_size = "1.8rem",
   padding = "16px 64px 16px 32px",
   colors = c(
     yellow = "#ffb81c",
@@ -61,21 +61,21 @@ background-image: url(./figs/logo.png)
 background-position: 50% 95%
 background-size: 28%, 25%
 
-## .yellow[Challenging the Consistency Assumption in Complex Settings]
+# .yellow[Consistency Assumption in Complex Settings]
 
 
-.center[
+.center[L. Paloma Rojas-Saunero MD, PhD]
 
-L. Paloma Rojas-Saunero MD, PhD]
 
-]
 
 ---
 ## Learning goals
 
 1. Understand the consistency assumption in ideal conditions
 
-2. Develop the ability to formulate insightful research questions about complex exposures using a causal framework.
+2. Recognize the complexities of compound exposure
+
+3. Formulate insightful research questions about complex exposures using a causal framework
 
 ---
 ## Recap: Identifiability Assumptions
@@ -102,7 +102,7 @@ To answer causal questions with real data we need three conditions:
 
 
 
-- **.green[Consistency]**
+- **.bigger[Consistency]**
 
 
 
@@ -116,150 +116,232 @@ For a person who was **.purple[actually treated]** $Y_{i}^{A=1}$ <br>
 --
 their **.green[counterfactual outcome had they been treated]** $Y_{i}^{a=1}$ <br>
 --
-is exactly their **observed outcome** $Y_i$.
+is exactly their **observed outcome** $Y_i$
 
 --
 
-.right[
 For a person who was **.purple[actually untreated]** $Y_{i}^{A=0}$ <br>
 their **.green[counterfactual outcome had they been untreated]** $Y_{i}^{a=0}$ <br>
-is exactly their **observed outcome** $Y_i$] 
+is exactly their **observed outcome** $Y_i$
 
 --
 
 In summary: $A_{i} = a$, then $Y_{i}^{a} = Y_{i}^{A} = Y_{i}$
 
----
-## What consistency implies
-
-The expure specified in the analysis must have enough precision that any variation within the exposure specification would not result in a different outcome. 
+???
+The consistency assumption links the observed data to the counterfactual outcome
 
 ---
 ## Well-defined interventions
 
-- Everyone receiving the same level of exposure is actually receiving it in the same way, without differences in how it is delivered.
+- Everyone receiving the same level of exposure is actually receiving it in the same way, without differences in how it is delivered
 
 --
 
-- There are no multiple versions of the treatment.
+- There are no multiple versions of the treatment
 
 --
 
-- This assumption can be satisfied by designed in randomized trials (e.g., vaccination, medications ) 
+- This assumption can be satisfied by designed in randomized trials (e.g., vaccination, medications) 
+
+---
+background-image: url(./figs/choc.png)
+background-size: 100%
 
 ---
 ## Exercise: Well-defined intervention
 
-
---
-
-- In this cohort study, they asked about chocolate consumption using a Food Frequency Questionnaire (FFQ).
-
---
-
 - Discuss with your colleague to your right (or behind): How could the definition of chocolate consumption be improved to ensure a well-defined intervention?
+
+
+```{r}
+countdown::countdown(minutes = 1, seconds = 0, bottom = 0)
+```
+
+---
+## Randomized vs. observational studies
+
+- **Randomized Trials:** The researcher defines and implements the intervention, often satisfying the consistency assumption.
+
+--
+
+- **Observational Studies:** We measure characteristics of individuals, places, or environments that may not reflect the intervention itself.
+
+
+???
+But the whole point of observational studies are to learn about causes that in real life they are not ethical or feasible to intervene. That doesn't mean we should not pursuit causal questions, it just means it is harder 
+
+---
+## Observational studies
+
+.center[
+<img src=./figs/broad_street.jpg width="60%"/>
+]
+
+???
+Many times we don't even get to measure what we really want. Could be because we didn't think about it in the first place, or it could be too costly, or it would mean a big burden for the participants (e.g. short survey vs. long questionnaire), so we use proxies, biomarkers, and we get creative with other sources of data
+
+---
+## Causal inference limitations
+
+
+.center[
+<img src=./figs/miguel_causal.jpg width="70%"/>
+]
+
+---
+## Consistency in social epidemiology
+
+.center[
+<img src=./figs/consistency_assumption_schwartz.jpg width="60%"/>
+]
+
+---
+class: center, middle
+
+<iframe src="https://gifer.com/embed/21F" width=480 height=268.800 frameBorder="0" allowFullScreen></iframe><p><a </a></p>
+
+---
+## Compound exposures
+
+- Compound exposures are made up of components that together form a whole.
+
+--
+
+- Example: Socioeconomic status is derived from income, education, and occupational status.
+
+--
+
+- To satisfy the consistency assumption, any change in a component of SES should result in the same effect.
+
+---
+## Compound exposures
+
+- **Consistency** (Cole and Fragakis) 
+
+  + $Y_{i(a,k)}$: Individual $i$ receives exposure $A = a$ via intervention $k$.
+  
+  + Consistency holds when $Y_{i(a)} = Y_{i(a,k)}$
+  
+  + The range of possible $k$ (the means by which exposure occurs) varies depending on the specific $a$ (exposure tested)
+
+---
+## Physical activity and cognitive function
+
+- Let's say we are interested in the effect **physical activity** $A$ on **cognitive function** $Y$
+
+--
+
+- Consistency implies that if a person does **30 minutes of moderate physical activity** $A = a$ on their own
+
+--
+
+- Their outcome $Y_{i(a)}$ should be the same as if the same level of activity were assigned through intervention $k$, such as **running, swimming, cleaning**
+
+---
+class: middle
+
+For compound exposures (e.g. social, environmental, biomarkers), we must consider the **range of possible interventions** $k$ that could lead to the same **exposure level** $a$  
+
+
+---
+## Weighted average compositional effect
+
+- Reflects a **weighted average** of all changes in components of a composite variable in a study, with weights based on their frequency
+
+--
+
+- **Key challenge**: Without knowing the distribution of these changes, it's hard to assess intervention implications.  
+
+--
+
+- Understanding how components change helps define **confounders and effect modifiers**
+
+
+---
+## Exercise:
+
+A colleague is interested in the causal effect of **education** $A$ on **dementia risk** $Y$. Discuss: 
+
+--
+
+- What aspects of education could influence dementia risk? $A = a$
+
+--
+
+- Could you imagine interventions that could change one of the aspects of education that you care about? $k$
+
+--
+
+- What recommendations would you give your colleague for exploring these relationships in their research?  
 
 
 ```{r}
 countdown::countdown(minutes = 2, seconds = 0, bottom = 0)
 ```
 
+---
+background-image: url(./figs/real_world.png)
+background-size: 80%
 
 ---
-## No Interference
-
-We assume that the outcome (technically all **potential** outcomes, regardless of whether they are observed) for any subject does not depend on another subject's exposure. 
+## When data has been collected
 
 --
 
-For e.g. imagine a randomized trial to see whether white noise improves concentration compared to classical music among high school students. 
-
-How can interference happen?
-
-
----
-## Complex Exposures
-
-- When an randomized trial is feasible, the consistency assumption is most likely satisfied.
+- Be transparent with your motivations
 
 --
 
-- The challenge in observational studies is that we often measure proxies or use information from several variables to derive an exposure. 
-
-  - Biomarker of inflammation
-  - Socioeconomic status (SES)
-  - Social Isolation
-  - Self-reported race
-  
----
-## Complex Exposures: SES
-
-.pull-left[
-- SES was created using data on person's income, education and occupational status. 
+- **Introduction and hypothesis**: discuss the underlying mechanism that drives your research question
 
 --
 
-- To avoid violations of the consistency assumption, it is important that regardless of which component of SES is changed, the same effect would occur.
+- **Methods**: be explicit, be careful on what you adjust for, consider quantitative bias analysis for measurement error
 
 --
 
-- SES is considered a c
-]
+- **Discussion**: expand on what future studies should measure, mention limitations of your proxy
+
+---
+## Prospective data collection
+
+- Revise the literature, don't reinvent the wheel
 
 --
 
-.pull-right[
+- If you are suspicious on previous exposure and want to propose something new, consider how would you validate your measurement
 
-.center[
-<img src=./figs/consistency_assumption_schwartz.jpg width="100%"/>
-]
-]
+--
 
+- Involve the community, consider qualitative research
 
+--
 
-
----
-## Exercise: complex exposures
-
-A researcher is interested in the causal effect of **systolic blood pressure** on the **risk of dementia**.
-
-Discuss with your colleague to your right (or behind):
-  + Is this a well-defined intervention? 
-  + Propose a more precise question (perhaps only describing one version of A), describe the treatment strategies for a (hypothetical) randomized trial to study the effect.
-
-
-```{r}
-countdown::countdown(minutes = 3, seconds = 0, bottom = 0)
-```
+- Build multidisciplinary teams
 
 ---
 
----
-## Exercise: real-world scenarios
+## Recommended readings
 
-A researcher is interested in the causal effect of **residencial segregation** on **preeclampsia**.
+.smaller[
 
-Discuss with your colleague to your right (or behind):
-  + Is this a well-defined intervention? 
-  + Propose a more precise question (perhaps only describing one version of A), describe the treatment strategies for a (hypothetical) randomized trial to study the effect.
+- Cole SR, Frangakis CE. The consistency statement in causal inference: a definition or an assumption? Epidemiology. 2009
 
+- Rehkopf DH, Glymour MM, Osypuk TL. The Consistency Assumption for Causal Inference in Social Epidemiology: When a Rose is Not a Rose. Curr Epidemiol Rep. 2016
 
-```{r}
-countdown::countdown(minutes = 3, seconds = 0, bottom = 0)
-```
+- Schwartz S, Prins SJ, Campbell UB, Gatto NM. Is the "well-defined intervention assumption" politically conservative? Soc Sci Med. 2016 
 
+- Arnold KF, Berrie L, Tennant PWG, Gilthorpe MS. A causal inference perspective on the analysis of compositional data. Int J Epidemiol. 2020
 
----
-## Consistency assumption in social studies
+- Breskin A, Murray EJ. Compositional data call for complex interventions. Int J Epidemiol. 2020]
 
-.pull-left[
-.center[
-<img src=./figs/consistency_assumption_schwartz.jpg width="100%"/>
-]
-]
 
 ---
 
+## Next lecture:
 
+<br>
 
+ .bigger[Interference]
 
