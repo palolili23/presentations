@@ -2,6 +2,16 @@
 
 Repository of conference talks and guest lectures since 2022 (not full list)
 
+**2025**
+
+[Job talk ucla](https://palolili23.github.io/presentations/2025_job_talk_ucla/#1)
+
+[Teaching intro](https://palolili23.github.io/presentations/2025_teaching_intro/#1)
+
+[Teaching undergrads](https://palolili23.github.io/presentations/2025_teaching_demo_underg)
+
+[Teaching grads](https://palolili23.github.io/presentations/2025_teaching_demo_grad/#2)
+
 **2024**
 
 - Seminario Internacional de Salud Pública. Universidad del Valle. Cali, Colombia. _Virtual_

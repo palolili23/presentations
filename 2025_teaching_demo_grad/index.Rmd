@@ -140,9 +140,6 @@ The consistency assumption links the observed data to the counterfactual outcome
 
 - There are no multiple versions of the treatment
 
---
-
-- This assumption can be satisfied by designed in randomized trials (e.g., vaccination, medications) 
 
 ---
 background-image: url(./figs/choc.png)
@@ -195,11 +192,6 @@ Many times we don't even get to measure what we really want. Could be because we
 .center[
 <img src=./figs/consistency_assumption_schwartz.jpg width="60%"/>
 ]
-
----
-class: center, middle
-
-<iframe src="https://gifer.com/embed/21F" width=480 height=268.800 frameBorder="0" allowFullScreen></iframe><p><a </a></p>
 
 ---
 ## Compound exposures

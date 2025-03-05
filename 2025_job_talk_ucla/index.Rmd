@@ -315,7 +315,7 @@ What is the risk of dementia at 20 years of follow-up had all individuals stoppe
 ## Questions before methods
 
 .pull-left[
-**Total Effect**
+**Total effect**
 
 What is the risk of dementia at 20 years of follow-up had all individuals stopped smoking, compared to had all individuals continued smoking?
 
@@ -744,7 +744,7 @@ Use simulations to understand the sources that drive effect heterogeneity
 
 .right-column2[
 .smaller[
-**Research Groups**
+**Academic communities**
 - Mayeda Research Group
 - Practical Causal Inference Lab
 - FSPH Rooted Academy
