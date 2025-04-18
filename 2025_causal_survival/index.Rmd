@@ -89,9 +89,9 @@ xaringanExtra::use_progress_bar("#ffb81c", "top", "0.25em")
 ## Risk / Incidence proportion
 
 .pull-left[
-- The probability of having an incident event in a **fixed period of time**
+- The probability of having an incident event, $Y$, in a **fixed period of time **, $k$
 
-- $Pr[Event =1]_k$ = $A/N$, where:
+- $Pr[Y_k =1]$ = $A/N$, where:
 
   + $N$ = people free of event at start of follow-up
 
@@ -131,7 +131,7 @@ xaringanExtra::use_progress_bar("#ffb81c", "top", "0.25em")
 ---
 ## What makes a valid estimation of _risk_?
 
-.pull-left[
+
 - Target and study population clearly specified
 
 - Defined observation period at risk
@@ -144,7 +144,6 @@ xaringanExtra::use_progress_bar("#ffb81c", "top", "0.25em")
 
 - Starting point (baseline) is the same for all participants
 
-]
 
 ---
 ## Examples from other fields
@@ -179,7 +178,7 @@ xaringanExtra::use_progress_bar("#ffb81c", "top", "0.25em")
 
 ]
 
---
+
 .pull-right[
 
 <img src=./figs/line_graph_cens.png width="100%"/>
@@ -240,18 +239,15 @@ where:
 
 .pull-left[
 
-They are defined as the instantaneous "rate", or instantaneous probability of having the event, $Y$
+- At any given time, the probability of experiencing the event of interest, $Y$, in the next interval among individuals who had not yet experienced the event by the start of the interval
 
-<br>
+- **Discrete hazards**
 
-**Discrete hazards**
+  - $Pr[T = t|T > t − 1]$
+  
+  - $Pr [Y_k = 1|Y_{k−1} = 0]$
 
-$Pr[T = t|T > t − 1]$
-
-<br>
-$Pr [Y_k = 1|Y_{k−1} = 0]$
-
-
+- They can rise, fall, or vary non-monotonically across time points
 
 ]
 
@@ -268,47 +264,67 @@ $Pr [Y_k = 1|Y_{k−1} = 0]$
 
 **Risks**
 - Denominator: Number of individuals at baseline
-- Numerator: Cumulative number of events over a fixed period of time
+- Numerator: Number of events ocurring over a fixed period of time
 
 **Rates**
 - Denominator: Total person-time at risk (accumulated time contributed by all individuals)
 - Numerator: Number of events occurring over the total person-time
 
 **Hazard**
-- Denominator: Number of individuals at risk just before time t
-- Numerator: Number of events occurrence in an small interval after time t
+- Denominator: Number of individuals at risk by the start of a time interval
+- Numerator: Number of events ocurring in the next time interval
 
 ---
 ## Cox proportional hazard models
 
 .pull-left[
-In 1972, Sir David Cox introduced a novel semi-parametric regression method for "right-censored survival data"
+- In 1972, Sir David Cox introduced a semi-parametric regression method for "right-censored survival data"
 
-This model allows you to include covariates
+- It estimates the ratio of the hazards of the event between two groups.
 
-They rely on the proportional hazards assumption
+- "The" hazard ratio (HR) from the model output represents the weighted average of the time-varying hazard ratios over the entire follow-up
 
-Since then, the "hazard ratios" have become the _standard approach_ in observational studies looking at incident events
+
+- Relies on the proportional hazards assumption, the HR is constant from start until end of follow-up
 
 
 ]
 
+.pull-right[
 
+<img src=./figs/hazard_fx.png width="85%"/>
+
+
+]
 
 ---
 ## The hazard of hazard ratios
 
 .pull-left[
-<img src=./figs/hazard_dag.JPG width="100%"/>
+<img src=./figs/hazard_dag.jpg width="100%"/>
 ]
 
 .pull-right[
-List a few limitations
+
+- Hazard ratios have an inherent issue of selection bias
+
+- The proportional hazard assumption is often unrealistic
+
+  - When the treatment effect changes over time
+  
+  - When disease susceptibility varies between individuals
 ]
 
 ---
 ## The hazard of hazard ratios
-<img src=./figs/hazard.png width="70%"/>
+
+.center[<img src=./figs/hazard.png width="70%"/>]
+
+
+.footnote[Stensrud. European Heart Journal. 2019]
+
+???
+Figure 1People have different disease risks. Given an effective treatment, high-risk individuals are likely to be depleted from the study population, and the depletion is expected to be larger in the placebo group than in the treatment group. This schematic drawing illustrates the built-in selection bias in population-level hazard ratios: by definition, the population-level hazard ratio at a given time point is based on individuals who survived up to that time point, thereby it is a comparison between the unbalanced groups.
 
 ---
 
@@ -322,9 +338,9 @@ List a few limitations
 ---
 ## From hazard to risks
 
-- Hazard models are useful to estimate risks when censoring is present, *under certain assumptions*
+- Hazard models are useful to estimate risks when censoring is present
 
-- In **discrete time**, the risk at time \( k+1 \) is the probability of surviving through time \( k \), then having the event at \( k+1 \):
+- In **discrete time**, the risk at time $k+1$ is the probability of not having the event up to time $k$, and then having the event at time $k+1$:
 
 
 
@@ -335,29 +351,49 @@ Where
 $$h_j = \Pr[Y_j = 1 \mid Y_{j-1} = 0]$$
 
 ---
-## Intervening on Censoring
+## Implications of censoring
 
 .pull-left[
 
+- Statistical literature
 
-- Discuss that we are always implicitly asking questions about intervening on censoring
+  - Censoring events are independent of the event of interest
+  
+  - Censoring events are uninformative
+  
+- Causal/Counterfactual literature
+
+  - Counterfactual scenario where censoring events were eliminated
+  
+  - $Pr[Y_{k+1}] = Pr[Y^{\overline{\text{LTFU}} = 0}_{k+1}]$
+  
+  -  $Pr[Y^{a = 1, \overline{\text{LTFU}} = 0}_{k+1}]$ - $Pr[Y^{a = 0, \overline{\text{LTFU}} = 0}_{k+1}]$
 
 ]
 
 .pull-right[
 
-<img src=./figs/line_graph_cens.png width="100%"/>
-]
+.center[
+
+<img src=./figs/ltfu_dag.jpg width="100%"/>
+
+]]
 
 
 ---
 ## Competing events
 
 .pull-left[
-Events that _preclude*_ the outcome of interest.
 
-- *to prevent the existence, or occurrence of; make impossible
+- Events that _preclude*_ the outcome of interest.
+
+   *to prevent the existence, or occurrence of; make impossible
+   
+
+<img src=./figs/compevents_dag.jpg width="100%"/>
 ]
+
+--
 
 .pull-right[
 
@@ -367,6 +403,8 @@ Events that _preclude*_ the outcome of interest.
 
 ---
 ## Competing events happen everywhere
+
+--
 
 - **Loan default**: Risk of defaulting on a loan within a given time period
   - Refinancing, paying in full
@@ -440,10 +478,11 @@ table_data %>% gt() %>%
 ---
 ## Causal effects
 
-Contrast of (counterfactual) outcome distributions in the **same individuals** but under **different treatments**.
+<br><br>
 
-- The only explanation for a difference is the treatment, not comparing different individuals
+- Contrast of (counterfactual) outcome distributions in the **same individuals** but under **different treatments**.
 
+- The only explanation for a difference is the intervention, not comparing different individuals
 
 ---
 ## Quitting smoking and 20-year dementia risk  
@@ -632,11 +671,25 @@ Physical decomposition of the exposure assumed to operate on $Y$ and $D$ through
 ---
 ## Take away points
 
-- Censoring and competing events are the key feature of survival analysis
+--
 
-- Risks & cumulative incidence measures are the only ones that contemplate the 
+- Incident events form the cornerstone of causal inference in epidemiology
 
-- 
+--
+
+- Risks & cumulative incidence are the only measures that consistently refer back to the target/study population at baseline
+
+--
+
+- Time is a fundamental component, but that doesn't mean that inherently our primary measure of interest is *time-to-event*
+
+--
+
+- Censoring and competing events are not exceptions to the rule but rather common occurrences that must be accounted for in analyses
+
+--
+
+- Estimands for the risk of an event by a given time must explicitly incorporate censoring and competing risks to ensure transparent and interpretable conclusion
 
 ---
 class: title-slide, center, middle, inverse
@@ -649,6 +702,9 @@ Special thanks to:
 - Yingyan Wu
 - Elizabeth Rose Mayeda
 - Onyebuchi Arah
+- Jessica G. Young
+- Sonja A. Swanson
+- Vanessa Didelez
 ]
 
 .right[

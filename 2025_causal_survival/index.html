@@ -67,9 +67,9 @@ Department of Epidemiology, UCLA
 ## Risk / Incidence proportion
 
 .pull-left[
-- The probability of having an incident event in a **fixed period of time**
+- The probability of having an incident event, `\(Y\)`, in a **fixed period of time **, `\(k\)`
 
-- `\(Pr[Event =1]_k\)` = `\(A/N\)`, where:
+- `\(Pr[Y_k =1]\)` = `\(A/N\)`, where:
 
   + `\(N\)` = people free of event at start of follow-up
 
@@ -109,7 +109,7 @@ Department of Epidemiology, UCLA
 ---
 ## What makes a valid estimation of _risk_?
 
-.pull-left[
+
 - Target and study population clearly specified
 
 - Defined observation period at risk
@@ -122,7 +122,6 @@ Department of Epidemiology, UCLA
 
 - Starting point (baseline) is the same for all participants
 
-]
 
 ---
 ## Examples from other fields
@@ -157,7 +156,7 @@ Department of Epidemiology, UCLA
 
 ]
 
---
+
 .pull-right[
 
 &lt;img src=./figs/line_graph_cens.png width="100%"/&gt;
@@ -218,18 +217,15 @@ where:
 
 .pull-left[
 
-They are defined as the instantaneous "rate", or instantaneous probability of having the event, `\(Y\)`
+- At any given time, the probability of experiencing the event of interest, `\(Y\)`, in the next interval among individuals who had not yet experienced the event by the start of the interval
 
-&lt;br&gt;
+- **Discrete hazards**
 
-**Discrete hazards**
+  - `\(Pr[T = t|T &gt; t − 1]\)`
+  
+  - `\(Pr [Y_k = 1|Y_{k−1} = 0]\)`
 
-`\(Pr[T = t|T &gt; t − 1]\)`
-
-&lt;br&gt;
-`\(Pr [Y_k = 1|Y_{k−1} = 0]\)`
-
-
+- They can rise, fall, or vary non-monotonically across time points
 
 ]
 
@@ -246,47 +242,67 @@ They are defined as the instantaneous "rate", or instantaneous probability of ha
 
 **Risks**
 - Denominator: Number of individuals at baseline
-- Numerator: Cumulative number of events over a fixed period of time
+- Numerator: Number of events ocurring over a fixed period of time
 
 **Rates**
 - Denominator: Total person-time at risk (accumulated time contributed by all individuals)
 - Numerator: Number of events occurring over the total person-time
 
 **Hazard**
-- Denominator: Number of individuals at risk just before time t
-- Numerator: Number of events occurrence in an small interval after time t
+- Denominator: Number of individuals at risk by the start of a time interval
+- Numerator: Number of events ocurring in the next time interval
 
 ---
 ## Cox proportional hazard models
 
 .pull-left[
-In 1972, Sir David Cox introduced a novel semi-parametric regression method for "right-censored survival data"
+- In 1972, Sir David Cox introduced a semi-parametric regression method for "right-censored survival data"
 
-This model allows you to include covariates
+- It estimates the ratio of the hazards of the event between two groups.
 
-They rely on the proportional hazards assumption
+- "The" hazard ratio (HR) from the model output represents the weighted average of the time-varying hazard ratios over the entire follow-up
 
-Since then, the "hazard ratios" have become the _standard approach_ in observational studies looking at incident events
+
+- Relies on the proportional hazards assumption, the HR is constant from start until end of follow-up
 
 
 ]
 
+.pull-right[
 
+&lt;img src=./figs/hazard_fx.png width="85%"/&gt;
+
+
+]
 
 ---
 ## The hazard of hazard ratios
 
 .pull-left[
-&lt;img src=./figs/hazard_dag.JPG width="100%"/&gt;
+&lt;img src=./figs/hazard_dag.jpg width="100%"/&gt;
 ]
 
 .pull-right[
-List a few limitations
+
+- Hazard ratios have an inherent issue of selection bias
+
+- The proportional hazard assumption is often unrealistic
+
+  - When the treatment effect changes over time
+  
+  - When disease susceptibility varies between individuals
 ]
 
 ---
 ## The hazard of hazard ratios
-&lt;img src=./figs/hazard.png width="70%"/&gt;
+
+.center[&lt;img src=./figs/hazard.png width="70%"/&gt;]
+
+
+.footnote[Stensrud. European Heart Journal. 2019]
+
+???
+Figure 1People have different disease risks. Given an effective treatment, high-risk individuals are likely to be depleted from the study population, and the depletion is expected to be larger in the placebo group than in the treatment group. This schematic drawing illustrates the built-in selection bias in population-level hazard ratios: by definition, the population-level hazard ratio at a given time point is based on individuals who survived up to that time point, thereby it is a comparison between the unbalanced groups.
 
 ---
 
@@ -300,9 +316,9 @@ List a few limitations
 ---
 ## From hazard to risks
 
-- Hazard models are useful to estimate risks when censoring is present, *under certain assumptions*
+- Hazard models are useful to estimate risks when censoring is present
 
-- In **discrete time**, the risk at time \( k+1 \) is the probability of surviving through time \( k \), then having the event at \( k+1 \):
+- In **discrete time**, the risk at time `\(k+1\)` is the probability of not having the event up to time `\(k\)`, and then having the event at time `\(k+1\)`:
 
 
 
@@ -313,29 +329,49 @@ Where
 `$$h_j = \Pr[Y_j = 1 \mid Y_{j-1} = 0]$$`
 
 ---
-## Intervening on Censoring
+## Implications of censoring
 
 .pull-left[
 
+- Statistical literature
 
-- Discuss that we are always implicitly asking questions about intervening on censoring
+  - Censoring events are independent of the event of interest
+  
+  - Censoring events are uninformative
+  
+- Causal/Counterfactual literature
+
+  - Counterfactual scenario where censoring events were eliminated
+  
+  - `\(Pr[Y_{k+1}] = Pr[Y^{\overline{\text{LTFU}} = 0}_{k+1}]\)`
+  
+  -  `\(Pr[Y^{a = 1, \overline{\text{LTFU}} = 0}_{k+1}]\)` - `\(Pr[Y^{a = 0, \overline{\text{LTFU}} = 0}_{k+1}]\)`
 
 ]
 
 .pull-right[
 
-&lt;img src=./figs/line_graph_cens.png width="100%"/&gt;
-]
+.center[
+
+&lt;img src=./figs/ltfu_dag.jpg width="100%"/&gt;
+
+]]
 
 
 ---
 ## Competing events
 
 .pull-left[
-Events that _preclude*_ the outcome of interest.
 
-- *to prevent the existence, or occurrence of; make impossible
+- Events that _preclude*_ the outcome of interest.
+
+   *to prevent the existence, or occurrence of; make impossible
+   
+
+&lt;img src=./figs/compevents_dag.jpg width="100%"/&gt;
 ]
+
+--
 
 .pull-right[
 
@@ -345,6 +381,8 @@ Events that _preclude*_ the outcome of interest.
 
 ---
 ## Competing events happen everywhere
+
+--
 
 - **Loan default**: Risk of defaulting on a loan within a given time period
   - Refinancing, paying in full
@@ -367,23 +405,23 @@ Events that _preclude*_ the outcome of interest.
 ---
 ## Competing events &amp; estimands, _Young 2020_
 
-<div id="kqbcjnzbvd" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#kqbcjnzbvd table {
+<div id="bsphqrvcgb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#bsphqrvcgb table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#kqbcjnzbvd thead, #kqbcjnzbvd tbody, #kqbcjnzbvd tfoot, #kqbcjnzbvd tr, #kqbcjnzbvd td, #kqbcjnzbvd th {
+#bsphqrvcgb thead, #bsphqrvcgb tbody, #bsphqrvcgb tfoot, #bsphqrvcgb tr, #bsphqrvcgb td, #bsphqrvcgb th {
   border-style: none;
 }
 
-#kqbcjnzbvd p {
+#bsphqrvcgb p {
   margin: 0;
   padding: 0;
 }
 
-#kqbcjnzbvd .gt_table {
+#bsphqrvcgb .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -409,12 +447,12 @@ Events that _preclude*_ the outcome of interest.
   border-left-color: #D3D3D3;
 }
 
-#kqbcjnzbvd .gt_caption {
+#bsphqrvcgb .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#kqbcjnzbvd .gt_title {
+#bsphqrvcgb .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -426,7 +464,7 @@ Events that _preclude*_ the outcome of interest.
   border-bottom-width: 0;
 }
 
-#kqbcjnzbvd .gt_subtitle {
+#bsphqrvcgb .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -438,7 +476,7 @@ Events that _preclude*_ the outcome of interest.
   border-top-width: 0;
 }
 
-#kqbcjnzbvd .gt_heading {
+#bsphqrvcgb .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -450,13 +488,13 @@ Events that _preclude*_ the outcome of interest.
   border-right-color: #D3D3D3;
 }
 
-#kqbcjnzbvd .gt_bottom_border {
+#bsphqrvcgb .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#kqbcjnzbvd .gt_col_headings {
+#bsphqrvcgb .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -471,7 +509,7 @@ Events that _preclude*_ the outcome of interest.
   border-right-color: #D3D3D3;
 }
 
-#kqbcjnzbvd .gt_col_heading {
+#bsphqrvcgb .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -491,7 +529,7 @@ Events that _preclude*_ the outcome of interest.
   overflow-x: hidden;
 }
 
-#kqbcjnzbvd .gt_column_spanner_outer {
+#bsphqrvcgb .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -503,15 +541,15 @@ Events that _preclude*_ the outcome of interest.
   padding-right: 4px;
 }
 
-#kqbcjnzbvd .gt_column_spanner_outer:first-child {
+#bsphqrvcgb .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#kqbcjnzbvd .gt_column_spanner_outer:last-child {
+#bsphqrvcgb .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#kqbcjnzbvd .gt_column_spanner {
+#bsphqrvcgb .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -523,11 +561,11 @@ Events that _preclude*_ the outcome of interest.
   width: 100%;
 }
 
-#kqbcjnzbvd .gt_spanner_row {
+#bsphqrvcgb .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#kqbcjnzbvd .gt_group_heading {
+#bsphqrvcgb .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -553,7 +591,7 @@ Events that _preclude*_ the outcome of interest.
   text-align: left;
 }
 
-#kqbcjnzbvd .gt_empty_group_heading {
+#bsphqrvcgb .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -568,15 +606,15 @@ Events that _preclude*_ the outcome of interest.
   vertical-align: middle;
 }
 
-#kqbcjnzbvd .gt_from_md > :first-child {
+#bsphqrvcgb .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#kqbcjnzbvd .gt_from_md > :last-child {
+#bsphqrvcgb .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#kqbcjnzbvd .gt_row {
+#bsphqrvcgb .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -595,7 +633,7 @@ Events that _preclude*_ the outcome of interest.
   overflow-x: hidden;
 }
 
-#kqbcjnzbvd .gt_stub {
+#bsphqrvcgb .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -608,7 +646,7 @@ Events that _preclude*_ the outcome of interest.
   padding-right: 5px;
 }
 
-#kqbcjnzbvd .gt_stub_row_group {
+#bsphqrvcgb .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -622,15 +660,15 @@ Events that _preclude*_ the outcome of interest.
   vertical-align: top;
 }
 
-#kqbcjnzbvd .gt_row_group_first td {
+#bsphqrvcgb .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#kqbcjnzbvd .gt_row_group_first th {
+#bsphqrvcgb .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#kqbcjnzbvd .gt_summary_row {
+#bsphqrvcgb .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -640,16 +678,16 @@ Events that _preclude*_ the outcome of interest.
   padding-right: 5px;
 }
 
-#kqbcjnzbvd .gt_first_summary_row {
+#bsphqrvcgb .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#kqbcjnzbvd .gt_first_summary_row.thick {
+#bsphqrvcgb .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#kqbcjnzbvd .gt_last_summary_row {
+#bsphqrvcgb .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -659,7 +697,7 @@ Events that _preclude*_ the outcome of interest.
   border-bottom-color: #D3D3D3;
 }
 
-#kqbcjnzbvd .gt_grand_summary_row {
+#bsphqrvcgb .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -669,7 +707,7 @@ Events that _preclude*_ the outcome of interest.
   padding-right: 5px;
 }
 
-#kqbcjnzbvd .gt_first_grand_summary_row {
+#bsphqrvcgb .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -679,7 +717,7 @@ Events that _preclude*_ the outcome of interest.
   border-top-color: #D3D3D3;
 }
 
-#kqbcjnzbvd .gt_last_grand_summary_row_top {
+#bsphqrvcgb .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -689,11 +727,11 @@ Events that _preclude*_ the outcome of interest.
   border-bottom-color: #D3D3D3;
 }
 
-#kqbcjnzbvd .gt_striped {
+#bsphqrvcgb .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#kqbcjnzbvd .gt_table_body {
+#bsphqrvcgb .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -702,7 +740,7 @@ Events that _preclude*_ the outcome of interest.
   border-bottom-color: #D3D3D3;
 }
 
-#kqbcjnzbvd .gt_footnotes {
+#bsphqrvcgb .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -716,7 +754,7 @@ Events that _preclude*_ the outcome of interest.
   border-right-color: #D3D3D3;
 }
 
-#kqbcjnzbvd .gt_footnote {
+#bsphqrvcgb .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -725,7 +763,7 @@ Events that _preclude*_ the outcome of interest.
   padding-right: 5px;
 }
 
-#kqbcjnzbvd .gt_sourcenotes {
+#bsphqrvcgb .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -739,7 +777,7 @@ Events that _preclude*_ the outcome of interest.
   border-right-color: #D3D3D3;
 }
 
-#kqbcjnzbvd .gt_sourcenote {
+#bsphqrvcgb .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -747,63 +785,63 @@ Events that _preclude*_ the outcome of interest.
   padding-right: 5px;
 }
 
-#kqbcjnzbvd .gt_left {
+#bsphqrvcgb .gt_left {
   text-align: left;
 }
 
-#kqbcjnzbvd .gt_center {
+#bsphqrvcgb .gt_center {
   text-align: center;
 }
 
-#kqbcjnzbvd .gt_right {
+#bsphqrvcgb .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#kqbcjnzbvd .gt_font_normal {
+#bsphqrvcgb .gt_font_normal {
   font-weight: normal;
 }
 
-#kqbcjnzbvd .gt_font_bold {
+#bsphqrvcgb .gt_font_bold {
   font-weight: bold;
 }
 
-#kqbcjnzbvd .gt_font_italic {
+#bsphqrvcgb .gt_font_italic {
   font-style: italic;
 }
 
-#kqbcjnzbvd .gt_super {
+#bsphqrvcgb .gt_super {
   font-size: 65%;
 }
 
-#kqbcjnzbvd .gt_footnote_marks {
+#bsphqrvcgb .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#kqbcjnzbvd .gt_asterisk {
+#bsphqrvcgb .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#kqbcjnzbvd .gt_indent_1 {
+#bsphqrvcgb .gt_indent_1 {
   text-indent: 5px;
 }
 
-#kqbcjnzbvd .gt_indent_2 {
+#bsphqrvcgb .gt_indent_2 {
   text-indent: 10px;
 }
 
-#kqbcjnzbvd .gt_indent_3 {
+#bsphqrvcgb .gt_indent_3 {
   text-indent: 15px;
 }
 
-#kqbcjnzbvd .gt_indent_4 {
+#bsphqrvcgb .gt_indent_4 {
   text-indent: 20px;
 }
 
-#kqbcjnzbvd .gt_indent_5 {
+#bsphqrvcgb .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -847,10 +885,11 @@ Events that _preclude*_ the outcome of interest.
 ---
 ## Causal effects
 
-Contrast of (counterfactual) outcome distributions in the **same individuals** but under **different treatments**.
+&lt;br&gt;&lt;br&gt;
 
-- The only explanation for a difference is the treatment, not comparing different individuals
+- Contrast of (counterfactual) outcome distributions in the **same individuals** but under **different treatments**.
 
+- The only explanation for a difference is the intervention, not comparing different individuals
 
 ---
 ## Quitting smoking and 20-year dementia risk  
@@ -954,23 +993,23 @@ Had we asked a question about the total effect, smoking cessation increases your
 ---
 ## Identifiability assumptions for death
 
-<div id="nwubvothjt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#nwubvothjt table {
+<div id="mnwnbqlpzy" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mnwnbqlpzy table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#nwubvothjt thead, #nwubvothjt tbody, #nwubvothjt tfoot, #nwubvothjt tr, #nwubvothjt td, #nwubvothjt th {
+#mnwnbqlpzy thead, #mnwnbqlpzy tbody, #mnwnbqlpzy tfoot, #mnwnbqlpzy tr, #mnwnbqlpzy td, #mnwnbqlpzy th {
   border-style: none;
 }
 
-#nwubvothjt p {
+#mnwnbqlpzy p {
   margin: 0;
   padding: 0;
 }
 
-#nwubvothjt .gt_table {
+#mnwnbqlpzy .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -996,12 +1035,12 @@ Had we asked a question about the total effect, smoking cessation increases your
   border-left-color: #D3D3D3;
 }
 
-#nwubvothjt .gt_caption {
+#mnwnbqlpzy .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#nwubvothjt .gt_title {
+#mnwnbqlpzy .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1013,7 +1052,7 @@ Had we asked a question about the total effect, smoking cessation increases your
   border-bottom-width: 0;
 }
 
-#nwubvothjt .gt_subtitle {
+#mnwnbqlpzy .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1025,7 +1064,7 @@ Had we asked a question about the total effect, smoking cessation increases your
   border-top-width: 0;
 }
 
-#nwubvothjt .gt_heading {
+#mnwnbqlpzy .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1037,13 +1076,13 @@ Had we asked a question about the total effect, smoking cessation increases your
   border-right-color: #D3D3D3;
 }
 
-#nwubvothjt .gt_bottom_border {
+#mnwnbqlpzy .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#nwubvothjt .gt_col_headings {
+#mnwnbqlpzy .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1058,7 +1097,7 @@ Had we asked a question about the total effect, smoking cessation increases your
   border-right-color: #D3D3D3;
 }
 
-#nwubvothjt .gt_col_heading {
+#mnwnbqlpzy .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1078,7 +1117,7 @@ Had we asked a question about the total effect, smoking cessation increases your
   overflow-x: hidden;
 }
 
-#nwubvothjt .gt_column_spanner_outer {
+#mnwnbqlpzy .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1090,15 +1129,15 @@ Had we asked a question about the total effect, smoking cessation increases your
   padding-right: 4px;
 }
 
-#nwubvothjt .gt_column_spanner_outer:first-child {
+#mnwnbqlpzy .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#nwubvothjt .gt_column_spanner_outer:last-child {
+#mnwnbqlpzy .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#nwubvothjt .gt_column_spanner {
+#mnwnbqlpzy .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1110,11 +1149,11 @@ Had we asked a question about the total effect, smoking cessation increases your
   width: 100%;
 }
 
-#nwubvothjt .gt_spanner_row {
+#mnwnbqlpzy .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#nwubvothjt .gt_group_heading {
+#mnwnbqlpzy .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1140,7 +1179,7 @@ Had we asked a question about the total effect, smoking cessation increases your
   text-align: left;
 }
 
-#nwubvothjt .gt_empty_group_heading {
+#mnwnbqlpzy .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1155,15 +1194,15 @@ Had we asked a question about the total effect, smoking cessation increases your
   vertical-align: middle;
 }
 
-#nwubvothjt .gt_from_md > :first-child {
+#mnwnbqlpzy .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#nwubvothjt .gt_from_md > :last-child {
+#mnwnbqlpzy .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#nwubvothjt .gt_row {
+#mnwnbqlpzy .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1182,7 +1221,7 @@ Had we asked a question about the total effect, smoking cessation increases your
   overflow-x: hidden;
 }
 
-#nwubvothjt .gt_stub {
+#mnwnbqlpzy .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1195,7 +1234,7 @@ Had we asked a question about the total effect, smoking cessation increases your
   padding-right: 5px;
 }
 
-#nwubvothjt .gt_stub_row_group {
+#mnwnbqlpzy .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1209,15 +1248,15 @@ Had we asked a question about the total effect, smoking cessation increases your
   vertical-align: top;
 }
 
-#nwubvothjt .gt_row_group_first td {
+#mnwnbqlpzy .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#nwubvothjt .gt_row_group_first th {
+#mnwnbqlpzy .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#nwubvothjt .gt_summary_row {
+#mnwnbqlpzy .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1227,16 +1266,16 @@ Had we asked a question about the total effect, smoking cessation increases your
   padding-right: 5px;
 }
 
-#nwubvothjt .gt_first_summary_row {
+#mnwnbqlpzy .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#nwubvothjt .gt_first_summary_row.thick {
+#mnwnbqlpzy .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#nwubvothjt .gt_last_summary_row {
+#mnwnbqlpzy .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1246,7 +1285,7 @@ Had we asked a question about the total effect, smoking cessation increases your
   border-bottom-color: #D3D3D3;
 }
 
-#nwubvothjt .gt_grand_summary_row {
+#mnwnbqlpzy .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1256,7 +1295,7 @@ Had we asked a question about the total effect, smoking cessation increases your
   padding-right: 5px;
 }
 
-#nwubvothjt .gt_first_grand_summary_row {
+#mnwnbqlpzy .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1266,7 +1305,7 @@ Had we asked a question about the total effect, smoking cessation increases your
   border-top-color: #D3D3D3;
 }
 
-#nwubvothjt .gt_last_grand_summary_row_top {
+#mnwnbqlpzy .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1276,11 +1315,11 @@ Had we asked a question about the total effect, smoking cessation increases your
   border-bottom-color: #D3D3D3;
 }
 
-#nwubvothjt .gt_striped {
+#mnwnbqlpzy .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#nwubvothjt .gt_table_body {
+#mnwnbqlpzy .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1289,7 +1328,7 @@ Had we asked a question about the total effect, smoking cessation increases your
   border-bottom-color: #D3D3D3;
 }
 
-#nwubvothjt .gt_footnotes {
+#mnwnbqlpzy .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1303,7 +1342,7 @@ Had we asked a question about the total effect, smoking cessation increases your
   border-right-color: #D3D3D3;
 }
 
-#nwubvothjt .gt_footnote {
+#mnwnbqlpzy .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1312,7 +1351,7 @@ Had we asked a question about the total effect, smoking cessation increases your
   padding-right: 5px;
 }
 
-#nwubvothjt .gt_sourcenotes {
+#mnwnbqlpzy .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1326,7 +1365,7 @@ Had we asked a question about the total effect, smoking cessation increases your
   border-right-color: #D3D3D3;
 }
 
-#nwubvothjt .gt_sourcenote {
+#mnwnbqlpzy .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1334,63 +1373,63 @@ Had we asked a question about the total effect, smoking cessation increases your
   padding-right: 5px;
 }
 
-#nwubvothjt .gt_left {
+#mnwnbqlpzy .gt_left {
   text-align: left;
 }
 
-#nwubvothjt .gt_center {
+#mnwnbqlpzy .gt_center {
   text-align: center;
 }
 
-#nwubvothjt .gt_right {
+#mnwnbqlpzy .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#nwubvothjt .gt_font_normal {
+#mnwnbqlpzy .gt_font_normal {
   font-weight: normal;
 }
 
-#nwubvothjt .gt_font_bold {
+#mnwnbqlpzy .gt_font_bold {
   font-weight: bold;
 }
 
-#nwubvothjt .gt_font_italic {
+#mnwnbqlpzy .gt_font_italic {
   font-style: italic;
 }
 
-#nwubvothjt .gt_super {
+#mnwnbqlpzy .gt_super {
   font-size: 65%;
 }
 
-#nwubvothjt .gt_footnote_marks {
+#mnwnbqlpzy .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#nwubvothjt .gt_asterisk {
+#mnwnbqlpzy .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#nwubvothjt .gt_indent_1 {
+#mnwnbqlpzy .gt_indent_1 {
   text-indent: 5px;
 }
 
-#nwubvothjt .gt_indent_2 {
+#mnwnbqlpzy .gt_indent_2 {
   text-indent: 10px;
 }
 
-#nwubvothjt .gt_indent_3 {
+#mnwnbqlpzy .gt_indent_3 {
   text-indent: 15px;
 }
 
-#nwubvothjt .gt_indent_4 {
+#mnwnbqlpzy .gt_indent_4 {
   text-indent: 20px;
 }
 
-#nwubvothjt .gt_indent_5 {
+#mnwnbqlpzy .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1420,23 +1459,23 @@ Had we asked a question about the total effect, smoking cessation increases your
 ---
 ## Identifiability assumptions for death
 
-<div id="vbtrmtkjdr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#vbtrmtkjdr table {
+<div id="wmyaeptldo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#wmyaeptldo table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#vbtrmtkjdr thead, #vbtrmtkjdr tbody, #vbtrmtkjdr tfoot, #vbtrmtkjdr tr, #vbtrmtkjdr td, #vbtrmtkjdr th {
+#wmyaeptldo thead, #wmyaeptldo tbody, #wmyaeptldo tfoot, #wmyaeptldo tr, #wmyaeptldo td, #wmyaeptldo th {
   border-style: none;
 }
 
-#vbtrmtkjdr p {
+#wmyaeptldo p {
   margin: 0;
   padding: 0;
 }
 
-#vbtrmtkjdr .gt_table {
+#wmyaeptldo .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1462,12 +1501,12 @@ Had we asked a question about the total effect, smoking cessation increases your
   border-left-color: #D3D3D3;
 }
 
-#vbtrmtkjdr .gt_caption {
+#wmyaeptldo .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#vbtrmtkjdr .gt_title {
+#wmyaeptldo .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1479,7 +1518,7 @@ Had we asked a question about the total effect, smoking cessation increases your
   border-bottom-width: 0;
 }
 
-#vbtrmtkjdr .gt_subtitle {
+#wmyaeptldo .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1491,7 +1530,7 @@ Had we asked a question about the total effect, smoking cessation increases your
   border-top-width: 0;
 }
 
-#vbtrmtkjdr .gt_heading {
+#wmyaeptldo .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1503,13 +1542,13 @@ Had we asked a question about the total effect, smoking cessation increases your
   border-right-color: #D3D3D3;
 }
 
-#vbtrmtkjdr .gt_bottom_border {
+#wmyaeptldo .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#vbtrmtkjdr .gt_col_headings {
+#wmyaeptldo .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1524,7 +1563,7 @@ Had we asked a question about the total effect, smoking cessation increases your
   border-right-color: #D3D3D3;
 }
 
-#vbtrmtkjdr .gt_col_heading {
+#wmyaeptldo .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1544,7 +1583,7 @@ Had we asked a question about the total effect, smoking cessation increases your
   overflow-x: hidden;
 }
 
-#vbtrmtkjdr .gt_column_spanner_outer {
+#wmyaeptldo .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1556,15 +1595,15 @@ Had we asked a question about the total effect, smoking cessation increases your
   padding-right: 4px;
 }
 
-#vbtrmtkjdr .gt_column_spanner_outer:first-child {
+#wmyaeptldo .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#vbtrmtkjdr .gt_column_spanner_outer:last-child {
+#wmyaeptldo .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#vbtrmtkjdr .gt_column_spanner {
+#wmyaeptldo .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1576,11 +1615,11 @@ Had we asked a question about the total effect, smoking cessation increases your
   width: 100%;
 }
 
-#vbtrmtkjdr .gt_spanner_row {
+#wmyaeptldo .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#vbtrmtkjdr .gt_group_heading {
+#wmyaeptldo .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1606,7 +1645,7 @@ Had we asked a question about the total effect, smoking cessation increases your
   text-align: left;
 }
 
-#vbtrmtkjdr .gt_empty_group_heading {
+#wmyaeptldo .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1621,15 +1660,15 @@ Had we asked a question about the total effect, smoking cessation increases your
   vertical-align: middle;
 }
 
-#vbtrmtkjdr .gt_from_md > :first-child {
+#wmyaeptldo .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#vbtrmtkjdr .gt_from_md > :last-child {
+#wmyaeptldo .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#vbtrmtkjdr .gt_row {
+#wmyaeptldo .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1648,7 +1687,7 @@ Had we asked a question about the total effect, smoking cessation increases your
   overflow-x: hidden;
 }
 
-#vbtrmtkjdr .gt_stub {
+#wmyaeptldo .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1661,7 +1700,7 @@ Had we asked a question about the total effect, smoking cessation increases your
   padding-right: 5px;
 }
 
-#vbtrmtkjdr .gt_stub_row_group {
+#wmyaeptldo .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1675,15 +1714,15 @@ Had we asked a question about the total effect, smoking cessation increases your
   vertical-align: top;
 }
 
-#vbtrmtkjdr .gt_row_group_first td {
+#wmyaeptldo .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#vbtrmtkjdr .gt_row_group_first th {
+#wmyaeptldo .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#vbtrmtkjdr .gt_summary_row {
+#wmyaeptldo .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1693,16 +1732,16 @@ Had we asked a question about the total effect, smoking cessation increases your
   padding-right: 5px;
 }
 
-#vbtrmtkjdr .gt_first_summary_row {
+#wmyaeptldo .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#vbtrmtkjdr .gt_first_summary_row.thick {
+#wmyaeptldo .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#vbtrmtkjdr .gt_last_summary_row {
+#wmyaeptldo .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1712,7 +1751,7 @@ Had we asked a question about the total effect, smoking cessation increases your
   border-bottom-color: #D3D3D3;
 }
 
-#vbtrmtkjdr .gt_grand_summary_row {
+#wmyaeptldo .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1722,7 +1761,7 @@ Had we asked a question about the total effect, smoking cessation increases your
   padding-right: 5px;
 }
 
-#vbtrmtkjdr .gt_first_grand_summary_row {
+#wmyaeptldo .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1732,7 +1771,7 @@ Had we asked a question about the total effect, smoking cessation increases your
   border-top-color: #D3D3D3;
 }
 
-#vbtrmtkjdr .gt_last_grand_summary_row_top {
+#wmyaeptldo .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1742,11 +1781,11 @@ Had we asked a question about the total effect, smoking cessation increases your
   border-bottom-color: #D3D3D3;
 }
 
-#vbtrmtkjdr .gt_striped {
+#wmyaeptldo .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#vbtrmtkjdr .gt_table_body {
+#wmyaeptldo .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1755,7 +1794,7 @@ Had we asked a question about the total effect, smoking cessation increases your
   border-bottom-color: #D3D3D3;
 }
 
-#vbtrmtkjdr .gt_footnotes {
+#wmyaeptldo .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1769,7 +1808,7 @@ Had we asked a question about the total effect, smoking cessation increases your
   border-right-color: #D3D3D3;
 }
 
-#vbtrmtkjdr .gt_footnote {
+#wmyaeptldo .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1778,7 +1817,7 @@ Had we asked a question about the total effect, smoking cessation increases your
   padding-right: 5px;
 }
 
-#vbtrmtkjdr .gt_sourcenotes {
+#wmyaeptldo .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1792,7 +1831,7 @@ Had we asked a question about the total effect, smoking cessation increases your
   border-right-color: #D3D3D3;
 }
 
-#vbtrmtkjdr .gt_sourcenote {
+#wmyaeptldo .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1800,63 +1839,63 @@ Had we asked a question about the total effect, smoking cessation increases your
   padding-right: 5px;
 }
 
-#vbtrmtkjdr .gt_left {
+#wmyaeptldo .gt_left {
   text-align: left;
 }
 
-#vbtrmtkjdr .gt_center {
+#wmyaeptldo .gt_center {
   text-align: center;
 }
 
-#vbtrmtkjdr .gt_right {
+#wmyaeptldo .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#vbtrmtkjdr .gt_font_normal {
+#wmyaeptldo .gt_font_normal {
   font-weight: normal;
 }
 
-#vbtrmtkjdr .gt_font_bold {
+#wmyaeptldo .gt_font_bold {
   font-weight: bold;
 }
 
-#vbtrmtkjdr .gt_font_italic {
+#wmyaeptldo .gt_font_italic {
   font-style: italic;
 }
 
-#vbtrmtkjdr .gt_super {
+#wmyaeptldo .gt_super {
   font-size: 65%;
 }
 
-#vbtrmtkjdr .gt_footnote_marks {
+#wmyaeptldo .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#vbtrmtkjdr .gt_asterisk {
+#wmyaeptldo .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#vbtrmtkjdr .gt_indent_1 {
+#wmyaeptldo .gt_indent_1 {
   text-indent: 5px;
 }
 
-#vbtrmtkjdr .gt_indent_2 {
+#wmyaeptldo .gt_indent_2 {
   text-indent: 10px;
 }
 
-#vbtrmtkjdr .gt_indent_3 {
+#wmyaeptldo .gt_indent_3 {
   text-indent: 15px;
 }
 
-#vbtrmtkjdr .gt_indent_4 {
+#wmyaeptldo .gt_indent_4 {
   text-indent: 20px;
 }
 
-#vbtrmtkjdr .gt_indent_5 {
+#wmyaeptldo .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -1889,23 +1928,23 @@ Had we asked a question about the total effect, smoking cessation increases your
 ---
 ## Identifiability assumptions for death
 
-<div id="zayiklvzub" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#zayiklvzub table {
+<div id="giannutgie" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#giannutgie table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#zayiklvzub thead, #zayiklvzub tbody, #zayiklvzub tfoot, #zayiklvzub tr, #zayiklvzub td, #zayiklvzub th {
+#giannutgie thead, #giannutgie tbody, #giannutgie tfoot, #giannutgie tr, #giannutgie td, #giannutgie th {
   border-style: none;
 }
 
-#zayiklvzub p {
+#giannutgie p {
   margin: 0;
   padding: 0;
 }
 
-#zayiklvzub .gt_table {
+#giannutgie .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -1931,12 +1970,12 @@ Had we asked a question about the total effect, smoking cessation increases your
   border-left-color: #D3D3D3;
 }
 
-#zayiklvzub .gt_caption {
+#giannutgie .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#zayiklvzub .gt_title {
+#giannutgie .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -1948,7 +1987,7 @@ Had we asked a question about the total effect, smoking cessation increases your
   border-bottom-width: 0;
 }
 
-#zayiklvzub .gt_subtitle {
+#giannutgie .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -1960,7 +1999,7 @@ Had we asked a question about the total effect, smoking cessation increases your
   border-top-width: 0;
 }
 
-#zayiklvzub .gt_heading {
+#giannutgie .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -1972,13 +2011,13 @@ Had we asked a question about the total effect, smoking cessation increases your
   border-right-color: #D3D3D3;
 }
 
-#zayiklvzub .gt_bottom_border {
+#giannutgie .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#zayiklvzub .gt_col_headings {
+#giannutgie .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1993,7 +2032,7 @@ Had we asked a question about the total effect, smoking cessation increases your
   border-right-color: #D3D3D3;
 }
 
-#zayiklvzub .gt_col_heading {
+#giannutgie .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2013,7 +2052,7 @@ Had we asked a question about the total effect, smoking cessation increases your
   overflow-x: hidden;
 }
 
-#zayiklvzub .gt_column_spanner_outer {
+#giannutgie .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2025,15 +2064,15 @@ Had we asked a question about the total effect, smoking cessation increases your
   padding-right: 4px;
 }
 
-#zayiklvzub .gt_column_spanner_outer:first-child {
+#giannutgie .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#zayiklvzub .gt_column_spanner_outer:last-child {
+#giannutgie .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#zayiklvzub .gt_column_spanner {
+#giannutgie .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -2045,11 +2084,11 @@ Had we asked a question about the total effect, smoking cessation increases your
   width: 100%;
 }
 
-#zayiklvzub .gt_spanner_row {
+#giannutgie .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#zayiklvzub .gt_group_heading {
+#giannutgie .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2075,7 +2114,7 @@ Had we asked a question about the total effect, smoking cessation increases your
   text-align: left;
 }
 
-#zayiklvzub .gt_empty_group_heading {
+#giannutgie .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -2090,15 +2129,15 @@ Had we asked a question about the total effect, smoking cessation increases your
   vertical-align: middle;
 }
 
-#zayiklvzub .gt_from_md > :first-child {
+#giannutgie .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#zayiklvzub .gt_from_md > :last-child {
+#giannutgie .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#zayiklvzub .gt_row {
+#giannutgie .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2117,7 +2156,7 @@ Had we asked a question about the total effect, smoking cessation increases your
   overflow-x: hidden;
 }
 
-#zayiklvzub .gt_stub {
+#giannutgie .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2130,7 +2169,7 @@ Had we asked a question about the total effect, smoking cessation increases your
   padding-right: 5px;
 }
 
-#zayiklvzub .gt_stub_row_group {
+#giannutgie .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -2144,15 +2183,15 @@ Had we asked a question about the total effect, smoking cessation increases your
   vertical-align: top;
 }
 
-#zayiklvzub .gt_row_group_first td {
+#giannutgie .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#zayiklvzub .gt_row_group_first th {
+#giannutgie .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#zayiklvzub .gt_summary_row {
+#giannutgie .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2162,16 +2201,16 @@ Had we asked a question about the total effect, smoking cessation increases your
   padding-right: 5px;
 }
 
-#zayiklvzub .gt_first_summary_row {
+#giannutgie .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#zayiklvzub .gt_first_summary_row.thick {
+#giannutgie .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#zayiklvzub .gt_last_summary_row {
+#giannutgie .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2181,7 +2220,7 @@ Had we asked a question about the total effect, smoking cessation increases your
   border-bottom-color: #D3D3D3;
 }
 
-#zayiklvzub .gt_grand_summary_row {
+#giannutgie .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -2191,7 +2230,7 @@ Had we asked a question about the total effect, smoking cessation increases your
   padding-right: 5px;
 }
 
-#zayiklvzub .gt_first_grand_summary_row {
+#giannutgie .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2201,7 +2240,7 @@ Had we asked a question about the total effect, smoking cessation increases your
   border-top-color: #D3D3D3;
 }
 
-#zayiklvzub .gt_last_grand_summary_row_top {
+#giannutgie .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -2211,11 +2250,11 @@ Had we asked a question about the total effect, smoking cessation increases your
   border-bottom-color: #D3D3D3;
 }
 
-#zayiklvzub .gt_striped {
+#giannutgie .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#zayiklvzub .gt_table_body {
+#giannutgie .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -2224,7 +2263,7 @@ Had we asked a question about the total effect, smoking cessation increases your
   border-bottom-color: #D3D3D3;
 }
 
-#zayiklvzub .gt_footnotes {
+#giannutgie .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2238,7 +2277,7 @@ Had we asked a question about the total effect, smoking cessation increases your
   border-right-color: #D3D3D3;
 }
 
-#zayiklvzub .gt_footnote {
+#giannutgie .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -2247,7 +2286,7 @@ Had we asked a question about the total effect, smoking cessation increases your
   padding-right: 5px;
 }
 
-#zayiklvzub .gt_sourcenotes {
+#giannutgie .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -2261,7 +2300,7 @@ Had we asked a question about the total effect, smoking cessation increases your
   border-right-color: #D3D3D3;
 }
 
-#zayiklvzub .gt_sourcenote {
+#giannutgie .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -2269,63 +2308,63 @@ Had we asked a question about the total effect, smoking cessation increases your
   padding-right: 5px;
 }
 
-#zayiklvzub .gt_left {
+#giannutgie .gt_left {
   text-align: left;
 }
 
-#zayiklvzub .gt_center {
+#giannutgie .gt_center {
   text-align: center;
 }
 
-#zayiklvzub .gt_right {
+#giannutgie .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#zayiklvzub .gt_font_normal {
+#giannutgie .gt_font_normal {
   font-weight: normal;
 }
 
-#zayiklvzub .gt_font_bold {
+#giannutgie .gt_font_bold {
   font-weight: bold;
 }
 
-#zayiklvzub .gt_font_italic {
+#giannutgie .gt_font_italic {
   font-style: italic;
 }
 
-#zayiklvzub .gt_super {
+#giannutgie .gt_super {
   font-size: 65%;
 }
 
-#zayiklvzub .gt_footnote_marks {
+#giannutgie .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#zayiklvzub .gt_asterisk {
+#giannutgie .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#zayiklvzub .gt_indent_1 {
+#giannutgie .gt_indent_1 {
   text-indent: 5px;
 }
 
-#zayiklvzub .gt_indent_2 {
+#giannutgie .gt_indent_2 {
   text-indent: 10px;
 }
 
-#zayiklvzub .gt_indent_3 {
+#giannutgie .gt_indent_3 {
   text-indent: 15px;
 }
 
-#zayiklvzub .gt_indent_4 {
+#giannutgie .gt_indent_4 {
   text-indent: 20px;
 }
 
-#zayiklvzub .gt_indent_5 {
+#giannutgie .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -2390,11 +2429,25 @@ Physical decomposition of the exposure assumed to operate on `\(Y\)` and `\(D\)`
 ---
 ## Take away points
 
-- Censoring and competing events are the key feature of survival analysis
+--
 
-- Risks &amp; cumulative incidence measures are the only ones that contemplate the 
+- Incident events form the cornerstone of causal inference in epidemiology
 
-- 
+--
+
+- Risks &amp; cumulative incidence are the only measures that consistently refer back to the target/study population at baseline
+
+--
+
+- Time is a fundamental component, but that doesn't mean that inherently our primary measure of interest is *time-to-event*
+
+--
+
+- Censoring and competing events are not exceptions to the rule but rather common occurrences that must be accounted for in analyses
+
+--
+
+- Estimands for the risk of an event by a given time must explicitly incorporate censoring and competing risks to ensure transparent and interpretable conclusion
 
 ---
 class: title-slide, center, middle, inverse
@@ -2407,6 +2460,9 @@ Special thanks to:
 - Yingyan Wu
 - Elizabeth Rose Mayeda
 - Onyebuchi Arah
+- Jessica G. Young
+- Sonja A. Swanson
+- Vanessa Didelez
 ]
 
 .right[
