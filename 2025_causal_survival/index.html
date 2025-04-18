@@ -1,0 +1,2082 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>2025_PCI_causal_survival</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="L. Paloma Rojas-Saunero" />
+    <meta name="date" content="2025-04-17" />
+    <script src="index_files/header-attrs/header-attrs.js"></script>
+    <script src="index_files/xaringanExtra-progressBar/progress-bar.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="extra.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+class: title-slide, center, middle, inverse
+background-image: url(./figs/logo.png)
+background-position: 95% 95%
+background-size: 28%, 25%
+
+# Conceptualizing .yellow[survival] analysis through a .yellow[causal inference] framework
+
+
+.center[
+
+L. Paloma Rojas-Saunero MD, PhD
+&lt;br&gt;
+Postdoctoral scholar
+&lt;br&gt;
+Department of Epidemiology, UCLA
+
+]
+
+???
+
+---
+<style>.xe__progress-bar__container {
+  top:0;
+  opacity: 1;
+  position:absolute;
+  right:0;
+  left: 0;
+}
+.xe__progress-bar {
+  height: 0.25em;
+  background-color: #ffb81c;
+  width: calc(var(--slide-current) / var(--slide-total) * 100%);
+}
+.remark-visible .xe__progress-bar {
+  animation: xe__progress-bar__wipe 200ms forwards;
+  animation-timing-function: cubic-bezier(.86,0,.07,1);
+}
+@keyframes xe__progress-bar__wipe {
+  0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
+  100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
+}</style>
+
+## Motivation
+
+survival 
+time to event
+risks* 
+
+---
+## Risk / Incidence proportion
+
+.pull-left[
+- A probability in a **fixed period of time**
+
+- Risk = `\(A/N\)`, where:
+
+  + `\(N\)` = people free of outcome at start of follow-up
+
+  + `\(A\)` = people experiencing the outcome over a **fixed period of time**
+]
+
+.pull-right[
+
+&lt;img src=./figs/line_graph_no_cens.png width="100%"/&gt;
+
+]
+
+---
+## Cumulative incidence
+
+.pull-left[
+
+- In the ideal scenario (no drop out)
+
+- `\(Pr[T ≤ t]\)`
+
+- At baseline, cumulative incidence is 0, `\(Pr[T ≤ 0] = 0\)`
+
+- Increases monotonically (or remains constant)
+]
+
+.pull-right[
+
+&lt;img src=./figs/cif.png width="100%"/&gt;
+
+]
+
+---
+## What makes a valid estimation of _risk_?
+
+.pull-left[
+- Well-defined population
+
+  → Target and study population clearly specified
+
+- Defined observation period at risk
+
+  → e.g., lifetime, 10-year, 2-week
+
+- Complete follow-up over the observation period
+
+- New (incident) cases only
+]
+
+---
+## Examples from other fields
+
+- **Loan default** &lt;br&gt;&lt;br&gt; Risk of defaulting on a loan within a given time period
+
+--
+
+- **Student dropout** &lt;br&gt;&lt;br&gt; Risk of student drop out within a specific number of semesters
+
+--
+
+- **Customer churn** &lt;br&gt;&lt;br&gt; Risk of subscription canceling after the 30-days free trial
+
+--
+
+- **Soccer** &lt;br&gt;&lt;br&gt; Risk of a player scoring a goal within in the first half
+ 
+
+---
+## Censoring
+
+.pull-left[
+
+- In real world data, people drop out or are loss to follow-up during the study period
+
+- This means that their outcome is _unknown_ at all time points where they were not observed
+
+- Censoring is the key feature of time-to-event analysis
+
+]
+
+--
+.pull-right[
+
+&lt;img src=./figs/line_graph_cens.png width="100%"/&gt;
+
+]
+
+---
+## Incidence rates 
+
+.pull-left[
+
+Frequency with which incident events occur within a given amount of follow-up time.
+&lt;br&gt; 
+`\(A/PT\)`
+&lt;br&gt;
+where:
+  + `\(A\)` = Number of incident cases
+
+  + `\(PT\)` = "Person-time", total amount of time that all individuals were at risk of the outcome
+]
+
+--
+
+.pull-right[
+
+&lt;img src=./figs/line_graph_cens.png width="100%"/&gt;
+
+]
+
+---
+## Incidence rates 
+
+.pull-left[
+
+Frequency with which incident events occur within a given amount of follow-up time.
+&lt;br&gt; 
+`\(A/PT\)`
+&lt;br&gt;
+where:
+  + `\(A\)` = Number of incident cases
+
+  + `\(PT\)` = "Person-time", total amount of time that all individuals were at risk of the outcome
+]
+
+--
+
+.pull-right[
+
+&lt;img src=./figs/person_time_westreich.jpg width="100%"/&gt;
+]
+
+---
+## Hazards
+
+.pull-left[
+
+They are defined as the instantaneous "rate", or instantaneous probability of having the event
+
+&lt;br&gt;
+
+`\(Pr[T = t|T &gt; t − 1]\)`
+
+&lt;br&gt;
+`\(Pr [D_t = 1|D_{t−1} = 0]\)`
+
+
+
+]
+
+.pull-right[
+
+&lt;img src=./figs/hazard_fx.png width="100%"/&gt;
+
+
+]
+???
+
+---
+## Key differences between risks, rates, hazards
+
+**Risks**
+- Denominator: Number of individuals at baseline (constant).
+- Numerator: Cumulative number of events from baseline to time *k*.
+
+**Rates**
+- Denominator: Total person-time at risk (accumulated time contributed by all individuals).
+- Numerator: Number of events occurring over the total person-time.
+- Note: Rates account for varying follow-up times and can exceed 1.
+
+**Hazards**
+- Denominator: Number of individuals at risk _just prior_ to time `\(k\)` (varies over time).
+- Numerator: Number of events occurring _in a very small interval_ around time `\(k\)` (instantaneous rate).
+
+---
+## Cox proportional hazard models
+
+.pull-left[
+In 1972, Sir David Cox introduced a novel regression method for "right-censored survival data"
+
+Since then, the "hazard ratios" have become the _standard approach_ in observational studies looking at incident events
+
+They rely on the proportional hazards assumption.
+
+]
+
+
+
+---
+## The hazard of hazard ratios
+
+.pull-left[
+&lt;img src=./figs/hazard_dag.JPG width="100%"/&gt;
+]
+
+.pull-right[
+List a few limitations
+]
+
+---
+## The hazard of hazard ratios
+&lt;img src=./figs/hazard.png width="70%"/&gt;
+
+---
+
+
+.center[
+&lt;img src=./figs/poole_quote.jpg width="80%"/&gt;
+]
+
+.footnote[Poole. Epidemiologic Perspectives &amp; Innovations. 2010]
+
+---
+## From hazard to risks
+
+- Hazard models are useful to estimate risks
+
+- Survival probability at `\(k\)` is the product of the conditional probabilities of having survived each interval between 0 and `\(k\)`.
+
+`$$\Pr[D_k = 0] = \prod_{m=1}^{k} \Pr[D_m = 0 \mid D_{m-1} = 0]$$`
+
+---
+## Causal effects
+
+Contrast of (counterfactual) outcome distributions in the **same individuals** but under **different treatments**.
+
+- The only explanation for a difference is the treatment, not comparing different individuals
+
+
+---
+## Intervening on Censoring
+
+.pull-left[
+
+
+- Discuss that we are always implicitly asking questions about intervening on censoring
+
+]
+
+.pull-right[
+
+&lt;img src=./figs/line_graph_cens.png width="100%"/&gt;
+]
+
+- *Time of end of study* is often defined as *administrative censoring* but that adds unnecesary jargon. 
+---
+## Competing events
+
+.pull-left[
+Events that _preclude*_ the outcome of interest.
+
+- *to prevent the existence, or occurrence of; make impossible
+]
+
+.pull-right[
+
+&lt;img src=./figs/line_graph_comp_events.png width="100%"/&gt;
+
+]
+
+---
+## Competing events are the norm rather than the excemption
+
+- **Loan default**: Risk of defaulting on a loan within a given time period
+  - Refinancing, paying in full
+--
+
+- **Student dropout**: Risk of student drop out within a specific number of semesters
+  - Transfer to another institution
+
+--
+
+- **Customer churn** Risk of subscription canceling after the 30-days free trial
+  - Switching to a different plan
+  
+--
+
+- **Soccer** Risk of a player scoring a goal within in the first half
+  - Receiving a red card without scoring
+ 
+
+
+---
+## Quitting smoking and 20-year dementia risk  
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+.center[
+
+&lt;img src=./figs/comp_events.JPG width="60%"/&gt;
+
+]
+
+.footnote[**C**: Shared risk factors]
+
+---
+## Total effect
+
+--
+
+&lt;br&gt;
+
+.center[
+.middle[
+
+What is the risk** of dementia at 20 years of follow-up had all individuals stopped smoking, compared to had all individuals continued smoking?
+
+`$$Pr[Y_{20}^{a = 1} = 1] - Pr[Y_{20}^{a = 0} = 1]$$`
+
+
+&lt;img src=./figs/total_effect.JPG width="60%"/&gt;
+
+
+]]
+
+** _Cause-specific cumulative incidence_ or _crude_ risk
+
+---
+## Controlled direct effect
+
+&lt;br&gt;
+
+.center[
+.middle[
+
+What is the risk** of dementia at 20 years of follow-up had all individuals stopped smoking _and not died_ during the study period, compared to had all individuals continued smoking _and not died_ ?
+
+
+`$$Pr[Y_{20}^{a = 1, d_{19} = 0} = 1] - Pr[Y_{20}^{a = 0, d_{19} = 0} = 1]$$`
+
+
+&lt;img src=./figs/direct_effect.JPG width="60%"/&gt;
+
+]
+]
+
+** _Marginal_ or _net_ risk
+
+---
+## Controlled direct effect
+
+&lt;br&gt;
+
+.center[.middle[
+
+What is the risk** of dementia at 20 years of follow-up had all individuals stopped smoking _and not died_ during the study period, compared to had all individuals continued smoking _and not died_ ?
+
+
+`$$Pr[Y_{20}^{a = 1, d_{19} = 0} = 1] - Pr[Y_{20}^{a = 0, d_{19} = 0} = 1]$$`
+
+&lt;img src=./figs/direct_effect_cens.JPG width="60%"/&gt;
+
+]
+]
+
+** _Marginal_ or _net_ risk
+
+???
+So up to now, we can see that these two questions have very different interpretations and rely on different assumptions
+
+
+---
+background-image: url(./figs/rs_logo.jpg)
+background-position: 95% 95%
+background-size: 12%
+
+## Quitting smoking on dementia risk at 20 years
+
+.center[
+&lt;img src=./figs/smoke_aje.png width="70%"/&gt;]
+
+???
+What we see is that had we asked a question about the CDE and use appropiate methods, we would see that smoking cessation prevents dementia risk.
+Had we asked a question about the total effect, smoking cessation increases your risk of dementia, but again this is not bias, but rather the unbiased result for a question that does not satisfy our interest.
+
+---
+## Estimand choice is context- and field-specific.
+
+.center[
+&lt;img src=./figs/ventilator_mortality.jpg width="70%"/&gt;]
+
+---
+## Identifiability assumptions for death
+
+<div id="ynmgcjlhyp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#ynmgcjlhyp table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#ynmgcjlhyp thead, #ynmgcjlhyp tbody, #ynmgcjlhyp tfoot, #ynmgcjlhyp tr, #ynmgcjlhyp td, #ynmgcjlhyp th {
+  border-style: none;
+}
+
+#ynmgcjlhyp p {
+  margin: 0;
+  padding: 0;
+}
+
+#ynmgcjlhyp .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 22px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#ynmgcjlhyp .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#ynmgcjlhyp .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#ynmgcjlhyp .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#ynmgcjlhyp .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ynmgcjlhyp .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ynmgcjlhyp .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#ynmgcjlhyp .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#ynmgcjlhyp .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#ynmgcjlhyp .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#ynmgcjlhyp .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#ynmgcjlhyp .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#ynmgcjlhyp .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#ynmgcjlhyp .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#ynmgcjlhyp .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#ynmgcjlhyp .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#ynmgcjlhyp .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#ynmgcjlhyp .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#ynmgcjlhyp .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ynmgcjlhyp .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#ynmgcjlhyp .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#ynmgcjlhyp .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#ynmgcjlhyp .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ynmgcjlhyp .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#ynmgcjlhyp .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#ynmgcjlhyp .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ynmgcjlhyp .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ynmgcjlhyp .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#ynmgcjlhyp .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ynmgcjlhyp .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#ynmgcjlhyp .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#ynmgcjlhyp .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ynmgcjlhyp .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ynmgcjlhyp .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#ynmgcjlhyp .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#ynmgcjlhyp .gt_left {
+  text-align: left;
+}
+
+#ynmgcjlhyp .gt_center {
+  text-align: center;
+}
+
+#ynmgcjlhyp .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#ynmgcjlhyp .gt_font_normal {
+  font-weight: normal;
+}
+
+#ynmgcjlhyp .gt_font_bold {
+  font-weight: bold;
+}
+
+#ynmgcjlhyp .gt_font_italic {
+  font-style: italic;
+}
+
+#ynmgcjlhyp .gt_super {
+  font-size: 65%;
+}
+
+#ynmgcjlhyp .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#ynmgcjlhyp .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#ynmgcjlhyp .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#ynmgcjlhyp .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#ynmgcjlhyp .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#ynmgcjlhyp .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#ynmgcjlhyp .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" style="table-layout: fixed;; width: 0px" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <colgroup>
+    <col style="width:200px;"/>
+    <col style="width:150px;"/>
+    <col style="width:350px;"/>
+  </colgroup>
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&amp;lt;b&amp;gt; Assumption &amp;lt;/b&amp;gt;">&lt;b&gt; Assumption &lt;/b&gt;</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&amp;lt;b&amp;gt; Total Effect &amp;lt;/b&amp;gt;">&lt;b&gt; Total Effect &lt;/b&gt;</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&amp;lt;b&amp;gt; Controlled direct effect &amp;lt;/b&amp;gt;">&lt;b&gt; Controlled direct effect &lt;/b&gt;</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="<b> Assumption </b>" class="gt_row gt_left">&lt;b&gt; Exchangeability &lt;/b&gt;</td>
+<td headers="<b> Total Effect </b>" class="gt_row gt_left">Not needed</td>
+<td headers="<b> Controlled direct effect </b>" class="gt_row gt_left">Death is independent of future outcomes had everyone followed A = a and death was eliminated, conditional on covariates</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+
+---
+## Identifiability assumptions for death
+
+<div id="gbjnquffgc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#gbjnquffgc table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#gbjnquffgc thead, #gbjnquffgc tbody, #gbjnquffgc tfoot, #gbjnquffgc tr, #gbjnquffgc td, #gbjnquffgc th {
+  border-style: none;
+}
+
+#gbjnquffgc p {
+  margin: 0;
+  padding: 0;
+}
+
+#gbjnquffgc .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 22px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#gbjnquffgc .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#gbjnquffgc .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#gbjnquffgc .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#gbjnquffgc .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#gbjnquffgc .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gbjnquffgc .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#gbjnquffgc .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#gbjnquffgc .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#gbjnquffgc .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#gbjnquffgc .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#gbjnquffgc .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#gbjnquffgc .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#gbjnquffgc .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#gbjnquffgc .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#gbjnquffgc .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#gbjnquffgc .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#gbjnquffgc .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#gbjnquffgc .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gbjnquffgc .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#gbjnquffgc .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#gbjnquffgc .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#gbjnquffgc .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gbjnquffgc .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#gbjnquffgc .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#gbjnquffgc .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gbjnquffgc .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gbjnquffgc .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#gbjnquffgc .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gbjnquffgc .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#gbjnquffgc .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#gbjnquffgc .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#gbjnquffgc .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gbjnquffgc .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#gbjnquffgc .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#gbjnquffgc .gt_left {
+  text-align: left;
+}
+
+#gbjnquffgc .gt_center {
+  text-align: center;
+}
+
+#gbjnquffgc .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#gbjnquffgc .gt_font_normal {
+  font-weight: normal;
+}
+
+#gbjnquffgc .gt_font_bold {
+  font-weight: bold;
+}
+
+#gbjnquffgc .gt_font_italic {
+  font-style: italic;
+}
+
+#gbjnquffgc .gt_super {
+  font-size: 65%;
+}
+
+#gbjnquffgc .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#gbjnquffgc .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#gbjnquffgc .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#gbjnquffgc .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#gbjnquffgc .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#gbjnquffgc .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#gbjnquffgc .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" style="table-layout: fixed;; width: 0px" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <colgroup>
+    <col style="width:200px;"/>
+    <col style="width:150px;"/>
+    <col style="width:350px;"/>
+  </colgroup>
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&amp;lt;b&amp;gt; Assumption &amp;lt;/b&amp;gt;">&lt;b&gt; Assumption &lt;/b&gt;</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&amp;lt;b&amp;gt; Total Effect &amp;lt;/b&amp;gt;">&lt;b&gt; Total Effect &lt;/b&gt;</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&amp;lt;b&amp;gt; Controlled direct effect &amp;lt;/b&amp;gt;">&lt;b&gt; Controlled direct effect &lt;/b&gt;</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="<b> Assumption </b>" class="gt_row gt_left">&lt;b&gt; Exchangeability &lt;/b&gt;</td>
+<td headers="<b> Total Effect </b>" class="gt_row gt_left">Not needed</td>
+<td headers="<b> Controlled direct effect </b>" class="gt_row gt_left">Death is independent of future outcomes had everyone followed A = a and death was eliminated, conditional on covariates</td></tr>
+    <tr><td headers="<b> Assumption </b>" class="gt_row gt_left">&lt;b&gt; Positivity &lt;/b&gt;</td>
+<td headers="<b> Total Effect </b>" class="gt_row gt_left">Not needed</td>
+<td headers="<b> Controlled direct effect </b>" class="gt_row gt_left">At every follow-up time, there are individuals with any possibly observed level A = a and covariate history who remain alive and free of dementia diagnosis.</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+
+---
+## Identifiability assumptions for death
+
+<div id="rarwwjpoco" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#rarwwjpoco table {
+  font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+#rarwwjpoco thead, #rarwwjpoco tbody, #rarwwjpoco tfoot, #rarwwjpoco tr, #rarwwjpoco td, #rarwwjpoco th {
+  border-style: none;
+}
+
+#rarwwjpoco p {
+  margin: 0;
+  padding: 0;
+}
+
+#rarwwjpoco .gt_table {
+  display: table;
+  border-collapse: collapse;
+  line-height: normal;
+  margin-left: auto;
+  margin-right: auto;
+  color: #333333;
+  font-size: 22px;
+  font-weight: normal;
+  font-style: normal;
+  background-color: #FFFFFF;
+  width: auto;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #A8A8A8;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #A8A8A8;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+}
+
+#rarwwjpoco .gt_caption {
+  padding-top: 4px;
+  padding-bottom: 4px;
+}
+
+#rarwwjpoco .gt_title {
+  color: #333333;
+  font-size: 125%;
+  font-weight: initial;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-color: #FFFFFF;
+  border-bottom-width: 0;
+}
+
+#rarwwjpoco .gt_subtitle {
+  color: #333333;
+  font-size: 85%;
+  font-weight: initial;
+  padding-top: 3px;
+  padding-bottom: 5px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-color: #FFFFFF;
+  border-top-width: 0;
+}
+
+#rarwwjpoco .gt_heading {
+  background-color: #FFFFFF;
+  text-align: center;
+  border-bottom-color: #FFFFFF;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#rarwwjpoco .gt_bottom_border {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rarwwjpoco .gt_col_headings {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+}
+
+#rarwwjpoco .gt_col_heading {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 6px;
+  padding-left: 5px;
+  padding-right: 5px;
+  overflow-x: hidden;
+}
+
+#rarwwjpoco .gt_column_spanner_outer {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: normal;
+  text-transform: inherit;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+#rarwwjpoco .gt_column_spanner_outer:first-child {
+  padding-left: 0;
+}
+
+#rarwwjpoco .gt_column_spanner_outer:last-child {
+  padding-right: 0;
+}
+
+#rarwwjpoco .gt_column_spanner {
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: bottom;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  overflow-x: hidden;
+  display: inline-block;
+  width: 100%;
+}
+
+#rarwwjpoco .gt_spanner_row {
+  border-bottom-style: hidden;
+}
+
+#rarwwjpoco .gt_group_heading {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  text-align: left;
+}
+
+#rarwwjpoco .gt_empty_group_heading {
+  padding: 0.5px;
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  vertical-align: middle;
+}
+
+#rarwwjpoco .gt_from_md > :first-child {
+  margin-top: 0;
+}
+
+#rarwwjpoco .gt_from_md > :last-child {
+  margin-bottom: 0;
+}
+
+#rarwwjpoco .gt_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  margin: 10px;
+  border-top-style: solid;
+  border-top-width: 1px;
+  border-top-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 1px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 1px;
+  border-right-color: #D3D3D3;
+  vertical-align: middle;
+  overflow-x: hidden;
+}
+
+#rarwwjpoco .gt_stub {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rarwwjpoco .gt_stub_row_group {
+  color: #333333;
+  background-color: #FFFFFF;
+  font-size: 100%;
+  font-weight: initial;
+  text-transform: inherit;
+  border-right-style: solid;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+  padding-left: 5px;
+  padding-right: 5px;
+  vertical-align: top;
+}
+
+#rarwwjpoco .gt_row_group_first td {
+  border-top-width: 2px;
+}
+
+#rarwwjpoco .gt_row_group_first th {
+  border-top-width: 2px;
+}
+
+#rarwwjpoco .gt_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rarwwjpoco .gt_first_summary_row {
+  border-top-style: solid;
+  border-top-color: #D3D3D3;
+}
+
+#rarwwjpoco .gt_first_summary_row.thick {
+  border-top-width: 2px;
+}
+
+#rarwwjpoco .gt_last_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rarwwjpoco .gt_grand_summary_row {
+  color: #333333;
+  background-color: #FFFFFF;
+  text-transform: inherit;
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rarwwjpoco .gt_first_grand_summary_row {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-top-style: double;
+  border-top-width: 6px;
+  border-top-color: #D3D3D3;
+}
+
+#rarwwjpoco .gt_last_grand_summary_row_top {
+  padding-top: 8px;
+  padding-bottom: 8px;
+  padding-left: 5px;
+  padding-right: 5px;
+  border-bottom-style: double;
+  border-bottom-width: 6px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rarwwjpoco .gt_striped {
+  background-color: rgba(128, 128, 128, 0.05);
+}
+
+#rarwwjpoco .gt_table_body {
+  border-top-style: solid;
+  border-top-width: 2px;
+  border-top-color: #D3D3D3;
+  border-bottom-style: solid;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+}
+
+#rarwwjpoco .gt_footnotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#rarwwjpoco .gt_footnote {
+  margin: 0px;
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rarwwjpoco .gt_sourcenotes {
+  color: #333333;
+  background-color: #FFFFFF;
+  border-bottom-style: none;
+  border-bottom-width: 2px;
+  border-bottom-color: #D3D3D3;
+  border-left-style: none;
+  border-left-width: 2px;
+  border-left-color: #D3D3D3;
+  border-right-style: none;
+  border-right-width: 2px;
+  border-right-color: #D3D3D3;
+}
+
+#rarwwjpoco .gt_sourcenote {
+  font-size: 90%;
+  padding-top: 4px;
+  padding-bottom: 4px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+#rarwwjpoco .gt_left {
+  text-align: left;
+}
+
+#rarwwjpoco .gt_center {
+  text-align: center;
+}
+
+#rarwwjpoco .gt_right {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+#rarwwjpoco .gt_font_normal {
+  font-weight: normal;
+}
+
+#rarwwjpoco .gt_font_bold {
+  font-weight: bold;
+}
+
+#rarwwjpoco .gt_font_italic {
+  font-style: italic;
+}
+
+#rarwwjpoco .gt_super {
+  font-size: 65%;
+}
+
+#rarwwjpoco .gt_footnote_marks {
+  font-size: 75%;
+  vertical-align: 0.4em;
+  position: initial;
+}
+
+#rarwwjpoco .gt_asterisk {
+  font-size: 100%;
+  vertical-align: 0;
+}
+
+#rarwwjpoco .gt_indent_1 {
+  text-indent: 5px;
+}
+
+#rarwwjpoco .gt_indent_2 {
+  text-indent: 10px;
+}
+
+#rarwwjpoco .gt_indent_3 {
+  text-indent: 15px;
+}
+
+#rarwwjpoco .gt_indent_4 {
+  text-indent: 20px;
+}
+
+#rarwwjpoco .gt_indent_5 {
+  text-indent: 25px;
+}
+</style>
+<table class="gt_table" style="table-layout: fixed;; width: 0px" data-quarto-disable-processing="false" data-quarto-bootstrap="false">
+  <colgroup>
+    <col style="width:200px;"/>
+    <col style="width:150px;"/>
+    <col style="width:350px;"/>
+  </colgroup>
+  <thead>
+    <tr class="gt_col_headings">
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&amp;lt;b&amp;gt; Assumption &amp;lt;/b&amp;gt;">&lt;b&gt; Assumption &lt;/b&gt;</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&amp;lt;b&amp;gt; Total Effect &amp;lt;/b&amp;gt;">&lt;b&gt; Total Effect &lt;/b&gt;</th>
+      <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" scope="col" id="&amp;lt;b&amp;gt; Controlled direct effect &amp;lt;/b&amp;gt;">&lt;b&gt; Controlled direct effect &lt;/b&gt;</th>
+    </tr>
+  </thead>
+  <tbody class="gt_table_body">
+    <tr><td headers="<b> Assumption </b>" class="gt_row gt_left">&lt;b&gt; Exchangeability &lt;/b&gt;</td>
+<td headers="<b> Total Effect </b>" class="gt_row gt_left">Not needed</td>
+<td headers="<b> Controlled direct effect </b>" class="gt_row gt_left">Death is independent of future outcomes had everyone followed A = a and death was eliminated, conditional on covariates</td></tr>
+    <tr><td headers="<b> Assumption </b>" class="gt_row gt_left">&lt;b&gt; Positivity &lt;/b&gt;</td>
+<td headers="<b> Total Effect </b>" class="gt_row gt_left">Not needed</td>
+<td headers="<b> Controlled direct effect </b>" class="gt_row gt_left">At every follow-up time, there are individuals with any possibly observed level A = a and covariate history who remain alive and free of dementia diagnosis.</td></tr>
+    <tr><td headers="<b> Assumption </b>" class="gt_row gt_left">&lt;b&gt; Consistency &lt;/b&gt;</td>
+<td headers="<b> Total Effect </b>" class="gt_row gt_left">Not needed</td>
+<td headers="<b> Controlled direct effect </b>" class="gt_row gt_left">An intervention that “eliminates death” is well-defined.</td></tr>
+  </tbody>
+  
+  
+</table>
+</div>
+
+
+---
+## Other possible estimands
+
+- **Composite outcome**
+
+--
+
+- **Survivors average causal effect:** 
+
+`$$Pr[Y_{t}^{a = 1} = 1 |\bar{D}_{t}^{a = 1} = \bar{D}_{t}^{a = 0} = 0] - Pr[Y_{t}^{a = 0} = 1 |\bar{D}_{t}^{a = 1} = \bar{D}_{t}^{a = 0} = 0]$$`
+
+--
+
+- **Natural direct effects**:
+
+`$$Pr[Y_{t}^{a = 1, \bar{D}_{t}^{a = 0}} = 1] - Pr[Y_{t}^{a = 0, \bar{D}_{t}^{a = 0}} = 1]$$`
+
+---
+## Separable effects
+
+- Physical decomposition of the exposure assumed to operate on `\(Y\)` and `\(D\)` through separate pathways. (_Stensrud et al. JASA. 2020_)
+
+
+---
+## Take away points
+
+- 
+
+- Censoring and intercurrent events are the key feature of survival analysis
+
+- Being explicit about how you handle them is crutial for meaninful interpretations
+
+- Hazards and incidence rates 
+
+---
+
+##
+
+# .yellow[Thank You, Gracias!]
+
+
+.left[
+lp.rojassaunero@ucla.edu
+
+]
+
+
+---
+## The trinity to avoid immortal time bias
+
+.pull-left[
+
+- At time zero, the following elements align:
+
+  -   Inclusion in the study (based on eligibility criteria)
+
+  -   Randomization to intervention
+
+  - Start of follow-up for incident events
+
+]
+
+.pull-right[
+
+&lt;img src=./figs/line_graph_no_cens.png width="100%"/&gt;
+
+]
+
+---
+## Kaplan-Meier estimator
+
+$$
+\hat{S}(t) = \prod_{t_i \leq t} \left( 1 - \frac{d_i}{n_i} \right)
+$$
+
+- `\(\hat{S}(t)\)`: estimated survival probability at time \( t \)
+- `\(t_i\)`: the distinct times when events (e.g., deaths) occur
+- `\(d_i\)`: the number of events (e.g., deaths) at time `\(t_i\)`
+- `\(n_i\)`: the number of individuals at risk just before time `\(t_i\)`
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

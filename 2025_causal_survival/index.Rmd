@@ -1,0 +1,615 @@
+---
+title: "2025_PCI_causal_survival"
+author: "L. Paloma Rojas-Saunero"
+date: '`r Sys.Date()`'
+output:
+  xaringan::moon_reader:
+    css: ["xaringan-themer.css", "extra.css"]
+    seal: false
+    nature:
+      slideNumberFormat: "%current%"
+      highlightStyle: github
+      highlightLines: TRUE
+      countIncrementalSlides: FALSE
+      ratio: "16:9"
+---
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  fig.width=9, fig.height=3.5, fig.retina=3,
+  out.width = "100%",
+  cache = FALSE,
+  echo = FALSE,
+  message = FALSE, 
+  warning = FALSE,
+  hiline = TRUE
+)
+library(tidyverse)
+library(gt)
+library(knitr)
+library(fontawesome)
+
+
+```
+
+```{r xaringan-themer, warning=FALSE, include=FALSE}
+library(xaringanthemer)
+style_mono_light(
+  base_color = "#005587",
+  black_color = "#002B43",
+  table_row_even_background_color = "#FFFFFF",
+  title_slide_text_color = "#FFFFFF",
+  table_border_color = "#8bb8e8",
+  text_bold_color = "#002B43",
+  background_color = "#FFFFFF",
+  text_font_size = "24px",
+  header_h1_font_size = "2.75rem",
+  header_h2_font_size = "2.35rem",
+  header_h3_font_size = "2rem",
+  padding = "16px 64px 16px 32px",
+  colors = c(
+    yellow = "#ffb81c",
+    purple = "#3e2f5b",
+    green = "#136f63",
+    white = "#FFFFFF"
+  ))
+
+```
+
+class: title-slide, center, middle, inverse
+background-image: url(./figs/logo.png)
+background-position: 95% 95%
+background-size: 28%, 25%
+
+# Conceptualizing .yellow[survival] analysis through a .yellow[causal inference] framework
+
+
+.center[
+
+L. Paloma Rojas-Saunero MD, PhD
+<br>
+Postdoctoral scholar
+<br>
+Department of Epidemiology, UCLA
+
+]
+
+???
+
+---
+```{r, echo=FALSE}
+xaringanExtra::use_progress_bar("#ffb81c", "top", "0.25em")
+```
+
+## Motivation
+
+survival 
+time to event
+risks* 
+
+---
+## Risk / Incidence proportion
+
+.pull-left[
+- A probability in a **fixed period of time**
+
+- Risk = $A/N$, where:
+
+  + $N$ = people free of outcome at start of follow-up
+
+  + $A$ = people experiencing the outcome over a **fixed period of time**
+]
+
+.pull-right[
+
+<img src=./figs/line_graph_no_cens.png width="100%"/>
+
+]
+
+---
+## Cumulative incidence
+
+.pull-left[
+
+- In the ideal scenario (no drop out)
+
+- $Pr[T ≤ t]$
+
+- At baseline, cumulative incidence is 0, $Pr[T ≤ 0] = 0$
+
+- Increases monotonically (or remains constant)
+]
+
+.pull-right[
+
+<img src=./figs/cif.png width="100%"/>
+
+]
+
+---
+## What makes a valid estimation of _risk_?
+
+.pull-left[
+- Well-defined population
+
+  → Target and study population clearly specified
+
+- Defined observation period at risk
+
+  → e.g., lifetime, 10-year, 2-week
+
+- Complete follow-up over the observation period
+
+- New (incident) cases only
+]
+
+---
+## Examples from other fields
+
+- **Loan default** <br><br> Risk of defaulting on a loan within a given time period
+
+--
+
+- **Student dropout** <br><br> Risk of student drop out within a specific number of semesters
+
+--
+
+- **Customer churn** <br><br> Risk of subscription canceling after the 30-days free trial
+
+--
+
+- **Soccer** <br><br> Risk of a player scoring a goal within in the first half
+ 
+
+---
+## Censoring
+
+.pull-left[
+
+- In real world data, people drop out or are loss to follow-up during the study period
+
+- This means that their outcome is _unknown_ at all time points where they were not observed
+
+- Censoring is the key feature of time-to-event analysis
+
+]
+
+--
+.pull-right[
+
+<img src=./figs/line_graph_cens.png width="100%"/>
+
+]
+
+---
+## Incidence rates 
+
+.pull-left[
+
+Frequency with which incident events occur within a given amount of follow-up time.
+<br> 
+$A/PT$
+<br>
+where:
+  + $A$ = Number of incident cases
+
+  + $PT$ = "Person-time", total amount of time that all individuals were at risk of the outcome
+]
+
+--
+
+.pull-right[
+
+<img src=./figs/line_graph_cens.png width="100%"/>
+
+]
+
+---
+## Incidence rates 
+
+.pull-left[
+
+Frequency with which incident events occur within a given amount of follow-up time.
+<br> 
+$A/PT$
+<br>
+where:
+  + $A$ = Number of incident cases
+
+  + $PT$ = "Person-time", total amount of time that all individuals were at risk of the outcome
+]
+
+--
+
+.pull-right[
+
+<img src=./figs/person_time_westreich.jpg width="100%"/>
+]
+
+---
+## Hazards
+
+.pull-left[
+
+They are defined as the instantaneous "rate", or instantaneous probability of having the event
+
+<br>
+
+$Pr[T = t|T > t − 1]$
+
+<br>
+$Pr [D_t = 1|D_{t−1} = 0]$
+
+
+
+]
+
+.pull-right[
+
+<img src=./figs/hazard_fx.png width="100%"/>
+
+
+]
+???
+
+---
+## Key differences between risks, rates, hazards
+
+**Risks**
+- Denominator: Number of individuals at baseline (constant).
+- Numerator: Cumulative number of events from baseline to time *k*.
+
+**Rates**
+- Denominator: Total person-time at risk (accumulated time contributed by all individuals).
+- Numerator: Number of events occurring over the total person-time.
+- Note: Rates account for varying follow-up times and can exceed 1.
+
+**Hazards**
+- Denominator: Number of individuals at risk _just prior_ to time $k$ (varies over time).
+- Numerator: Number of events occurring _in a very small interval_ around time $k$ (instantaneous rate).
+
+---
+## Cox proportional hazard models
+
+.pull-left[
+In 1972, Sir David Cox introduced a novel regression method for "right-censored survival data"
+
+Since then, the "hazard ratios" have become the _standard approach_ in observational studies looking at incident events
+
+They rely on the proportional hazards assumption.
+
+]
+
+
+
+---
+## The hazard of hazard ratios
+
+.pull-left[
+<img src=./figs/hazard_dag.JPG width="100%"/>
+]
+
+.pull-right[
+List a few limitations
+]
+
+---
+## The hazard of hazard ratios
+<img src=./figs/hazard.png width="70%"/>
+
+---
+
+
+.center[
+<img src=./figs/poole_quote.jpg width="80%"/>
+]
+
+.footnote[Poole. Epidemiologic Perspectives & Innovations. 2010]
+
+---
+## From hazard to risks
+
+- Hazard models are useful to estimate risks
+
+- Survival probability at $k$ is the product of the conditional probabilities of having survived each interval between 0 and $k$.
+
+$$\Pr[D_k = 0] = \prod_{m=1}^{k} \Pr[D_m = 0 \mid D_{m-1} = 0]$$
+
+---
+## Causal effects
+
+Contrast of (counterfactual) outcome distributions in the **same individuals** but under **different treatments**.
+
+- The only explanation for a difference is the treatment, not comparing different individuals
+
+
+---
+## Intervening on Censoring
+
+.pull-left[
+
+
+- Discuss that we are always implicitly asking questions about intervening on censoring
+
+]
+
+.pull-right[
+
+<img src=./figs/line_graph_cens.png width="100%"/>
+]
+
+- *Time of end of study* is often defined as *administrative censoring* but that adds unnecesary jargon. 
+---
+## Competing events
+
+.pull-left[
+Events that _preclude*_ the outcome of interest.
+
+- *to prevent the existence, or occurrence of; make impossible
+]
+
+.pull-right[
+
+<img src=./figs/line_graph_comp_events.png width="100%"/>
+
+]
+
+---
+## Competing events are the norm rather than the excemption
+
+- **Loan default**: Risk of defaulting on a loan within a given time period
+  - Refinancing, paying in full
+--
+
+- **Student dropout**: Risk of student drop out within a specific number of semesters
+  - Transfer to another institution
+
+--
+
+- **Customer churn** Risk of subscription canceling after the 30-days free trial
+  - Switching to a different plan
+  
+--
+
+- **Soccer** Risk of a player scoring a goal within in the first half
+  - Receiving a red card without scoring
+ 
+
+
+---
+## Quitting smoking and 20-year dementia risk  
+
+<br><br><br>
+
+.center[
+
+<img src=./figs/comp_events.JPG width="60%"/>
+
+]
+
+.footnote[**C**: Shared risk factors]
+
+---
+## Total effect
+
+--
+
+<br>
+
+.center[
+.middle[
+
+What is the risk** of dementia at 20 years of follow-up had all individuals stopped smoking, compared to had all individuals continued smoking?
+
+$$Pr[Y_{20}^{a = 1} = 1] - Pr[Y_{20}^{a = 0} = 1]$$
+
+
+<img src=./figs/total_effect.JPG width="60%"/>
+
+
+]]
+
+** _Cause-specific cumulative incidence_ or _crude_ risk
+
+---
+## Controlled direct effect
+
+<br>
+
+.center[
+.middle[
+
+What is the risk** of dementia at 20 years of follow-up had all individuals stopped smoking _and not died_ during the study period, compared to had all individuals continued smoking _and not died_ ?
+
+
+$$Pr[Y_{20}^{a = 1, d_{19} = 0} = 1] - Pr[Y_{20}^{a = 0, d_{19} = 0} = 1]$$
+
+
+<img src=./figs/direct_effect.JPG width="60%"/>
+
+]
+]
+
+** _Marginal_ or _net_ risk
+
+---
+## Controlled direct effect
+
+<br>
+
+.center[.middle[
+
+What is the risk** of dementia at 20 years of follow-up had all individuals stopped smoking _and not died_ during the study period, compared to had all individuals continued smoking _and not died_ ?
+
+
+$$Pr[Y_{20}^{a = 1, d_{19} = 0} = 1] - Pr[Y_{20}^{a = 0, d_{19} = 0} = 1]$$
+
+<img src=./figs/direct_effect_cens.JPG width="60%"/>
+
+]
+]
+
+** _Marginal_ or _net_ risk
+
+???
+So up to now, we can see that these two questions have very different interpretations and rely on different assumptions
+
+
+---
+background-image: url(./figs/rs_logo.jpg)
+background-position: 95% 95%
+background-size: 12%
+
+## Quitting smoking on dementia risk at 20 years
+
+.center[
+<img src=./figs/smoke_aje.png width="70%"/>]
+
+???
+What we see is that had we asked a question about the CDE and use appropiate methods, we would see that smoking cessation prevents dementia risk.
+Had we asked a question about the total effect, smoking cessation increases your risk of dementia, but again this is not bias, but rather the unbiased result for a question that does not satisfy our interest.
+
+---
+## Estimand choice is context- and field-specific.
+
+.center[
+<img src=./figs/ventilator_mortality.jpg width="70%"/>]
+
+---
+## Identifiability assumptions for death
+
+```{r}
+table <- tibble::tribble(
+  ~ "<b> Assumption </b>",
+  ~ "<b> Total Effect </b>",
+  ~ "<b> Controlled direct effect </b>",
+  "<b> Exchangeability </b>",
+  "Not needed",
+  "Death is independent of future outcomes had everyone followed A = a and death was eliminated, conditional on covariates",
+  "<b> Positivity </b>",
+  "Not needed",
+  "At every follow-up time, there are individuals with any possibly observed level A = a and covariate history who remain alive and free of dementia diagnosis.",
+  "<b> Consistency </b>",
+  "Not needed",
+  "An intervention that “eliminates death” is well-defined."
+)
+
+table %>% slice(1) %>% gt() %>% 
+  tab_options(
+    table.font.size = 22
+  ) %>% 
+      cols_width(
+    "<b> Assumption </b>" ~ px(200),
+    "<b> Total Effect </b>" ~ px(150),
+    "<b> Controlled direct effect </b>" ~ px(350))
+```
+
+---
+## Identifiability assumptions for death
+
+```{r}
+table %>% slice(1:2) %>% gt() %>% 
+  tab_options(
+    table.font.size = 22
+  ) %>% 
+    cols_width(
+    "<b> Assumption </b>" ~ px(200),
+    "<b> Total Effect </b>" ~ px(150),
+    "<b> Controlled direct effect </b>" ~ px(350))
+```
+
+---
+## Identifiability assumptions for death
+
+```{r}
+table %>% gt() %>%   tab_options(
+    table.font.size = 22
+  ) %>% 
+      cols_width(
+    "<b> Assumption </b>" ~ px(200),
+    "<b> Total Effect </b>" ~ px(150),
+    "<b> Controlled direct effect </b>" ~ px(350))
+```
+
+
+---
+## Other possible estimands
+
+- **Composite outcome**
+
+--
+
+- **Survivors average causal effect:** 
+
+$$Pr[Y_{t}^{a = 1} = 1 |\bar{D}_{t}^{a = 1} = \bar{D}_{t}^{a = 0} = 0] - Pr[Y_{t}^{a = 0} = 1 |\bar{D}_{t}^{a = 1} = \bar{D}_{t}^{a = 0} = 0]$$
+
+--
+
+- **Natural direct effects**:
+
+$$Pr[Y_{t}^{a = 1, \bar{D}_{t}^{a = 0}} = 1] - Pr[Y_{t}^{a = 0, \bar{D}_{t}^{a = 0}} = 1]$$
+
+---
+## Separable effects
+
+- Physical decomposition of the exposure assumed to operate on $Y$ and $D$ through separate pathways. (_Stensrud et al. JASA. 2020_)
+
+
+---
+## Take away points
+
+- 
+
+- Censoring and intercurrent events are the key feature of survival analysis
+
+- Being explicit about how you handle them is crutial for meaninful interpretations
+
+- Hazards and incidence rates 
+
+---
+
+##
+
+# .yellow[Thank You, Gracias!]
+
+
+.left[
+lp.rojassaunero@ucla.edu
+
+]
+
+
+---
+## The trinity to avoid immortal time bias
+
+.pull-left[
+
+- At time zero, the following elements align:
+
+  -   Inclusion in the study (based on eligibility criteria)
+
+  -   Randomization to intervention
+
+  - Start of follow-up for incident events
+
+]
+
+.pull-right[
+
+<img src=./figs/line_graph_no_cens.png width="100%"/>
+
+]
+
+---
+## Kaplan-Meier estimator
+
+$$
+\hat{S}(t) = \prod_{t_i \leq t} \left( 1 - \frac{d_i}{n_i} \right)
+$$
+
+- $\hat{S}(t)$: estimated survival probability at time \( t \)
+- $t_i$: the distinct times when events (e.g., deaths) occur
+- $d_i$: the number of events (e.g., deaths) at time $t_i$
+- $n_i$: the number of individuals at risk just before time $t_i$
+
+
