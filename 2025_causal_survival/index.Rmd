@@ -81,23 +81,21 @@ Department of Epidemiology, UCLA
 xaringanExtra::use_progress_bar("#ffb81c", "top", "0.25em")
 ```
 
-## Motivation
-
-survival 
-time to event
-risks* 
+.middle[
+.center[<img src=./figs/survival_meme.jpg width="70%"/>]
+]
 
 ---
 ## Risk / Incidence proportion
 
 .pull-left[
-- A probability in a **fixed period of time**
+- The probability of having an incident event in a **fixed period of time**
 
-- Risk = $A/N$, where:
+- $Pr[Event =1]_k$ = $A/N$, where:
 
-  + $N$ = people free of outcome at start of follow-up
+  + $N$ = people free of event at start of follow-up
 
-  + $A$ = people experiencing the outcome over a **fixed period of time**
+  + $A$ = people experiencing the event
 ]
 
 .pull-right[
@@ -113,7 +111,11 @@ risks*
 
 - In the ideal scenario (no drop out)
 
-- $Pr[T ≤ t]$
+- $Pr[T ≤ t]$, where:
+
+  - $T$ = time to event
+
+  - $t$ = specific time point of interest
 
 - At baseline, cumulative incidence is 0, $Pr[T ≤ 0] = 0$
 
@@ -130,9 +132,7 @@ risks*
 ## What makes a valid estimation of _risk_?
 
 .pull-left[
-- Well-defined population
-
-  → Target and study population clearly specified
+- Target and study population clearly specified
 
 - Defined observation period at risk
 
@@ -141,16 +141,19 @@ risks*
 - Complete follow-up over the observation period
 
 - New (incident) cases only
+
+- Starting point (baseline) is the same for all participants
+
 ]
 
 ---
 ## Examples from other fields
 
-- **Loan default** <br><br> Risk of defaulting on a loan within a given time period
+- **Loan default** <br><br> Risk of defaulting on a loan within the first year of the credit
 
 --
 
-- **Student dropout** <br><br> Risk of student drop out within a specific number of semesters
+- **Student dropout** <br><br> Risk of student drop out within the first 4 semesters
 
 --
 
@@ -166,11 +169,13 @@ risks*
 
 .pull-left[
 
-- In real world data, people drop out or are loss to follow-up during the study period
+- By design, we want to prevent participant's drop out
 
-- This means that their outcome is _unknown_ at all time points where they were not observed
+- But in real-world data, people are loss to follow-up and drop out during the study period
 
-- Censoring is the key feature of time-to-event analysis
+- *A censoring event* makes the event of interest _unknown_ at all future time points
+
+- Censoring is the *key* feature of time-to-event analysis
 
 ]
 
@@ -180,6 +185,8 @@ risks*
 <img src=./figs/line_graph_cens.png width="100%"/>
 
 ]
+
+- *Time of end of study* is often defined as *administrative censoring* but I will refrain from using this jargon for now
 
 ---
 ## Incidence rates 
@@ -219,9 +226,11 @@ where:
   + $PT$ = "Person-time", total amount of time that all individuals were at risk of the outcome
 ]
 
---
+
 
 .pull-right[
+
+**Comparison of incidence rates across groups is tricky**
 
 <img src=./figs/person_time_westreich.jpg width="100%"/>
 ]
@@ -231,14 +240,16 @@ where:
 
 .pull-left[
 
-They are defined as the instantaneous "rate", or instantaneous probability of having the event
+They are defined as the instantaneous "rate", or instantaneous probability of having the event, $Y$
 
 <br>
+
+**Discrete hazards**
 
 $Pr[T = t|T > t − 1]$
 
 <br>
-$Pr [D_t = 1|D_{t−1} = 0]$
+$Pr [Y_k = 1|Y_{k−1} = 0]$
 
 
 
@@ -246,7 +257,7 @@ $Pr [D_t = 1|D_{t−1} = 0]$
 
 .pull-right[
 
-<img src=./figs/hazard_fx.png width="100%"/>
+<img src=./figs/hazard_fx.png width="85%"/>
 
 
 ]
@@ -256,27 +267,29 @@ $Pr [D_t = 1|D_{t−1} = 0]$
 ## Key differences between risks, rates, hazards
 
 **Risks**
-- Denominator: Number of individuals at baseline (constant).
-- Numerator: Cumulative number of events from baseline to time *k*.
+- Denominator: Number of individuals at baseline
+- Numerator: Cumulative number of events over a fixed period of time
 
 **Rates**
-- Denominator: Total person-time at risk (accumulated time contributed by all individuals).
-- Numerator: Number of events occurring over the total person-time.
-- Note: Rates account for varying follow-up times and can exceed 1.
+- Denominator: Total person-time at risk (accumulated time contributed by all individuals)
+- Numerator: Number of events occurring over the total person-time
 
-**Hazards**
-- Denominator: Number of individuals at risk _just prior_ to time $k$ (varies over time).
-- Numerator: Number of events occurring _in a very small interval_ around time $k$ (instantaneous rate).
+**Hazard**
+- Denominator: Number of individuals at risk just before time t
+- Numerator: Number of events occurrence in an small interval after time t
 
 ---
 ## Cox proportional hazard models
 
 .pull-left[
-In 1972, Sir David Cox introduced a novel regression method for "right-censored survival data"
+In 1972, Sir David Cox introduced a novel semi-parametric regression method for "right-censored survival data"
+
+This model allows you to include covariates
+
+They rely on the proportional hazards assumption
 
 Since then, the "hazard ratios" have become the _standard approach_ in observational studies looking at incident events
 
-They rely on the proportional hazards assumption.
 
 ]
 
@@ -309,19 +322,17 @@ List a few limitations
 ---
 ## From hazard to risks
 
-- Hazard models are useful to estimate risks
+- Hazard models are useful to estimate risks when censoring is present, *under certain assumptions*
 
-- Survival probability at $k$ is the product of the conditional probabilities of having survived each interval between 0 and $k$.
+- In **discrete time**, the risk at time \( k+1 \) is the probability of surviving through time \( k \), then having the event at \( k+1 \):
 
-$$\Pr[D_k = 0] = \prod_{m=1}^{k} \Pr[D_m = 0 \mid D_{m-1} = 0]$$
 
----
-## Causal effects
 
-Contrast of (counterfactual) outcome distributions in the **same individuals** but under **different treatments**.
+$$\Pr[Y_{k+1} = 1] = \left( \prod_{j=1}^{k} (1 - h_j) \right) \cdot h_{k+1}$$
 
-- The only explanation for a difference is the treatment, not comparing different individuals
+Where 
 
+$$h_j = \Pr[Y_j = 1 \mid Y_{j-1} = 0]$$
 
 ---
 ## Intervening on Censoring
@@ -338,7 +349,7 @@ Contrast of (counterfactual) outcome distributions in the **same individuals** b
 <img src=./figs/line_graph_cens.png width="100%"/>
 ]
 
-- *Time of end of study* is often defined as *administrative censoring* but that adds unnecesary jargon. 
+
 ---
 ## Competing events
 
@@ -355,10 +366,11 @@ Events that _preclude*_ the outcome of interest.
 ]
 
 ---
-## Competing events are the norm rather than the excemption
+## Competing events happen everywhere
 
 - **Loan default**: Risk of defaulting on a loan within a given time period
   - Refinancing, paying in full
+
 --
 
 - **Student dropout**: Risk of student drop out within a specific number of semesters
@@ -368,12 +380,69 @@ Events that _preclude*_ the outcome of interest.
 
 - **Customer churn** Risk of subscription canceling after the 30-days free trial
   - Switching to a different plan
-  
+
 --
 
 - **Soccer** Risk of a player scoring a goal within in the first half
   - Receiving a red card without scoring
- 
+
+---
+## Competing events & estimands, _Young 2020_
+
+```{r}
+
+# Create the table as a data frame
+table_data <- tibble::tibble(
+  Definition = c(
+    "$$\\Pr[Y^{\\bar{d} = \\bar{0}}_{k+1} = 1]$$",
+    "$$\\Pr[Y_{k+1} = 1]$$",
+    "$$\\Pr[Y^{\\bar{d} = \\bar{0}}_{k+1} = 1 \\mid Y^{\\bar{d} = \\bar{0}}_k = 0]$$",
+    "$$\\Pr[Y_{k+1} = 1 \\mid Y_k = 0]$$",
+    "$$\\Pr[Y_{k+1} = 1 \\mid D_{k+1} = Y_k = 0]$$"
+  ),
+  Description = c(
+    "Risk under elimination of competing events",
+    "Risk without elimination of competing events",
+    "Hazard under elimination of competing events",
+    "Hazard without elimination of competing events",
+    "Hazard conditioned on competing events"
+  ),
+  Terminology = c(
+    "Marginal cumulative incidence, net risk",
+    "Subdistribution function, cause-specific cumulative incidence, crude risk",
+    "Marginal hazard",
+    "Subdistribution hazard",
+    "Cause-specific hazard"
+  )
+)
+  
+
+table_data %>% gt() %>% 
+  cols_label(
+    Definition = "Definition",
+    Description = "Description",
+    Terminology = "Statistical Literature Terminology"
+  ) %>% 
+  tab_options(
+    table.font.size = 20) %>% 
+      cols_width(
+   1 ~ px(350),
+    2 ~ px(400),
+    3 ~ px(400)) %>% 
+   tab_style(
+    style = cell_text(align = "center", weight = "bold"),
+    locations = cells_column_labels(everything())
+  )
+```
+
+
+
+---
+## Causal effects
+
+Contrast of (counterfactual) outcome distributions in the **same individuals** but under **different treatments**.
+
+- The only explanation for a difference is the treatment, not comparing different individuals
 
 
 ---
@@ -392,7 +461,7 @@ Events that _preclude*_ the outcome of interest.
 ---
 ## Total effect
 
---
+
 
 <br>
 
@@ -537,6 +606,8 @@ table %>% gt() %>%   tab_options(
 
 - **Composite outcome**
 
+$$Pr[Y_{t}^{a = 1} = 1   \text{ or } {D}_{t}^{a = 1} = 1] - Pr[Y_{t}^{a = 0} = 1  \text{ or } {D}_{t}^{a = 1} = 1]$$
+
 --
 
 - **Survivors average causal effect:** 
@@ -552,28 +623,35 @@ $$Pr[Y_{t}^{a = 1, \bar{D}_{t}^{a = 0}} = 1] - Pr[Y_{t}^{a = 0, \bar{D}_{t}^{a =
 ---
 ## Separable effects
 
-- Physical decomposition of the exposure assumed to operate on $Y$ and $D$ through separate pathways. (_Stensrud et al. JASA. 2020_)
+Physical decomposition of the exposure assumed to operate on $Y$ and $D$ through separate pathways. (_Stensrud et al. JASA. 2020_)
 
+.center[
+<img src=./figs/stensrud.jpg width="30%"/>
+]
 
 ---
 ## Take away points
 
+- Censoring and competing events are the key feature of survival analysis
+
+- Risks & cumulative incidence measures are the only ones that contemplate the 
+
 - 
 
-- Censoring and intercurrent events are the key feature of survival analysis
-
-- Being explicit about how you handle them is crutial for meaninful interpretations
-
-- Hazards and incidence rates 
-
 ---
-
-##
+class: title-slide, center, middle, inverse
 
 # .yellow[Thank You, Gracias!]
 
-
 .left[
+Special thanks to:
+- Yixuan Zhou
+- Yingyan Wu
+- Elizabeth Rose Mayeda
+- Onyebuchi Arah
+]
+
+.right[
 lp.rojassaunero@ucla.edu
 
 ]
