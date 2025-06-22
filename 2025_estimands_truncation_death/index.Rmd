@@ -1,0 +1,305 @@
+---
+title: "2025_May_23_khandle_meet"
+author: "L. Paloma Rojas-Saunero"
+date: '`r Sys.Date()`'
+output:
+  xaringan::moon_reader:
+    css: ["xaringan-themer.css", "extra.css"]
+    seal: false
+    nature:
+      slideNumberFormat: "%current%"
+      highlightStyle: github
+      highlightLines: TRUE
+      countIncrementalSlides: FALSE
+      ratio: "16:9"
+---
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  fig.width=9, fig.height=3.5, fig.retina=3,
+  out.width = "100%",
+  cache = FALSE,
+  echo = FALSE,
+  message = FALSE, 
+  warning = FALSE,
+  hiline = TRUE
+)
+library(tidyverse)
+library(gt)
+library(knitr)
+library(fontawesome)
+
+
+```
+
+```{r xaringan-themer, warning=FALSE, include=FALSE}
+library(xaringanthemer)
+style_mono_light(
+  base_color = "#005587",
+  black_color = "#002B43",
+  table_row_even_background_color = "#FFFFFF",
+  title_slide_text_color = "#FFFFFF",
+  table_border_color = "#8bb8e8",
+  text_bold_color = "#002B43",
+  background_color = "#FFFFFF",
+  text_font_size = "24px",
+  header_h1_font_size = "2.75rem",
+  header_h2_font_size = "2.35rem",
+  header_h3_font_size = "2rem",
+  padding = "16px 64px 16px 32px",
+  colors = c(
+    yellow = "#ffb81c",
+    purple = "#3e2f5b",
+    green = "#136f63",
+    white = "#FFFFFF"
+  ))
+
+```
+
+class: title-slide, center, middle, inverse
+background-image: url(./figs/logo.png)
+background-position: 95% 95%
+background-size: 28%, 25%
+
+# Estimands for longitudinal continous outcomes in the presence of death and dropout
+
+
+.center[
+
+L. Paloma Rojas-Saunero MD, PhD
+<br>
+Postdoctoral scholar
+<br>
+Department of Epidemiology, UCLA
+
+]
+
+???
+
+---
+```{r, echo=FALSE}
+xaringanExtra::use_progress_bar("#ffb81c", "top", "0.25em")
+```
+
+# Types of research questions
+
+- **Descriptive:**
+
+  + What is the lifetime risk of dementia for women and men born in 1940 in Los Angeles
+  
+--
+
+- **Predictive:**
+
+  + Is subjective cognitive impairment at age 60 a good diagnostic predictor of cognitive impairment at age 70?
+  
+--
+
+- **Causal (etiologic, interventional)**
+
+  + What is the effect of persistent daily interpersonal racial discrimination in midlife in dementia risk over 10 years of follow-up?
+  
+  + What is the effect of Lecanemab in amyloid deposition over 18 months of treatment?
+
+---
+# Estimands
+
+
+.pull-left[
+<br><br>
+
+**Definition**: The specific quantity you want to estimate, that answers your research question.
+
+]
+
+.pull-right[
+
+<img src=./figs/target_icon.png width="60%"/>
+
+]
+
+---
+# Estimands have 5 elements
+
+**1. Target population** 
+
+--
+
+**2. Exposure, treatment, comparison groups**
+
+--
+
+**3. Outcome (endpoint)**: within a time frame
+
+--
+
+**4. Summary measure:** A population-level measure of frequency that is _interpretable_
+  + $Pr(Y_t=1|A=1) - Pr(Y_t=1|A=0)$
+  + $E(Y_t|A=1) - E(Y_t|A=0)$
+
+**5. Intercurrent events:** Events that will prevent us from observing the exposure or outcome
+  + E.g. adverse reactions, death, loss to follow-up
+
+---
+class: center, middle
+
+<img src=./figs/estimands_meme_horizontal.jpg width="120%"/>
+
+---
+# Ideal study
+
+
+- Target and study population clearly specified
+
+- Defined observation period at risk
+
+  → e.g., lifetime, 10-year, 2-weeks
+
+- Complete follow-up over the observation period
+
+- Starting point (baseline) is the same for all participants
+
+---
+## Censoring
+
+.pull-left[
+
+- By design, we want to prevent participant's dropout
+
+- But in real-world data, people are loss to follow-up and drop out during the study period
+
+- *A censoring event* makes the event of interest _unknown_ at all future time points
+
+- Censoring is the *key* feature of time-to-event analysis
+
+]
+
+
+.pull-right[
+
+<img src=./figs/line_graph_cens.png width="100%"/>
+
+]
+
+- *Time of end of study* is often defined as *administrative censoring* but I will refrain from using this jargon for now
+
+---
+## Implications of censoring
+
+.pull-left[
+
+- Statistical literature
+
+  - Censoring events are independent of the event of interest
+  
+  - Censoring events are uninformative
+  
+- Causal literature
+
+  - Counterfactual scenario where censoring events were eliminated
+  
+  - $Pr[Y_{k+1}] = Pr[Y^{\overline{\text{LTFU}} = 0}_{k+1}]$
+  
+  -  $Pr[Y^{a = 1, \overline{\text{LTFU}} = 0}_{k+1}]$ - $Pr[Y^{a = 0, \overline{\text{LTFU}} = 0}_{k+1}]$
+
+]
+
+.pull-right[
+
+.center[
+
+<img src=./figs/ltfu_dag.jpg width="100%"/>
+
+]]
+
+
+---
+# Intercurrent event of death
+
+- Let's say we are interested in measuring the outcome **Y** at 1 year of follow-up
+
+- A participant dies at 6 months of follow-up
+
+  - If Y is binary, e.g. **dementia diagnosis**, then the probability of **Y** at 1 year is **0** 
+  
+    → Death is a _competing event_
+  
+  - If Y is continuous, such as **cognitive function**, then the expected value of **Y** at 1 year is **undefined (maybe not of substantive interest)**
+
+    → Death is a _truncation event_
+
+---
+# Death and dropout in KHANDLE and STAR?
+
+.middle[
+.center[
+<img src=./figs/isolation_km.jpg width="70%"/>
+]]
+
+---
+## How comparable are two groups if they have differential death and dropout?
+
+.middle[
+.center[
+<img src=./figs/isolation_box_plot.jpg width="60%"/>
+]]
+
+---
+#### Mean trajectories of functional impairment among those who remain in the study
+
+$E(Y_t|SI=1, Death_t = 0) - E(Y_t|SI=0, Death_t = 0)$
+
+--
+
+.center[
+<img src=./figs/isolation_while_alive.jpg width="50%"/>
+]
+
+---
+#### Mean trajectories of functional impairment if we could have eliminated death
+
+$E[Y_t^{\overline{\text{Death}} = 0}|SI=1] - E[Y_t^{\overline{\text{Death}} = 0}|SI=0]$
+
+--
+
+.middle[
+.center[
+<img src=./figs/isolation_eliminating_death.jpg width="50%"/>
+]]
+
+---
+## Mean differences in functional impairment by social isolation status
+
+.middle[
+.center[
+<img src=./figs/isolation_differences.jpg width="70%"/>
+]]
+
+---
+## What about causal effects?
+
+<br><br>
+
+- Contrast of (counterfactual) outcome distributions in the **same individuals** but under **different treatments**.
+
+- The only explanation for a difference is the intervention, not comparing different individuals (including over time)
+
+- Therefore, the **as observed** estimand is not causal
+
+---
+class: center, middle
+
+.pull-left[
+## Drop by my SER poster on Thursday 12th of June to chat more about this topic!
+]
+
+.pull-right[
+<img src=./figs/ser_poster.jpg width="100%"/>
+]
+
+
+---
+class: center, middle
+
+<img src=./figs/isolation_time_distribution.jpg width="70%"/>
+

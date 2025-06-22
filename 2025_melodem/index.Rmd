@@ -1,0 +1,349 @@
+---
+title: "2025_June_melodem"
+author: "L. Paloma Rojas-Saunero"
+date: '`r Sys.Date()`'
+output:
+  xaringan::moon_reader:
+    css: ["xaringan-themer.css", "extra.css"]
+    seal: false
+    nature:
+      slideNumberFormat: "%current%"
+      highlightStyle: github
+      highlightLines: TRUE
+      countIncrementalSlides: FALSE
+      ratio: "16:9"
+---
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  fig.width=9, fig.height=3.5, fig.retina=3,
+  out.width = "100%",
+  cache = FALSE,
+  echo = FALSE,
+  message = FALSE, 
+  warning = FALSE,
+  hiline = TRUE
+)
+library(tidyverse)
+library(gt)
+library(knitr)
+library(fontawesome)
+
+
+```
+
+```{r xaringan-themer, warning=FALSE, include=FALSE}
+library(xaringanthemer)
+style_mono_light(
+  base_color = "#005587",
+  black_color = "#002B43",
+  table_row_even_background_color = "#FFFFFF",
+  title_slide_text_color = "#FFFFFF",
+  table_border_color = "#8bb8e8",
+  text_bold_color = "#002B43",
+  background_color = "#FFFFFF",
+  text_font_size = "28px",
+  header_h1_font_size = "2.4rem",
+  header_h2_font_size = "2.2rem",
+  header_h3_font_size = "1.8rem",
+  padding = "16px 64px 16px 32px",
+  colors = c(
+    yellow = "#ffb81c",
+    purple = "#3e2f5b",
+    green = "#136f63",
+    white = "#FFFFFF"
+  ))
+
+```
+
+class: title-slide, center, middle
+background-image: url(./figs/logo.png)
+background-position: 95% 95%
+background-size: 28%
+
+# .yellow[Causal estimands for memory trajectories in the presence of truncation by death]
+
+
+.center[
+
+L. Paloma Rojas-Saunero MD, PhD
+<br>
+Postdoctoral scholar
+<br>
+Department of Epidemiology, UCLA
+
+]
+
+???
+
+---
+```{r, echo=FALSE}
+xaringanExtra::use_progress_bar("#ffb81c", "top", "0.25em")
+```
+
+# Causal estimand
+
+
+.pull-left[
+<br><br>
+
+**Definition**: The specific quantity you want we want to estimate, that answers our causal question.
+
+]
+
+.pull-right[
+
+<img src=./figs/target_icon.png width="60%"/>
+
+]
+
+---
+# Causal estimands have 5 elements
+
+**1. Target population** 
+
+--
+
+**2. Exposure/Treatment arms**
+
+--
+
+**3. Outcome (endpoint)**: within a time frame
+
+--
+
+**4. Summary measure:** A population-level measure of frequency that is _interpretable_ (e.g. mean difference, risk difference, risk ratio)
+
+--
+
+**5. Intercurrent events:** Events that will prevent us from observing the exposure or outcome (e.g. adverse reactions, death, loss to follow-up)
+
+---
+class: center, middle
+
+<img src=./figs/estimands_meme_horizontal.jpg width="120%"/>
+
+---
+# Causal effects
+
+<br><br>
+
+- Contrast of (counterfactual) outcome distributions in the **same individuals** but under **different treatments**.
+
+- The only explanation for a difference is the intervention, not comparing different individuals
+
+---
+# Intercurrent event of death
+
+- We are interested in measuring an outcome at 1 year of follow-up, and participant dies at 6 months of follow-up
+
+--
+
+  - If outcome is **dementia** (binary), the probability of dementia at 1 year is **0** 
+  
+    → Death is a _competing event_
+
+--
+
+  - If outcome is **memory** (continuous), then the expected value of **memory** at 1 year is **undefined, unobservable** (_maybe not of substantive interest?_)**
+
+    → Death is a _truncation event_
+    
+--
+
+- Two randomized groups are not comparable **on their outcome distribution** in the presence of intercurrent events
+
+---
+class: center, middle
+
+# What is the effect of APOE-ε4 on memory trajectories over 16 years of follow-up on US older adults with mean baseline age of 65 years old?
+
+---
+# Notation
+
+- $A$ = APOE-ε4 carriership (carrier/non carrier)
+
+- $Y_{t,....t+k}$ = Memory over time
+
+- $D_{t,....t+k}$ = Indicator of death over time
+
+- $\overline{D_k}$ = history of the event of death through time k
+
+- $Z$ = time-fixed common causes of death and memory function (e.g. education)
+
+- $Z_t$ = time-varying common causes of death and memory function (e.g. cardiovascular)
+
+---
+
+# Notation
+
+- $E(Y^{a=1}_{t+k})$ = Mean memory score had everyone was an APOE-ε4 carrier
+
+- $E(Y^{a=0}_{t+k})$ = Mean memory score had everyone was an APOE-ε4 non-carrier
+
+- $E(Y^{a=1}_{t+k})$ - $E(Y^{a=0}_{t+k})$ = Marginal mean differences in memory function
+
+--
+
+.center[.bigger[**But this estimand is incomplete as we have not incorporated death as part of the estimand**]]
+
+---
+# Controlled direct effect (CDE)
+
+
+.pull-left[
+
+Effect of $A$ on $Y_{t+k}$, eliminating $\overline{D_k}$ 
+
+$E(Y^{a=1, \overline{d} = 0}_{t+k}) - E(Y^{a=0, \overline{d} = 0}_{t+k})$
+
+<img src=./figs/cde.png />
+]
+
+--
+.pull-right[
+
+**Key assumptions for death:**
+- We assume death is independent of future memory function had everyone followed 𝐴=𝑎, conditional on measured past and had death been eliminated. 
+
+- No unmeasured common causes of death and memory function
+
+]
+
+---
+# Conditional separable effect (CSE) 
+
+All effect of $A$ on $Y_{t+k}$, outside of $\overline{D_k}$ 
+
+
+
+
+.center[
+<img src=./figs/cse.png width="40%"/>
+
+]
+
+---
+# Conditional separable effect (CSE) 
+
+
+$E(Y^{a_Y=1, a_D = 0}_{t+k}|D^{a_Y=1, a_D = 0}_{t+k}) - E(Y^{a_Y=0, a_D = 0}_{t+k}|D^{a_Y=0, a_D = 0}_{t+k})$
+
+<br>
+
+**Key assumptions for death:** 
+- Modified treatment, $A_Y$ increases amyloid and tau production & $A_D$ targets lipid metabolism and endothelial function
+
+- $A_Y$ partial isolation, no causal paths from $A_Y$ to $D_{t+k}$
+
+- No unmeasured common causes of death and memory function
+
+
+---
+# Application
+
+- **Data:** Health and Retirement Study
+
+--
+
+- **Population:** Participants with genetic data collected between 2006-2012 (N = 15896), 58% women, mean baseline age 64 (SD: 11)
+
+--
+
+- **Exposure:** APOE-ε4 genotype (26% carriers/ 74% non-carriers)
+
+--
+
+- **Outcome:** Memory scores from 2006 to 2022
+
+--
+
+- **Covariates:** age at APOE-ε4 measurement, sex/gender, education; _time-varying_: self-reported health status, BMI, diagnosis of: hypertension, diabetes, cancer, lung disease, heart disease and stroke
+
+--
+
+- **Truncation events**: 30% died and 19% were lost to follow-up by end of study
+
+---
+# Statistical analysis 
+
+We derived marginal mean differences in memory scores at every study wave contrasting APOE-ε4 carriers versus non-carriers. 95%CI from bootstrapping
+
+--
+
+- **CDE:** Following Weuve (2012), we used a GEE model + IPCW with a working exchangeable correlation matrix
+
+--
+
+- **CSE:** Following Stensrud (2023), we used an outcome regression estimator
+
+--
+
+- **As observed:** $E(Y|A=1, D_{t+k} = 0) - E(Y|A=0, D_{t+k} = 0)$,
+not causal, estimated for comparison. GEE with independent correlation matrix
+
+
+---
+## .center[Marginal mean differences in memory scores comparing APOE-ε4 carriers and non-carriers]
+
+.center[
+<img src=./figs/results.png width="60%"/>
+]
+
+---
+# Take aways
+
+- APOE-ε4 carriers scored lower on memory function compared to non-carriers, and this difference grew larger over time
+
+--
+
+- Different estimands lead to different magnitudes of the estimates
+
+--
+
+- What about mix and joint models? We need to map these estimators to estimands first
+
+--
+
+- What estimand should we choose? No right or wrong answer, it’s a trade-off between assumptions, interpretation, and computational feasibility
+
+
+---
+##           Thank you, Gracias!
+
+.pull-left[
+
+**Mayeda Research Group**
+
+**Collaborators:**
+
+- Yixuan (Juliet) Zhou 
+- Yingyan Wu
+- Lan Wen
+- Onyiebuchi A. Arah
+- Joan A. Casey
+- Elizabeth Rose Mayeda
+
+**NIA R01AG074359**
+]
+
+.pull-right[
+
+<br> <br>
+
+`r fa("paper-plane")`</i>&nbsp;lp.rojassaunero@ucla.edu</a><br>
+
+`r fa("github")` <a href="https://github.com/palolili23"> </i>&nbsp; @palolili23</a><br>
+
+]
+
+---
+# Other estimands
+
+- Survival Average Causal Effect
+
+$E[Y_t^{a=1}|D_t^{a=1} = D_t^{a=0} = 0] - E[Y_t^{a=0}|D_t^{a=1} = D_t^{a=0} = 0]$
+
+- Composite Outcome
+
+$E[Y_{t}^{a = 1}  \text{ or } {Y|D}_{t}^{a = 1} = x] - E[Y_{t}^{a = 0} \text{ or } {Y|D}_{t}^{a = 0} = x]$, where $x$ is a value for memory function after death

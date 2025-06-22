@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>2025_May_23_khandle_meet</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="L. Paloma Rojas-Saunero" />
+    <meta name="date" content="2025-05-23" />
+    <script src="index_files/header-attrs/header-attrs.js"></script>
+    <script src="index_files/xaringanExtra-progressBar/progress-bar.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="extra.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+class: title-slide, center, middle, inverse
+background-image: url(./figs/logo.png)
+background-position: 95% 95%
+background-size: 28%, 25%
+
+# Estimands for longitudinal continous outcomes in the presence of death and dropout
+
+
+.center[
+
+L. Paloma Rojas-Saunero MD, PhD
+&lt;br&gt;
+Postdoctoral scholar
+&lt;br&gt;
+Department of Epidemiology, UCLA
+
+]
+
+???
+
+---
+<style>.xe__progress-bar__container {
+  top:0;
+  opacity: 1;
+  position:absolute;
+  right:0;
+  left: 0;
+}
+.xe__progress-bar {
+  height: 0.25em;
+  background-color: #ffb81c;
+  width: calc(var(--slide-current) / var(--slide-total) * 100%);
+}
+.remark-visible .xe__progress-bar {
+  animation: xe__progress-bar__wipe 200ms forwards;
+  animation-timing-function: cubic-bezier(.86,0,.07,1);
+}
+@keyframes xe__progress-bar__wipe {
+  0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
+  100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
+}</style>
+
+# Types of research questions
+
+- **Descriptive:**
+
+  + What is the lifetime risk of dementia for women and men born in 1940 in Los Angeles
+  
+--
+
+- **Predictive:**
+
+  + Is subjective cognitive impairment at age 60 a good diagnostic predictor of cognitive impairment at age 70?
+  
+--
+
+- **Causal (etiologic, interventional)**
+
+  + What is the effect of persistent daily interpersonal racial discrimination in midlife in dementia risk over 10 years of follow-up?
+  
+  + What is the effect of Lecanemab in amyloid deposition over 18 months of treatment?
+
+---
+# Estimands
+
+
+.pull-left[
+&lt;br&gt;&lt;br&gt;
+
+**Definition**: The specific quantity you want to estimate, that answers your research question.
+
+]
+
+.pull-right[
+
+&lt;img src=./figs/target_icon.png width="60%"/&gt;
+
+]
+
+---
+# Estimands have 5 elements
+
+**1. Target population** 
+
+--
+
+**2. Exposure, treatment, comparison groups**
+
+--
+
+**3. Outcome (endpoint)**: within a time frame
+
+--
+
+**4. Summary measure:** A population-level measure of frequency that is _interpretable_
+  + `\(Pr(Y_t=1|A=1) - Pr(Y_t=1|A=0)\)`
+  + `\(E(Y_t|A=1) - E(Y_t|A=0)\)`
+
+**5. Intercurrent events:** Events that will prevent us from observing the exposure or outcome
+  + E.g. adverse reactions, death, loss to follow-up
+
+---
+class: center, middle
+
+&lt;img src=./figs/estimands_meme_horizontal.jpg width="120%"/&gt;
+
+---
+# Ideal study
+
+
+- Target and study population clearly specified
+
+- Defined observation period at risk
+
+  → e.g., lifetime, 10-year, 2-weeks
+
+- Complete follow-up over the observation period
+
+- Starting point (baseline) is the same for all participants
+
+---
+## Censoring
+
+.pull-left[
+
+- By design, we want to prevent participant's dropout
+
+- But in real-world data, people are loss to follow-up and drop out during the study period
+
+- *A censoring event* makes the event of interest _unknown_ at all future time points
+
+- Censoring is the *key* feature of time-to-event analysis
+
+]
+
+
+.pull-right[
+
+&lt;img src=./figs/line_graph_cens.png width="100%"/&gt;
+
+]
+
+- *Time of end of study* is often defined as *administrative censoring* but I will refrain from using this jargon for now
+
+---
+## Implications of censoring
+
+.pull-left[
+
+- Statistical literature
+
+  - Censoring events are independent of the event of interest
+  
+  - Censoring events are uninformative
+  
+- Causal literature
+
+  - Counterfactual scenario where censoring events were eliminated
+  
+  - `\(Pr[Y_{k+1}] = Pr[Y^{\overline{\text{LTFU}} = 0}_{k+1}]\)`
+  
+  -  `\(Pr[Y^{a = 1, \overline{\text{LTFU}} = 0}_{k+1}]\)` - `\(Pr[Y^{a = 0, \overline{\text{LTFU}} = 0}_{k+1}]\)`
+
+]
+
+.pull-right[
+
+.center[
+
+&lt;img src=./figs/ltfu_dag.jpg width="100%"/&gt;
+
+]]
+
+
+---
+# Intercurrent event of death
+
+- Let's say we are interested in measuring the outcome **Y** at 1 year of follow-up
+
+- A participant dies at 6 months of follow-up
+
+  - If Y is binary, e.g. **dementia diagnosis**, then the probability of **Y** at 1 year is **0** 
+  
+    → Death is a _competing event_
+  
+  - If Y is continuous, such as **cognitive function**, then the expected value of **Y** at 1 year is **undefined (maybe not of substantive interest)**
+
+    → Death is a _truncation event_
+
+---
+# Death and dropout in KHANDLE and STAR?
+
+.middle[
+.center[
+&lt;img src=./figs/isolation_km.jpg width="70%"/&gt;
+]]
+
+---
+## How comparable are two groups if they have differential death and dropout?
+
+.middle[
+.center[
+&lt;img src=./figs/isolation_box_plot.jpg width="60%"/&gt;
+]]
+
+---
+#### Mean trajectories of functional impairment among those who remain in the study
+
+`\(E(Y_t|SI=1, Death_t = 0) - E(Y_t|SI=0, Death_t = 0)\)`
+
+--
+
+.center[
+&lt;img src=./figs/isolation_while_alive.jpg width="50%"/&gt;
+]
+
+---
+#### Mean trajectories of functional impairment if we could have eliminated death
+
+`\(E[Y_t^{\overline{\text{Death}} = 0}|SI=1] - E[Y_t^{\overline{\text{Death}} = 0}|SI=0]\)`
+
+--
+
+.middle[
+.center[
+&lt;img src=./figs/isolation_eliminating_death.jpg width="50%"/&gt;
+]]
+
+---
+## Mean differences in functional impairment by social isolation status
+
+.middle[
+.center[
+&lt;img src=./figs/isolation_differences.jpg width="70%"/&gt;
+]]
+
+---
+## What about causal effects?
+
+&lt;br&gt;&lt;br&gt;
+
+- Contrast of (counterfactual) outcome distributions in the **same individuals** but under **different treatments**.
+
+- The only explanation for a difference is the intervention, not comparing different individuals (including over time)
+
+- Therefore, the **as observed** estimand is not causal
+
+---
+class: center, middle
+
+.pull-left[
+## Drop by my SER poster on Thursday 12th of June to chat more about this topic!
+]
+
+.pull-right[
+&lt;img src=./figs/ser_poster.jpg width="100%"/&gt;
+]
+
+
+---
+class: center, middle
+
+&lt;img src=./figs/isolation_time_distribution.jpg width="70%"/&gt;
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"slideNumberFormat": "%current%",
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false,
+"ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
