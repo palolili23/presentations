@@ -43,8 +43,8 @@ style_mono_light(
   text_bold_color = "#002B43",
   background_color = "#FFFFFF",
   text_font_size = "28px",
-  header_h1_font_size = "2.4rem",
-  header_h2_font_size = "2.2rem",
+  header_h1_font_size = "2.75rem",
+  header_h2_font_size = "2.35rem",
   header_h3_font_size = "1.8rem",
   padding = "16px 64px 16px 32px",
   colors = c(
@@ -75,77 +75,48 @@ Department of Epidemiology, UCLA
 ]
 
 ???
+“In aging research, especially when studying outcomes like memory decline, death is not just a nuisance—it's a fundamental part of the data-generating process. If we ignore it, we risk answering the wrong question. This talk is about how we define causal questions—or estimands—in the presence of death, and why getting those questions right is essential for interpreting results that inform science, care, and policy.”
 
 ---
 ```{r, echo=FALSE}
 xaringanExtra::use_progress_bar("#ffb81c", "top", "0.25em")
 ```
 
-# Causal estimand
+# Estimand
 
+.center[<img src=./figs/estimands_meme_horizontal.jpg width="120%"/>]
 
-.pull-left[
-<br><br>
-
-**Definition**: The specific quantity you want we want to estimate, that answers our causal question.
-
-]
-
-.pull-right[
-
-<img src=./figs/target_icon.png width="60%"/>
-
-]
+.center[.bigger[Specific quantity that we want to estimate that answers our research question (_parameter of interest_).]]
 
 ---
 # Causal estimands have 5 elements
 
-**1. Target population** 
+1. Target population
 
---
+2. Exposure/Treatment arms
 
-**2. Exposure/Treatment arms**
+3. Outcome: within a time frame
 
---
-
-**3. Outcome (endpoint)**: within a time frame
-
---
-
-**4. Summary measure:** A population-level measure of frequency that is _interpretable_ (e.g. mean difference, risk difference, risk ratio)
+4. Summary measure: A population-level measure of frequency that is _interpretable_ (e.g. mean difference, risk difference, risk ratio)
 
 --
 
 **5. Intercurrent events:** Events that will prevent us from observing the exposure or outcome (e.g. adverse reactions, death, loss to follow-up)
 
 ---
-class: center, middle
-
-<img src=./figs/estimands_meme_horizontal.jpg width="120%"/>
-
----
-# Causal effects
-
-<br><br>
-
-- Contrast of (counterfactual) outcome distributions in the **same individuals** but under **different treatments**.
-
-- The only explanation for a difference is the intervention, not comparing different individuals
-
----
 # Intercurrent event of death
 
-- We are interested in measuring an outcome at 1 year of follow-up, and participant dies at 6 months of follow-up
+- We are interested in an an outcome at 1 year of follow-up, and participant dies at 6 months of follow-up
 
 --
 
   - If outcome is **dementia** (binary), the probability of dementia at 1 year is **0** 
   
-    → Death is a _competing event_
+    → Death is a **competing event** _(Rojas-Saunero et al, AJE, 2023)_
 
 --
 
-  - If outcome is **memory** (continuous), then the expected value of **memory** at 1 year is **undefined, unobservable** (_maybe not of substantive interest?_)**
+  - If outcome is **memory** (continuous), then the expected value of **memory** at 1 year is **undefined**
 
     → Death is a _truncation event_
     
@@ -156,7 +127,7 @@ class: center, middle
 ---
 class: center, middle
 
-# What is the effect of APOE-ε4 on memory trajectories over 16 years of follow-up on US older adults with mean baseline age of 65 years old?
+# What is the effect of APOE-ε4 on memory trajectories over 16 years of follow-up on US older adults?
 
 ---
 # Notation
@@ -167,7 +138,7 @@ class: center, middle
 
 - $D_{t,....t+k}$ = Indicator of death over time
 
-- $\overline{D_k}$ = history of the event of death through time k
+--
 
 - $Z$ = time-fixed common causes of death and memory function (e.g. education)
 
@@ -175,13 +146,17 @@ class: center, middle
 
 ---
 
-# Notation
+# Counterfactual Notation
 
 - $E(Y^{a=1}_{t+k})$ = Mean memory score had everyone was an APOE-ε4 carrier
 
+--
+
 - $E(Y^{a=0}_{t+k})$ = Mean memory score had everyone was an APOE-ε4 non-carrier
 
-- $E(Y^{a=1}_{t+k})$ - $E(Y^{a=0}_{t+k})$ = Marginal mean differences in memory function
+--
+
+- $E(Y^{a=1}_{t+k})$ - $E(Y^{a=0}_{t+k})$ = Mean differences in memory function 
 
 --
 
@@ -200,6 +175,10 @@ $E(Y^{a=1, \overline{d} = 0}_{t+k}) - E(Y^{a=0, \overline{d} = 0}_{t+k})$
 <img src=./figs/cde.png />
 ]
 
+.footnote[
+_Weuve et al. Epidemiology, 2012_
+]
+
 --
 .pull-right[
 
@@ -210,16 +189,19 @@ $E(Y^{a=1, \overline{d} = 0}_{t+k}) - E(Y^{a=0, \overline{d} = 0}_{t+k})$
 
 ]
 
+
 ---
 # Conditional separable effect (CSE) 
 
 All effect of $A$ on $Y_{t+k}$, outside of $\overline{D_k}$ 
 
-
-
-
 .center[
 <img src=./figs/cse.png width="40%"/>
+
+]
+
+.footnote[
+_Stensrud et al. JASA, 2023_
 
 ]
 
@@ -227,17 +209,21 @@ All effect of $A$ on $Y_{t+k}$, outside of $\overline{D_k}$
 # Conditional separable effect (CSE) 
 
 
-$E(Y^{a_Y=1, a_D = 0}_{t+k}|D^{a_Y=1, a_D = 0}_{t+k}) - E(Y^{a_Y=0, a_D = 0}_{t+k}|D^{a_Y=0, a_D = 0}_{t+k})$
-
-<br>
-
 **Key assumptions for death:** 
-- Modified treatment, $A_Y$ increases amyloid and tau production & $A_D$ targets lipid metabolism and endothelial function
+- $A_Y$ increases amyloid and tau production & $A_D$ targets lipid metabolism and endothelial function
 
-- $A_Y$ partial isolation, no causal paths from $A_Y$ to $D_{t+k}$
+- No causal paths from $A_Y$ to $D_{t+k}$
 
 - No unmeasured common causes of death and memory function
 
+--
+
+$E(Y^{a_Y=1, a_D = 0}_{t+k}|D^{a_Y=1, a_D = 0}_{t+k}) - E(Y^{a_Y=0, a_D = 0}_{t+k}|D^{a_Y=0, a_D = 0}_{t+k})$
+
+.footnote[
+_Stensrud et al. JASA, 2023_
+
+]
 
 ---
 # Application
@@ -262,7 +248,7 @@ $E(Y^{a_Y=1, a_D = 0}_{t+k}|D^{a_Y=1, a_D = 0}_{t+k}) - E(Y^{a_Y=0, a_D = 0}_{t+
 
 --
 
-- **Truncation events**: 30% died and 19% were lost to follow-up by end of study
+- **Intercurrent events**: 30% died and 19% were lost to follow-up by end of study
 
 ---
 # Statistical analysis 
@@ -271,11 +257,11 @@ We derived marginal mean differences in memory scores at every study wave contra
 
 --
 
-- **CDE:** Following Weuve (2012), we used a GEE model + IPCW with a working exchangeable correlation matrix
+- **CDE:** Following Weuve et al (2012), we used a GEE model + IPCW with a working exchangeable correlation matrix
 
 --
 
-- **CSE:** Following Stensrud (2023), we used an outcome regression estimator
+- **CSE:** Following Stensrud et al (2023), we used an outcome regression estimator
 
 --
 
@@ -290,22 +276,21 @@ not causal, estimated for comparison. GEE with independent correlation matrix
 <img src=./figs/results.png width="60%"/>
 ]
 
+???
+APOE-ε4 carriers scored lower on memory function compared to non-carriers, and this difference grew larger over time
+
 ---
 # Take aways
-
-- APOE-ε4 carriers scored lower on memory function compared to non-carriers, and this difference grew larger over time
-
---
 
 - Different estimands lead to different magnitudes of the estimates
 
 --
 
-- What about mix and joint models? We need to map these estimators to estimands first
+- What estimand should we choose? No right or wrong answer, it’s a trade-off between assumptions, interpretation, and computational feasibility
 
 --
 
-- What estimand should we choose? No right or wrong answer, it’s a trade-off between assumptions, interpretation, and computational feasibility
+- What about mix and joint models? We need to map these estimators to estimands first
 
 
 ---
@@ -347,3 +332,50 @@ $E[Y_t^{a=1}|D_t^{a=1} = D_t^{a=0} = 0] - E[Y_t^{a=0}|D_t^{a=1} = D_t^{a=0} = 0]
 - Composite Outcome
 
 $E[Y_{t}^{a = 1}  \text{ or } {Y|D}_{t}^{a = 1} = x] - E[Y_{t}^{a = 0} \text{ or } {Y|D}_{t}^{a = 0} = x]$, where $x$ is a value for memory function after death
+
+---
+
+## Controlled direct effect controversies
+
+<img src=./figs/thernau.png width="80%"/>
+
+Thernau, Survival R Package documentation, 2023
+
+--
+<img src=./figs/chaix2012.png width="80%"/>
+
+Chaix et al, Epidemiology, 2012
+
+--
+<img src=./figs/andersen.png width="70%"/>
+
+Andersen & Keiding, Statistics in Medicine, 2012
+
+
+---
+background-image: url(./figs/smallpox.jpg)
+background-size: 40%
+
+## History of competing events analysis
+
+.footnote[During the 18th century smallpox epidemic, smallpox inoculation was a controversial therapy]
+
+---
+## History of competing events analysis
+
+- Bernoulli wanted to estimate how smallpox inoculation could improve life expectancy (LE)
+
+- He compared a hypothetical scenario of universal inoculation (eliminating smallpox deaths) to observed LE, concluding innoculation would increase LE
+
+- D’Alembert criticized Bernoulli’s approach before the Académie des Sciences, arguing it introduced subjective biases into mathematical probability, shaped by moral and political views.
+
+- Counterfactual scenarios, such as preventing tuberculosis or cancer deaths, became increasingly popular
+
+.footnote[Colombo & Diamanti, Lettera Matematica, 2015]
+
+---
+## CSE estimation
+
+
+<img src=./figs/outcome_estimator.jpg width="70%"/>
+
