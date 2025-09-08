@@ -1,0 +1,874 @@
+---
+title: "2025_June_melodem"
+author: "L. Paloma Rojas-Saunero"
+date: '`r Sys.Date()`'
+output:
+  xaringan::moon_reader:
+    css: ["xaringan-themer.css", "extra.css"]
+    seal: false
+    nature:
+      slideNumberFormat: "%current%"
+      highlightStyle: github
+      highlightLines: TRUE
+      countIncrementalSlides: FALSE
+      ratio: "16:9"
+---
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  fig.width=9, fig.height=3.5, fig.retina=3,
+  out.width = "100%",
+  cache = FALSE,
+  echo = FALSE,
+  message = FALSE, 
+  warning = FALSE,
+  hiline = TRUE
+)
+library(tidyverse)
+library(gt)
+library(knitr)
+library(fontawesome)
+
+
+```
+
+```{r xaringan-themer, warning=FALSE, include=FALSE}
+library(xaringanthemer)
+style_mono_light(
+  base_color = "#005587",
+  black_color = "#002B43",
+  table_row_even_background_color = "#FFFFFF",
+  title_slide_text_color = "#FFFFFF",
+  table_border_color = "#8bb8e8",
+  text_bold_color = "#002B43",
+  background_color = "#FFFFFF",
+  text_font_size = "24px",
+  header_h1_font_size = "2.75rem",
+  header_h2_font_size = "2.35rem",
+  header_h3_font_size = "2rem",
+  padding = "16px 64px 16px 32px",
+  colors = c(
+    yellow = "#ffb81c",
+    purple = "#3e2f5b",
+    green = "#136f63",
+    white = "#FFFFFF"
+  ))
+
+```
+
+class: title-slide, center, middle
+background-image: url(./figs/logo.png)
+background-position: 95% 95%
+background-size: 28%
+
+# .yellow[Causal estimands for aging-relevant outcomes in the presence of death as a competing or truncating event]
+
+--
+
+### Part I: Time-to-event outcomes with death as a competing event
+
+--
+
+.center[
+
+L. Paloma Rojas-Saunero MD, PhD
+<br>
+Postdoctoral scholar
+
+]
+
+???
+“In aging research, especially when studying outcomes like memory decline, death is not just a nuisance—it's a fundamental part of the data-generating process. If we ignore it, we risk answering the wrong question. This talk is about how we define causal questions—or estimands—in the presence of death, and why getting those questions right is essential for interpreting results that inform science, care, and policy.”
+
+---
+
+## Estimand
+
+.center[<img src=./figs/estimands_meme_horizontal.jpg width="120%"/>]
+
+.center[.bigger[Specific quantity that we want to estimate that answers our research question (_parameter of interest_).]]
+
+---
+## Causal estimands have 5 elements
+
+- Target population
+
+- Exposure/Treatment arms
+
+- Outcome: within a time frame
+
+- <u>Summary measure:</u> A population-level measure of frequency that is _interpretable_ 
+
+- <u>Intercurrent events:</u> Events that will prevent us from observing the exposure or outcome
+
+.footnote[
+[The estimands framework: a primer on the ICH E9(R1) addendum](https://www.bmj.com/content/384/bmj-2023-076316)
+
+]
+
+---
+## Motivating example
+
+1. Target population: Older adults who smoke, with no cardiovascular or lung comorbidities
+
+2. Exposure/Treatment arms ($A$): Smoking cessation program vs. no intervention
+
+3. Outcome ($Y$): Dementia diagnosis over 12 years
+
+4. Summary measure: $$Pr[Y_{12}^{a = 1} = 1] - Pr[Y_{12}^{a = 0} = 1]$$
+
+5. Intercurrent events: not present
+
+
+---
+## Ideal trial
+
+.pull-left[
+- Study sample is a random sample from the target population
+
+- Starting point (baseline) is the same for all participants
+
+- Defined observation period at risk
+
+- Perfect randomization and adherence
+
+- Complete follow-up over the observation period
+
+- New (incident) cases only
+
+]
+
+--
+
+.pull-right[
+<img src=./figs/line_graph_no_cens.png width="100%"/>
+]
+
+???
+In this talk we are not going to focus much on confounding
+
+---
+## Risk / Incidence proportion
+
+.pull-left[
+- The probability of having an incident event, $Y$, in a **fixed period of time **, $k$
+
+- $Pr[Y_k =1]$ = $N/T$, where:
+
+  + $N$ = people experiencing the event
+  
+  + $T$ = people free of event at start of follow-up
+
+]
+
+.pull-right[
+<br>
+
+```{r}
+table1 <- tibble::tibble(
+  `Treatment` = c("Quit smoking", "Continued smoking"),
+  `Dementia diagnosis at 12 years` = c("10%", "30%")
+)
+
+table1 %>% gt() %>% 
+   tab_style(
+    style = cell_text(align = "center", weight = "bold"),
+    locations = cells_column_labels(everything())) %>%
+    tab_style(
+    style = cell_text(align = "center"),
+    locations = cells_body()
+  ) %>%
+    tab_options(
+    table.font.size = 26)
+
+
+```
+
+]
+
+---
+## Cumulative incidence
+
+.pull-left[
+
+- In the ideal scenario (no drop out)
+
+- $Pr[T ≤ t]$, where:
+
+  - $T$ = time to event
+
+  - $t$ = specific time point of interest
+
+- At baseline, cumulative incidence is 0, $Pr[T ≤ 0] = 0$
+
+- Increases monotonically (or remains constant)
+]
+
+.pull-right[
+
+<img src=./figs/cif.png width="100%"/>
+
+]
+
+---
+## Censoring
+
+.pull-left[
+
+- By design, we want to prevent participant's drop out
+
+- But in real-world data, people are loss to follow-up and drop out during the study period
+
+- *A censoring event* makes the event of interest _unknown_ at all future time points
+
+- Censoring is the *key* feature of time-to-event analysis
+
+]
+
+--
+
+.pull-right[
+
+<img src=./figs/line_graph_cens.png width="100%"/>
+
+]
+
+--
+
+- *Time of end of study* is often defined as *administrative censoring* but I will refrain from using this jargon for now
+
+---
+## Implications of censoring
+
+.pull-left[
+
+- In statistics, censoring events are:
+
+  - are independent of the outcome
+  
+- In causal literature
+
+  - Counterfactual where LTFU was prevented
+  
+  - $Pr[Y_{k+1}] = Pr[Y^{\overline{\text{LTFU}} = 0}_{k+1}]$
+  
+  -  $Pr[Y^{a = 1, \overline{\text{LTFU}} = 0}_{k+1}]$ - $Pr[Y^{a = 0, \overline{\text{LTFU}} = 0}_{k+1}]$
+
+]
+
+.pull-right[
+
+.center[
+
+<img src=./figs/ltfu_dag.jpg width="100%"/>
+
+**C:** Shared risk factors
+]]
+
+---
+
+## Incidence rates
+
+--
+
+.pull-left[
+
+Frequency with which incident events occur within a given amount of follow-up time.
+<br> 
+$N/PT$
+<br>
+where:
+  + $N$ = Number of incident cases
+
+  + $PT$ = "Person-time", total amount of time that all individuals were at risk of the outcome
+]
+
+--
+
+.pull-right[
+
+<img src=./figs/line_graph_cens.png width="100%"/>
+
+]
+
+---
+## Incidence rates 
+
+.pull-left[
+
+Frequency with which incident events occur within a given amount of follow-up time.
+<br> 
+$N/PT$
+<br>
+where:
+  + $N$ = Number of incident cases
+
+  + $PT$ = "Person-time", total amount of time that all individuals were at risk of the outcome
+]
+
+
+
+.pull-right[
+
+**Comparison of incidence rates across groups is tricky**
+
+<img src=./figs/person_time_westreich.jpg width="100%"/>
+]
+
+---
+
+## Hazards
+
+.pull-left[
+
+- At any given time, the probability of experiencing the event of interest, $Y$, in the next interval among individuals who had not yet experienced the event by the start of the interval
+
+- **Discrete hazards**
+
+  - $Pr[T = t|T > t − 1]$
+  
+  - $Pr [Y_k = 1|Y_{k−1} = 0]$
+
+- They can rise, fall, or vary non-monotonically across time points
+
+]
+
+.pull-right[
+
+<img src=./figs/hazard_fx.png width="85%"/>
+
+
+]
+???
+
+---
+## Hazard ratios (HR)
+
+"The" HR, often estimated from Cox proportional hazard models, represent the weighted average of the time-varying hazard ratios over the entire follow-up
+
+--
+
+.pull-left[
+
+- Hazard ratios have an inherent issue of selection bias
+
+- The proportional hazard assumption is often unrealistic
+
+  - If treatment effects change over time
+  
+  - If outcome susceptibility varies between individuals
+]
+
+
+.pull-right[
+<img src=./figs/hazard_dag.jpg width="100%"/>
+]
+
+.footnote[
+<br>
+[Dumas E, Stensrud M. EJE. 2025](https://link.springer.com/article/10.1007/s10654-025-01250-9)
+]
+
+---
+## The hazard of hazard ratios
+
+.center[<img src=./figs/hazard.png width="70%"/>]
+
+
+.footnote[
+[Stensrud. European Heart Journal. 2019](https://academic.oup.com/eurheartj/article-abstract/40/17/1378/5219649?redirectedFrom=fulltext)
+]
+
+???
+Figure 1People have different disease risks. Given an effective treatment, high-risk individuals are likely to be depleted from the study population, and the depletion is expected to be larger in the placebo group than in the treatment group. This schematic drawing illustrates the built-in selection bias in population-level hazard ratios: by definition, the population-level hazard ratio at a given time point is based on individuals who survived up to that time point, thereby it is a comparison between the unbalanced groups.
+
+---
+## Causal estimands
+
+- Contrast of (counterfactual) outcome distributions in the **same individuals** but under **different levels of exposure**
+
+--
+
+- The only explanation for a difference is the exposure, not comparing different individuals
+
+--
+
+```{r}
+table2 <- tribble(
+  ~Measure, ~Numerator,                  ~Denominator,
+  "Risk",   "Events over fixed period",  "Individuals at baseline",
+  "Rate",   "Events over person-time",   "Total person-time at risk",
+  "Hazard", "Events in next interval",   "Individuals at start of interval"
+)
+
+table2 %>% gt %>% 
+     tab_style(
+    style = cell_text(align = "center", weight = "bold"),
+    locations = cells_column_labels(everything())) %>%
+    tab_style(
+    style = cell_text(align = "left"),
+    locations = cells_body()
+  ) %>%
+    cols_width(
+   1 ~ px(200),
+    2 ~ px(300),
+    3 ~ px(300)) %>% 
+    tab_options(
+    table.font.size = 22)
+```
+
+--
+
+- Risks are the most intuitive causal contrast, and when censoring is present we can use hazards to calculate risks
+
+---
+
+## From hazard to risks
+
+- Hazard models are useful to estimate risks when censoring is present
+
+- In **discrete time**, the risk at time $k+1$ is the conditional probability of dementia in year $k+1$ × cumulative probability of surviving dementia-free up to the previous time point $k$
+
+
+
+$$\Pr[Y_{k+1} = 1] = \left( \prod_{j=1}^{k} (1 - h_j) \right) \cdot h_{k+1}$$
+
+Where 
+
+$$h_j = \Pr[Y_j = 1 \mid Y_{j-1} = 0]$$
+
+---
+
+## Competing events
+
+.pull-left[
+
+- Events that _preclude*_ the outcome of interest.
+
+   *to prevent the existence, or occurrence of; make impossible
+   
+
+<img src=./figs/compevents_dag.jpg width="100%"/>
+]
+
+--
+
+.pull-right[
+
+<img src=./figs/line_graph_comp_events.png width="100%"/>
+
+]
+
+---
+## Quitting smoking and 20-year dementia risk  
+
+<br><br><br>
+
+.center[
+
+<img src=./figs/comp_events.JPG width="60%"/>
+
+**C**: Shared risk factors 
+]
+
+.footnote[
+[Rojas-Saunero. AJE. 2023](https://academic.oup.com/aje/article/192/8/1415/7120022)]
+
+---
+## Total effect
+
+
+
+<br>
+
+.center[
+.middle[
+
+What is the risk** of dementia at 20 years of follow-up had all individuals stopped smoking, compared to had all individuals continued smoking?
+
+$$Pr[Y_{20}^{a = 1} = 1] - Pr[Y_{20}^{a = 0} = 1]$$
+
+
+<img src=./figs/total_effect.JPG width="60%"/>
+
+
+]]
+
+** _Cause-specific cumulative incidence_ or _crude_ risk
+
+---
+
+## Controlled direct effect
+
+<br>
+
+.center[
+.middle[
+
+What is the risk** of dementia at 20 years of follow-up had all individuals stopped smoking _and not died_ during the study period, compared to had all individuals continued smoking _and not died_ ?
+
+
+$$Pr[Y_{20}^{a = 1, d_{19} = 0} = 1] - Pr[Y_{20}^{a = 0, d_{19} = 0} = 1]$$
+
+
+<img src=./figs/direct_effect.JPG width="60%"/>
+
+]
+]
+
+** _Marginal_ or _net_ risk
+
+---
+## Controlled direct effect
+
+<br>
+
+.center[.middle[
+
+What is the risk** of dementia at 20 years of follow-up had all individuals stopped smoking _and not died_ during the study period, compared to had all individuals continued smoking _and not died_ ?
+
+
+$$Pr[Y_{20}^{a = 1, d_{19} = 0} = 1] - Pr[Y_{20}^{a = 0, d_{19} = 0} = 1]$$
+
+<img src=./figs/direct_effect_cens.JPG width="60%"/>
+
+]
+]
+
+** _Marginal_ or _net_ risk
+
+???
+So up to now, we can see that these two questions have very different interpretations and rely on different assumptions
+
+
+---
+background-image: url(./figs/rs_logo.jpg)
+background-position: 95% 95%
+background-size: 12%
+
+## Quitting smoking on dementia risk at 20 years
+
+.center[
+<img src=./figs/smoke_aje.png width="70%"/>]
+
+.footnote[
+[Rojas-Saunero. AJE. 2023](https://academic.oup.com/aje/article/192/8/1415/7120022)]
+
+???
+What we see is that had we asked a question about the CDE and use appropiate methods, we would see that smoking cessation prevents dementia risk.
+Had we asked a question about the total effect, smoking cessation increases your risk of dementia, but again this is not bias, but rather the unbiased result for a question that does not satisfy our interest.
+
+---
+## Identifiability assumptions for death
+
+--
+
+```{r}
+table <- tibble::tribble(
+  ~ "<b> Assumption </b>",
+  ~ "<b> Total Effect </b>",
+  ~ "<b> Controlled direct effect </b>",
+  "<b> Exchangeability </b>",
+  "Not needed",
+  "Death is independent of future outcomes had everyone followed A = a and death was eliminated, conditional on covariates",
+  "<b> Positivity </b>",
+  "Not needed",
+  "At every follow-up time, there are individuals with any possibly observed level A = a and covariate history who remain alive and free of dementia diagnosis.",
+  "<b> Consistency </b>",
+  "Not needed",
+  "An intervention that “eliminates death” is well-defined."
+)
+
+table %>% slice(1) %>% gt() %>% 
+  tab_options(
+    table.font.size = 22
+  ) %>% 
+      cols_width(
+    "<b> Assumption </b>" ~ px(200),
+    "<b> Total Effect </b>" ~ px(150),
+    "<b> Controlled direct effect </b>" ~ px(350))
+```
+
+---
+## Identifiability assumptions for death
+
+```{r}
+table %>% slice(1:2) %>% gt() %>% 
+  tab_options(
+    table.font.size = 22
+  ) %>% 
+    cols_width(
+    "<b> Assumption </b>" ~ px(200),
+    "<b> Total Effect </b>" ~ px(150),
+    "<b> Controlled direct effect </b>" ~ px(350))
+```
+
+---
+## Identifiability assumptions for death
+
+```{r}
+table %>% gt() %>%   tab_options(
+    table.font.size = 22
+  ) %>% 
+      cols_width(
+    "<b> Assumption </b>" ~ px(200),
+    "<b> Total Effect </b>" ~ px(150),
+    "<b> Controlled direct effect </b>" ~ px(350))
+```
+
+---
+## Estimators
+
+
+```{r}
+estimands <- tibble::tribble(
+  ~Feature,        ~`Total Effect`,                                                                                  ~`Controlled Direct Effect`,
+  "Estimator",     "Aalen–Johansen",                                                                                 "Kaplan–Meier",
+  "Death handling","Competing event",                                                                                "Censoring event",
+  "Hazards needed","Dementia + death",                                                                               "Dementia only",
+  "Risks",         "Risk of dementia = conditional risk of dementia in year t × cumulative probability of surviving dementia-free and death-free up to t−1", 
+                   "Risk of dementia = conditional risk of dementia in year t × cumulative probability of surviving dementia-free up to t−1"
+)
+
+estimands %>% 
+  gt() %>% tab_options(
+    table.font.size = 22
+  ) %>% 
+    cols_width(
+   1 ~ px(400),
+    2 ~ px(400),
+    ) %>% 
+   tab_style(
+    style = cell_text(align = "center", weight = "bold"),
+    locations = cells_column_labels(everything()))
+
+```
+
+.footnote[
+[Young et al. Statistics in Medicine. 2020](https://onlinelibrary.wiley.com/doi/10.1002/sim.8471)
+]
+
+---
+### Incident stroke on dementia risk in Asian American and White population in California
+
+.center[
+
+<img src=./figs/RR_SCALE.png width="55%"/>
+
+]
+
+.footnote[Rojas-Saunero et al. Neurology. 2025]
+
+---
+## Why this matters in health disparities research
+
+.pull-left[
+- Mortality rates are often higher for marginalized populations
+
+- Disparity estimands for dementia risk will be impacted by differential mortality
+
+- We can either allow the disparity effect measure to be impacted by the effect of death or we can try to imagine an scenario were death does 
+]
+
+.pull-right[
+<br><br>
+<img src=./figs/racism_dag.jpg width="85%"/>
+]
+
+.footnote[Rojas-Saunero et al. Current Epidemiology Reports. 2024]
+
+---
+## Other possible estimands
+
+- **Composite outcome**
+
+$$Pr[Y_{t}^{a = 1} = 1   \text{ or } {D}_{t}^{a = 1} = 1] - Pr[Y_{t}^{a = 0} = 1  \text{ or } {D}_{t}^{a = 1} = 1]$$
+
+--
+
+- **Survivors average causal effect:** 
+
+$$Pr[Y_{t}^{a = 1} = 1 |\bar{D}_{t}^{a = 1} = \bar{D}_{t}^{a = 0} = 0] - Pr[Y_{t}^{a = 0} = 1 |\bar{D}_{t}^{a = 1} = \bar{D}_{t}^{a = 0} = 0]$$
+
+--
+
+- **Natural direct effects**:
+
+$$Pr[Y_{t}^{a = 1, \bar{D}_{t}^{a = 0}} = 1] - Pr[Y_{t}^{a = 0, \bar{D}_{t}^{a = 0}} = 1]$$
+
+---
+## Separable effects
+
+Physical decomposition of the exposure assumed to operate on $Y$ and $D$ through separate pathways. (_Stensrud et al. JASA. 2020_)
+
+.center[
+<img src=./figs/stensrud.jpg width="30%"/>
+]
+
+---
+## Take away points
+
+- When competing events are present there is more than one way to consider them as part of the primary research question
+
+--
+
+- Let the question guide the most appropriate methods and estimators
+
+--
+- We need to communicate that all these questions are possible with their trade-offs, rather than continuing a narrative that "One size fits all"
+
+---
+## Recomended readings
+
+- [How hazard ratios can mislead and why it matters in practice](https://link.springer.com/article/10.1007/s10654-025-01250-9)
+
+- [Transplant as a competing risk in the analysis of dialysis patients](https://academic.oup.com/ndt/article/32/suppl_2/ii53/3061524)
+
+- [A comparison of different methods to adjust survival curves for confounders](https://onlinelibrary.wiley.com/doi/10.1002/sim.9681)
+
+- [Considering Questions Before Methods in Dementia Research With Competing Events and Causal Goals](https://academic.oup.com/aje/article/192/8/1415/7120022)
+
+- [A causal framework for classical statistical estimands in  failure-time settings with competing events](https://onlinelibrary.wiley.com/doi/10.1002/sim.8471)
+
+---
+class: center, middle
+# Thank you! Gracias!
+
+<br> <br>
+
+
+`r fa("paper-plane")`</i>&nbsp;lp.rojassaunero@ucla.edu</a><br>
+
+`r fa("github")` <a href="https://github.com/palolili23"> </i>&nbsp; @palolili23</a><br>
+
+@palolili23.bsky.social
+
+---
+
+## Supplementary slides
+
+---
+
+.center[
+<img src=./figs/poole_quote.jpg width="80%"/>
+]
+
+.footnote[Poole. Epidemiologic Perspectives & Innovations. 2010]
+
+---
+## Key differences between risks, rates, hazards
+
+**Risks**
+- Denominator: Number of individuals at baseline
+- Numerator: Number of events ocurring over a fixed period of time
+
+**Rates**
+- Denominator: Total person-time at risk (accumulated time contributed by all individuals)
+- Numerator: Number of events occurring over the total person-time
+
+**Hazard**
+- Denominator: Number of individuals at risk by the start of a time interval
+- Numerator: Number of events occurring in the next time interval
+
+---
+
+## Exchangeability assumption for death as censoring event
+
+
+```{r}
+
+res2 <- tibble::tribble(
+  ~ "<b> Assumption </b>",
+  ~ "<b> Risk Difference (95%CI) </b>", 
+  ~ "<b> Risk Ratio (95%CI) </b>",
+"<b> Evoking unconditional exchangeability </b>",
+"-0.7 (-3.3, 2.2)",
+"0.96 (0.82, 1.16)",
+"<b> Evoking conditional exchangeability on baseline covariates </b>",
+"-1.5 (-4.6, 1.8)",		
+"0.92 (0.78, 1.12)",		
+"<b> Evoking conditional exchangeability on baseline and time-varying covariates</b>",
+"-2.7 (-6.1, 0.8)",
+"0.86 (0.7, 1.1)")
+
+res2 %>% gt() %>% tab_options(
+    table.font.size = 22
+  ) %>% 
+    cols_width(
+    "<b> Assumption </b>" ~ px(250),
+    "<b> Risk Difference (95%CI) </b>" ~ px(250),
+    "<b> Risk Ratio (95%CI) </b>" ~ px(200))
+```
+
+???
+
+---
+## Competing events & estimands, _Young 2020_
+
+```{r}
+
+# Create the table as a data frame
+table_data <- tibble::tibble(
+  Definition = c(
+    "$$\\Pr[Y^{\\bar{d} = \\bar{0}}_{k+1} = 1]$$",
+    "$$\\Pr[Y_{k+1} = 1]$$",
+    "$$\\Pr[Y^{\\bar{d} = \\bar{0}}_{k+1} = 1 \\mid Y^{\\bar{d} = \\bar{0}}_k = 0]$$",
+    "$$\\Pr[Y_{k+1} = 1 \\mid Y_k = 0]$$",
+    "$$\\Pr[Y_{k+1} = 1 \\mid D_{k+1} = Y_k = 0]$$"
+  ),
+  Description = c(
+    "Risk under elimination of competing events",
+    "Risk without elimination of competing events",
+    "Hazard under elimination of competing events",
+    "Hazard without elimination of competing events",
+    "Hazard conditioned on competing events"
+  ),
+  Terminology = c(
+    "Marginal cumulative incidence, net risk",
+    "Subdistribution function, cause-specific cumulative incidence, crude risk",
+    "Marginal hazard",
+    "Subdistribution hazard",
+    "Cause-specific hazard"
+  )
+)
+  
+
+table_data %>% gt() %>% 
+  cols_label(
+    Definition = "Definition",
+    Description = "Description",
+    Terminology = "Statistical Literature Terminology"
+  ) %>% 
+  tab_options(
+    table.font.size = 20) %>% 
+      cols_width(
+   1 ~ px(350),
+    2 ~ px(400),
+    3 ~ px(400)) %>% 
+   tab_style(
+    style = cell_text(align = "center", weight = "bold"),
+    locations = cells_column_labels(everything())
+  )
+```
+
+---
+
+## Bounds for the controlled direct effect
+
+???
+Now, since we know that the exchangeability assumption is not verifyiable, if we are concerned about this assumption we...
+
+We can calculate bounds to evaluate extreme scenarios of dependency between death and dementia
+
+--
+
+- Lower bound: All those who died would not have had dementia
+  - Cause-specific cumulative risk contrast
+
+- Upper bound: Everyone who died would have had dementia around the same time of death
+  - Risk for the composite outcome for dementia and death contrast
+
+
+.footnote[Peterson. _PNAS_. 1976; van Geloven. _Statistics in Medicine_. 2014]
+
+
