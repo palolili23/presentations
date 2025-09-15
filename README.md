@@ -3,6 +3,10 @@
 Repository of conference talks and guest lectures since 2022 (not full list)
 
 **2025**
+
+- TIME-AD Analytics Journal Club. Boston University, Boston, MA, US.
+_Causal estimands for aging-relevant outcomes in the presence of death as a competing or truncating event_[Link](https://palolili23.github.io/presentations/2025_time_ad_part_one/#1)
+
 - MELODEM Annual Meeting, Red Wing, MN, USA
 _Causal estimands for cognitive change in the presence of truncation by death_
 [Link](https://palolili23.github.io/presentations/2025_melodem/#1)
@@ -15,12 +19,10 @@ _Estimands for longitudinal continous outcomes in the presence of death and drop
 _Conceptualizing survival analysis through a causal inference framework_
 [Link](https://palolili23.github.io/presentations/2025_causal_survival/#1)
 
-- Job talk materials
+- Teaching demos:
 
-  - [Job talk ucla](https://palolili23.github.io/presentations/2025_job_talk_ucla/#1)
-  - [Teaching intro](https://palolili23.github.io/presentations/2025_teaching_intro/#1)
-  - [Teaching undergrads](https://palolili23.github.io/presentations/2025_teaching_demo_underg)
-  - [Teaching grads](https://palolili23.github.io/presentations/2025_teaching_demo_grad/#2)
+  - _Teaching undergrads: Introduction to Causality_ [Link](https://palolili23.github.io/presentations/2025_teaching_demo_underg)
+  - _Teaching grads: Consistency Assumption in Complex Settings_ [Link](https://palolili23.github.io/presentations/2025_teaching_demo_grad/#2)
 
 **2024**
 

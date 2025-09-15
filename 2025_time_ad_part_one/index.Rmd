@@ -1,5 +1,5 @@
 ---
-title: "2025_June_melodem"
+title: "TIME-AD journal club part one"
 author: "L. Paloma Rojas-Saunero"
 date: '`r Sys.Date()`'
 output:
@@ -746,29 +746,6 @@ class: center, middle
 ---
 
 ## Supplementary slides
-
----
-
-.center[
-<img src=./figs/poole_quote.jpg width="80%"/>
-]
-
-.footnote[Poole. Epidemiologic Perspectives & Innovations. 2010]
-
----
-## Key differences between risks, rates, hazards
-
-**Risks**
-- Denominator: Number of individuals at baseline
-- Numerator: Number of events ocurring over a fixed period of time
-
-**Rates**
-- Denominator: Total person-time at risk (accumulated time contributed by all individuals)
-- Numerator: Number of events occurring over the total person-time
-
-**Hazard**
-- Denominator: Number of individuals at risk by the start of a time interval
-- Numerator: Number of events occurring in the next time interval
 
 ---
 
