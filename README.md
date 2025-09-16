@@ -5,7 +5,7 @@ Repository of conference talks and guest lectures since 2022 (not full list)
 **2025**
 
 - TIME-AD Analytics Journal Club. Boston University, Boston, MA, US.
-_Causal estimands for aging-relevant outcomes in the presence of death as a competing or truncating event_[Link](https://palolili23.github.io/presentations/2025_time_ad_part_one/#1)
+_Causal estimands for aging-relevant outcomes in the presence of death as a competing or truncating event_ [Link](https://palolili23.github.io/presentations/2025_time_ad_part_one/#1)
 
 - MELODEM Annual Meeting, Red Wing, MN, USA
 _Causal estimands for cognitive change in the presence of truncation by death_
@@ -21,8 +21,8 @@ _Conceptualizing survival analysis through a causal inference framework_
 
 - Teaching demos:
 
-  - _Teaching undergrads: Introduction to Causality_ [Link](https://palolili23.github.io/presentations/2025_teaching_demo_underg)
-  - _Teaching grads: Consistency Assumption in Complex Settings_ [Link](https://palolili23.github.io/presentations/2025_teaching_demo_grad/#2)
+  - _Teaching undergrads: Introduction to Causality_ [Link](https://palolili23.github.io/presentations/2025_teaching_demo_undergrad/#1)
+  - _Teaching grads: Consistency Assumption in Complex Settings_ [Link](https://palolili23.github.io/presentations/2025_teaching_demo_grad/#1)
 
 **2024**
 
@@ -53,7 +53,7 @@ _Considering questions before methods in dementia research with competing events
 _Considering questions before methods in dementia research with competing events and causal goals_ [Link](https://palolili23.github.io/presentations/2023_jsm/index.html#1) 
 
 - MELODEM Annual Meeting, New Hampshire, MA, USA
-_Target trial emulation for the study of social determinants in dementia research_ [Link](https://github.com/palolili23/presentations/tree/main/2023_melodem)
+_Target trial emulation for the study of social determinants in dementia research_ [Link](https://palolili23.github.io/presentations/2023_melodem/index.html#1)
 
 - MELODEM Work in Progress Meeting. _Virtual_
 _Effect of incident stroke on the risk of dementia over a period of 10 years of follow-up in a cohort of Asian American and White older adults in California_ [Link](https://palolili23.github.io/presentations/2023_melodem_stroke/index.html#1)
@@ -70,10 +70,10 @@ _Target trial emulation in dementia research_ [Link](https://palolili23.github.i
 **2022**
 
 - UCLA, Los Angeles, CA, USA.
-_Target trial emulation_ [Link]https://palolili23.github.io/presentations/2022_target_trial_ucla/index.html#1)
+_Target trial emulation_ [Link](https://palolili23.github.io/presentations/2022_target_trial_ucla/index.html#1)
 
 - Jornadas Tessler, Hospital Italiano de Buenos Aires, Argentina.
-_Emulación de ensayos diana en estudios observacionales_[Link](https://palolili23.github.io/presentations/2022_tessler_hiba/index.html#1)
+_Emulación de ensayos diana en estudios observacionales_ [Link](https://palolili23.github.io/presentations/2022_tessler_hiba/index.html#1)
 
 This work is licensed under a
 [Creative Commons Attribution 4.0 International License][cc-by].
