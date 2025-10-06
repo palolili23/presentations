@@ -1,0 +1,997 @@
+---
+title: "Job talk UCLA 2025"
+author: "L. Paloma Rojas-Saunero"
+date: '`r Sys.Date()`'
+output:
+  xaringan::moon_reader:
+    css: ["xaringan-themer.css", "extra.css"]
+    seal: false
+    nature:
+      slideNumberFormat: "%current%"
+      highlightStyle: github
+      highlightLines: TRUE
+      countIncrementalSlides: FALSE
+      ratio: "16:9"
+---
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(
+  fig.width=9, fig.height=3.5, fig.retina=3,
+  out.width = "100%",
+  cache = FALSE,
+  echo = FALSE,
+  message = FALSE, 
+  warning = FALSE,
+  hiline = TRUE
+)
+library(tidyverse)
+library(gt)
+library(knitr)
+library(fontawesome)
+
+
+```
+
+```{r xaringan-themer, warning=FALSE, include=FALSE}
+library(xaringanthemer)
+style_mono_light(
+  base_color = "#005587",
+  black_color = "#002B43",
+  table_row_even_background_color = "#FFFFFF",
+  title_slide_text_color = "#FFFFFF",
+  table_border_color = "#8bb8e8",
+  text_bold_color = "#002B43",
+  background_color = "#FFFFFF",
+  text_font_size = "24px",
+  header_h1_font_size = "2.75rem",
+  header_h2_font_size = "2.35rem",
+  header_h3_font_size = "2rem",
+  padding = "16px 64px 16px 32px",
+  colors = c(
+    yellow = "#ffb81c",
+    purple = "#3e2f5b",
+    green = "#136f63",
+    white = "#FFFFFF"
+  ))
+
+```
+
+class: title-slide, center, middle, inverse
+background-image: url(./figs/logo.png)
+background-position: 95% 95%
+background-size: 28%, 25%
+
+# Advancing .yellow[Health Equity] in .yellow[Aging Research] through a .yellow[Causal Inference] Framework
+
+
+.center[
+
+L. Paloma Rojas-Saunero MD, PhD
+<br>
+Postdoctoral scholar
+<br>
+Department of Epidemiology, UCLA
+
+]
+
+???
+
+---
+```{r, echo=FALSE}
+xaringanExtra::use_progress_bar("#ffb81c", "top", "0.25em")
+```
+
+# Outline
+
+- Background
+
+- Research Agenda
+
+- Research Themes: 
+
+  + A. Advances on estimands for research questions with competing events
+
+  + B. Causal framework to study time-varying exposures: target trial framework
+
+  + C. Study of social and structural determinants of health
+
+- Teaching Philosophy
+
+- Conclusion
+
+???
+This is the outline of today's talk
+
+---
+# Background
+
+.flexibleColumn[.smaller[
+- **Bolivia**
+  + Medicine, Universidad Mayor de San Andrés
+  + Undergraduate Research Assistant, Research Institute in Health and Development
+]]
+
+
+.right[
+.smaller[
+<img src=./figs/map_bolivia1.png width="55%"/>
+_Healthcare Access and Quality Index, Lancet Global Health, 2022_
+]]
+
+
+???
+I was born and raised in Bolivia, here in the heart of south america, where I earned my medical degree. This map, from The Lancet Global Health, shows healthcare access and quality index worlwide, and as you can see Bolivia is one of the most disadvantaged countries in the region. Experiencing these health inequities during my training fueled my passion for public health.
+
+---
+# Background
+
+.flexibleColumn[.smaller[
+- **Bolivia**
+  + Medicine, Universidad Mayor de San Andrés
+  + Undergraduate Research Assistant, Research Institute in Health and Development
+- **Argentina**
+  + Master in Clinical Research / Research Fellow, Internal Medicine Research Unit, Hospital Italiano de Buenos Aires
+  + Statistics for Health Sciences, Instituto de Cálculo, Universidad de Buenos Aires
+  + Research Associate, Liver Transplant Unit, Hospital El Cruce
+]]
+
+
+.right[
+.smaller[
+<img src=./figs/mapa_arg.png width="55%"/>
+_Healthcare Access and Quality Index, Lancet Global Health, 2022_
+]]
+
+
+???
+I moved to Argentia, where I earned a Master’s in Clinical Research and completed a two-year graduate program in statistics for health sciences. During that time I worked predominantly in clinical research in Internal Medicine, Critical Care and Liver Transplant outcomes. 
+I taught biostatistics in a master program, and founded R-Ladies Buenos Aires, a chapter to teach programing to women and gender minorities. After working with electronic health records and clinical registries, I knew I needed to train in causal inference methods to translata data into meaningful research.
+
+
+---
+# Background
+
+.flexibleColumn[.smaller[
+- **Bolivia**
+  + Medicine, Universidad Mayor de San Andrés
+  + Undergraduate Research Assistant, Research Institute in Health and Development
+- **Argentina**
+  + Master in Clinical Research / Research Fellow, Internal Medicine Research Unit, Hospital Italiano de Buenos Aires
+  + Statistics for Health Sciences, Instituto de Cálculo, Universidad de Buenos Aires
+  + Research Associate, Liver Transplant Unit, Hospital El Cruce
+- **Mexico**
+  + Research Assistant, National Institute of Public Health
+]]
+
+
+.right[
+.smaller[
+<img src=./figs/mapa_mex.png width="55%"/>
+_Healthcare Access and Quality Index, Lancet Global Health, 2022_
+]]
+
+???
+While living in Argentina, I also worked as research assistant for the National Institute of Public Health, Cuernavaca Mexico, in a remote position for the Environmental Epi department.
+My mentors encouraged me to pursuit a PhD in Epidemiology
+
+---
+# Background
+
+.flexibleColumn[.smaller[
+- **Bolivia**
+  + Medicine, Universidad Mayor de San Andrés
+  + Undergraduate Research Assistant, Research Institute in Health and Development
+- **Argentina**
+  + Master in Clinical Research / Research Fellow, Internal Medicine Research Unit, Hospital Italiano de Buenos Aires
+  + Statistics for Health Sciences, Instituto de Cálculo, Universidad de Buenos Aires
+  + Research Associate, Liver Transplant Unit, Hospital El Cruce
+- **Mexico**
+  + Research Assistant, National Institute of Public Health
+- **Netherlands**
+  + PhD. in Epidemiology, Erasmus MC
+
+]]
+
+
+.right[
+.smaller[
+<img src=./figs/mapa_nl_extra.png width="55%"/>
+_Healthcare Access and Quality Index, Lancet Global Health, 2022_
+]]
+
+???
+I received my PhD in Epidemiology at Erasmus MC in Rotterdam Netherlands, my work was to extend causal inference methods in dementia research. During my PhD, I visited the CAUSALab at Harvard, TA’d an online course on Confounding by Dr. Miguel Hernán. I also spent at the Leibniz Institute in Germany. While I built strong collaborations with causal inference experts and launched a career in methods, I realized that I had drifted from my passion to understand health inequities, and I seeked a postdoc to learn about the field of social epi. 
+
+---
+# Background
+
+.flexibleColumn[.smaller[
+- **Bolivia**
+  + Medicine, Universidad Mayor de San Andrés
+  + Undergraduate Research Assistant, Research Institute in Health and Development
+- **Argentina**
+  + Master in Clinical Research / Research Fellow, Internal Medicine Research Unit, Hospital Italiano de Buenos Aires
+  + Statistics for Health Sciences, Instituto de Cálculo, Universidad de Buenos Aires
+  + Research Associate, Liver Transplant Unit, Hospital El Cruce
+- **Mexico**
+  + Research Assistant, National Institute of Public Health
+- **Netherlands**
+  + PhD. in Epidemiology, Erasmus MC
+- **United States**
+  + Postdoctoral Scholar, FSPH, UCLA
+
+]]
+
+
+.right[
+.smaller[
+<img src=./figs/map_ucla.png width="55%"/>
+_Healthcare Access and Quality Index, Lancet Global Health, 2022_
+]]
+
+???
+Luckely, I found the ideal postdoc at UCLA, that could help me bridge causal inference methods with social epidemiology to study aging-related outcomes.
+
+---
+# Research Agenda
+
+.center[
+.middle[
+
+![](figs/research_agenda.jpg)
+]
+]
+
+???
+I use a causal inference framework to examine how time-varying cardiometabolic, social, and structural factors shape aging-related outcomes in midlife and later life using longitudinal observational data.
+
+---
+background-image: url(./figs/economist_2022.jpg)
+background-size: 75%
+
+.footnote[
+.smaller[
+https://www.economist.com/graphic-detail/2022/01/11/]
+]]
+
+???
+Alzheimer’s disease and related dementias pose a global public health challenge, disproportionately affecting women and underserved populations, particularly in LMICs. Despite the growing burden, their causes remain poorly understood, and effective therapies are lacking. This has fueled a strong interest in identifying modifiable risk factors for dementia prevention.
+
+---
+background-image: url(./figs/inverse_risk_factors.jpg)
+background-size: 90%
+
+???
+Researchers have often found unexpected inverse associations between common risk factors—such as smoking, hypertension, and obesity—and dementia. An even more striking example is the well-documented inverse association between cancer and dementia.
+
+Your epidemiologic instincts might point to survival bias, but in this talk, I'll illustrate that bias isn’t always bias—it can be the unbiased answer to the wrong estimand.
+With that in mind, let's jump to my work on...
+
+---
+
+class: center, middle, inverse
+
+# A. Advances on estimands for research questions with competing events 
+
+---
+
+## Competing events
+
+
+Events that _preclude*_ the outcome of interest.
+
+- *to prevent the existence, or occurrence of; make impossible
+
+--
+
+.center[
+
+<img src=./figs/data_structure.png width="60%"/>
+
+]
+
+???
+Competing events prevent the outcome of interest from occurring. For example, if dementia diagnosis is the outcome, a person who dies from heart disease can no longer develop dementia. This means deaths remove individuals from the population "at risk" for dementia.
+
+---
+## The hazard of hazard ratios
+
+.pull-left[
+.center[
+<img src=./figs/hr_hypertension.png />
+]
+]
+
+
+???
+A major issue with time-to-event analyses is the widespread use of Cox models and hazard ratios. Hazards inherently suffer from selection bias because they represent the instantaneous probability of the outcome, conditional on survival. If a large proportion of individuals die early, the analysis is increasingly restricted to a healthier subset over time.
+
+For example, many studies report that hypertension in older age appears to reduce dementia risk, with hazard ratios below 1. In a collaboration I’m involved in, we replicated this pattern—observing HRs shifting toward the null at older ages.
+
+--
+
+.pull-right[
+.center[
+<img src=./figs/rd_hypertension.png />
+]
+]
+
+.footnote[
+.smaller[
+_Gradwohl N, Fong J, Zhou Y, Rojas-Saunero LP et al.Evaluating heterogeneity in the association between hypertension and dementia by age and race/ethnicity in a diverse cohort of Asian American and non-Latino White older adults. _In preparation_ 
+]]
+
+
+???
+However, when examining absolute differences in cumulative dementia incidence by hypertension status, a different picture emerges: individuals with hypertension have a higher cumulative incidence of dementia over time, with disparities widening significantly at older ages.
+
+---
+class: left, middle
+
+## Considering Questions Before Methods in Dementia Research With Competing Events and Causal Goals 
+
+.smaller[
+
+  .left[**L. Paloma Rojas-Saunero**, Jessica G. Young, Vanessa Didelez, Arfan Ikram, Sonja A. Swanson]
+
+  .left[_American Journal of Epidemiology_, 2023
+  ]]
+
+---
+
+## Systematic review
+
+.pull-left[
+
+**Searching criteria**
+
+- Original research published in 2018-2019
+- Dementia/AD & longitudinal/cohort & hazard/risk 
+- Alzheimer’s and Dementia, Annals of Neurology, BMJ, Neurology, JAMA, Jama Neurology, Lancet, Lancet Neurology
+
+**Eligibility criteria** 
+
+- Time-to-dementia/AD as primary outcome
+- With a clear exposure/intervention, and uses methods to handle confounding
+- Not a descriptive or predictive aim
+]
+
+--
+
+.pull-right[
+**57/209** papers included:
+
+- **Half** report death numbers, **1/5** report death by exposure
+- **Half** do not include anything about death in Methods
+- **9/10** uses Cox PH models and present hazard ratios
+- **9/10** inaccurate interpretations (e.g. "hazards are interpreted as risks")
+]
+
+
+---
+
+background-image: url(./figs/chain.jpg)
+background-size: 50%
+
+???
+This reflects that there is lack of communication between and a lack of teaching resources on this area.
+My ultimate goal is to bridge the gap between methods development and real world appliations, as you will see in the following work. 
+
+---
+## Smoking cessation and 20-year dementia risk  
+
+<br><br><br>
+
+.center[
+
+<img src=./figs/comp_events.JPG width="60%"/>
+
+]
+
+.footnote[**C**: Common causes <br> Rojas-Saunero LP et al. Considering questions before methods in dementia research with competing events and causal goals. AJE. 2023]
+
+---
+## Total effect
+
+What is the risk* of dementia at 20 years of follow-up had all individuals stopped smoking, compared to had all individuals continued smoking?
+
+--
+
+$$Pr[Y_{20}^{a = 1} = 1] - Pr[Y_{20}^{a = 0} = 1]$$
+
+--
+.center[
+<img src=./figs/total_effect.JPG width="60%"/>]
+
+.footnote[**C**: Common causes <br> **crude risk, cause-specific cumulative incidence]
+
+---
+## Controlled direct effect
+
+What is the risk* of dementia at 20 years of follow-up had all individuals stopped smoking **and not died** during the study period, compared to had all individuals continued smoking **and not died** ?
+
+--
+
+$$Pr[Y_{20}^{a = 1, d_{19} = 0} = 1] - Pr[Y_{20}^{a = 0, d_{19} = 0} = 1]$$
+--
+
+.center[
+<img src=./figs/direct_effect.JPG width="60%"/>]
+
+.footnote[**C**: Common causes <br> *net risk, marginal risk ]
+
+---
+## Controlled direct effect
+
+What is the risk* of dementia at 20 years of follow-up had all individuals stopped smoking **and not died** during the study period, compared to had all individuals continued smoking **and not died** ?
+
+
+
+$$Pr[Y_{20}^{a = 1, d_{19} = 0} = 1] - Pr[Y_{20}^{a = 0, d_{19} = 0} = 1]$$
+
+
+.center[
+<img src=./figs/direct_effect_cens.JPG width="60%"/>]
+
+.footnote[**C**: Common causes <br> *net risk, marginal risk ]
+
+---
+background-image: url(./figs/rs_logo.jpg)
+background-position: 95% 95%
+background-size: 15%
+
+## Smoking cessation on dementia risk
+
+.center[
+<img src=./figs/smoke_comp_events.png width="80%"/>]
+
+.footnote[.smaller[Rojas-Saunero LP et al. Considering questions before methods in dementia research with competing events and causal goals. AJE. 2023]]
+
+---
+
+## Competing events in health equity aging research
+
+
+.center[
+<img src=./figs/selection_bias_rev.jpg width="70%"/>
+]
+
+???
+
+Any research question (i.e. descriptive, predictive or causal contrasts) comparing an incident outcome between two groups in aging population will be impacted by differential mortality
+
+
+---
+## Related work
+
+.center[
+<img src=./figs/cancer_dementia1.jpg width="90%"/>
+]
+
+---
+
+## Related work
+
+.center[
+<img src=./figs/cancer_dementia2.jpg width="90%"/>
+]
+
+---
+
+## Related work
+
+.center[
+<img src=./figs/competing_events_papers.jpg width="70%"/>
+]
+
+---
+class: center, middle
+
+## .left[Next steps]
+
+.pull-left[
+
+.bigger[
+.center[Extending the estimands framework for repeated measures of a continuous outcome]
+
+<img src=./figs/contrasts_estimands.png width="70%"/>
+<br>.smaller[_In preparation_]
+]
+]
+
+--
+
+.pull-right[
+.bigger[
+.center[Quantify and prevent bias from survival into the study in cohorts of older adults using simulations and synthethic data]
+
+<img src=./figs/stensrud.jpg width="50%"/>
+
+]]
+
+---
+class: center, middle, inverse
+
+# B. Causal framework to study time-varying exposures: target trial framework
+
+---
+class: left, middle
+
+## Racial and Ethnic Differences in the Risk of Dementia Diagnosis Under Hypothetical Blood Pressure–Lowering Interventions: The Multi-Ethnic Study of Atherosclerosis
+
+.small[
+
+  .left[**L. Paloma Rojas-Saunero**, Timothy M. Hughes, <ins>Elizabeth Rose Mayeda</ins>, Marcia Pescador Jimenez]
+
+  .left[_Alzheimers & Dementia_, 2024
+  ]
+
+]
+
+---
+## Motivation
+
+.pull-left[
+
+<img src=./figs/hypertension_nhanes.jpg width="70%"/>
+
+]
+
+.footnote[.smaller[
+Lu Y. National Trends in Racial and Ethnic Disparities in Antihypertensive Medication Use and Blood Pressure Control Among Adults With Hypertension, 2011–2018. Hypertension. 2021.
+]]
+
+
+---
+background-image: url(./figs/mesa_logo.png)
+background-position: 5% 95%
+background-size: 20%
+
+### Study design
+
+.pull-left[
+- **Study population**: Black, Chinese, Latino and White middle and older aged adults
+
+- **Data sources**: Multi-Ethnic Study of Atherosclerosis (MESA)
+]
+
+.pull-right[
+
+- **Exposure**: Systolic blood pressure collected in five waves
+
+- **Outcome**: Dementia diagnosis derived from EHR records
+
+- **Intercurrent event**: Dementia-free deaths
+
+- **Time zero/Baseline:** Interview date for wave 1
+
+- **End of follow-up:** Time of dementia diagnosis, time of death prior to dementia diagnosis, loss to follow-up
+
+]
+
+
+---
+### Target trial emulation
+
+```{r}
+target_ht <-
+  tibble::tribble(
+    ~ "<b> Section </b>",
+    ~ "<b> Target trial protocol </b>",
+    ~ "<b> Emulation using observational data </b>",
+    "<b> Eligibility criteria </b>",
+    "< 80 years old, no cognitive impairment, no history of stroke and dementia diagnosis",
+    "Same",
+    "<b> Treatment strategies  </b>",
+    "0. Natural course (comparison arm) <br>
+    1. Keep SBP < 120 mmHg <br>
+    2. Keep SBP < 140 mmHg <br>",
+    "Same",
+    "<b> Follow-up </b>",
+    "From year of first visit until 19 years of follow-up, or year of dementia dx or death, which ever happened first",
+    "Same",
+    "<b> Outcome  </b>",
+    "Dementia (Death as a competing event)",
+    "Same",
+    "<b> Causal contrast  </b>",
+    "What would have been the 19-year dementia risk had all individuals adhered to the hypothethical intervention over 10 years and we had eliminated death (Protocol effect-CDE)",
+    "Same") %>% mutate(n = row_number())
+target_ht %>% select(-n) %>% gt() %>% 
+     cols_width(
+    "<b> Section </b>" ~ px(120),
+    "<b> Target trial protocol </b>" ~ px(320),
+    "<b> Emulation using observational data </b>" ~ px(320))
+```
+
+---
+
+### Statistical analysis
+
+.center[**_What would have happened had everyone was randomized and had adhered to each intervention (g)?_**]
+
+
+.pull-left[
+.center[
+<img src=./figs/dag2.PNG width="400" height="200" />
+]
+]
+
+--
+
+.pull-right[
+.center[
+<img src=./figs/dag1.PNG width="400" height="200" />
+]]
+
+**Parametric G-formula**
+
+.footnote[
+.smaller[
+<br><br>
+**A** = SBP, **Y** = Dementia diagnosis, **L** = _Fixed covariates_: age, sex, education, income, health insurance, APOE E-4, history of diabetes, myocardial infartion, stroke, and coronary heart disease. _Time-varying covariates_: SBP, total cholesterol (continuous), LDL, BMI, current smoking, current alcohol use, myocardial infarction, stroke, and coronary heart disease diagnosis]]
+
+---
+### Hypothetical interventions on SBP and risk of dementia
+
+.center[.middle[
+<img src=./figs/cum_inc_cens.jpg width="55%"/>
+]]
+
+---
+### Controlled direct effect of SBP interventions compared to the natural course on dementia risk at 19 years of follow up
+
+
+.center[.middle[
+<img src=./figs/rr_plot_direct_effect.jpg width="60%" />
+]]
+
+
+
+---
+class: left, middle
+
+## Effect of Incident Stroke on Dementia Risk Over 10 Years in a Cohort of Asian American and Non-Latino White Older Adults in California
+
+.small[
+
+  .left[ **L. Paloma Rojas-Saunero**, Yixuan Zhou, Eleanor Hayes-Larson, Yingyan Wu, Taylor Mobley, <ins>Roch Nianogo</ins>, Holly Elser, <ins>Gilbert C. Gee</ins>, <ins>Ron Brookmeyer</ins>, Rachel Whitmer, Paola Gilsanz, and <ins>Elizabeth Rose Mayeda</ins> ]
+
+  .left[_Neurology_, In press]
+
+]
+???
+Stroke can precipitate pathological changes in the neurovascular unitleading to loss of structural and functional connectivity that could increase dementia risk.
+Previous work had major methodological limitations, including how to account for the fact that stroke increases mortality, which competes with dementia.
+Studies on this topic have very selected samples with minimal (if any)representation of the Asian American population.
+
+---
+class: center, middle
+
+.center[ ![](figs/stroke_dementia_aha.jpg) ]
+
+---
+background-image: url(./figs/kaiser_logo.png)
+background-position: 5% 95%
+background-size: 20%
+
+### Study design
+
+.pull-left[
+- **Study population**: Chinese, Japanese, Filipino, South Asian and non-Latix White older adults
+
+- **Data sources**: Kaiser Permanente NC surveys + Electronic Health Records
+
+]
+
+.pull-right[
+
+- **Exposure**: Incident stroke (ischemic + hemorrhagic) derived from ICD codes
+
+- **Outcome**: Incident dementia derived from ICD codes
+
+- **Intercurrent event**: Dementia-free deaths
+
+- **Time zero/Baseline:** Time of survey
+
+- **End of follow-up:** Time of dementia diagnosis, time of death prior to dementia diagnosis, turning 90 years old
+
+]
+
+
+---
+### Cumulative incidence of stroke at 10 years of follow up
+
+.left-column[
+
+Aalen-Johansen estimator: when a participant dies, the risk of dementia is 0
+
+]
+
+.right-column[ <img src=./figs/stroke_inc.png width="80%"/>]
+
+
+---
+### Controlled direct effect of stroke on dementia risk
+
+.left-column[
+
+.left[
+Weighted Kaplan-Meier estimator for time-varying exposures 
+
+Inverse probability weights for stroke (IPTW) 
+
+Inverse probability weights for death]
+
+]
+
+.right-column[ .right[<img src=./figs/stroke_rd_cde.png width="90%"/>]]
+
+.footnote[
+.smaller[
+<br><br><br><br>
+_Fixed covariates_: age, sex, education, self-rated health, smoking status. <br>
+_Time-updated covariates_:SBP, BMI, total cholesterol, diabetes, hypertension, dyslipidemia, acute myocardial infarction, congestive heart failure, ischemic heart disease, peripheral vascular disease, cancer
+
+]]
+
+---
+### Total effect of stroke on dementia risk
+
+.left-column[
+Aalen Johansen estimator including IPTW weights
+
+Includes the indirect path between stroke and death
+]
+
+.right-column[ .right[<img src=./figs/stroke_rd_total.png width="90%"/>]]
+
+.footnote[
+.smaller[
+<br><br><br><br>
+_Fixed covariates_: age, sex, education, self-rated health, smoking status. <br>
+_Time-updated covariates_:SBP, BMI, total cholesterol, diabetes, hypertension, dyslipidemia, acute myocardial infarction, congestive heart failure, ischemic heart disease, peripheral vascular disease
+
+]]
+
+???
+However, if we would have targeted a total effect, including the indirect path that stroke increases mortality, all effects shift towards or below the null. This reiterates how different ways to account for death as a competing event can lead to very different results. 
+
+Now on all analysis, we are assuming that there is no measurement error, but we can expect that those who have had a stroke had a strick screening of cognitive impairment. And  among those who don't have stroke, their is potential underdiagnosis of dementia. To understand how this bias could impact our results we did a QBA.
+
+---
+### Quantitative bias analysis for differential dementia diagnosis
+
+.left-column[
+
+We set the sensitivity of dementia diagnosis in the stroke arm to 0.99 and considered a range of sensitivity values in the no-stroke arm, from 0.50 (worst case scenario) to 0.90. 
+
+]
+
+.right-column[ <img src=./figs/qba_RR_5yrcases.png width="100%"/> ]
+
+---
+## .left[Next steps]
+
+<br>
+.bigger[
+.center[To quantify how interventions can reduce inequities using observational data, I plan to use simulations to understand sources of effect heterogeneity
+
+]]
+
+???
+As we observed in the paper in MESA, under the same intervention we would need to intervene on more Latinx and Black particulants, as they have a larger burden of disease. 
+As opossed to an randomized trial where the interventions are assigned randomly to create balanced groups, effect heterogeneity in observational studies can arise from multiple sources, such as a differential frequency of the exposure, difference in outcome and in competing events. Different groups may have a different confounding structure. 
+
+
+---
+## Related work
+
+.center[
+<img src=./figs/target_trial_papers.jpg width="80%"/>
+]
+
+---
+class: center, middle, inverse
+
+# C. Study of social and structural determinants of health in aging related outcomes
+
+---
+class: left, middle
+
+## Racialized residential segregation in 1940 and later-life memory decline in Black and White US older adults
+
+.small[
+
+  .left[ **L. Paloma Rojas-Saunero**, Taylor Mobley, Yixuan Zhou, Jenni Shearston, <ins>Courtney S. Thomas Tobin</ins>, Kara Rudolph, Jennifer Manly, <ins>Gilbert C Gee</ins>, Rob Warren, Joan Casey,  and <ins>Elizabeth Rose Mayeda</ins>]
+
+  .left[_In preparation_]
+
+]
+
+---
+background-image: url(./figs/hrs_logo.png), url(./figs/ipums_logo.png)
+background-position: 5% 95%, 95% 95%
+background-size: 20%, 20%
+
+##Study design
+
+.center[
+_What is the effect of racialized residential segregation in 1940 on late-life memory decline?_
+]
+
+Health and Retirement Study linkage with 1940 Census
+
+.pull-left[
+<img src=./figs/di_index.png width="120%"/>
+]
+
+.pull-right[
+<img src=./figs/ndns_index.png width="120%"/>]
+
+---
+## Challenges with the consistency assumption
+
+- What would be a meaningful and "realistic" reduction of segregation?
+
+--
+
+- How do the index we measured connect to the hypothethical interventions?
+
+--
+
+- How does survival into the study (by age 65) change our causal estimand?
+
+--
+
+- What area-level confounders should we consider? (E.g., % Of unemployement overall or stratified by race, % of higher educational attainment, etc. )
+
+---
+
+class: left, middle
+
+## Occupational Determinants of Cognitive and Brain Health Among Middle-Aged and Older Adults in the U.S.
+
+.small[
+
+  .left[ **L. Paloma Rojas-Saunero**, Jacqueline Torres, <ins>Jian Li</ins>, Hector González, <ins>Hirám Beltrán Sanchez</ins>, Charles DeCarli, Paola Gilsanz, <ins>Mirella Diaz-Santos </ins>, <ins>Elizabeth Rose Mayeda</ins>]
+
+]
+
+---
+## Motivation
+
+.center[
+<img src=./figs/boss_model1.JPG width="100%"/>
+]
+
+---
+## Motivation
+
+.center[
+<img src=./figs/boss_model2.JPG width="100%"/>
+]
+
+---
+## Motivation
+
+.center[
+<img src=./figs/boss_model3.JPG width="100%"/>
+]
+
+---
+# Future Directions
+
+.pull-left[
+.center[
+
+<img src=./figs/k99_framework.jpg width="85%"/>
+]
+
+]
+
+--
+
+.pull-right[
+.center[
+<img src=./figs/occupational_logos.jpg width="70%"/>
+<br>
+]
+.smaller[
+- **K99/R00 Career Development Award (_Resubmission_)**
+<br>
+- **Alzheimer's Association Research Fellowship to Promote Diversity (_Pending_)**
+<br>
+- **Columbia Center for Interdisciplinary Research on Alzheimer's Disease Disparities (CIRAD) RCMAR (_Pending_)**
+]
+]
+
+---
+# Conclusions
+
+
+---
+## Mentors and Collaborators
+
+.container[
+.left-column2[
+.smaller[
+- Elizabeth Rose Mayeda, UCLA (_Postdoc Mentor_)  
+- Sonja A. Swanson, Pitt (_PhD Mentor_)  
+- Alexander Ivan Posis, UC Davis  
+- Charles DeCarli, UC Davis  
+- Courtney S. Thomas Tobin, UCLA  
+- Dan Mungas, UC Davis  
+- Eleanor Hayes-Larson, USC  
+- Eleanor Murray, BU  
+- Ellen Caniglia, Penn  
+- Gilbert C. Gee, UCLA  
+- Hector Gonzalez, UCSD  
+- Hirám Beltrán Sánchez, UCLA  
+- Jian Li, UCLA  
+- Jessica G. Young, HSPH  
+- Joan Casey, UWashington  
+- Joey Fong, UCLA  
+- Lan Wen, U. Waterloo  
+- Laura Acion, Metadocencia  
+]]
+
+.middle-column2[
+.smaller[
+- M. Martha Tellez Rojo, INSP  
+- Marcia Pescador Jimenez, BU  
+- Maria M. Glymour, BU  
+- Mirella Díaz-Santos, UCLA  
+- Paola Gilsanz, KPNC  
+- Rachel Whitmer, UC Davis  
+- Roch A. Nianogo, UCLA  
+- Ron Brookmeyer, UCLA  
+- Ruijia Chen, BU  
+- Vanessa Didelez, Leibniz Inst.  
+
+**Students**
+- Jose Luis Villca, UMSS,
+- Cecilia Curvale, Hosp. El Cruce
+- Kelly Guo, EMC
+- Ryo Ikesu, UCLA  
+- Taylor Mobley, UCLA  
+- Yixuan Zhou, UCLA  
+- Yingyan Wu, UCLA  
+]]
+
+.right-column2[
+.smaller[
+**Research Groups**
+- Mayeda Research Group
+- Practical Causal Inference Lab
+- FSPH Rooted Academy
+- MELODEM
+- Equity for Latinx-Hispanic Healthy Aging (ELHA) Lab
+- California Center for Population Research
+
+**Grant Support**
+- USC/UCLA Center on Biodemography and Population Health
+- NIA R01AG074359 (Mayeda)
+- NIA R01AG0603969 (Mayeda)
+- NIA R01AG052132 (Mayeda)
+
+
+]]]
+
+
+---
+class: left, middle, inverse
+
+# .yellow[Thank You!]
+
+
+.left[
+lp.rojassaunero@ucla.edu
+
+]
+
+
+---
+# Teaching Phylosophy
+
+
+
