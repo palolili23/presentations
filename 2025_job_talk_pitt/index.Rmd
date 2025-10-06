@@ -1,5 +1,5 @@
 ---
-title: "Job talk UCLA 2025"
+title: "Job talk PITT 2025"
 author: "L. Paloma Rojas-Saunero"
 date: '`r Sys.Date()`'
 output:
@@ -628,15 +628,37 @@ class: left, middle, inverse
 ## Motivation
 
 .pull-left[
-- Estimating effects of modifiable risk factors on dementia risk relies on observational studies studies
+- There is a need to identify modifiable risk factors across the life course
+]
 
-- Observational studies often focus on single time-point exposure assessment rather than the longitudinal effects
+.pull-right[
+<img src=./figs/lancet2024_2.png width="100%"/> ]
+
+---
+## Motivation
+
+.pull-left[
+- There is a need to identify modifiable risk factors across the life course, and we rely on observational data
+
+- Studies focus on single time-point exposure assessment rather than the longitudinal effects 
+]
+
+.pull-right[
+<img src=./figs/lancet2024_2.png width="100%"/> ]
+
+---
+## Motivation
+
+.pull-left[
+- There is a need to identify modifiable risk factors across the life course, and we rely on observational data
+
+- Studies focus on single time-point exposure assessment rather than the longitudinal effects 
 
 - We need causal methods to guide prevention strategies
 ]
 
 .pull-right[
-<img src=./figs/lancet_paf.png width="70%"/> ]
+<img src=./figs/lancet2024_2.png width="100%"/> ]
 
 
 ---
@@ -671,7 +693,7 @@ target_ht <-
     ~ "Emulation using observational data",
     "Eligibility criteria",
     "Chinese, Black, Latinx, White <br>
-    < 85 years old <br>,
+    < 85 years old <br>
     Free of cardiovascular disease <br>
     No dementia diagnosis at baseline",
     "Same",
@@ -683,18 +705,22 @@ target_ht <-
     "Follow-up",
     "From year of first visit until 19 years of follow-up, or year of dementia or death, which ever happened first",
     "Same",
+    "Assignment",
+    "Participants randomized at baseline who might be aware of their treatment group",
+    "Randomization emulated by adjusting for baseline covariates and adherence by adjusting for time-varying covariates",
     "Outcome",
-    "Dementia (Death as a censoring event)",
-    "Same",
+    "Dementia screening yearly(Death as a censoring event)",
+    "Dementia dx derived from EHR",
     "Causal contrast",
-    "What would have been the risk of dementia if all individuals adhered to their assigned strategy and death was eliminated (Controlled direct per protocol effect)",
+    "Controlled direct, per protocol effect",
     "Same") %>% mutate(n = row_number())
 
-target_ht %>% select(-n) %>% gt() %>% 
+target_ht %>% filter(n == 1) %>% 
+  select(-n) %>% gt() %>% 
      cols_width(
     "Section" ~ px(150),
     "Target trial protocol" ~ px(450),
-    "Emulation using observational data" ~ px(320)) %>% 
+    "Emulation using observational data" ~ px(450)) %>% 
   tab_options(
         table.font.size = 22) %>% 
   tab_style(
@@ -702,6 +728,82 @@ target_ht %>% select(-n) %>% gt() %>%
     locations = cells_column_labels(everything())
     )
 
+```
+
+---
+```{r}
+target_ht %>% filter(n %in% c(1,2)) %>% select(-n) %>% gt() %>% 
+     cols_width(
+    "Section" ~ px(150),
+    "Target trial protocol" ~ px(450),
+    "Emulation using observational data" ~ px(450)) %>% 
+  tab_options(
+        table.font.size = 22) %>% 
+  tab_style(
+            style = cell_text(align = "center", weight = "bold"),
+    locations = cells_column_labels(everything())
+    )
+```
+
+---
+```{r}
+target_ht %>% filter(n %in% c(1:3)) %>% select(-n) %>% gt() %>% 
+     cols_width(
+    "Section" ~ px(150),
+    "Target trial protocol" ~ px(450),
+    "Emulation using observational data" ~ px(450)) %>% 
+  tab_options(
+        table.font.size = 22) %>% 
+  tab_style(
+            style = cell_text(align = "center", weight = "bold"),
+    locations = cells_column_labels(everything())
+    )
+```
+
+---
+
+```{r}
+target_ht %>% filter(n %in% c(1:4)) %>% select(-n) %>% gt() %>% 
+     cols_width(
+    "Section" ~ px(150),
+    "Target trial protocol" ~ px(450),
+    "Emulation using observational data" ~ px(450)) %>% 
+  tab_options(
+        table.font.size = 22) %>% 
+  tab_style(
+            style = cell_text(align = "center", weight = "bold"),
+    locations = cells_column_labels(everything())
+    )
+```
+
+---
+```{r}
+target_ht %>% filter(n %in% c(1:5)) %>% select(-n) %>% gt() %>% 
+     cols_width(
+    "Section" ~ px(150),
+    "Target trial protocol" ~ px(450),
+    "Emulation using observational data" ~ px(450)) %>% 
+  tab_options(
+        table.font.size = 22) %>% 
+  tab_style(
+            style = cell_text(align = "center", weight = "bold"),
+    locations = cells_column_labels(everything())
+    )
+```
+
+---
+```{r}
+target_ht %>% filter(n %in% c(1:6)) %>% select(-n) %>% gt() %>% 
+     cols_width(
+    "Section" ~ px(150),
+    "Target trial protocol" ~ px(450),
+    "Emulation using observational data" ~ px(450)) %>% 
+  tab_options(
+        table.font.size = 22) %>% 
+  tab_style(
+            style = cell_text(align = "center", weight = "bold"),
+    locations = cells_column_labels(everything())
+    )
 ```
 
 ---
@@ -789,12 +891,11 @@ background-size: 20%
 - _Triangulation of Innovative Methods to End Alzheimer’s Disease (TIME-AD)_ grant, P01AG082653-01A1: Collaborator, currently writing guidelines on target trial emulation
 ]
 
---
-
 .small[
 **Target trial emulation in critical care**
 - Urner M, Jüni P, **Rojas-Saunero LP**, Hansen B, Brochard LJ, Ferguson ND, Fan E. Limiting Dynamic Driving Pressure in Patients Requiring Mechanical Ventilation. _Critical Care Medicine._ 2023.
 
+- _INCEPTION_ CIHR-funded grant: Co-I
 ]
 
 ---
