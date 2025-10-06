@@ -352,7 +352,7 @@ class: left, middle, inverse
 
 ---
 
-background-image: url(./figs/inverse_risk_factors.PNG)
+background-image: url(./figs/inverse_risk_factors.jpg)
 background-size: 100%
 
 ???
@@ -707,15 +707,15 @@ target_ht %>% select(-n) %>% gt() %>%
 ---
 ## Statistical Analysis
 
-.center[**_What would have happened had everyone was randomized and had adhered to each intervention (g)?_**]
+.center[**_What would have happened if everyone had been randomized and adhered to each intervention (g)?_**]
 
 --
 
-.pull-left[<img src=./figs/dag1.PNG width="400" height="200" />]
+.pull-left[<img src=./figs/dag2.PNG width="400" height="200" />]
 
 --
 
-.pull-right[<img src=./figs/dag2.PNG width="400" height="200" />]
+.pull-right[<img src=./figs/dag1.PNG width="400" height="200" />]
 
 --
 
@@ -724,29 +724,29 @@ target_ht %>% select(-n) %>% gt() %>%
 **A** = SBP, **L** = _Fixed covariates_: age, sex, education, income, health insurance, marital status, APOE-ε4 genotype, history of diabetes. _Time-varying covariates_: SBP, cardiometabolic biomarkers, behavioral measurements, incident cardiovascular comorbidities **Y** = Dementia]
 
 ---
-## Methods
+## G-formula
 
-1. Model all variables using the covariate history.
-
---
-
-2. Select a random sample of baseline data and simulate covariate and treatment history using estimated coefficients from step 1.
+1. Model all variables using the covariate history
 
 --
 
-3. Intervene by assigning the treatment value at each time point according to the hypothetical intervention.
+2. Use coefficients to simulate longitudinal data on covariates and exposure, based on a random sample of baseline data
 
 --
 
-4. Estimate the predicted probability of the outcome based on the updated intervention.
+3. Replace exposure values based on the hypothetical intervention at every time-point
 
 --
 
-5. Calculate the average of the subject-specific risks and bootstrap CI.
+4. Estimate the predicted probability of the outcome based on the updated intervention
 
 --
 
-6. Repeat steps 2-6 for each hypothetical intervention.
+5. Calculate the average of the subject-specific risks and bootstrap CI
+
+--
+
+6. Repeat steps 2-6 for each hypothetical intervention
 
 ---
 background-image: url(./figs/mesa_logo.png)
