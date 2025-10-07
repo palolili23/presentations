@@ -572,9 +572,9 @@ background-size: 40%
 
 
 .pull-left[
-- Differential mortality can bias descriptive, predictive, and causal comparisons across groups.
+- Differential mortality can bias descriptive, predictive, and causal comparisons across groups
 
-- Accounting for death is critical when studying disparities in aging outcomes.
+- Accounting for death is critical when studying disparities in aging outcomes
 ]
 
 .pull-right[
@@ -592,10 +592,6 @@ background-size: 40%
 --
 
 - All approaches have trade-offs—there is no "one size fits all"
-
---
-
-- Measures of disparity are shaped by differential mortality
 
 --
 
@@ -620,6 +616,10 @@ background-size: 40%
 ]
 
 ---
+background-image: url(./figs/comp_events_workshop.jpg)
+background-size: 70%
+
+---
 class: left, middle, inverse
 
 # Target trial emulation to study modifiable risk factors of dementia
@@ -628,7 +628,7 @@ class: left, middle, inverse
 ## Motivation
 
 .pull-left[
-- There is a need to identify modifiable risk factors across the life course
+- There is a need to identify modifiable risk factors across the life course, and we rely on observational data
 ]
 
 .pull-right[
@@ -709,8 +709,8 @@ target_ht <-
     "Participants randomized at baseline who might be aware of their treatment group",
     "Randomization emulated by adjusting for baseline covariates and adherence by adjusting for time-varying covariates",
     "Outcome",
-    "Dementia screening yearly(Death as a censoring event)",
-    "Dementia dx derived from EHR",
+    "Dementia screening yearly, and all deaths are preventable",
+    "Dementia dx derived from EHR, death as a censoring event",
     "Causal contrast",
     "Controlled direct, per protocol effect",
     "Same") %>% mutate(n = row_number())
@@ -866,10 +866,6 @@ background-size: 20%
 ---
 # Discussion
 
-- The target trial framework makes explicit the assumptions needed to estimate causal effects from observational data
-
---
-
 - Intensive blood pressure control appeared beneficial for Black, Latinx and White participants; while results for Chinese adults suggested possible harm, highlighting heterogeneity
 
 --
@@ -878,7 +874,12 @@ background-size: 20%
 
 --
 
-- Target trial emulation allows us to move from associations to quantifying the potential effect of implementable and equitable interventions
+- The target trial framework helps us refine research questions to estimate the impact of potentially implementable and equitable interventions
+
+--
+
+- It promotes transparency on the assumptions needed to estimate causal effects from observational data
+
 
 ---
 # Related Work
@@ -972,7 +973,7 @@ background-size: 20%
 .pull-left[
 **Core Epidemiology & Methods**
   + Intro to public health/epidemiology
-  + Advanced methods: Causal inference
+  + Advanced epidemiologic methods
   
 **Quantitative & Computational Tools**
   + Biostatistics for Public Health
@@ -983,7 +984,7 @@ background-size: 20%
 
 .pull-right[
 **Specialized Methods**
-  + Causal Survival Analysis & Competing Risks
+  + Causal Survival Analysis
   + Target Trial Emulation for Time-varying Exposures
 
 **Specialized Topics**
