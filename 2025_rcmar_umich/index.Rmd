@@ -85,60 +85,9 @@ Department of Epidemiology, UCLA
 ```{r, echo=FALSE}
 xaringanExtra::use_progress_bar("#ffb81c", "top", "0.25em")
 ```
-# Background
-
-.pull-left[
-.smaller[
-
-- Born and raised in La Paz, Bolivia (11,893 ft above sea level)
-
-- Medical degree from Universidad Mayor de San Andrés.
-
-- Master in clinical research, Hospital Italiano de Buenos Aires, Argentina
-
-- Specialization in Statistics for Health Sciences, Universidad de Buenos Aires, Argentina
-
-]]
-
-.pull-right[
-
-<img src=./figs/illimani.jpg width="65%"/>
-]
-
-.footnote[.smaller[
-_Photo by @lalibelle - reposted @howtolapaz_ ]]
 
 ---
-# Background
-
-.pull-left[
-
-- PhD in Epidemiology at Erasmus MC in
-Rotterdam, Netherlands
-
-]
-
-.pull-right[
-<img src=./figs/cover_draft.jpg width="60%"/>
-
-]
-
-.footnote[.smaller[
-_Illustration by Lucia Mayorga Garrido Cortés_ ]]
-
----
-# Research Focus
-
-.center[
-
-<img src=./figs/venn1.png width="45%"/>
-]
-
-???
-So across methods, risk factors, and outcomes, my research aims to identify actionable targets to reduce the burden of aging related outcomes, and related disparties, as well as to develope and teach methods to improve the quality of AD/ADRD research.
-
----
-# Research Outline
+# Outline
 
 **Estimands for competing and truncation events on aging-related outcomes**
 
@@ -146,24 +95,12 @@ So across methods, risk factors, and outcomes, my research aims to identify acti
   + Stroke and dementia risk
   + Social isolation and functional impairment trajectories
 
-???
-Today, I will
 --
 
 **Target trial framework to evaluate modifiable risk factors of dementia**
 
   + Intensive vs. standard management of systolic blood pressure across race/ethnic subgroups
 
-???
-I organize my work into three main areas:
-
-Estimands for competing and truncation events—for example, studying smoking and dementia risk, stroke and dementia risk, and social isolation and functional impairment trajectories.
-
-Target trial frameworks—to evaluate modifiable risk factors, like intensive versus standard blood pressure management across race and ethnic subgroups.
-
-Future work—extending these methods to study occupational determinants of cognitive and brain health in Latinx populations."*
-
-I’ll start with the first area, estimands for competing and truncation events, to show how clarifying the research question guides the choice of methods.
 
 ---
 class: left, middle, inverse
@@ -196,54 +133,88 @@ Now your epidemiologic instincts might be thinking of all the potential sources 
 ???
 So let's imagine a study in which people are randomized to either receive or not an intervention to help them with quitting smoking. And every year they get a dementia screenning assessment, over 20 years. So here is a node for dementia indexed at time 20. To participate in the 20th year screening people needed to survive to year 19, so here is a node for death at time 19, and the blue box represent that we are selecting those who survived. The bolded arrow represents the determinist association between these too, participants who die by time 19 have zero risk of dementia at year 20. Now smoking may directly affect dementia, but it also increases death. And there could be shared common risk factors, such as hypertension and diabetes that increase the risk of dementia and death. 
 
-So how can we summarize this challenge as part of our research question?
 ---
+# Estimand
 
-## Questions before methods
+.center[<img src=./figs/estimands_meme_horizontal.jpg width="120%"/>]
 
-.pull-left[
-**Total effect**
+.center[.bigger[Specific quantity that we want to estimate that answers our research question (_parameter of interest_).]]
 
-What is the risk of dementia at 20 years of follow-up had all individuals stopped smoking, compared to had all individuals continued smoking?
+---
+# Causal estimands have 5 elements
 
-<img src=./figs/total_effect.JPG width="100%"/>
-
-]
+1. Target population: Older adults who smoke, with no cardiovascular or lung comorbidities
 
 --
 
-.pull-right[
-**Controlled direct effect**
+2. Exposure/Treatment arms ($A$): Smoking cessation program vs. no intervention
 
-What is the risk of dementia at 20 years of follow-up had all individuals stopped smoking **and not died** during the study period, compared to had all individuals continued smoking **and not died** ?
+--
 
-<img src=./figs/direct_effect.JPG width="100%"/>
+3. Outcome ($Y$): Dementia diagnosis over 20 years
 
-]
+--
 
-.footnote[**C**: Shared risk factors]
+4. Summary measure: A population-level measure of frequency that is _interpretable_ (e.g. risk difference: $Pr[Y_{20}^{a = 1} = 1] - Pr[Y_{20}^{a = 0} = 1]$)
+
+--
+
+5. Intercurrent events: Events that prevent us from observing the exposure or outcome (e.g. death, loss to follow-up)
 
 ---
-## Questions before methods
 
-.pull-left[
-**Total effect**
+## Total effect
 
-What is the risk of dementia at 20 years of follow-up had all individuals stopped smoking, compared to had all individuals continued smoking?
+.center[
+.middle[
 
-<img src=./figs/total_effect.JPG width="100%"/>]
+What is the risk** of dementia at 20 years of follow-up had all individuals stopped smoking, compared to had all individuals continued smoking?
 
+$$Pr[Y_{20}^{a = 1} = 1] - Pr[Y_{20}^{a = 0} = 1]$$
 
-.pull-right[
-**Controlled direct effect**
+<img src=./figs/total_effect.JPG width="60%"/>
 
-What is the risk of dementia at 20 years of follow-up had all individuals stopped smoking **and not died** during the study period, compared to had all individuals continued smoking **and not died** ?
+]]
 
-<img src=./figs/direct_effect_cens.JPG width="100%"/>
+** _Cause-specific cumulative incidence_ or _crude_ risk
+
+---
+
+## Controlled direct effect
+
+.center[
+.middle[
+
+What is the risk** of dementia at 20 years of follow-up had all individuals stopped smoking _and not died_ during the study period, compared to had all individuals continued smoking _and not died_ ?
+
+$$Pr[Y_{20}^{a = 1, d_{19} = 0} = 1] - Pr[Y_{20}^{a = 0, d_{19} = 0} = 1]$$
+
+<img src=./figs/direct_effect.JPG width="60%"/>
 
 ]
+]
 
-.footnote[**C**: Shared risk factors]
+** _Marginal_ or _net_ risk
+
+---
+## Controlled direct effect
+
+.center[.middle[
+
+What is the risk** of dementia at 20 years of follow-up had all individuals stopped smoking _and not died_ during the study period, compared to had all individuals continued smoking _and not died_ ?
+
+$$Pr[Y_{20}^{a = 1, d_{19} = 0} = 1] - Pr[Y_{20}^{a = 0, d_{19} = 0} = 1]$$
+
+<img src=./figs/direct_effect_cens.JPG width="60%"/>
+
+]
+]
+
+** _Marginal_ or _net_ risk
+
+???
+So up to now, we can see that these two questions have very different interpretations and rely on different assumptions
+
 
 ---
 ## Identifiability assumptions for death
@@ -342,17 +313,6 @@ background-size: 20%
 Transition:Next,I’ll show how these ideas guide our work when focusing on repeated measures of a continuous outcome, such as functional impairment trajectories.
 
 ---
-## Quantitative bias analysis for differential dementia diagnosis
-
-.left-column[
-
-We set the sensitivity of dementia diagnosis in the stroke group to 0.99 and considered a range (0.5 - 0.9) of sensitivity values in the no-stroke group 
-
-]
-
-.right-column[ <img src=./figs/qba_RR_5yrcases.png width="100%"/> ]
-
----
 ## Social isolation and functional impairment trajectories
 
 .pull-left[
@@ -382,11 +342,11 @@ background-size: 40%
 
 **Functional Impairment**: Functional impairment (ADLs + IADLs + mobility, 0–36) at 4 waves over 5 years
 
-**Descriptive estimands**:
+**As observed estimand:** among participants still alive and observed
+$E(Y_t|SI=1, Death_t = 0)$ & $E(Y_t|SI=0, Death_t = 0)$
 
-**As observed:** among participants still alive and observed
-
-**Under elimination of dropout/death:** predicts trajectories for all participants at all waves
+**Under elimination of dropout/death estimand** predicts trajectories for all participants at all waves
+$E[Y_t^{\overline{\text{Death}} = 0}|SI=1]$ & $E[Y_t^{\overline{\text{Death}} = 0}|SI=0]$
 
 ---
 ## Social isolation and trajectories of functional impairment
@@ -431,10 +391,6 @@ background-size: 40%
 --
 
 - Progress needs collaboration across statisticians, epidemiologists, applied researchers, and stakeholders
-
----
-background-image: url(./figs/comp_events_workshop.jpg)
-background-size: 70%
 
 ---
 class: left, middle, inverse
@@ -624,7 +580,7 @@ target_ht %>% filter(n %in% c(1:6)) %>% select(-n) %>% gt() %>%
 ```
 
 ---
-## Statistical Analysis
+## Parametric G-formula
 
 .center[**_What would have happened if everyone had been randomized and adhered to each intervention (g)?_**]
 
@@ -641,31 +597,6 @@ target_ht %>% filter(n %in% c(1:6)) %>% select(-n) %>% gt() %>%
 .footnote[
 <br><br>
 **A** = SBP, **L** = _Fixed covariates_: age, sex, education, income, health insurance, marital status, APOE-ε4 genotype, history of diabetes. _Time-varying covariates_: SBP, cardiometabolic biomarkers, behavioral measurements, incident cardiovascular comorbidities **Y** = Dementia]
-
----
-## G-formula
-
-1. Model all variables using the covariate history
-
---
-
-2. Use coefficients to simulate longitudinal data on covariates and exposure, based on a random sample of baseline data
-
---
-
-3. Replace exposure values based on the hypothetical intervention at every time-point
-
---
-
-4. Estimate the predicted probability of the outcome based on the updated intervention
-
---
-
-5. Calculate the average of the subject-specific risks and bootstrap CI
-
---
-
-6. Repeat steps 2-6 for each hypothetical intervention
 
 ---
 background-image: url(./figs/mesa_logo.png)
@@ -691,14 +622,40 @@ background-size: 20%
 
 --
 
-- The target trial framework helps us refine research questions to estimate the impact of potentially implementable and equitable interventions
+- The target trial framework helps us refine research questions (i.e. estimands) to estimate the impact of potentially implementable and equitable interventions
 
 --
 
 - It promotes transparency on the assumptions needed to estimate causal effects from observational data
 
 ---
-## Thank you!
+# Future Directions
+
+.pull-left[
+.center[
+**Occupational determinants of cognitive and brain health among middle-aged and older Latinxs**
+
+.left[NIH|NIA K99/R00, Impact score: 16, _pending_]
+
+<img src=./figs/chamacos_sol_logo.png width="60%"/>
+  
+]]
+
+
+--
+
+.pull-right[
+.center[
+**Causal estimands for cognitive decline with truncation due to death**
+  
+.left[Separable effects:]
+  
+<img src=./figs/stensrud.jpg width="60%"/>
+]
+]
+
+---
+## Acknowledgements
 
 .container[
 .left-column2[
@@ -776,4 +733,40 @@ class: left, middle, inverse
 lp.rojassaunero@ucla.edu
 
 ]
+
+---
+## Quantitative bias analysis for differential dementia diagnosis
+
+.left-column[
+
+We set the sensitivity of dementia diagnosis in the stroke group to 0.99 and considered a range (0.5 - 0.9) of sensitivity values in the no-stroke group 
+
+]
+
+.right-column[ <img src=./figs/qba_RR_5yrcases.png width="100%"/> ]
+
+---
+## G-formula
+
+1. Model all variables using the covariate history
+
+--
+
+2. Use coefficients to simulate longitudinal data on covariates and exposure, based on a random sample of baseline data
+
+--
+
+3. Replace exposure values based on the hypothetical intervention at every time-point
+
+--
+
+4. Estimate the predicted probability of the outcome based on the updated intervention
+
+--
+
+5. Calculate the average of the subject-specific risks and bootstrap CI
+
+--
+
+6. Repeat steps 2-6 for each hypothetical intervention
 
