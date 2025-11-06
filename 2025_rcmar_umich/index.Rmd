@@ -734,38 +734,23 @@ lp.rojassaunero@ucla.edu
 ]
 
 ---
-## Quantitative bias analysis for differential dementia diagnosis
+# References
 
-.left-column[
+.smaller[
+- Considering Questions Before Methods in Dementia Research With Competing Events and Causal Goals
+[https://pubmed.ncbi.nlm.nih.gov/37139580/](https://pubmed.ncbi.nlm.nih.gov/37139580/)
 
-We set the sensitivity of dementia diagnosis in the stroke group to 0.99 and considered a range (0.5 - 0.9) of sensitivity values in the no-stroke group 
+- Selection Bias in Health Research: Quantifying, Eliminating, or Exacerbating Health Disparities?
+[https://pubmed.ncbi.nlm.nih.gov/38912229/](https://pubmed.ncbi.nlm.nih.gov/38912229/)
+
+- Racial and ethnic differences in the risk of dementia diagnosis under hypothetical blood pressure-lowering interventions: The Multi-Ethnic Study of Atherosclerosis <br>
+[https://pubmed.ncbi.nlm.nih.gov/38984649/](https://pubmed.ncbi.nlm.nih.gov/38984649/)
+
+- Effect of Incident Stroke on Dementia Risk Over 10 Years in a Cohort of Asian American and Non-Latino White Older Adults in California <br>
+[https://pubmed.ncbi.nlm.nih.gov/40048680/](https://pubmed.ncbi.nlm.nih.gov/40048680/)
+
+- Workshop on competing events for causal questions
+<br>
+[https://github.com/palolili23/SER_competing_events_workshop](https://github.com/palolili23/SER_competing_events_workshop)
 
 ]
-
-.right-column[ <img src=./figs/qba_RR_5yrcases.png width="100%"/> ]
-
----
-## G-formula
-
-1. Model all variables using the covariate history
-
---
-
-2. Use coefficients to simulate longitudinal data on covariates and exposure, based on a random sample of baseline data
-
---
-
-3. Replace exposure values based on the hypothetical intervention at every time-point
-
---
-
-4. Estimate the predicted probability of the outcome based on the updated intervention
-
---
-
-5. Calculate the average of the subject-specific risks and bootstrap CI
-
---
-
-6. Repeat steps 2-6 for each hypothetical intervention
-
