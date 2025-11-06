@@ -4,6 +4,10 @@ Repository of conference talks and guest lectures since 2022 (not full list)
 
 **2025**
 
+- Michigan Center for Contextual Factors in Alzheimer's Disease - Research Scientist Seminar, University of Michigan, Ann Harbor, MI, US.
+_Advancing Health Equity in Aging Research through a Causal Inference Framework_ [Link](https://palolili23.github.io/presentations/2025_rcmar_umich/#1)
+
+
 - TIME-AD Analytics Journal Club. Boston University, Boston, MA, US.
 _Causal estimands for aging-relevant outcomes in the presence of death as a competing or truncating event_ [Link](https://palolili23.github.io/presentations/2025_time_ad_part_one/#1)
 

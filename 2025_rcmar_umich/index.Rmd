@@ -86,7 +86,6 @@ Department of Epidemiology, UCLA
 xaringanExtra::use_progress_bar("#ffb81c", "top", "0.25em")
 ```
 
----
 # Outline
 
 **Estimands for competing and truncation events on aging-related outcomes**
