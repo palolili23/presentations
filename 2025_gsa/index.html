@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>2025_GSA</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="L. Paloma Rojas-Saunero" />
+    <meta name="date" content="2025-11-14" />
+    <script src="index_files/header-attrs/header-attrs.js"></script>
+    <script src="index_files/xaringanExtra-progressBar/progress-bar.js"></script>
+    <link rel="stylesheet" href="xaringan-themer.css" type="text/css" />
+    <link rel="stylesheet" href="extra.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+
+
+
+
+
+class: title-slide, center, middle
+background-image: url(./figs/logo.png)
+background-position: 95% 95%
+background-size: 28%
+
+# .yellow[Causal estimands for Aging-Relevant Outcomes in the Presence of Death as a Competing or Truncation Event]
+
+
+.center[
+
+L. Paloma Rojas-Saunero MD, PhD
+&lt;br&gt;
+Postdoctoral scholar
+&lt;br&gt;
+Department of Epidemiology, UCLA
+
+]
+
+???
+“In aging research, especially when studying outcomes like memory decline, death is not just a nuisance—it's a fundamental part of the data-generating process. If we ignore it, we risk answering the wrong question. This talk is about how we define causal questions—or estimands—in the presence of death, and why getting those questions right is essential for interpreting results that inform science, care, and policy.”
+
+---
+<style>.xe__progress-bar__container {
+  top:0;
+  opacity: 1;
+  position:absolute;
+  right:0;
+  left: 0;
+}
+.xe__progress-bar {
+  height: 0.25em;
+  background-color: #ffb81c;
+  width: calc(var(--slide-current) / var(--slide-total) * 100%);
+}
+.remark-visible .xe__progress-bar {
+  animation: xe__progress-bar__wipe 200ms forwards;
+  animation-timing-function: cubic-bezier(.86,0,.07,1);
+}
+@keyframes xe__progress-bar__wipe {
+  0% { width: calc(var(--slide-previous) / var(--slide-total) * 100%); }
+  100% { width: calc(var(--slide-current) / var(--slide-total) * 100%); }
+}</style>
+
+# Estimand
+
+.center[&lt;img src=./figs/estimands_meme_horizontal.jpg width="120%"/&gt;]
+
+.center[.bigger[Specific quantity that we want to estimate that answers our research question.]]
+
+---
+# Causal estimands have 5 elements
+
+1. Target population
+
+2. Exposure/treatment arms
+
+3. Outcome defined within a time frame
+
+4. Interpretable effect measure (e.g. mean difference, risk difference, risk ratio)
+
+5. **Intercurrent events:** Events that will prevent us from observing the outcome (e.g. adverse reactions, death, loss to follow-up)
+
+---
+class: center, middle
+
+# How can we incorporate death as part of incident dementia analysis?
+
+---
+## Quitting smoking and 20-year dementia risk  
+
+&lt;br&gt;&lt;br&gt;&lt;br&gt;
+
+.center[
+
+&lt;img src=./figs/comp_events.JPG width="60%"/&gt;
+
+]
+
+???
+So let's imagine a study in which people are randomized to either receive or not an intervention to help them with quitting smoking. And every year they get a dementia screenning assessment, over 20 years. So here is a node for dementia indexed at time 20. To participate in the 20th year screening people needed to survive to year 19, so here is a node for death at time 19, and the blue box represent that we are selecting those who survived. The bolded arrow represents the determinist association between these too, participants who die by time 19 have zero risk of dementia at year 20. Now smoking may directly affect dementia, but it also increases death. And there could be shared common risk factors, such as hypertension and diabetes that increase the risk of dementia and death. 
+Figure with drop out 
+
+---
+
+## Total effect
+
+.center[
+.middle[
+
+What is the risk** of dementia at 20 years of follow-up had all individuals stopped smoking, compared to had all individuals continued smoking?
+
+`$$Pr[Y_{20}^{a = 1} = 1] - Pr[Y_{20}^{a = 0} = 1]$$`
+
+&lt;img src=./figs/total_effect.JPG width="60%"/&gt;
+
+]]
+
+** _Cause-specific cumulative incidence_ or _crude_ risk
+
+---
+
+## Controlled direct effect
+
+.center[
+.middle[
+
+What is the risk** of dementia at 20 years of follow-up had all individuals stopped smoking _and not died_ during the study period, compared to had all individuals continued smoking _and not died_ ?
+
+`$$Pr[Y_{20}^{a = 1, d_{19} = 0} = 1] - Pr[Y_{20}^{a = 0, d_{19} = 0} = 1]$$`
+
+&lt;img src=./figs/direct_effect.JPG width="60%"/&gt;
+
+]
+]
+
+** _Marginal_ or _net_ risk
+
+---
+## Controlled direct effect
+
+.center[.middle[
+
+What is the risk** of dementia at 20 years of follow-up had all individuals stopped smoking _and not died_ during the study period, compared to had all individuals continued smoking _and not died_ ?
+
+`$$Pr[Y_{20}^{a = 1, d_{19} = 0} = 1] - Pr[Y_{20}^{a = 0, d_{19} = 0} = 1]$$`
+
+&lt;img src=./figs/direct_effect_cens.JPG width="60%"/&gt;
+
+]
+]
+
+** _Marginal_ or _net_ risk
+
+???
+So up to now, we can see that these two questions have very different interpretations and rely on different assumptions
+
+---
+background-image: url(./figs/rs_logo.jpg)
+background-position: 95% 95%
+background-size: 12%
+
+## Quitting smoking on dementia risk at 20 years
+
+.center[
+&lt;img src=./figs/smoke_aje.png width="70%"/&gt;]
+
+.footnote[Rojas-Saunero et al. _American Journal of Epidemiology_. 2023]
+
+???
+What we see is that had we asked a question about the CDE and use appropiate methods, we would see that smoking cessation prevents dementia risk.
+Had we asked a question about the total effect, smoking cessation increases your risk of dementia, but again this is not bias, but rather the unbiased result for a question that does not satisfy our interest.
+
+---
+class: center, middle
+
+# How can we incorporate death as part of trajectories of a continuous outcome?
+
+---
+## Social isolation and functional impairment trajectories
+
+&lt;br&gt;&lt;br&gt;
+
+.center[
+
+&lt;img src=./figs/isolation_dag.png width="60%"/&gt;
+
+]
+
+---
+background-image: url(./figs/khandle_star_logo.png)
+background-position: 5% 95%
+background-size: 40%
+
+## Social isolation and functional impairment trajectories
+
+**Social Isolation (`\(SI\)`)**: Binarized 5-item Social Isolation Index
+
+**Functional Impairment (`\(Y\)`)**: (I)ADLs + mobility items (0–36), 4 waves over 5 years
+
+--
+
+.pull-left[
+.center[**As observed estimand**]
+Trajectories for participants still alive and observed &lt;br&gt;
+`\(E(Y_t|SI=1, Death_t = 0)\)` &amp; `\(E(Y_t|SI=0, Death_t = 0)\)`
+]
+
+--
+
+.pull-right[
+.center[**Under elimination of dropout/death estimand**]
+Trajectories for all participants at all waves &lt;br&gt;
+`\(E[Y_t^{\overline{\text{d}} = 0}|SI=1]\)` &amp; `\(E[Y_t^{\overline{\text{d}} = 0}|SI=0]\)`
+]
+
+---
+## Social isolation and functional impairment trajectories
+
+
+.center[&lt;img src=./figs/social_isolation_trajectories.png width="70%"/&gt;] 
+
+.footnote[Currently under R&amp;R at _J. Gerontol. A Biol. Sci. Med. Sci._]
+
+---
+## Competing/truncation events in health equity research
+
+
+.pull-left[
+- Differential mortality can bias descriptive, predictive, and causal comparisons across groups
+
+- Accounting for death is critical when studying disparities in aging outcomes
+]
+
+.pull-right[
+&lt;br&gt;&lt;br&gt;
+&lt;img src=./figs/racism_dag.jpg width="100%"/&gt;
+]
+
+.footnote[**Rojas-Saunero LP**, Glymour MM, Mayeda ER. _Current Epidemiology Reports._ 2024]
+
+---
+## Take aways
+
+.bigger[
+- Different questions (_estimands_) can lead to different (even opposite) results, with very different interprations, and no "one size fits all"]
+
+--
+.bigger[
+- We can only understand bias relative to an specific estimand, as the all rely in different assumptions
+]
+
+--
+.bigger[
+- Progress needs collaboration across statisticians, epidemiologists, applied researchers, and stakeholders
+]
+
+---
+# Thank you, Gracias!
+
+.pull-left[
+.smaller[
+**Mayeda Research Group**
+- Elizabeth Rose Mayeda
+- Sonja Swanson
+- Rachel Whitmer
+- Maria M. Glymour
+- Vanessa Didelez
+- Jessica Young
+- Jacqueline Torres
+- Paola Gilsanz
+- Ashwin Kotwal
+- Ruijia Chen
+- Eleanor Hayes Larson
+- Alexander B. Posis
+- Yixuan Zhou
+- Ryo Ikesu
+- Joseph Fong
+]]
+
+.pull-right[
+
+**USC/UCLA Biodemography Center Pilot Project Award** &lt;br&gt;&lt;br&gt;
+**NIA R01AG074359** &lt;br&gt;&lt;br&gt;
+**1P01AG082653-01A1**
+&lt;br&gt; &lt;br&gt;
+
+<svg aria-hidden="true" role="img" viewBox="0 0 512 512" style="height:1em;width:1em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M16.1 260.2c-22.6 12.9-20.5 47.3 3.6 57.3L160 376V479.3c0 18.1 14.6 32.7 32.7 32.7c9.7 0 18.9-4.3 25.1-11.8l62-74.3 123.9 51.6c18.9 7.9 40.8-4.5 43.9-24.7l64-416c1.9-12.1-3.4-24.3-13.5-31.2s-23.3-7.5-34-1.4l-448 256zm52.1 25.5L409.7 90.6 190.1 336l1.2 1L68.2 285.7zM403.3 425.4L236.7 355.9 450.8 116.6 403.3 425.4z"/></svg>&lt;/i&gt;&amp;nbsp;lp.rojassaunero@ucla.edu&lt;/a&gt;&lt;br&gt;
+
+<svg aria-hidden="true" role="img" viewBox="0 0 496 512" style="height:1em;width:0.97em;vertical-align:-0.125em;margin-left:auto;margin-right:auto;font-size:inherit;fill:currentColor;overflow:visible;position:relative;"><path d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg> &lt;a href="https://github.com/palolili23"&gt; &lt;/i&gt;&amp;nbsp; @palolili23&lt;/a&gt;&lt;br&gt;
+
+]
+
+---
+# Other estimands
+
+- Survival Average Causal Effect
+
+`\(E[Y_t^{a=1}|D_t^{a=1} = D_t^{a=0} = 0] - E[Y_t^{a=0}|D_t^{a=1} = D_t^{a=0} = 0]\)`
+
+- Composite Outcome
+
+`\(E[Y_{t}^{a = 1}  \text{ or } {Y|D}_{t}^{a = 1} = x] - E[Y_{t}^{a = 0} \text{ or } {Y|D}_{t}^{a = 0} = x]\)`, where `\(x\)` is a value for memory function after death
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+  "slideNumberFormat": "%current%",
+  "highlightStyle": "github",
+  "highlightLines": true,
+  "countIncrementalSlides": false,
+  "ratio": "16:9"
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+// add `data-at-shortcutkeys` attribute to <body> to resolve conflicts with JAWS
+// screen reader (see PR #262)
+(function(d) {
+  let res = {};
+  d.querySelectorAll('.remark-help-content table tr').forEach(tr => {
+    const t = tr.querySelector('td:nth-child(2)').innerText;
+    tr.querySelectorAll('td:first-child .key').forEach(key => {
+      const k = key.innerText;
+      if (/^[a-z]$/.test(k)) res[k] = t;  // must be a single letter (key)
+    });
+  });
+  d.body.setAttribute('data-at-shortcutkeys', JSON.stringify(res));
+})(document);
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
