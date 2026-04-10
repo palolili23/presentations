@@ -2,6 +2,11 @@
 
 Repository of conference talks and guest lectures since 2022 (not full list)
 
+**2026**
+- Practical Causal Inference Seminar. UCLA, Los Angeles, CA, USA
+_Introduction to Target Trial Framework_
+[Link](https://palolili23.github.io/presentations/2026_target_trials_ucla/#1)
+
 **2025**
 
 - Michigan Center for Contextual Factors in Alzheimer's Disease - Research Scientist Seminar, University of Michigan, Ann Harbor, MI, US.
