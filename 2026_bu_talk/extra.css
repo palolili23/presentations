@@ -1,0 +1,54 @@
+
+
+.bigger {
+  font-size: 34px;
+}
+
+.small {
+  font-size: 21px;
+}
+
+
+.smaller {
+  font-size: 18px;
+}
+
+.even_smaller {
+  font-size: 16px;
+}
+
+@media print {
+  .has-continuation {
+    display: block !important;
+  }
+}
+
+.flexibleColumn {
+    margin: 0px;
+    float: left;
+    width: 470px;
+    padding: 0px;
+}
+
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.left-column2 {
+  padding: 0px;
+  text-align: left;
+  width: 30%;
+}
+
+.middle-column2 {
+  width: 30%;
+  text-align: left;
+}
+
+.right-column2 {
+  width: 40%;
+  text-align: left;
+}
