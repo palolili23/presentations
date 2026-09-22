@@ -894,15 +894,12 @@ background-size: 40%
 ---
 ## History of competing events analysis
 
-.small[
+
 - Bernoulli wanted to estimate how smallpox inoculation could improve life expectancy (LE)
 
 - He compared a hypothetical scenario of universal inoculation (eliminating smallpox deaths) to observed LE, concluding innoculation would increase LE
 
 - D’Alembert criticized Bernoulli’s approach before the Académie des Sciences, arguing it introduced subjective biases into mathematical probability, shaped by moral and political views.
-
-- Counterfactual scenarios, such as preventing tuberculosis or cancer deaths, became increasingly popular
-]
 
 .footnote[
 .smaller[
